@@ -25,6 +25,7 @@ import Enumeraciones.RolEmpleado;
  * @author lucas
  *
  */
+@SuppressWarnings("serial")
 @Entity
 @Table(name = "Especialización",
         schema = "public")

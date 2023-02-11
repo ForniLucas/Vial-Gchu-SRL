@@ -19,6 +19,8 @@ import Enumeraciones.TipoDeProyecto;
  *
  * @author Tincho
  */
+
+@SuppressWarnings("serial")
 @Entity
 @Table(name = "TipoProyecto",
         schema = "public")

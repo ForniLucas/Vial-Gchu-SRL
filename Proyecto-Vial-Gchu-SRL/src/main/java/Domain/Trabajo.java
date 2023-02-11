@@ -21,6 +21,7 @@ import javax.persistence.Table;
  * @author lucas
  *
  */
+@SuppressWarnings("serial")
 @Entity
 @Table(name = "Trabajo",
         schema = "public")
@@ -108,7 +109,7 @@ public class Trabajo implements java.io.Serializable{
         this.Proyecto=unProyecto;
     	
     	unProyecto.addEmpleado(unEmpleado);
-        unEmpleado.addProyecto(unProyecto);
+        //unEmpleado.addProyecto(unProyecto);
         
     }
     

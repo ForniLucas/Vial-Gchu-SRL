@@ -21,6 +21,7 @@ import org.hibernate.annotations.UpdateTimestamp;
  *
  */
 
+@SuppressWarnings("serial")
 @Entity
 @Table(name = "Service",
         schema = "public")

@@ -5,8 +5,8 @@ package Domain;
 
 import java.time.LocalDate;
 import java.util.HashSet;
-import java.util.LinkedList;
-import java.util.List;
+//import java.util.LinkedList;
+//import java.util.List;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
@@ -24,14 +24,11 @@ import javax.persistence.Table;
 
 
 
-import Enumeraciones.Elemento;
-
-/**
- * @author lucas
- *
- */
+//import Enumeraciones.Elemento;
 
 
+
+@SuppressWarnings("serial")
 @Entity
 @Table(name = "Proyecto",
         schema = "public")

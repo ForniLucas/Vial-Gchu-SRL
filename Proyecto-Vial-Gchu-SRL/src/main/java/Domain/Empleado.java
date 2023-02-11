@@ -1,24 +1,9 @@
-/**
- * 
- */
 package Domain;
 
 import java.time.LocalDate;
-
-/**
- * @author lucas
- *
- */
-
-
-
-
-
 import java.time.Period;
 import java.util.HashSet;
-
 import java.util.Set;
-
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -32,25 +17,14 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 
-
-
-
-
-
-
-
-
-/**
- * @author lucas
- *
- */
-
 @Entity
 @Table(name = "Empleado",
         schema = "public")
 
 public class Empleado implements java.io.Serializable {
 
+	private static final long serialVersionUID = 1L;
+	
 	@Column(name="empleadoid", unique=true, nullable=false)
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -77,7 +51,7 @@ public class Empleado implements java.io.Serializable {
 	 @Column(name="estado",nullable=true)
      private boolean estado;
 	 
-	 @OneToMany(fetch=FetchType.LAZY, mappedBy="Empleado",cascade = CascadeType.ALL,orphanRemoval = true)
+/*	 @OneToMany(fetch=FetchType.LAZY, mappedBy="Empleado",cascade = CascadeType.ALL,orphanRemoval = true)
 	 private Set<Especializacion> Especializaciones = new HashSet<Especializacion>(0);
 	 
 	 @OneToMany(fetch=FetchType.LAZY, mappedBy="Empleado",cascade = CascadeType.ALL,orphanRemoval = true)
@@ -95,13 +69,9 @@ public class Empleado implements java.io.Serializable {
 	    	    joinColumns = @JoinColumn(name = "empleado_id"),
 	    	    inverseJoinColumns = @JoinColumn(name = "proyecto_id")
 	    	)
-	 private Set<Proyecto> Proyectos = new HashSet<Proyecto>(0);
+	 private Set<Proyecto> Proyectos = new HashSet<Proyecto>(0);*/
   
-     
-     
- 
-     /*
-    public Empleado (int idEmpleado, String nombre, String apellido, int dni, int telefono, String direccion, LocalDate fechaNac) {
+    public Empleado (Long idEmpleado, String nombre, String apellido, int dni, int telefono, String direccion, LocalDate fechaNac) {
         this.id = idEmpleado;
         this.nombre = nombre;
         this.apellido = apellido;
@@ -111,7 +81,11 @@ public class Empleado implements java.io.Serializable {
         this.fechaNac = fechaNac;
         this.estado = true;
     }
-      */
+    
+    public Empleado() {
+    }
+
+      
     public long getId() {
         return this.id;
     }
@@ -211,9 +185,9 @@ public class Empleado implements java.io.Serializable {
         this.Especializacion.fechaFin = unDia;
     }
  */
-    public void addProyecto(Proyecto comment) {
+ /*   public void addProyecto(Proyecto comment) {
         Proyectos.add(comment);
-    }
+    }*/
     
     public void modificarEmpleado(Empleado unEmpleado) {
         this.apellido = unEmpleado.apellido;
