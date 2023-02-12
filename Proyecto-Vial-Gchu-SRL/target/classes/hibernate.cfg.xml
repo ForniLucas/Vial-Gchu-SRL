@@ -12,5 +12,6 @@
         <property name="hibernate.dialect">org.hibernate.dialect.MySQL5Dialect</property>
         <property name="hibernate.hbm2ddl.auto">update</property>
         <mapping class="Domain.Empleado" />
+        <mapping class="Domain.Maquinaria" />
     </session-factory>
 </hibernate-configuration>

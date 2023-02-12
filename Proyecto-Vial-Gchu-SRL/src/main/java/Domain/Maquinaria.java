@@ -38,14 +38,14 @@ public class Maquinaria implements java.io.Serializable{
     @GeneratedValue(strategy = GenerationType.IDENTITY)
      private long id;
 	
-	 @Column(name="elemento",nullable=false)
-	 private Elemento tipo;
+	 //@Column(name="elemento",nullable=false)
+	 //private Elemento tipo;
 	 
-    @Column(name = "entrega",nullable=false)
-    private LocalDate fechaEntrega;
+    //@Column(name = "entrega",nullable=false)
+    //private LocalDate fechaEntrega;
     
-    @Column(name = "empleado",nullable=false)
-    private Empleado Empleado;
+    //@Column(name = "empleado",nullable=false)
+    //private Empleado Empleado;
     
     @Column(name = "Codigo",nullable=false)
     private String codigo;
@@ -62,6 +62,7 @@ public class Maquinaria implements java.io.Serializable{
     @Column(name = "estado",nullable=false)
     private boolean estado;
     
+    /*
     @OneToMany(fetch=FetchType.LAZY, mappedBy="Maquinaria",cascade = CascadeType.ALL,orphanRemoval = true)
 	private Set<Service> Services = new HashSet<Service>(0);
     
@@ -76,12 +77,12 @@ public class Maquinaria implements java.io.Serializable{
     	)
     private Set<Proyecto> Proyectos = new HashSet<Proyecto>(0);
     
-    
+    */
 
     
    
-/**
-    public Maquinaria(int idMaquinaria, String codigo, String descripcion, String fabricante, String ubicacionAlmacenamiento) {
+
+    public Maquinaria(Long idMaquinaria, String codigo, String descripcion, String fabricante, String ubicacionAlmacenamiento) {
         this.id = idMaquinaria;
         this.codigo = codigo;
         this.descripcion = descripcion;
@@ -89,11 +90,12 @@ public class Maquinaria implements java.io.Serializable{
         this.ubicacionAlmacenamiento = ubicacionAlmacenamiento;
         this.estado = true;
 
-        services = new LinkedList<>();
+        //services = new LinkedList<>();
     }
 
- *
-*/
+    public Maquinaria() {}
+    
+    
     public String getCodigo() {
         return codigo;
     }
@@ -154,11 +156,12 @@ public class Maquinaria implements java.io.Serializable{
         this.estado = unaMaquinaria.estado;
     }
 
+    /*
     public void asignarService(Service unservice) {
         Services.add(unservice);
     }
 
     public Set<Service> getServices() {
         return this.Services;
-    }
+    } */
 }

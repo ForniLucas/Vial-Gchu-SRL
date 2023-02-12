@@ -3,7 +3,9 @@ package com.HabilitacionProfesional.Proyecto_Vial_Gchu_SRL;
 import java.time.LocalDate;
 
 import Controladoras.ControladorEmpleado;
+import Controladoras.ControladorMaquinaria;
 import Domain.Empleado;
+import Domain.Maquinaria;
 
 /**
  * Hello world!
@@ -13,20 +15,21 @@ public class App
 {
     public static void main( String[] args )
     {
-    	Long id = (long) 1;
-    	Empleado modificado = new Empleado(id, "modificado", "modificado", 123, 123, "modificado", LocalDate.now());
-        ControladorEmpleado controladorEmp = new ControladorEmpleado();
-        //controladorEmp.alta(3, "Lucas3", "3", 3, 423, "3", LocalDate.now());
-        //controladorEmp.alta(4, "Lucas4", "4", 4, 423, "4", LocalDate.now());
-        //controladorEmp.alta(5, "Lucas5", "5", 5, 423, "5", LocalDate.now());
-        //controladorEmp.alta(6, "Lucas5", "6", 6, 423, "6", LocalDate.now());
-        //controladorEmp.modificar(modificado);
-        //controladorEmp.bajaLogica(modificado);
-        //controladorEmp.baja(modificado);
-        String encontroDNI = controladorEmp.buscarDNI(6).getNombre();
-        Empleado Forni = controladorEmp.buscarApellidoyNombre("Lucas","Forni");
-        System.out.println(encontroDNI);
-        System.out.println(Forni.getNombre());
-        System.out.println(Forni.getApellido());
+    	//Long id = (long) 1;
+    	ControladorMaquinaria controlador = new ControladorMaquinaria();
+    	//Maquinaria unaMaquina = new Maquinaria(id, "modificado", "modificado", "modificado", "modificado");
+    	
+    	for (int i = 1; i < 7; i++) {
+    		Long idtemp = (long) i;
+    		controlador.alta(idtemp, "Maquinaria "+idtemp, "Maquinaria "+idtemp, "Maquinaria "+idtemp, "Maquinaria "+idtemp);
+    		}
+    	Maquinaria maquina = controlador.buscar("Maquinaria 3");
+    	
+    	System.out.println(maquina.getCodigo());
+    	System.out.println(maquina.getDescripcion());
+    	//controlador.modificar(unaMaquina);
+    	//controlador.bajaLogica(unaMaquina);
+        //controlador.baja(unaMaquina);
+    	
     }
 }
