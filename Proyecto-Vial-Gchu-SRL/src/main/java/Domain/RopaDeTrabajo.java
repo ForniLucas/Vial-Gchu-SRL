@@ -22,7 +22,6 @@ import Enumeraciones.Ropa;
  * @author lucas
  *
  */
-@SuppressWarnings("serial")
 @Entity
 @Table(name = "RopaDeTrabajo",
         schema = "public")

@@ -5,6 +5,7 @@ package Domain;
 
 import java.time.LocalDate;
 import java.util.HashSet;
+import java.util.LinkedList;
 //import java.util.LinkedList;
 //import java.util.List;
 import java.util.Set;
@@ -28,12 +29,16 @@ import javax.persistence.Table;
 
 
 
-@SuppressWarnings("serial")
 @Entity
 @Table(name = "Proyecto",
         schema = "public")
 
 public class Proyecto implements java.io.Serializable{
+	
+	private static final long serialVersionUID = 1L;
+	
+	LinkedList<Empleado> empleados = new LinkedList<Empleado>();
+    LinkedList<Maquinaria> maquinas = new LinkedList<Maquinaria>();
 	
 	@Column(name="proyectoid", unique=true, nullable=false)
     @Id
@@ -43,17 +48,17 @@ public class Proyecto implements java.io.Serializable{
 	@Column(name = "nombre",nullable=false)
     private String nombre;
 	
-    @Column(name = "inicio",nullable=false)
+	@Column(name = "fechaInicio",nullable=false)
     private LocalDate fechaInicio;
     
     @Column(name = "FinEstimado",nullable=false)
     private LocalDate fechaEstmiadaFin;
     
-    @Column(name = "finEfectivo",nullable=true)
+    @Column(name = "fechaFin",nullable=true)
     private LocalDate fechaFin;
     
     @Column(name = "estado",nullable=true)
-    private boolean estado;
+    private String estado; //Se modifico de Boolean a String
     
 
     
@@ -85,19 +90,17 @@ public class Proyecto implements java.io.Serializable{
     	)
     private Set<Maquinaria> Maquinarias = new HashSet<Maquinaria>(0);
 
-   /** public Proyecto(int id, LocalDate fechaInicio, LocalDate fechaEstmiadaFin, LocalDate fechaFin, boolean estado, String nombre) {
+    public Proyecto(Long id, LocalDate fechaInicio, LocalDate fechaEstmiadaFin, LocalDate fechaFin, String estado, String nombre) {
         this.id = id;
         this.fechaInicio = fechaInicio;
         this.fechaEstmiadaFin = fechaEstmiadaFin;
         this.fechaFin = fechaFin;
         this.estado = estado;
         this.nombre = nombre;
-
-        empleados = new LinkedList<>();
-        maquinas = new LinkedList<>();
     }
-	*
-	*/
+    
+    public Proyecto() {}
+    
     public long getId() {
         return id;
     }
@@ -126,11 +129,11 @@ public class Proyecto implements java.io.Serializable{
         this.fechaFin = fechaFin;
     }
 
-    public boolean getEstado() {
+    public String getEstado() {
         return estado;
     }
 
-    public void setEstado(boolean estado) {
+    public void setEstado(String estado) {
         this.estado = estado;
     }
 
@@ -150,14 +153,12 @@ public class Proyecto implements java.io.Serializable{
 
         this.TipoProyecto = unTipoProyecto;
     }
-/*
- * 
 
     public void asignarEmpleado(Empleado unEmpleado) {
-        empleados.add(unEmpleado);
+    	empleados.add(unEmpleado);
     }
 
-    public List<Empleado> getEmpleados() {
+    public LinkedList<Empleado> getEmpleados() {
         return empleados;
     }
 
@@ -165,10 +166,10 @@ public class Proyecto implements java.io.Serializable{
         maquinas.add(unaMaquinaria);
     }
 
-    public List<Maquinaria> getMaquinas() {
+    public LinkedList<Maquinaria> getMaquinas() {
         return maquinas;
     }
-    */ 
+
     public void addEmpleado(Empleado comment) {
         Empleados.add(comment);
     }

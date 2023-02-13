@@ -37,15 +37,6 @@ public class Maquinaria implements java.io.Serializable{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
      private long id;
-	
-	 //@Column(name="elemento",nullable=false)
-	 //private Elemento tipo;
-	 
-    //@Column(name = "entrega",nullable=false)
-    //private LocalDate fechaEntrega;
-    
-    //@Column(name = "empleado",nullable=false)
-    //private Empleado Empleado;
     
     @Column(name = "Codigo",nullable=false)
     private String codigo;

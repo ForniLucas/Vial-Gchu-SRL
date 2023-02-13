@@ -42,6 +42,7 @@ public class ControladorEmpleado
 	      empleados.add(empleado);
 	      session.save(empleado);
 	      transaction.commit();
+	      
 	    } catch (Exception ex) {
 	    	  // Realizar un rollback en caso de una excepción
 	    	  if (transaction != null) {

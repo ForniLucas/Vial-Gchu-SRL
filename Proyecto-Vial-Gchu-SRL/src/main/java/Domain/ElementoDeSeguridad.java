@@ -20,12 +20,13 @@ import org.hibernate.annotations.UpdateTimestamp;
 import Enumeraciones.Elemento;
 
 
-@SuppressWarnings("serial")
+
 @Entity
-@Table(name = "Elemento de Seguridad",
+@Table(name = "ElementoDeSeguridad",
         schema = "public")
 public class ElementoDeSeguridad implements java.io.Serializable {
 
+	private static final long serialVersionUID = 1L;
 	@Column(name="seguridadid", unique=true, nullable=false)
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -42,14 +43,15 @@ public class ElementoDeSeguridad implements java.io.Serializable {
 	@JoinColumn(name="empleado_id", nullable=false)
 	private Empleado Empleado;
     
-/**
-    public ElementoDeSeguridad(int iD, Elemento tipo, LocalDate fechaEntrega, Empleado Empleado) {
+
+    public ElementoDeSeguridad(Long iD, Elemento tipo, LocalDate fechaEntrega, Empleado Empleado) {
         this.id = iD;
         this.tipo = tipo;
         this.fechaEntrega = fechaEntrega;
         this.Empleado = Empleado;
     }
-*/
+   public ElementoDeSeguridad() {}     
+        
     public Empleado getEmpleado() {
         return Empleado;
     }

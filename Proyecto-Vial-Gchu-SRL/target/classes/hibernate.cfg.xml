@@ -11,7 +11,15 @@
         <property name="hibernate.connection.username">root</property>
         <property name="hibernate.dialect">org.hibernate.dialect.MySQL5Dialect</property>
         <property name="hibernate.hbm2ddl.auto">update</property>
-        <mapping class="Domain.Empleado" />
-        <mapping class="Domain.Maquinaria" />
+	<mapping class="Domain.Empleado" />
+	<mapping class="Domain.Especializacion" />
+	<mapping class="Domain.Maquinaria" />
+	<mapping class="Domain.Proyecto" />
+	<mapping class="Domain.RopaDeTrabajo" />
+	<mapping class="Domain.Service" />
+	<mapping class="Domain.ElementoDeSeguridad" />
+	<mapping class="Domain.TipoProyecto" />
+	<mapping class="Domain.Trabajo" />
+	<mapping class="Domain.Utiliza" />
     </session-factory>
 </hibernate-configuration>
