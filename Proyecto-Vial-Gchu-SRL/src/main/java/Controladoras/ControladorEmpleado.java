@@ -76,6 +76,10 @@ public class ControladorEmpleado
 	      // Actualizar empleado en la base de datos
 	      session.update(unEmpleado);
 	      transaction.commit();
+	      
+	      // Actualizar el empleado en la lista 
+	      actualizarlistado(unEmpleado);
+	      
 	    } catch (Exception ex) {
 	    	  // Realizar un rollback en caso de una excepción
 	    	  if (transaction != null) {
@@ -110,6 +114,10 @@ public class ControladorEmpleado
 	      unEmpleado.setEstadoBaja();;
 	      session.update(unEmpleado);
 	      transaction.commit();
+	      
+	      // Actualizar el empleado en la lista 
+	      actualizarlistado(unEmpleado);
+	      
 	    } catch (Exception ex) {
 	      if (transaction != null) {
 	        // Realizar un rollback en caso de una excepción
@@ -142,6 +150,10 @@ public class ControladorEmpleado
 	      // Eliminar el empleado de la base de datos
 	      session.delete(unEmpleado);
 	      transaction.commit();
+	      
+	      // Eliminar el empleado de la lista
+	      empleados.remove(unEmpleado);
+	      
 	    } catch (Exception ex) {
 	      if (transaction != null) {
 	        // Realizar un rollback en caso de una excepción
@@ -253,5 +265,13 @@ public class ControladorEmpleado
 
 	    return empleado;
 	  }
+	
+	
+	public void actualizarlistado(Empleado unEmpleado) {
+	    int index = empleados.indexOf(unEmpleado);
+	    if (index != -1) {
+	      empleados.set(index, unEmpleado);
+	    }
+	}
 
 }

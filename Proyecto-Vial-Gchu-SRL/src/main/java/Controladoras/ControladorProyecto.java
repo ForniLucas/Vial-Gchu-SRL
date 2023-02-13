@@ -81,6 +81,10 @@ public class ControladorProyecto {
 	      unProyecto.setEstado("Cancelado"); //Consultar
 	      session.update(unProyecto);
 	      transaction.commit();
+
+	      //Actualizar el proyecto en la lista
+	      actualizarlistado(unProyecto);
+	      
 	    } catch (Exception ex) {
 	      if (transaction != null) {
 	        // Realizar un rollback en caso de una excepción
@@ -114,6 +118,10 @@ public class ControladorProyecto {
 	      //Elimina el proyecto de la base de datos
 	      session.delete(unProyecto);
 	      transaction.commit();
+	      
+	      //Eliminar el proyecto de la lista
+	      proyectos.remove(unProyecto);
+	      
 	    } catch (Exception ex) {
 	      if (transaction != null) {
 	        // Realizar un rollback en caso de una excepción
@@ -131,8 +139,7 @@ public class ControladorProyecto {
 	      StandardServiceRegistryBuilder.destroy(registry);
 	    } 
 	}
-	
-	
+		
 	public void modificar(Proyecto unProyecto) {
 		
 		// Iniciar sesión de Hibernate
@@ -147,8 +154,11 @@ public class ControladorProyecto {
 	      
 	      //Actualiza el proyecto
 	      session.update(unProyecto);
-	      
 	      transaction.commit();
+	      
+	      //Actualizar el proyecto en la lista
+	      actualizarlistado(unProyecto);
+	      
 	    } catch (Exception ex) {
 	    	  // Realizar un rollback en caso de una excepción
 	    	  if (transaction != null) {
@@ -308,6 +318,13 @@ public class ControladorProyecto {
 		}
 
 		return resultados;
+	}
+
+	public void actualizarlistado(Proyecto unProyecto) {
+	    int index = proyectos.indexOf(unProyecto);
+	    if (index != -1) {
+	    	proyectos.set(index, unProyecto);
+	    }
 	}
 
 	

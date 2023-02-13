@@ -74,6 +74,10 @@ public class ControladorMaquinaria {
 	      // Actualizar maquinaria en la base de datos
 	      session.update(unaMaquinaria);
 	      transaction.commit();
+
+	      //Actualizar la maquinaria en la lista
+	      actualizarlistado(unaMaquinaria);
+	      
 	    } catch (Exception ex) {
 	      // Realizar un rollback en caso de una excepción
 	      if (transaction != null) {
@@ -108,6 +112,10 @@ public class ControladorMaquinaria {
 	      unaMaquinaria.setEstadoBaja();;
 	      session.update(unaMaquinaria);
 	      transaction.commit();
+	      
+	      //Actualizar la maquinaria en la lista
+	      actualizarlistado(unaMaquinaria);
+	      
 	    } catch (Exception ex) {
 	      if (transaction != null) {
 	        // Realizar un rollback en caso de una excepción
@@ -140,6 +148,10 @@ public class ControladorMaquinaria {
 	      // Eliminar el empleado de la base de datos
 	      session.delete(unaMaquinaria);
 	      transaction.commit();
+	      
+	      //Eliminar la maquinaria de la lista
+	      maquinarias.remove(unaMaquinaria);
+	      
 	    } catch (Exception ex) {
 	      if (transaction != null) {
 	        // Realizar un rollback en caso de una excepción
@@ -199,5 +211,11 @@ public class ControladorMaquinaria {
 	    return resultado;
 	  }
 
-	
+	public void actualizarlistado(Maquinaria unaMaquina) {
+	    int index = maquinarias.indexOf(unaMaquina);
+	    if (index != -1) {
+	    	maquinarias.set(index, unaMaquina);
+	    }
+	}
+
 }
