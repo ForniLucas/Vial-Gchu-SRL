@@ -23,7 +23,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Table;
 
-import com.HabilitacionProfesional.VialGchu.Trabajo;
+
 
 
 
