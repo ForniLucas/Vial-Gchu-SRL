@@ -16,6 +16,8 @@ import javax.persistence.JoinTable;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import com.HabilitacionProfesional.VialGchu.Trabajo;
+
 
 @Entity
 @Table(name = "Empleado",
@@ -60,16 +62,13 @@ public class Empleado implements java.io.Serializable {
 	 @OneToMany(fetch=FetchType.LAZY, mappedBy="Empleado",cascade = CascadeType.ALL,orphanRemoval = true)
 	 private Set<ElementoDeSeguridad> ElementosDeSeguridad = new HashSet<ElementoDeSeguridad>(0);
 	 
-	 @OneToMany(
-	    	    cascade = CascadeType.ALL,
+	 
+	@OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL,
 	    	    orphanRemoval = true
-	    	)
-	 @JoinTable(
-	    	    name = "Trabajo",
-	    	    joinColumns = @JoinColumn(name = "empleado_id"),
-	    	    inverseJoinColumns = @JoinColumn(name = "proyecto_id")
-	    	)
-	 private Set<Proyecto> Proyectos = new HashSet<Proyecto>(0);*/
+        }, mappedBy = "Empleado")
+    private Set<Trabajo> Trabajos = new HashSet<Trabajo>(0);
+	 
+*/
   
     public Empleado (Long idEmpleado, String nombre, String apellido, int dni, int telefono, String direccion, LocalDate fechaNac) {
         this.id = idEmpleado;
@@ -185,9 +184,9 @@ public class Empleado implements java.io.Serializable {
         this.Especializacion.fechaFin = unDia;
     }
  */
- /*   public void addProyecto(Proyecto comment) {
-        Proyectos.add(comment);
-    }*/
+ /*       public void addTrabajo(Trabajo comment) {
+    	     Trabajos.add(comment);
+    	}*/
     
     public void modificarEmpleado(Empleado unEmpleado) {
         this.apellido = unEmpleado.apellido;

@@ -4,6 +4,8 @@
 package Domain;
 
 import java.time.LocalDate;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -13,6 +15,9 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+
+import com.HabilitacionProfesional.VialGchu.Empleado;
+import com.HabilitacionProfesional.VialGchu.Proyecto;
 
 
 
@@ -31,14 +36,21 @@ public class Trabajo implements java.io.Serializable{
     @GeneratedValue(strategy = GenerationType.IDENTITY)
      private Long id;
 	
-	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name="empleado_id")
-	private Empleado Empleado;
+
 	
-	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name="proyecto_id")
-	private Proyecto Proyecto;
+	 @ManyToOne(fetch = FetchType.LAZY, cascade = {
+	            CascadeType.PERSIST, 
+	            CascadeType.MERGE
+	        })
+	 @JoinColumn(name="empleado_id")
+	 private Empleado Empleado;
 	 
+	 @ManyToOne(fetch = FetchType.LAZY, cascade = {
+	            CascadeType.PERSIST, 
+	            CascadeType.MERGE
+	        })
+	 @JoinColumn(name="proyecto_id")
+	 private Proyecto Proyecto;
 	
 	@Column(name="horasTrabajo",nullable=false)
 	private int horasDeTrabajo;
@@ -108,8 +120,8 @@ public class Trabajo implements java.io.Serializable{
         this.Empleado=unEmpleado;
         this.Proyecto=unProyecto;
     	
-    	unProyecto.addEmpleado(unEmpleado);
-        //unEmpleado.addProyecto(unProyecto);
+    	unProyecto.addTrabajo(this);
+        unEmpleado.addTrabajo(this);
         
     }
     

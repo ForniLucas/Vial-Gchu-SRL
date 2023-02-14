@@ -23,6 +23,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Table;
 
+import com.HabilitacionProfesional.VialGchu.Trabajo;
+
 
 
 //import Enumeraciones.Elemento;
@@ -66,18 +68,11 @@ public class Proyecto implements java.io.Serializable{
     		  fetch = FetchType.LAZY)
     @JoinColumn(name = "tipoproyecto_id")
         private TipoProyecto TipoProyecto;
-    
-    
-    @OneToMany(
-    	    cascade = CascadeType.ALL,
+       
+    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL,
     	    orphanRemoval = true
-    	)
-    @JoinTable(
-    	    name = "Trabajo",
-    	    joinColumns = @JoinColumn(name = "proyecto_id"),
-    	    inverseJoinColumns = @JoinColumn(name = "empleado_id")
-    	)
-    private Set<Empleado> Empleados = new HashSet<Empleado>(0);
+        }, mappedBy = "Proyecto")
+    private Set<Trabajo> Trabajadores = new HashSet<Trabajo>(0);
     
     @OneToMany(
     	    cascade = CascadeType.ALL,
@@ -170,9 +165,9 @@ public class Proyecto implements java.io.Serializable{
         return maquinas;
     }
 
-    public void addEmpleado(Empleado comment) {
-        Empleados.add(comment);
-    }
+    public void addTrabajo(Trabajo comment) {
+        Trabajadores.add(comment);
+    	 }
 
 }
 
