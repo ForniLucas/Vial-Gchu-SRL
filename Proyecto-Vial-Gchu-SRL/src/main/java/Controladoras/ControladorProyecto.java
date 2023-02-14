@@ -270,23 +270,7 @@ public class ControladorProyecto {
 
 	    return resultados;
 	}
-	
-	public TipoProyecto asignarTipoProyecto () {
-		return null;
-	}
-	
-	public Trabajo asignarEmpleado() {
-		return null;
-	}
-	
-	public Maquinaria asignarMaquinaria() {
-		return null;
-	}
-	
-	public void finalizarProyecto() { //El finalizar proyecto debe recibir un proyecto 
 		
-	}
-	
 	public LinkedList<Proyecto> listarProyectos() {
 		LinkedList<Proyecto> resultados = new LinkedList<Proyecto>();
 		StandardServiceRegistry registry = new StandardServiceRegistryBuilder().configure().build();

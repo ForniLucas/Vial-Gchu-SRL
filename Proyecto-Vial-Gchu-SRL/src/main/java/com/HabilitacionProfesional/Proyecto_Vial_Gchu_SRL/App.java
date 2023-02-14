@@ -20,21 +20,19 @@ public class App
     public static void main( String[] args )
     {
     	Long id = (long) 1;
-    	LocalDate date1 = LocalDate.of(2021, Month.JANUARY, 1);
-    	LocalDate date2 = LocalDate.of(2022, Month.DECEMBER, 31);
+    	//LocalDate date1 = LocalDate.of(2021, Month.JANUARY, 1);
+    	//LocalDate date2 = LocalDate.of(2022, Month.DECEMBER, 31);
 
-    	ControladorProyecto controlador = new ControladorProyecto();
+    	ControladorEmpleado controlador = new ControladorEmpleado();
     	
 
-    	LinkedList<Proyecto> listado = controlador.buscarEntreFechas(date1, date2);
+    	//LinkedList<Proyecto> listado = controlador.buscarEntreFechas(date1, date2);
     	
-        for (Proyecto item : listado) {
-            System.out.println(item.getNombre());
-            System.out.println(item.getFechaInicio());
-          }
-
+        Empleado jesica = controlador.buscarDNI(45678901);
         
-
+        jesica.setApellido("Thea");
+        
+        controlador.modificar(jesica);
     	
 
 
