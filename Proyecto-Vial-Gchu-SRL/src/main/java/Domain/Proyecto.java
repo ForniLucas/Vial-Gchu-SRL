@@ -23,7 +23,6 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Table;
 
-import com.HabilitacionProfesional.VialGchu.Trabajo;
 
 
 
@@ -71,7 +70,7 @@ public class Proyecto implements java.io.Serializable{
        
     @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL,
     	    orphanRemoval = true
-        }, mappedBy = "Proyecto")
+        , mappedBy = "Proyecto")
     private Set<Trabajo> Trabajadores = new HashSet<Trabajo>(0);
     
     @OneToMany(

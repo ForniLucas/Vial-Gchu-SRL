@@ -16,9 +16,6 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
-import com.HabilitacionProfesional.VialGchu.Empleado;
-import com.HabilitacionProfesional.VialGchu.Proyecto;
-
 
 
 
@@ -74,6 +71,8 @@ public class Trabajo implements java.io.Serializable{
         this.fechaFin = fechaFin;
     }
  */
+	public Trabajo() {}
+	
     public int getHorasDeTrabajo() {
         return horasDeTrabajo;
     }
@@ -120,8 +119,8 @@ public class Trabajo implements java.io.Serializable{
         this.Empleado=unEmpleado;
         this.Proyecto=unProyecto;
     	
-    	unProyecto.addTrabajo(this);
-        unEmpleado.addTrabajo(this);
+    	//unProyecto.addTrabajo(this);
+        //unEmpleado.addTrabajo(this);
         
     }
     

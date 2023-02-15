@@ -16,7 +16,6 @@ import javax.persistence.JoinTable;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
-import com.HabilitacionProfesional.VialGchu.Trabajo;
 
 
 @Entity
@@ -62,13 +61,14 @@ public class Empleado implements java.io.Serializable {
 	 @OneToMany(fetch=FetchType.LAZY, mappedBy="Empleado",cascade = CascadeType.ALL,orphanRemoval = true)
 	 private Set<ElementoDeSeguridad> ElementosDeSeguridad = new HashSet<ElementoDeSeguridad>(0);
 	 
+	 */
 	 
 	@OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL,
 	    	    orphanRemoval = true
-        }, mappedBy = "Empleado")
+        , mappedBy = "Empleado")
     private Set<Trabajo> Trabajos = new HashSet<Trabajo>(0);
 	 
-*/
+
   
     public Empleado (Long idEmpleado, String nombre, String apellido, int dni, int telefono, String direccion, LocalDate fechaNac) {
         this.id = idEmpleado;
@@ -184,9 +184,11 @@ public class Empleado implements java.io.Serializable {
         this.Especializacion.fechaFin = unDia;
     }
  */
- /*       public void addTrabajo(Trabajo comment) {
+        
+    
+    public void addTrabajo(Trabajo comment) {
     	     Trabajos.add(comment);
-    	}*/
+        }
     
     public void modificarEmpleado(Empleado unEmpleado) {
         this.apellido = unEmpleado.apellido;

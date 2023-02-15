@@ -10,6 +10,7 @@ import Controladoras.ControladorProyecto;
 import Domain.Empleado;
 import Domain.Maquinaria;
 import Domain.Proyecto;
+import Domain.Trabajo;
 
 /**
  * Hello world!
@@ -24,16 +25,25 @@ public class App
     	//LocalDate date2 = LocalDate.of(2022, Month.DECEMBER, 31);
 
     	ControladorEmpleado controlador = new ControladorEmpleado();
-    	
+    	ControladorProyecto controladorP = new ControladorProyecto();
 
+    	//controlador.alta(id, "migel", "akd", 1239, 1239, "asdjakl", LocalDate.now());
+    	//sscontroladorP.alta(1, LocalDate.now(), LocalDate.now(), "algo", "al;kd", LocalDate.now());
+    	Proyecto proyecto = controladorP.buscarID(1);
+    	Empleado empleado = controlador.buscarDNI(1239);
+    	
+    	controladorP.asignarTrabajo(empleado, proyecto);
+    	
     	//LinkedList<Proyecto> listado = controlador.buscarEntreFechas(date1, date2);
+    	//Proyecto proyecto = controladorP.buscarID(5);
     	
-        Empleado jesica = controlador.buscarDNI(45678901);
-        
-        jesica.setApellido("Thea");
-        
-        controlador.modificar(jesica);
+        //Empleado Tom = controlador.buscarDNI(56789012);
     	
+    	//controlador.modificar(Tom);
+    	
+    	//controladorP.modificar(proyecto);
+    	
+    	//controladorP.asignarTrabajo(Tom, proyecto);
 
 
     }
