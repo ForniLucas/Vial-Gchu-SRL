@@ -324,10 +324,13 @@ public class ControladorProyecto {
 	      
 	      Trabajo trabajo = new Trabajo();
 	      trabajo.asignar(unProyecto, unEmpleado);
-	      session.save(trabajo);
-	      session.update(unEmpleado);
+	      unEmpleado.addTrabajo(trabajo);
+	      unProyecto.addTrabajo(trabajo);
+	      
 	      
 	      //Actualiza el proyecto
+	      session.save(trabajo);
+	      session.update(unEmpleado);
 	      session.update(unProyecto);
 	      transaction.commit();
 	      

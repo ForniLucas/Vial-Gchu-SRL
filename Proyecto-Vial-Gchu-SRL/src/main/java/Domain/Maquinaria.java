@@ -53,20 +53,15 @@ public class Maquinaria implements java.io.Serializable{
     @Column(name = "estado",nullable=false)
     private boolean estado;
     
+    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL,
+    	    orphanRemoval = true
+    , mappedBy = "Maquinaria")
+    private Set<Utiliza> Trabajos = new HashSet<Utiliza>(0);
+    
     /*
     @OneToMany(fetch=FetchType.LAZY, mappedBy="Maquinaria",cascade = CascadeType.ALL,orphanRemoval = true)
 	private Set<Service> Services = new HashSet<Service>(0);
     
-    @OneToMany(
-    	    cascade = CascadeType.ALL,
-    	    orphanRemoval = true
-    	)
-    @JoinTable(
-    	    name = "Utiliza",
-    	    joinColumns = @JoinColumn(name = "maquinaria_id"),
-    	    inverseJoinColumns = @JoinColumn(name = "proyecto_id")
-    	)
-    private Set<Proyecto> Proyectos = new HashSet<Proyecto>(0);
     
     */
 
@@ -146,7 +141,10 @@ public class Maquinaria implements java.io.Serializable{
         this.ubicacionAlmacenamiento = unaMaquinaria.ubicacionAlmacenamiento;
         this.estado = unaMaquinaria.estado;
     }
-
+    
+    public void addTrabajo(Utiliza comment) {
+	     Trabajos.add(comment);
+   }
     /*
     public void asignarService(Service unservice) {
         Services.add(unservice);

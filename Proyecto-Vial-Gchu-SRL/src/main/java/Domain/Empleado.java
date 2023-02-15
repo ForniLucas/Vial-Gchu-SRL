@@ -2,7 +2,9 @@ package Domain;
 
 import java.time.LocalDate;
 import java.time.Period;
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -15,6 +17,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+
+import com.HabilitacionProfesional.VialGchu.Trabajo;
 
 
 
@@ -67,7 +71,6 @@ public class Empleado implements java.io.Serializable {
 	    	    orphanRemoval = true
         , mappedBy = "Empleado")
     private Set<Trabajo> Trabajos = new HashSet<Trabajo>(0);
-
 
   
     public Empleado (Long idEmpleado, String nombre, String apellido, int dni, int telefono, String direccion, LocalDate fechaNac) {

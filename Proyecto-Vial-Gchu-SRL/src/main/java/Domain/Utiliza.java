@@ -24,14 +24,20 @@ public class Utiliza implements java.io.Serializable{
     @GeneratedValue(strategy = GenerationType.IDENTITY)
      private Long id;
 	
-	@ManyToOne(fetch = FetchType.LAZY)
+	
+	@ManyToOne(fetch = FetchType.LAZY, cascade = {
+	           CascadeType.PERSIST, 
+	           CascadeType.MERGE
+	       })
 	@JoinColumn(name="maquinaria_id")
 	private Maquinaria Maquinaria;
 	
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne(fetch = FetchType.LAZY, cascade = {
+	           CascadeType.PERSIST, 
+	           CascadeType.MERGE
+	        })
 	@JoinColumn(name="proyecto_id")
 	private Proyecto Proyecto;
-	 
 	
 	@Column(name="inicio",nullable=false)
     private LocalDate fechaInicio; 
@@ -89,6 +95,10 @@ public class Utiliza implements java.io.Serializable{
         this.fechaFin = fechaFin;
     }
     
+    public void asignar(Proyecto unProyecto, Maquinaria unaMaquina) {
+        this.Maquinaria=unaMaquinaria;
+        this.Proyecto=unProyecto;
+    }
     
     
 }

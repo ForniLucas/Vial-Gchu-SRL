@@ -38,8 +38,8 @@ public class Proyecto implements java.io.Serializable{
 	
 	private static final long serialVersionUID = 1L;
 	
-	LinkedList<Empleado> empleados = new LinkedList<Empleado>();
-    LinkedList<Maquinaria> maquinas = new LinkedList<Maquinaria>();
+	//LinkedList<Empleado> empleados = new LinkedList<Empleado>();
+   // LinkedList<Maquinaria> maquinas = new LinkedList<Maquinaria>();
 	
 	@Column(name="proyectoid", unique=true, nullable=false)
     @Id
@@ -73,16 +73,12 @@ public class Proyecto implements java.io.Serializable{
         , mappedBy = "Proyecto")
     private Set<Trabajo> Trabajadores = new HashSet<Trabajo>(0);
     
-    @OneToMany(
-    	    cascade = CascadeType.ALL,
+    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL,
     	    orphanRemoval = true
-    	)
-    @JoinTable(
-    	    name = "Utiliza",
-    	    joinColumns = @JoinColumn(name = "proyecto_id"),
-    	    inverseJoinColumns = @JoinColumn(name = "maquinaria_id")
-    	)
-    private Set<Maquinaria> Maquinarias = new HashSet<Maquinaria>(0);
+        , mappedBy = "Proyecto")
+    private Set<Utiliza> Maquinas = new HashSet<Utiliza>(0);
+    
+   
 
     public Proyecto(Long id, LocalDate fechaInicio, LocalDate fechaEstmiadaFin, LocalDate fechaFin, String estado, String nombre) {
         this.id = id;
@@ -167,6 +163,9 @@ public class Proyecto implements java.io.Serializable{
     public void addTrabajo(Trabajo comment) {
         Trabajadores.add(comment);
     	 }
-
+    
+    public void addMaquina(Utiliza comment) {
+        Maquinas.add(comment);
+    	 }
 }
 

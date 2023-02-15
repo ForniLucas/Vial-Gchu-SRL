@@ -118,10 +118,6 @@ public class Trabajo implements java.io.Serializable{
     public void asignar(Proyecto unProyecto, Empleado unEmpleado) {
         this.Empleado=unEmpleado;
         this.Proyecto=unProyecto;
-    	
-    	//unProyecto.addTrabajo(this);
-        //unEmpleado.addTrabajo(this);
-        
     }
     
 }
