@@ -56,7 +56,7 @@ public class Empleado implements java.io.Serializable {
 	 @Column(name="estado",nullable=true)
      private boolean estado;
 	 
-/*	 @OneToMany(fetch=FetchType.LAZY, mappedBy="Empleado",cascade = CascadeType.ALL,orphanRemoval = true)
+	 @OneToMany(fetch=FetchType.LAZY, mappedBy="Empleado",cascade = CascadeType.ALL,orphanRemoval = true)
 	 private Set<Especializacion> Especializaciones = new HashSet<Especializacion>(0);
 	 
 	 @OneToMany(fetch=FetchType.LAZY, mappedBy="Empleado",cascade = CascadeType.ALL,orphanRemoval = true)
@@ -65,7 +65,7 @@ public class Empleado implements java.io.Serializable {
 	 @OneToMany(fetch=FetchType.LAZY, mappedBy="Empleado",cascade = CascadeType.ALL,orphanRemoval = true)
 	 private Set<ElementoDeSeguridad> ElementosDeSeguridad = new HashSet<ElementoDeSeguridad>(0);
 	 
-	 */
+	 
 	 
 @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL,
 	    	    orphanRemoval = true
@@ -73,8 +73,8 @@ public class Empleado implements java.io.Serializable {
     private Set<Trabajo> Trabajos = new HashSet<Trabajo>(0);
 
   
-    public Empleado (Long idEmpleado, String nombre, String apellido, int dni, int telefono, String direccion, LocalDate fechaNac) {
-        this.id = idEmpleado;
+    public Empleado (String nombre, String apellido, int dni, int telefono, String direccion, LocalDate fechaNac) {
+        this.id = null;
         this.nombre = nombre;
         this.apellido = apellido;
         this.dni = dni;
@@ -170,7 +170,7 @@ public class Empleado implements java.io.Serializable {
     /*
      * 
     
-    public void setEspecializacion(Especializacion unaEspecializacion) {
+    public void addEspecializacion(Especializacion unaEspecializacion) {
 
         if (this.Especializacion == null) {
             // block of code to be executed if the condition is true
@@ -192,6 +192,15 @@ public class Empleado implements java.io.Serializable {
     public void addTrabajo(Trabajo comment) {
     	     Trabajos.add(comment);
         }
+    
+    public void addRopa(RopaDeTrabajo unaRopa) {
+	     RopasDeTrabajo.add(unaRopa);
+   }
+    
+    public void addElemento(ElementoDeSeguridad unElemento) {
+	     ElementosDeSeguridad.add(unElemento);
+  }
+    
     
     public void modificarEmpleado(Empleado unEmpleado) {
         this.apellido = unEmpleado.apellido;

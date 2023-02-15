@@ -58,15 +58,10 @@ public class Maquinaria implements java.io.Serializable{
     , mappedBy = "Maquinaria")
     private Set<Utiliza> Trabajos = new HashSet<Utiliza>(0);
     
-    /*
+
     @OneToMany(fetch=FetchType.LAZY, mappedBy="Maquinaria",cascade = CascadeType.ALL,orphanRemoval = true)
 	private Set<Service> Services = new HashSet<Service>(0);
     
-    
-    */
-
-    
-   
 
     public Maquinaria(Long idMaquinaria, String codigo, String descripcion, String fabricante, String ubicacionAlmacenamiento) {
         this.id = idMaquinaria;
@@ -145,12 +140,13 @@ public class Maquinaria implements java.io.Serializable{
     public void addTrabajo(Utiliza comment) {
 	     Trabajos.add(comment);
    }
-    /*
+    
+
     public void asignarService(Service unservice) {
         Services.add(unservice);
     }
 
     public Set<Service> getServices() {
         return this.Services;
-    } */
+    } 
 }

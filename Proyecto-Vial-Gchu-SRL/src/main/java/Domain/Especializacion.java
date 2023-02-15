@@ -55,15 +55,14 @@ public class Especializacion implements java.io.Serializable {
     
     
     
-    /**
-     * public Especializacion(int id, Profesion tipo, LocalDate fechaActualizacion, RolEmpleado unRol) {
-        this.id = id;
+    
+		public Especializacion( Profesion tipo, LocalDate fechaActualizacion, RolEmpleado unRol) {
+        this.id = null;
         this.profesion = tipo;
         this.fechaActualizacion = fechaActualizacion;
         this.rol = unRol;
     }
-     *
-     */
+     
     
 
     public Profesion getTipo() {
@@ -101,6 +100,15 @@ public class Especializacion implements java.io.Serializable {
     public void setRol(RolEmpleado unRol) {
         this.rol = unRol;
     }
+    
+    public void setEmpleado(Empleado unEmpleado) {
+        this.Empleado = unEmpleado;
+    }
+    
+    public Empleado getEmpleado() {
+        return Empleado;
+    }
+
 
 }
 

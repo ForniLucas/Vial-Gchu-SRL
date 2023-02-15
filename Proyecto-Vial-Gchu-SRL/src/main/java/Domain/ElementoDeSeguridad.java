@@ -44,8 +44,8 @@ public class ElementoDeSeguridad implements java.io.Serializable {
 	private Empleado Empleado;
     
 
-    public ElementoDeSeguridad(Long iD, Elemento tipo, LocalDate fechaEntrega, Empleado Empleado) {
-        this.id = iD;
+    public ElementoDeSeguridad(Elemento tipo, LocalDate fechaEntrega, Empleado Empleado) {
+        this.id = null;
         this.tipo = tipo;
         this.fechaEntrega = fechaEntrega;
         this.Empleado = Empleado;
