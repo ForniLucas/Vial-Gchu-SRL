@@ -63,11 +63,11 @@ public class Empleado implements java.io.Serializable {
 	 
 	 */
 	 
-	@OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL,
+@OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL,
 	    	    orphanRemoval = true
         , mappedBy = "Empleado")
     private Set<Trabajo> Trabajos = new HashSet<Trabajo>(0);
-	 
+
 
   
     public Empleado (Long idEmpleado, String nombre, String apellido, int dni, int telefono, String direccion, LocalDate fechaNac) {
