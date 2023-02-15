@@ -46,14 +46,14 @@ public class RopaDeTrabajo implements java.io.Serializable{
     @UpdateTimestamp
     private LocalDate fechaEntrega;
     
-/*
-    public RopaDeTrabajo(int id, Ropa tipo, short talle, LocalDate fechaEntrega) {
-        this.id = id;
+
+    public RopaDeTrabajo( Ropa tipo, short talle, LocalDate fechaEntrega) {
+        this.id = null;
         this.tipo = tipo;
         this.talle = talle;
         this.fechaEntrega = fechaEntrega;
     }
-*/
+
     
     public Empleado getEmpleado() {
         return Empleado;

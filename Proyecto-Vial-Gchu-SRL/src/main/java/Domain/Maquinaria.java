@@ -63,8 +63,8 @@ public class Maquinaria implements java.io.Serializable{
 	private Set<Service> Services = new HashSet<Service>(0);
     
 
-    public Maquinaria(Long idMaquinaria, String codigo, String descripcion, String fabricante, String ubicacionAlmacenamiento) {
-        this.id = idMaquinaria;
+    public Maquinaria( String codigo, String descripcion, String fabricante, String ubicacionAlmacenamiento) {
+        this.id = null;
         this.codigo = codigo;
         this.descripcion = descripcion;
         this.fabricante = fabricante;

@@ -46,27 +46,30 @@ public class TipoProyecto implements java.io.Serializable{
     @OneToOne(mappedBy = "TipoProyecto")
     private Proyecto Proyecto;
 
-    /*
-    public TipoProyecto(long id, TipoDeProyecto tipo, String descripcion, String actividades, String insumos) {
-        this.id = id;
+
+    public TipoProyecto( TipoDeProyecto tipo, String descripcion, String actividades, String insumos) {
+        this.id = null;
         this.tipo = tipo;
         this.descripcion = descripcion;
         this.actividades = actividades;
         this.insumos = insumos;
     }
-    */
+    
 
     public long getId() {
         return id;
     }
 
-    /* 
-     * Aca no deberia haber set del id creeria
-    public void setId(int id) {
-        this.id = id;
-    }
-    */
 
+    public Proyecto getProyecto() {
+        return Proyecto;
+    }
+
+    public void setProyecto(Proyecto unProyecto) {
+        this.Proyecto = unProyecto;
+    }
+    
+    
     public TipoDeProyecto getTipo() {
         return tipo;
     }

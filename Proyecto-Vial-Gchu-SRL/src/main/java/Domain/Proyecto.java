@@ -24,11 +24,10 @@ import javax.persistence.GenerationType;
 import javax.persistence.Table;
 
 
-
-
-//import Enumeraciones.Elemento;
-
-
+/**
+ * @author lucas
+ *
+ */
 
 @Entity
 @Table(name = "Proyecto",
@@ -38,8 +37,7 @@ public class Proyecto implements java.io.Serializable{
 	
 	private static final long serialVersionUID = 1L;
 	
-	//LinkedList<Empleado> empleados = new LinkedList<Empleado>();
-   // LinkedList<Maquinaria> maquinas = new LinkedList<Maquinaria>();
+
 	
 	@Column(name="proyectoid", unique=true, nullable=false)
     @Id
@@ -61,8 +59,6 @@ public class Proyecto implements java.io.Serializable{
     @Column(name = "estado",nullable=true)
     private String estado; //Se modifico de Boolean a String
     
-
-    
     @OneToOne(cascade = CascadeType.ALL,
     		  fetch = FetchType.LAZY)
     @JoinColumn(name = "tipoproyecto_id")
@@ -80,8 +76,8 @@ public class Proyecto implements java.io.Serializable{
     
    
 
-    public Proyecto(Long id, LocalDate fechaInicio, LocalDate fechaEstmiadaFin, LocalDate fechaFin, String estado, String nombre) {
-        this.id = id;
+    public Proyecto(LocalDate fechaInicio, LocalDate fechaEstmiadaFin, LocalDate fechaFin, String estado, String nombre) {
+        this.id = null;
         this.fechaInicio = fechaInicio;
         this.fechaEstmiadaFin = fechaEstmiadaFin;
         this.fechaFin = fechaFin;

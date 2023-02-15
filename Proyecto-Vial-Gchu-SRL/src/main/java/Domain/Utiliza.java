@@ -48,17 +48,16 @@ public class Utiliza implements java.io.Serializable{
 	@Column(name="fin",nullable=false)
     private LocalDate fechaFin;
 
-	/*
-	 * 
+
 	
-    public Utiliza(int idP, int idM, LocalDate fechaInicio, LocalDate fechaEstFin, LocalDate fechaFin) {
-        this.idProjecto = idP;
-        this.idMaquinaria = idM;
+    public Utiliza( LocalDate fechaInicio, LocalDate fechaEstFin, LocalDate fechaFin) {
+        this.id=null;
         this.fechaInicio = fechaInicio;
         this.fechaEstFin = fechaEstFin;
         this.fechaFin = fechaFin;
     }
-	 */
+
+
     public LocalDate getFechaInicio() {
         return fechaInicio;
     }
@@ -70,17 +69,16 @@ public class Utiliza implements java.io.Serializable{
     public LocalDate getFechaFin() {
         return fechaFin;
     }
-/*
- * 
 
-    public int getIdProjecto(){
-        return idProjecto; 
+
+    public int getProyecto(){
+        return Proyecto; 
     }
     
-    public int getIdMaquinaria(){
-        return idMaquinaria;
+    public int getMaquinaria(){
+        return Maquinaria;
     }
-  */   
+  
     
     
     public void setFechaInicio(LocalDate fechaInicio) {

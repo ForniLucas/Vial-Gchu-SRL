@@ -61,11 +61,10 @@ public class Trabajo implements java.io.Serializable{
 	@Column(name="fin",nullable=false)
     private LocalDate fechaFin;
     
-/*
-    public Trabajo(int idP, int idE, int horasDeTrabajo, LocalDate fechaInicio, LocalDate fechaEstFin, LocalDate fechaFin) {
-        this.idProyecto = idP;
-        this.idEmpleado = idE;
-        this.horasDeTrabajo = horasDeTrabajo;
+
+    public Trabajo(int horasDeTrabajo, LocalDate fechaInicio, LocalDate fechaEstFin, LocalDate fechaFin) {
+        this.id=null;
+    	this.horasDeTrabajo = horasDeTrabajo;
         this.fechaInicio = fechaInicio;
         this.fechaEstFin = fechaEstFin;
         this.fechaFin = fechaFin;
@@ -85,15 +84,13 @@ public class Trabajo implements java.io.Serializable{
         return fechaEstFin;
     }
    
-    /*
-    public int getIdEmpleado(){
-        return idEmpleado;
+    public int getProyecto(){
+        return Proyecto; 
     }
     
-    public int getIdProjecto(){
-        return idProyecto;
+    public int getEmpleado(){
+        return Empleado;
     }
-	 */
     
     public LocalDate getFechaFin() {
         return fechaFin;

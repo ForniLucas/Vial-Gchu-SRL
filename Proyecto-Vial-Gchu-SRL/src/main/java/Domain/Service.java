@@ -46,14 +46,14 @@ public class Service implements java.io.Serializable{
 	@JoinColumn(name="maquinaria_id", nullable=false)
 	private Maquinaria Maquinaria;
 
- /*   
-    public Service(int id, LocalDate fechaInicio, LocalDate fechaFin, String observaciones) {
-        this.id = id;
+
+    public Service(LocalDate fechaInicio, LocalDate fechaFin, String observaciones) {
+        this.id = null;
         this.fechaInicio = fechaInicio;
         this.fechaFin = fechaFin;
         this.observaciones = observaciones;
     }
-*/
+
     
     public LocalDate getFechaInicio() {
         return fechaInicio;
@@ -83,6 +83,13 @@ public class Service implements java.io.Serializable{
         this.observaciones = observaciones;
     }
     
+    public String getMaquinaria() {
+        return Maquinaria;
+    }
+
+    public void setMaquinaria(Maquinaria unaMaquinaria) {
+        this.Maquianria = unaMaquinaria;
+    }
     
     
 }
