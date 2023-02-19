@@ -273,5 +273,46 @@ public class ControladorEmpleado
 	      empleados.set(index, unEmpleado);
 	    }
 	}
+	
+	public LinkedList<Empleado> listarEmpleados() {
+	    // Iniciar la sesión de Hibernate
+	    StandardServiceRegistry registry = new StandardServiceRegistryBuilder().configure().build();
+	    SessionFactory factory = null;
+	    Session session = null;
+	    LinkedList<Empleado> resultado = new LinkedList<Empleado>();
+	    try {
+	      factory = new MetadataSources(registry).buildMetadata().buildSessionFactory();
+	      session = factory.openSession();
+	      
+	      // Crear un objeto CriteriaBuilder para construir la consulta
+	      CriteriaBuilder builder = session.getCriteriaBuilder();
+
+	      CriteriaQuery<Empleado> criteria = builder.createQuery(Empleado.class);
+	      // Definir la tabla (clase) a partir de la cual se hará la consulta
+	      Root<Empleado> root = criteria.from(Empleado.class);
+	      // Seleccionar todos los empleados
+	      criteria.select(root);
+	      // Crear un objeto TypedQuery a partir de la consulta construida
+	      TypedQuery<Empleado> query = session.createQuery(criteria);
+	      
+	      // Obtener el resultado de la consulta
+	      List<Empleado> resultados = query.getResultList();
+	      if (!resultados.isEmpty()) {
+	        resultado = resultados.get(0);
+	      }
+	    } catch (Exception ex) {
+	      System.out.println(ex.getMessage());
+	      ex.printStackTrace();
+	    } finally {
+	      if (session != null) {
+	        session.close();
+	      }
+	      if (factory != null) {
+	        factory.close();
+	      }
+	      StandardServiceRegistryBuilder.destroy(registry);
+	    }
+	    return resultado;
+	  }
 
 }
