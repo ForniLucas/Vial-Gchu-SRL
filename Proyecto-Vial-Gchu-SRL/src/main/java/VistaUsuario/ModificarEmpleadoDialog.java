@@ -1,6 +1,8 @@
 package VistaUsuario;
 
 import java.awt.BorderLayout;
+import Enumeraciones.Profesion;
+import Enumeraciones.RolEmpleado;
 import java.awt.FlowLayout;
 
 import javax.swing.JButton;
@@ -11,19 +13,18 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
+import javax.swing.JComboBox;
 
 public class ModificarEmpleadoDialog extends JDialog {
 
 	private final JPanel contentPanel = new JPanel();
-	private JTextField textField;
-	private JTextField textField_1;
-	private JTextField textField_2;
-	private JTextField textField_3;
-	private JTextField textField_4;
-	private JTextField textField_5;
-	private JTextField textField_6;
-	private JTextField textField_7;
-	private JTextField textField_8;
+	private JTextField legajoTxt;
+	private JTextField apellidoTxt;
+	private JTextField nombreTxt;
+	private JTextField dniTxt;
+	private JTextField telefonoTxt;
+	private JTextField direccionTxt;
+	private JTextField fechaDeNacimientoTxt;
 
 	/**
 	 * Launch the application.
@@ -42,7 +43,7 @@ public class ModificarEmpleadoDialog extends JDialog {
 	 * Create the dialog.
 	 */
 	public ModificarEmpleadoDialog() {
-		setBounds(100, 100, 500, 700);
+		setBounds(50, 50, 600, 700);
 		this.setTitle("MODIFICAR EMPLEADOS");
 		setResizable(false);
 		getContentPane().setLayout(new BorderLayout());
@@ -95,70 +96,89 @@ public class ModificarEmpleadoDialog extends JDialog {
 			contentPanel.add(lblNewLabel_8);
 		}
 		{
-			textField = new JTextField();
-			textField.setBounds(237, 37, 96, 19);
-			contentPanel.add(textField);
-			textField.setColumns(10);
+			legajoTxt = new JTextField();
+			legajoTxt.setBounds(237, 37, 96, 19);
+			contentPanel.add(legajoTxt);
+			legajoTxt.setColumns(10);
 		}
 		{
-			textField_1 = new JTextField();
-			textField_1.setBounds(237, 101, 96, 19);
-			contentPanel.add(textField_1);
-			textField_1.setColumns(10);
+			apellidoTxt = new JTextField();
+			apellidoTxt.setBounds(237, 101, 133, 19);
+			contentPanel.add(apellidoTxt);
+			apellidoTxt.setColumns(10);
 		}
 		{
-			textField_2 = new JTextField();
-			textField_2.setBounds(237, 165, 96, 19);
-			contentPanel.add(textField_2);
-			textField_2.setColumns(10);
+			nombreTxt = new JTextField();
+			nombreTxt.setBounds(237, 165, 133, 19);
+			contentPanel.add(nombreTxt);
+			nombreTxt.setColumns(10);
 		}
 		{
-			textField_3 = new JTextField();
-			textField_3.setBounds(237, 229, 96, 19);
-			contentPanel.add(textField_3);
-			textField_3.setColumns(10);
+			dniTxt = new JTextField();
+			dniTxt.setBounds(237, 229, 96, 19);
+			contentPanel.add(dniTxt);
+			dniTxt.setColumns(10);
 		}
 		{
-			textField_4 = new JTextField();
-			textField_4.setBounds(237, 293, 96, 19);
-			contentPanel.add(textField_4);
-			textField_4.setColumns(10);
+			telefonoTxt = new JTextField();
+			telefonoTxt.setBounds(237, 293, 133, 19);
+			contentPanel.add(telefonoTxt);
+			telefonoTxt.setColumns(10);
 		}
 		{
-			textField_5 = new JTextField();
-			textField_5.setBounds(237, 360, 96, 19);
-			contentPanel.add(textField_5);
-			textField_5.setColumns(10);
+			direccionTxt = new JTextField();
+			direccionTxt.setBounds(237, 360, 133, 19);
+			contentPanel.add(direccionTxt);
+			direccionTxt.setColumns(10);
 		}
 		{
-			textField_6 = new JTextField();
-			textField_6.setBounds(237, 421, 96, 19);
-			contentPanel.add(textField_6);
-			textField_6.setColumns(10);
+			fechaDeNacimientoTxt = new JTextField();
+			fechaDeNacimientoTxt.setText("dd/mm/aaaa");
+			fechaDeNacimientoTxt.setBounds(237, 421, 96, 19);
+			contentPanel.add(fechaDeNacimientoTxt);
+			fechaDeNacimientoTxt.setColumns(10);
 		}
 		{
-			textField_7 = new JTextField();
-			textField_7.setBounds(237, 485, 96, 19);
-			contentPanel.add(textField_7);
-			textField_7.setColumns(10);
+			JComboBox especializacionBox = new JComboBox(Profesion.values());
+			especializacionBox.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+				}
+			});
+			especializacionBox.setBounds(237, 484, 96, 21);
+			contentPanel.add(especializacionBox);
 		}
 		{
-			textField_8 = new JTextField();
-			textField_8.setBounds(237, 549, 96, 19);
-			contentPanel.add(textField_8);
-			textField_8.setColumns(10);
+			JComboBox rolBox = new JComboBox(RolEmpleado.values());
+			rolBox.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+				}
+			});
+			rolBox.setBounds(237, 548, 96, 21);
+			contentPanel.add(rolBox);
 		}
 		{
 			JPanel buttonPane = new JPanel();
 			buttonPane.setLayout(new FlowLayout(FlowLayout.RIGHT));
 			getContentPane().add(buttonPane, BorderLayout.SOUTH);
 			{
-				JButton btnNewButton_1 = new JButton("Asignar Elemento de Seguridad");
-				buttonPane.add(btnNewButton_1);
+				JButton elementoSeguridadBtn = new JButton("Asignar Elemento de Seguridad");
+				elementoSeguridadBtn.addActionListener(new ActionListener() {
+					public void actionPerformed(ActionEvent e) {
+						ElementoDeSeguridadDialog elementoDeSeguridadDialog = new ElementoDeSeguridadDialog();
+						elementoDeSeguridadDialog.setVisible(true);
+					}
+				});
+				buttonPane.add(elementoSeguridadBtn);
 			}
 			{
-				JButton btnNewButton = new JButton("Asignar Ropa de Trabajo");
-				buttonPane.add(btnNewButton);
+				JButton ropaTrabajoBtn = new JButton("Asignar Ropa de Trabajo");
+				ropaTrabajoBtn.addActionListener(new ActionListener() {
+					public void actionPerformed(ActionEvent e) {
+						RopaDeTrabajoDialog ropaDeTrabajoDialog = new RopaDeTrabajoDialog();
+						ropaDeTrabajoDialog.setVisible(true);
+					}
+				});
+				buttonPane.add(ropaTrabajoBtn);
 			}
 			{
 				JButton guardarModEmpleadoBtn = new JButton("Guardar");

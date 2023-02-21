@@ -12,7 +12,7 @@ import java.awt.event.ActionEvent;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 
-public class BajaEmpleadoDialog extends JDialog {
+public class BajaProyectoDialog extends JDialog {
 
 	private final JPanel contentPanel = new JPanel();
 	private JTextField textField;
@@ -22,7 +22,7 @@ public class BajaEmpleadoDialog extends JDialog {
 	 */
 	public static void main(String[] args) {
 		try {
-			BajaEmpleadoDialog dialog = new BajaEmpleadoDialog();
+			BajaProyectoDialog dialog = new BajaProyectoDialog();
 			dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
 			dialog.setVisible(true);
 		} catch (Exception e) {
@@ -33,57 +33,46 @@ public class BajaEmpleadoDialog extends JDialog {
 	/**
 	 * Create the dialog.
 	 */
-	public BajaEmpleadoDialog() {
-		setBounds(50, 50, 450, 250);
-		this.setTitle("BAJA DE EMPLEADOS");
-		setResizable(false);
+	public BajaProyectoDialog() {
+		setBounds(50, 50, 450, 300);
+		this.setResizable(false);
+		this.setTitle("BAJA DE PROYECTOS");
 		getContentPane().setLayout(new BorderLayout());
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
 		getContentPane().add(contentPanel, BorderLayout.CENTER);
 		contentPanel.setLayout(null);
 		{
-			JLabel lblNewLabel = new JLabel("Ingrese Legajo del Empleado");
-			lblNewLabel.setBounds(29, 26, 133, 13);
+			JLabel lblNewLabel = new JLabel("Ingresar Legajo de Proyecto");
+			lblNewLabel.setBounds(28, 29, 147, 13);
 			contentPanel.add(lblNewLabel);
 		}
 		{
 			textField = new JTextField();
-			textField.setBounds(204, 23, 125, 19);
+			textField.setBounds(208, 26, 132, 19);
 			contentPanel.add(textField);
 			textField.setColumns(10);
-		}
-		{
-			JLabel lblNewLabel_1 = new JLabel("New label");
-			lblNewLabel_1.setBounds(74, 69, 45, 13);
-			contentPanel.add(lblNewLabel_1);
-		}
-		{
-			JLabel lblNewLabel_2 = new JLabel("New label");
-			lblNewLabel_2.setBounds(167, 69, 45, 13);
-			contentPanel.add(lblNewLabel_2);
-		}
-		{
-			JLabel lblNewLabel_3 = new JLabel("New label");
-			lblNewLabel_3.setBounds(74, 116, 45, 13);
-			contentPanel.add(lblNewLabel_3);
 		}
 		{
 			JPanel buttonPane = new JPanel();
 			buttonPane.setLayout(new FlowLayout(FlowLayout.RIGHT));
 			getContentPane().add(buttonPane, BorderLayout.SOUTH);
 			{
-				JButton bajaEmpleadoBtn = new JButton("Dar de Baja");
-				bajaEmpleadoBtn.setActionCommand("OK");
-				buttonPane.add(bajaEmpleadoBtn);
-				getRootPane().setDefaultButton(bajaEmpleadoBtn);
+				JButton bajaBtn = new JButton("Dar de Baja");
+				bajaBtn.addActionListener(new ActionListener() {
+					public void actionPerformed(ActionEvent e) {
+					}
+				});
+				bajaBtn.setActionCommand("OK");
+				buttonPane.add(bajaBtn);
+				getRootPane().setDefaultButton(bajaBtn);
 			}
 			{
 				JButton cancelarBtn = new JButton("Cancelar");
 				cancelarBtn.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
 						setVisible(false);
-						EmpleadoDialog empleados = new EmpleadoDialog();
-						empleados.setVisible(true);
+						ProyectoDialog proyectoDialog = new ProyectoDialog();
+						proyectoDialog.setVisible(true);
 					}
 				});
 				cancelarBtn.setActionCommand("Cancel");

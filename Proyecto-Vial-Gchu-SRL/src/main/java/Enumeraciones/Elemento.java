@@ -7,7 +7,7 @@ package Enumeraciones;
 
 public enum Elemento {
    cascoSeguridad,
-   gorroLegionario,
+   gorroLegionario(),
    barbiquejo,
    lentes,
    chalecoReflectante,

@@ -9,23 +9,23 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
 import Domain.Empleado;
-
+import Enumeraciones.Profesion;
+import Enumeraciones.RolEmpleado;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.JTextField;
 import javax.swing.JLabel;
+import javax.swing.JComboBox;
 
 public class AltaEmpleadoDialog extends JDialog {
 
 	private final JPanel contentPanel = new JPanel();
-	private JTextField txtA;
-	private JTextField txtNombre;
-	private JTextField txtDni;
-	private JTextField txtTelfono;
-	private JTextField txtDireccin;
-	private JTextField txtFechaDeNacimiento;
-	private JTextField txtEspecializacin;
-	private JTextField txtRol;
+	private JTextField apellidoTxt;
+	private JTextField nombreTxt;
+	private JTextField dniTxt;
+	private JTextField telefonoTxt;
+	private JTextField direccionTxt;
+	private JTextField fechaDeNacimientoTxt;
 
 	/**
 	 * Launch the application.
@@ -52,53 +52,37 @@ public class AltaEmpleadoDialog extends JDialog {
 		getContentPane().add(contentPanel, BorderLayout.CENTER);
 		contentPanel.setLayout(null);
 		{
-			txtA = new JTextField();
-			txtA.setBounds(248, 45, 238, 19);
-			contentPanel.add(txtA);
-			txtA.setColumns(10);
+			apellidoTxt = new JTextField();
+			apellidoTxt.setBounds(248, 45, 204, 19);
+			contentPanel.add(apellidoTxt);
+			apellidoTxt.setColumns(10);
 		}
 		
-		txtNombre = new JTextField();
-		txtNombre.setText("Nombre");
-		txtNombre.setBounds(248, 116, 238, 19);
-		contentPanel.add(txtNombre);
-		txtNombre.setColumns(10);
+		nombreTxt = new JTextField();
+		nombreTxt.setBounds(248, 116, 204, 19);
+		contentPanel.add(nombreTxt);
+		nombreTxt.setColumns(10);
 		
-		txtDni = new JTextField();
-		txtDni.setText("DNI");
-		txtDni.setBounds(248, 187, 96, 19);
-		contentPanel.add(txtDni);
-		txtDni.setColumns(10);
+		dniTxt = new JTextField();
+		dniTxt.setBounds(248, 187, 96, 19);
+		contentPanel.add(dniTxt);
+		dniTxt.setColumns(10);
 		
-		txtTelfono = new JTextField();
-		txtTelfono.setText("Teléfono");
-		txtTelfono.setBounds(248, 258, 135, 19);
-		contentPanel.add(txtTelfono);
-		txtTelfono.setColumns(10);
+		telefonoTxt = new JTextField();
+		telefonoTxt.setBounds(248, 258, 204, 19);
+		contentPanel.add(telefonoTxt);
+		telefonoTxt.setColumns(10);
 		
-		txtDireccin = new JTextField();
-		txtDireccin.setText("Dirección");
-		txtDireccin.setBounds(248, 329, 238, 19);
-		contentPanel.add(txtDireccin);
-		txtDireccin.setColumns(10);
+		direccionTxt = new JTextField();
+		direccionTxt.setBounds(248, 329, 204, 19);
+		contentPanel.add(direccionTxt);
+		direccionTxt.setColumns(10);
 		
-		txtFechaDeNacimiento = new JTextField();
-		txtFechaDeNacimiento.setText("dd/mm/aaaa");
-		txtFechaDeNacimiento.setBounds(248, 400, 96, 19);
-		contentPanel.add(txtFechaDeNacimiento);
-		txtFechaDeNacimiento.setColumns(10);
-		
-		txtEspecializacin = new JTextField();
-		txtEspecializacin.setText("Especialización");
-		txtEspecializacin.setBounds(248, 459, 96, 19);
-		contentPanel.add(txtEspecializacin);
-		txtEspecializacin.setColumns(10);
-		
-		txtRol = new JTextField();
-		txtRol.setText("Rol");
-		txtRol.setBounds(248, 542, 96, 19);
-		contentPanel.add(txtRol);
-		txtRol.setColumns(10);
+		fechaDeNacimientoTxt = new JTextField();
+		fechaDeNacimientoTxt.setText("dd/mm/aaaa");
+		fechaDeNacimientoTxt.setBounds(248, 400, 96, 19);
+		contentPanel.add(fechaDeNacimientoTxt);
+		fechaDeNacimientoTxt.setColumns(10);
 		
 		JLabel lblNewLabel = new JLabel("Apellido");
 		lblNewLabel.setBounds(152, 48, 56, 13);
@@ -131,6 +115,22 @@ public class AltaEmpleadoDialog extends JDialog {
 		JLabel lblNewLabel_7 = new JLabel("Rol");
 		lblNewLabel_7.setBounds(176, 545, 32, 13);
 		contentPanel.add(lblNewLabel_7);
+		
+		JComboBox especializacionBox = new JComboBox(Profesion.values());
+		especializacionBox.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
+		especializacionBox.setBounds(248, 469, 96, 21);
+		contentPanel.add(especializacionBox);
+		
+		JComboBox rolBox = new JComboBox(RolEmpleado.values());
+		rolBox.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
+		rolBox.setBounds(248, 541, 96, 21);
+		contentPanel.add(rolBox);
 		{
 			JPanel buttonPane = new JPanel();
 			buttonPane.setLayout(new FlowLayout(FlowLayout.RIGHT));
@@ -139,7 +139,6 @@ public class AltaEmpleadoDialog extends JDialog {
 				JButton asignarESBtn = new JButton("Asiganr Elemento de Seguridad");
 				asignarESBtn.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
-						setVisible(false);
 						ElementoDeSeguridadDialog elementoDeSeguridadDialog = new ElementoDeSeguridadDialog();
 						elementoDeSeguridadDialog.setVisible(true);
 					}
@@ -150,7 +149,6 @@ public class AltaEmpleadoDialog extends JDialog {
 				JButton asignarRTBtn = new JButton("Asignar Ropa de Trabajo");
 				asignarRTBtn.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
-						setVisible(false);
 						RopaDeTrabajoDialog ropaDeTrabajoDialog = new RopaDeTrabajoDialog();
 						ropaDeTrabajoDialog.setVisible(true);
 					}

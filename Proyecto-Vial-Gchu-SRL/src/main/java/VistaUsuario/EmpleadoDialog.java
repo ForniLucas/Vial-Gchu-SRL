@@ -30,7 +30,7 @@ public class EmpleadoDialog extends JDialog {
 	 * Create the dialog.
 	 */
 	public EmpleadoDialog() {
-		setBounds(50, 50, 800, 700);
+		setBounds(50, 50, 1200, 750);
 		setResizable(false);
 		this.setTitle("GESTIÓN DE EMPLEADOS");
 		
@@ -73,16 +73,6 @@ public class EmpleadoDialog extends JDialog {
 				});
 				
 				buttonPane.add(modificarEmpleadoBtn);
-			}
-			{
-				JButton guardarBtn = new JButton("Guardar");
-				guardarBtn.addActionListener(new ActionListener() {
-					public void actionPerformed(ActionEvent e) {
-					}
-				});
-				guardarBtn.setActionCommand("Guardar");
-				buttonPane.add(guardarBtn);
-				getRootPane().setDefaultButton(guardarBtn);
 			}
 			{
 				JButton cancelarBtn = new JButton("Cancelar");

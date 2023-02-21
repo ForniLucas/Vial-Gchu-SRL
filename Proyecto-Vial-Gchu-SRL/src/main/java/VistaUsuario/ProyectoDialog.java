@@ -7,6 +7,8 @@ import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class ProyectoDialog extends JDialog {
 
@@ -29,25 +31,59 @@ public class ProyectoDialog extends JDialog {
 	 * Create the dialog.
 	 */
 	public ProyectoDialog() {
-		setBounds(100, 100, 450, 300);
+		setBounds(50, 50, 1200, 750);
+		this.setResizable(false);
+		this.setTitle("GESTIÓN DE PROYECTOS");
 		getContentPane().setLayout(new BorderLayout());
-		contentPanel.setLayout(new FlowLayout());
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
 		getContentPane().add(contentPanel, BorderLayout.CENTER);
+		contentPanel.setLayout(null);
 		{
 			JPanel buttonPane = new JPanel();
 			buttonPane.setLayout(new FlowLayout(FlowLayout.RIGHT));
 			getContentPane().add(buttonPane, BorderLayout.SOUTH);
 			{
-				JButton okButton = new JButton("OK");
-				okButton.setActionCommand("OK");
-				buttonPane.add(okButton);
-				getRootPane().setDefaultButton(okButton);
+				JButton altaBtn = new JButton("Alta");
+				altaBtn.addActionListener(new ActionListener() {
+					public void actionPerformed(ActionEvent e) {
+						setVisible(false);
+						AltaProyectoDialog altaProyectoDialog = new AltaProyectoDialog();
+						altaProyectoDialog.setVisible(true);
+					}
+				});
+				buttonPane.add(altaBtn);
 			}
 			{
-				JButton cancelButton = new JButton("Cancel");
-				cancelButton.setActionCommand("Cancel");
-				buttonPane.add(cancelButton);
+				JButton bajaBtn = new JButton("Baja");
+				bajaBtn.addActionListener(new ActionListener() {
+					public void actionPerformed(ActionEvent e) {
+						setVisible(false);
+						BajaProyectoDialog bajaProyectoDialog = new BajaProyectoDialog();
+						bajaProyectoDialog.setVisible(true);
+					}
+				});
+				buttonPane.add(bajaBtn);
+			}
+			{
+				JButton modificarBtn = new JButton("Modificar");
+				modificarBtn.addActionListener(new ActionListener() {
+					public void actionPerformed(ActionEvent e) {
+						setVisible(false);
+						ModificarProyectoDialog modificarProyectoDialog = new ModificarProyectoDialog();
+						modificarProyectoDialog.setVisible(true);
+					}
+				});
+				buttonPane.add(modificarBtn);
+			}
+			{
+				JButton cancelarBtn = new JButton("Cancelar");
+				cancelarBtn.addActionListener(new ActionListener() {
+					public void actionPerformed(ActionEvent e) {
+						setVisible(false);
+					}
+				});
+				cancelarBtn.setActionCommand("Cancel");
+				buttonPane.add(cancelarBtn);
 			}
 		}
 	}
