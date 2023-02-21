@@ -1,6 +1,7 @@
 package VistaUsuario;
 
 import java.awt.BorderLayout;
+import java.awt.event.ActionListener;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.EventQueue;
@@ -13,6 +14,7 @@ import java.awt.Font;
 import javax.swing.JButton;
 import javax.swing.SwingConstants;
 import javax.swing.ImageIcon;
+import java.awt.event.ActionEvent;
 
 public class Principal {
 
@@ -45,13 +47,14 @@ public class Principal {
 	 * Initialize the contents of the frame.
 	 */
 	private void initialize() {
-		frame = new JFrame();
+		frame =  new JFrame();
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setBounds(100, 100, 800, 560);
 		frame.getContentPane().setLayout(new BorderLayout());
 		
 		
 		//paneles de la pantalla principal
+		
 		JPanel panel1 = new JPanel();
 		panel1.setBackground(new Color(255, 255, 255));
 		JPanel panel2 = new JPanel();
@@ -64,6 +67,7 @@ public class Principal {
 		panel4.setPreferredSize(new Dimension(800,40));
 		panel5.setPreferredSize(new Dimension(10,10));
 		
+		//FRAME TITULO
 		frame.getContentPane().add(panel1, BorderLayout.NORTH);
 		panel1.setLayout(new BorderLayout(0, 0));
 		
@@ -72,26 +76,46 @@ public class Principal {
 		lbTitulo.setFont(new Font("Verdana", Font.BOLD, 36));
 		panel1.add(lbTitulo);
 		
-		//frame.getContentPane().add(panel2, BorderLayout.WEST);
-		
-		//frame.getContentPane().add(panel3, BorderLayout.EAST);
-		
+		//FRAME BOTONES 
 		frame.getContentPane().add(panel4, BorderLayout.SOUTH);
 		panel4.setLayout(new FlowLayout(FlowLayout.CENTER, 50, 0));
-		//JButton cancelar = new JButton("Cancelar");
-		//cancelar.setBackground(new Color(192, 192, 192));
+		
+		//BOTON EMPLEADO
 		JButton empleados = new JButton("Gestionar Empleados");
+		empleados.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				EmpleadoDialog empleadoDialog = new EmpleadoDialog();
+		        empleadoDialog.setVisible(true);
+			}
+		});
 		empleados.setBackground(new Color(192, 192, 192));
+		
+		//BOTON PROYECTO
 		JButton proyecto = new JButton("Gestionar Proyectos");
+		proyecto.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				ProyectoDialog proyectoDialog = new ProyectoDialog();
+				proyectoDialog.setVisible(true);
+			}
+		});
 		proyecto.setBackground(new Color(192, 192, 192));
+		
+		//BOTON MAQUINARIA
 		JButton maquinaria = new JButton("Gestionar Maquinaria");
+		maquinaria.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				MaquinariaDialog maquinariaDialog = new MaquinariaDialog();
+				maquinariaDialog.setVisible(true);
+			}
+		});
 		maquinaria.setBackground(new Color(192, 192, 192));
 		panel4.add(empleados);
 		panel4.add(proyecto);
 		panel4.add(maquinaria);
-		//panel4.add(cancelar);
 		panel4.setVisible(true);
 		
+		
+		//FRAME CENTRAL
 		frame.getContentPane().add(panel5, BorderLayout.CENTER);
 		
 		JLabel lblNewLabel = new JLabel("");
