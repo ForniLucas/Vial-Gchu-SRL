@@ -15,12 +15,12 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
-@SuppressWarnings("serial")
+
 @Entity
 @Table(name = "Utiliza",
         schema = "public")
 public class Utiliza implements java.io.Serializable{
-	
+	private static final long serialVersionUID = 1L;
 	@Column(name="utilizaid", unique=true, nullable=false)
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
