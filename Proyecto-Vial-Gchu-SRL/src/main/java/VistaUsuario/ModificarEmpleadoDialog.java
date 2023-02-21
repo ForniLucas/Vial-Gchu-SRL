@@ -133,7 +133,7 @@ public class ModificarEmpleadoDialog extends JDialog {
 		}
 		{
 			fechaDeNacimientoTxt = new JTextField();
-			fechaDeNacimientoTxt.setText("dd/mm/aaaa");
+			fechaDeNacimientoTxt.setText("dd-mm-aaaa");
 			fechaDeNacimientoTxt.setBounds(237, 421, 96, 19);
 			contentPanel.add(fechaDeNacimientoTxt);
 			fechaDeNacimientoTxt.setColumns(10);
@@ -155,6 +155,11 @@ public class ModificarEmpleadoDialog extends JDialog {
 			});
 			rolBox.setBounds(237, 548, 96, 21);
 			contentPanel.add(rolBox);
+		}
+		{
+			JButton buscarBtn = new JButton("Buscar");
+			buscarBtn.setBounds(392, 36, 85, 21);
+			contentPanel.add(buscarBtn);
 		}
 		{
 			JPanel buttonPane = new JPanel();

@@ -79,7 +79,7 @@ public class AltaEmpleadoDialog extends JDialog {
 		direccionTxt.setColumns(10);
 		
 		fechaDeNacimientoTxt = new JTextField();
-		fechaDeNacimientoTxt.setText("dd/mm/aaaa");
+		fechaDeNacimientoTxt.setText("dd-mm-aaaa");
 		fechaDeNacimientoTxt.setBounds(248, 400, 96, 19);
 		contentPanel.add(fechaDeNacimientoTxt);
 		fechaDeNacimientoTxt.setColumns(10);

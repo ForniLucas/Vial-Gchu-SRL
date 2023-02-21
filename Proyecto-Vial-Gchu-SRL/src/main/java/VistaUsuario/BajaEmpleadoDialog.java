@@ -34,7 +34,7 @@ public class BajaEmpleadoDialog extends JDialog {
 	 * Create the dialog.
 	 */
 	public BajaEmpleadoDialog() {
-		setBounds(50, 50, 450, 250);
+		setBounds(50, 50, 450, 300);
 		this.setTitle("BAJA DE EMPLEADOS");
 		setResizable(false);
 		getContentPane().setLayout(new BorderLayout());
@@ -43,12 +43,12 @@ public class BajaEmpleadoDialog extends JDialog {
 		contentPanel.setLayout(null);
 		{
 			JLabel lblNewLabel = new JLabel("Ingrese Legajo del Empleado");
-			lblNewLabel.setBounds(29, 26, 133, 13);
+			lblNewLabel.setBounds(24, 26, 133, 13);
 			contentPanel.add(lblNewLabel);
 		}
 		{
 			textField = new JTextField();
-			textField.setBounds(204, 23, 125, 19);
+			textField.setBounds(167, 23, 132, 19);
 			contentPanel.add(textField);
 			textField.setColumns(10);
 		}
@@ -66,6 +66,15 @@ public class BajaEmpleadoDialog extends JDialog {
 			JLabel lblNewLabel_3 = new JLabel("New label");
 			lblNewLabel_3.setBounds(74, 116, 45, 13);
 			contentPanel.add(lblNewLabel_3);
+		}
+		{
+			JButton buscarBtn = new JButton("Buscar");
+			buscarBtn.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+				}
+			});
+			buscarBtn.setBounds(309, 22, 85, 21);
+			contentPanel.add(buscarBtn);
 		}
 		{
 			JPanel buttonPane = new JPanel();

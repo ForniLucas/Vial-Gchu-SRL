@@ -31,7 +31,7 @@ public class MaquinariaDialog extends JDialog {
 	 * Create the dialog.
 	 */
 	public MaquinariaDialog() {
-		setBounds(100, 100, 1200, 750);
+		setBounds(50, 50, 1200, 750);
 		this.setResizable(false);
 		this.setTitle("GESTIÓN DE MAQUINARIA");
 		getContentPane().setLayout(new BorderLayout());

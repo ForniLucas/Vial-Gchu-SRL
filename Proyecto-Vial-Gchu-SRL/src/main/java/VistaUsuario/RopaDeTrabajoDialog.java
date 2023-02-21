@@ -34,7 +34,7 @@ public class RopaDeTrabajoDialog extends JDialog {
 	 * Create the dialog.
 	 */
 	public RopaDeTrabajoDialog() {
-		setBounds(100, 100, 450, 450);
+		setBounds(50, 50, 450, 450);
 		this.setResizable(false);
 		this.setTitle("ROPA DE TRABAJO");
 		getContentPane().setLayout(new BorderLayout());

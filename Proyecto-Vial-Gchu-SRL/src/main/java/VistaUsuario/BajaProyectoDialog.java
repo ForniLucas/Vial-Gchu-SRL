@@ -43,14 +43,23 @@ public class BajaProyectoDialog extends JDialog {
 		contentPanel.setLayout(null);
 		{
 			JLabel lblNewLabel = new JLabel("Ingresar Legajo de Proyecto");
-			lblNewLabel.setBounds(28, 29, 147, 13);
+			lblNewLabel.setBounds(10, 29, 147, 13);
 			contentPanel.add(lblNewLabel);
 		}
 		{
 			textField = new JTextField();
-			textField.setBounds(208, 26, 132, 19);
+			textField.setBounds(167, 26, 132, 19);
 			contentPanel.add(textField);
 			textField.setColumns(10);
+		}
+		{
+			JButton buscarBtn = new JButton("Buscar");
+			buscarBtn.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+				}
+			});
+			buscarBtn.setBounds(324, 25, 85, 21);
+			contentPanel.add(buscarBtn);
 		}
 		{
 			JPanel buttonPane = new JPanel();

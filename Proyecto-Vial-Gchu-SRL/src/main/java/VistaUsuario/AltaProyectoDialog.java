@@ -91,12 +91,14 @@ public class AltaProyectoDialog extends JDialog {
 		}
 		{
 			fechaInicioTxt = new JTextField();
+			fechaInicioTxt.setText("dd-mm-aaaa");
 			fechaInicioTxt.setBounds(190, 30, 96, 19);
 			contentPanel.add(fechaInicioTxt);
 			fechaInicioTxt.setColumns(10);
 		}
 		{
 			fechaFinTxt = new JTextField();
+			fechaFinTxt.setText("dd-mm-aaaa");
 			fechaFinTxt.setBounds(190, 85, 96, 19);
 			contentPanel.add(fechaFinTxt);
 			fechaFinTxt.setColumns(10);

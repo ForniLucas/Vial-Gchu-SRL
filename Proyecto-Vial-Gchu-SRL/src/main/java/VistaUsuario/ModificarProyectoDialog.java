@@ -103,12 +103,14 @@ public class ModificarProyectoDialog extends JDialog {
 		}
 		{
 			fechaDeInicioTxt = new JTextField();
+			fechaDeInicioTxt.setText("dd-mm-aaaa");
 			fechaDeInicioTxt.setBounds(208, 87, 96, 19);
 			contentPanel.add(fechaDeInicioTxt);
 			fechaDeInicioTxt.setColumns(10);
 		}
 		{
 			fechaFinTxt = new JTextField();
+			fechaFinTxt.setText("dd-mm-aaaa");
 			fechaFinTxt.setBounds(208, 141, 96, 19);
 			contentPanel.add(fechaFinTxt);
 			fechaFinTxt.setColumns(10);

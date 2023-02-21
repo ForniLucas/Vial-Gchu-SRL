@@ -32,7 +32,7 @@ public class ElementoDeSeguridadDialog extends JDialog {
 	 * Create the dialog.
 	 */
 	public ElementoDeSeguridadDialog() {
-		setBounds(100, 100, 450, 450);
+		setBounds(50, 50, 450, 450);
 		this.setResizable(false);
 		this.setTitle("ELEMENTO DE SEGURIDAD");
 		getContentPane().setLayout(new BorderLayout());
