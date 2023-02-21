@@ -8,10 +8,13 @@ import javax.swing.JDialog;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
+import Controladoras.ControladorEmpleado;
 import Domain.Empleado;
 import Enumeraciones.Profesion;
 import Enumeraciones.RolEmpleado;
 import java.awt.event.ActionListener;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.awt.event.ActionEvent;
 import javax.swing.JTextField;
 import javax.swing.JLabel;
@@ -159,6 +162,22 @@ public class AltaEmpleadoDialog extends JDialog {
 				JButton guardarBtn = new JButton("Guardar");
 				guardarBtn.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
+						ControladorEmpleado controlador = new ControladorEmpleado();
+						
+						String nombre = nombreTxt.toString();
+						String apellido = apellidoTxt.toString();
+						String dniString = dniTxt.getText(); // Get the value of the JTextField as a String
+						int dni = Integer.parseInt(dniString); // Convert the String to an int
+						String telefonoString = telefonoTxt.getText(); 
+						int telefono = Integer.parseInt(telefonoString); 
+						String direccion = direccionTxt.toString(); 
+						
+						String fechaDeNacimientoString = fechaDeNacimientoTxt.getText(); // Get the value of the JTextField as a String
+						DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy"); // Specify the input format
+						LocalDate fechaDeNacimiento = LocalDate.parse(fechaDeNacimientoString, formatter); // Convert the String to a LocalDate object using the formatter
+
+						
+						controlador.alta(telefono, nombre, apellido, dni, telefono, direccion, fechaDeNacimiento);
 					}
 				});
 				guardarBtn.setActionCommand("OK");
