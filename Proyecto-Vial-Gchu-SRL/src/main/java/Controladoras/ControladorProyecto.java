@@ -21,6 +21,7 @@ import Domain.Maquinaria;
 import Domain.Proyecto;
 import Domain.TipoProyecto;
 import Domain.Trabajo;
+import Domain.Utiliza;
 
 public class ControladorProyecto {
 
@@ -40,7 +41,7 @@ public class ControladorProyecto {
 		    transaction = session.beginTransaction();
 		    
 		    // Agregar el proytecto a la lista y guardar en la base de datos    
-		    Proyecto poyecto = new Proyecto(id,fechaInicio, fechaEstimadaFin, fechaFin, estado, nombre);  // a "estado" podriamos directamente poner "iniciado" o algo asi.
+		    Proyecto poyecto = new Proyecto(fechaInicio, fechaEstimadaFin, fechaFin, estado, nombre);  // a "estado" podriamos directamente poner "iniciado" o algo asi.
 		    proyectos.add(poyecto);
 		    session.save(poyecto);
 		    transaction.commit();
@@ -367,7 +368,8 @@ public class ControladorProyecto {
 	      session = factory.openSession();
 	      transaction = session.beginTransaction();
 	      
-	      Utiliza unaUtiliza = new Utiliza();
+	      Utiliza unaUtiliza = new Utiliza(); //Deberiamos pasarle los argumentos correspondientes?
+	      										//Debemos pasarle los parametros
 	      unaUtiliza.asignar(unProyecto, unaMaquinaria);
 	      unaMaquinaria.addTrabajo(unaUtiliza);
 	      unProyecto.addMaquina(unaUtiliza);
@@ -402,43 +404,4 @@ public class ControladorProyecto {
 	}
 	
 	
-	public LinkedList<Proyecto> listarProyectos() {
-	    // Iniciar la sesión de Hibernate
-	    StandardServiceRegistry registry = new StandardServiceRegistryBuilder().configure().build();
-	    SessionFactory factory = null;
-	    Session session = null;
-	    LinkedList<Proyecto> resultado = new LinkedList<Proyecto>();
-	    try {
-	      factory = new MetadataSources(registry).buildMetadata().buildSessionFactory();
-	      session = factory.openSession();
-	      
-	      // Crear un objeto CriteriaBuilder para construir la consulta
-	      CriteriaBuilder builder = session.getCriteriaBuilder();
-	   
-	      CriteriaQuery<Proyecto> criteria = builder.createQuery(Proyecto.class);
-	      // Definir la tabla (clase) a partir de la cual se hará la consulta
-	      Root<Empleado> root = criteria.from(Proyecto.class);
-	      criteria.select(root);
-	      // Crear un objeto TypedQuery a partir de la consulta construida
-	      TypedQuery<Proyecto> query = session.createQuery(criteria);
-	      
-	      // Obtener el resultado de la consulta
-	      List<Proyecto> resultados = query.getResultList();
-	      if (!resultados.isEmpty()) {
-	        resultado = resultados.get(0);
-	      }
-	    } catch (Exception ex) {
-	      System.out.println(ex.getMessage());
-	      ex.printStackTrace();
-	    } finally {
-	      if (session != null) {
-	        session.close();
-	      }
-	      if (factory != null) {
-	        factory.close();
-	      }
-	      StandardServiceRegistryBuilder.destroy(registry);
-	    }
-	    return resultado;
-	  }
 }

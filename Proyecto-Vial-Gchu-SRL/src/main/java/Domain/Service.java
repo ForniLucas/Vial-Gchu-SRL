@@ -83,12 +83,12 @@ public class Service implements java.io.Serializable{
         this.observaciones = observaciones;
     }
     
-    public String getMaquinaria() {
+    public Maquinaria getMaquinaria() {
         return Maquinaria;
     }
 
     public void setMaquinaria(Maquinaria unaMaquinaria) {
-        this.Maquianria = unaMaquinaria;
+        this.Maquinaria = unaMaquinaria;
     }
     
     

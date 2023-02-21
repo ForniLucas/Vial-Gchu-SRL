@@ -69,7 +69,6 @@ public class Trabajo implements java.io.Serializable{
         this.fechaEstFin = fechaEstFin;
         this.fechaFin = fechaFin;
     }
- */
 	public Trabajo() {}
 	
     public int getHorasDeTrabajo() {
@@ -84,11 +83,11 @@ public class Trabajo implements java.io.Serializable{
         return fechaEstFin;
     }
    
-    public int getProyecto(){
+    public Proyecto getProyecto(){
         return Proyecto; 
     }
     
-    public int getEmpleado(){
+    public Empleado getEmpleado(){
         return Empleado;
     }
     

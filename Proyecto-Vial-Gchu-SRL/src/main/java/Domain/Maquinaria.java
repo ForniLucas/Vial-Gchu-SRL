@@ -36,7 +36,7 @@ public class Maquinaria implements java.io.Serializable{
 	@Column(name="maquinariaid", unique=true, nullable=false)
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-     private long id;
+     private Long id;
     
     @Column(name = "Codigo",nullable=false)
     private String codigo;
@@ -63,7 +63,7 @@ public class Maquinaria implements java.io.Serializable{
 	private Set<Service> Services = new HashSet<Service>(0);
     
 
-    public Maquinaria( String codigo, String descripcion, String fabricante, String ubicacionAlmacenamiento) {
+    public Maquinaria(String codigo, String descripcion, String fabricante, String ubicacionAlmacenamiento) {
         this.id = null;
         this.codigo = codigo;
         this.descripcion = descripcion;
