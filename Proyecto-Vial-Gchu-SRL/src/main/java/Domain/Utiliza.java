@@ -4,6 +4,8 @@
 package Domain;
 
 import java.time.LocalDate;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -57,6 +59,10 @@ public class Utiliza implements java.io.Serializable{
         this.fechaFin = fechaFin;
     }
 
+    public Utiliza() {
+    	
+    }
+    
 
     public LocalDate getFechaInicio() {
         return fechaInicio;
@@ -71,11 +77,11 @@ public class Utiliza implements java.io.Serializable{
     }
 
 
-    public int getProyecto(){
+    public Proyecto getProyecto(){
         return Proyecto; 
     }
     
-    public int getMaquinaria(){
+    public Maquinaria getMaquinaria(){
         return Maquinaria;
     }
   
@@ -94,7 +100,7 @@ public class Utiliza implements java.io.Serializable{
     }
     
     public void asignar(Proyecto unProyecto, Maquinaria unaMaquina) {
-        this.Maquinaria=unaMaquinaria;
+        this.Maquinaria=unaMaquina;
         this.Proyecto=unProyecto;
     }
     

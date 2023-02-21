@@ -35,7 +35,7 @@ public class ControladorMaquinaria {
 		     transaction = session.beginTransaction();
 		      
 		    // Agregar la maquinaria a la lista y guardar en la base de datos
-			Maquinaria maquinaria = new Maquinaria(idMaquinaria, codigo, descripcion,fabricante,ubicacionAlmacenamiento);
+			Maquinaria maquinaria = new Maquinaria(codigo, descripcion,fabricante,ubicacionAlmacenamiento);
 			maquinarias.add(maquinaria);
 			session.save(maquinaria);
 		    transaction.commit();

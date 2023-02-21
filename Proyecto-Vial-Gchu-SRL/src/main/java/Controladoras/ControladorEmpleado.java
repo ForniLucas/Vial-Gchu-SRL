@@ -38,7 +38,7 @@ public class ControladorEmpleado
 	      transaction = session.beginTransaction();
 	      
 	      // Agregar el empleado a la lista y guardar en la base de datos
-	      Empleado empleado = new Empleado(id, nombre, apellido, dni, telefono, direccion, fechaNac);
+	      Empleado empleado = new Empleado(nombre, apellido, dni, telefono, direccion, fechaNac);
 	      empleados.add(empleado);
 	      session.save(empleado);
 	      transaction.commit();
@@ -276,10 +276,10 @@ public class ControladorEmpleado
 	
 	public LinkedList<Empleado> listarEmpleados() {
 	    // Iniciar la sesión de Hibernate
+		LinkedList<Empleado> resultados = new LinkedList<Empleado>();
 	    StandardServiceRegistry registry = new StandardServiceRegistryBuilder().configure().build();
 	    SessionFactory factory = null;
 	    Session session = null;
-	    LinkedList<Empleado> resultado = new LinkedList<Empleado>();
 	    try {
 	      factory = new MetadataSources(registry).buildMetadata().buildSessionFactory();
 	      session = factory.openSession();
@@ -296,10 +296,7 @@ public class ControladorEmpleado
 	      TypedQuery<Empleado> query = session.createQuery(criteria);
 	      
 	      // Obtener el resultado de la consulta
-	      List<Empleado> resultados = query.getResultList();
-	      if (!resultados.isEmpty()) {
-	        resultado = resultados.get(0);
-	      }
+	      resultados = new LinkedList<Empleado>(query.getResultList()); //Aca ya obtenemos el listado de los empleados obtenidos de la consulta
 	    } catch (Exception ex) {
 	      System.out.println(ex.getMessage());
 	      ex.printStackTrace();
@@ -312,7 +309,7 @@ public class ControladorEmpleado
 	      }
 	      StandardServiceRegistryBuilder.destroy(registry);
 	    }
-	    return resultado;
+	    return resultados;
 	  }
 
 }

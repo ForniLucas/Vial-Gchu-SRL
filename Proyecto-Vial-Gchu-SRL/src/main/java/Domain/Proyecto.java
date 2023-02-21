@@ -139,21 +139,36 @@ public class Proyecto implements java.io.Serializable{
 
         this.TipoProyecto = unTipoProyecto;
     }
-
-    public void asignarEmpleado(Empleado unEmpleado) {
-    	empleados.add(unEmpleado);
+    
+    public Set<Trabajo> getTrabajadores(){
+    	return Trabajadores;
+    }
+    
+    public Set<Utiliza> getMaquinasUtiliza(){
+    	return Maquinas;
     }
 
     public LinkedList<Empleado> getEmpleados() {
-        return empleados;
+    	LinkedList<Empleado> empleados = new LinkedList<Empleado>();
+    	Set<Trabajo> trabajadores = getTrabajadores();
+    	
+    	for (Trabajo trabajo : trabajadores) {
+    	    empleados.add(trabajo.getEmpleado());
+    	}
+    	
+    	return empleados;
     }
 
-    public void asignar(Maquinaria unaMaquinaria) {
-        maquinas.add(unaMaquinaria);
-    }
 
     public LinkedList<Maquinaria> getMaquinas() {
-        return maquinas;
+    	LinkedList<Maquinaria> maquinas = new LinkedList<Maquinaria>();
+    	Set<Utiliza> Maquinas = getMaquinasUtiliza();
+    	
+    	for (Utiliza maquina : Maquinas) {
+    		maquinas.add(maquina.getMaquinaria());
+    	}
+    	
+    	return maquinas;
     }
 
     public void addTrabajo(Trabajo comment) {
