@@ -26,7 +26,7 @@ public class ControladorEmpleado
 	private LinkedList<Empleado> empleados = new LinkedList<Empleado>(); 
 	
 	
-	public void alta(long id, String nombre, String apellido, int dni, int telefono, String direccion, LocalDate fechaNac) {
+	public void alta(String nombre, String apellido, int dni, int telefono, String direccion, LocalDate fechaNac) {
 	    // Iniciar la sesión de Hibernate
 	    StandardServiceRegistry registry = new StandardServiceRegistryBuilder().configure().build();
 	    SessionFactory factory = null;

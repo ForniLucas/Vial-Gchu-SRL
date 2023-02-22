@@ -164,20 +164,21 @@ public class AltaEmpleadoDialog extends JDialog {
 					public void actionPerformed(ActionEvent e) {
 						ControladorEmpleado controlador = new ControladorEmpleado();
 						
-						String nombre = nombreTxt.toString();
-						String apellido = apellidoTxt.toString();
+						String nombre = nombreTxt.getText();
+						String apellido = apellidoTxt.getText();
+
 						String dniString = dniTxt.getText(); // Get the value of the JTextField as a String
 						int dni = Integer.parseInt(dniString); // Convert the String to an int
 						String telefonoString = telefonoTxt.getText(); 
 						int telefono = Integer.parseInt(telefonoString); 
-						String direccion = direccionTxt.toString(); 
+						String direccion = direccionTxt.getText(); 
 						
 						String fechaDeNacimientoString = fechaDeNacimientoTxt.getText(); // Get the value of the JTextField as a String
 						DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy"); // Specify the input format
 						LocalDate fechaDeNacimiento = LocalDate.parse(fechaDeNacimientoString, formatter); // Convert the String to a LocalDate object using the formatter
 
 						
-						controlador.alta(telefono, nombre, apellido, dni, telefono, direccion, fechaDeNacimiento);
+						controlador.alta(nombre, apellido, dni, telefono, direccion, fechaDeNacimiento);
 					}
 				});
 				guardarBtn.setActionCommand("OK");
