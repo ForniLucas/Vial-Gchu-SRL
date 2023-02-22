@@ -20,7 +20,10 @@ public class BajaEmpleadoDialog extends JDialog {
 
 	private final JPanel contentPanel = new JPanel();
 	private JTextField textField;
-
+	JLabel lblNewLabel_1 = new JLabel("");
+	JLabel lblNewLabel_2 = new JLabel("");
+	JLabel lblNewLabel_3 = new JLabel("");
+	JLabel lblNewLabel_4 = new JLabel("");
 	/**
 	 * Launch the application.
 	 */
@@ -38,6 +41,11 @@ public class BajaEmpleadoDialog extends JDialog {
 	 * Create the dialog.
 	 */
 	public BajaEmpleadoDialog() {
+		lblNewLabel_1.setVisible(false);
+		lblNewLabel_2.setVisible(false);
+		lblNewLabel_3.setVisible(false);
+		lblNewLabel_4.setVisible(false);
+		
 		setBounds(50, 50, 450, 300);
 		this.setTitle("BAJA DE EMPLEADOS");
 		setResizable(false);
@@ -45,6 +53,8 @@ public class BajaEmpleadoDialog extends JDialog {
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
 		getContentPane().add(contentPanel, BorderLayout.CENTER);
 		contentPanel.setLayout(null);
+		
+		
 		{
 			JLabel lblNewLabel = new JLabel("Ingrese Legajo del Empleado");
 			lblNewLabel.setBounds(24, 26, 133, 13);
@@ -57,19 +67,24 @@ public class BajaEmpleadoDialog extends JDialog {
 			textField.setColumns(10);
 		}
 		{
-			JLabel lblNewLabel_1 = new JLabel("New label");
+			
 			lblNewLabel_1.setBounds(74, 69, 45, 13);
 			contentPanel.add(lblNewLabel_1);
 		}
 		{
-			JLabel lblNewLabel_2 = new JLabel("New label");
+			
 			lblNewLabel_2.setBounds(167, 69, 45, 13);
 			contentPanel.add(lblNewLabel_2);
 		}
 		{
-			JLabel lblNewLabel_3 = new JLabel("New label");
+			
 			lblNewLabel_3.setBounds(74, 116, 45, 13);
 			contentPanel.add(lblNewLabel_3);
+		}
+{
+			
+			lblNewLabel_4.setBounds(74, 116, 45, 13); //VER
+			contentPanel.add(lblNewLabel_4);
 		}
 		{
 			JButton buscarBtn = new JButton("Buscar");
@@ -80,25 +95,16 @@ public class BajaEmpleadoDialog extends JDialog {
 					
 					ControladorEmpleado controlador = new ControladorEmpleado();
 					Empleado empleado = controlador.buscarDNI(dni);
+					lblNewLabel_1.setVisible(true);
+					lblNewLabel_2.setVisible(true);
+					lblNewLabel_3.setVisible(true);
+					lblNewLabel_4.setVisible(true);
 					
-					//Cambio la informacion de los Lables
-					{
-						JLabel lblNewLabel_1 = new JLabel(empleado.getNombre());
-						lblNewLabel_1.setBounds(74, 69, 45, 13);
-						contentPanel.add(lblNewLabel_1);
-					}
-					{
-						JLabel lblNewLabel_2 = new JLabel(empleado.getApellido());
-						lblNewLabel_2.setBounds(167, 69, 45, 13);
-						contentPanel.add(lblNewLabel_2);
-					}
-					{
-						JLabel lblNewLabel_3 = new JLabel(Boolean.toString(empleado.getDadoDeBaja()));
-						lblNewLabel_3.setBounds(74, 116, 45, 13);
-						contentPanel.add(lblNewLabel_3);
-					}
+					lblNewLabel_1.setText("Nombre: " + empleado.getNombre());
+					lblNewLabel_2.setText("Apellido: " + empleado.getApellido());
+					lblNewLabel_3.setText("Dni: " + empleado.getDni());
+					lblNewLabel_4.setText("Estado: " + Boolean.toString(empleado.getDadoDeBaja()));
 					
-					//Logro encontrar al empleado!
 					
 				}
 			});
