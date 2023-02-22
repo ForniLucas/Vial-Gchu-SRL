@@ -164,7 +164,7 @@ public class ModificarEmpleadoDialog extends JDialog {
 		}
 		{
 			
-			//direccionTxt.setText(empleadoGlob.getDireccion());
+			
 			direccionTxt.setBounds(237, 360, 133, 19);
 			contentPanel.add(direccionTxt);
 			direccionTxt.setColumns(255);
@@ -201,7 +201,7 @@ public class ModificarEmpleadoDialog extends JDialog {
 					String dniString = legajoTxt.getText(); // Get the value of the JTextField as a String
 					int dni_buscar = Integer.parseInt(dniString); // Convert the String to an int
 					empleado = controlador.buscarDNI(dni_buscar);
-					//empleadoGlob = empleado;
+				
 					apellidoTxt.setText(empleado.getApellido());
 					nombreTxt.setText(empleado.getNombre());
 					String dni = Integer.toString(dni_buscar);

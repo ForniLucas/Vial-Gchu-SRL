@@ -7,6 +7,10 @@ import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
+import Controladoras.ControladorMaquinaria;
+import Domain.Maquinaria;
+
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.JLabel;
@@ -21,6 +25,8 @@ public class ModificarMaquinariaDialog extends JDialog {
 	private JTextField descripcionTxt;
 	private JTextField fabricanteTxt;
 	private JTextField ubicacionTxt;
+	ControladorMaquinaria controlador = new ControladorMaquinaria();
+	Maquinaria maquina = new Maquinaria();
 
 	/**
 	 * Launch the application.
@@ -39,6 +45,12 @@ public class ModificarMaquinariaDialog extends JDialog {
 	 * Create the dialog.
 	 */
 	public ModificarMaquinariaDialog() {
+		
+		codigoTxt = new JTextField();
+		descripcionTxt = new JTextField();
+		fabricanteTxt = new JTextField();
+		ubicacionTxt = new JTextField();
+		
 		setBounds(50, 50, 600, 700);
 		this.setResizable(false);
 		this.setTitle("MODIFICAR MAQUINARIA");
@@ -83,25 +95,25 @@ public class ModificarMaquinariaDialog extends JDialog {
 			legajoTxt.setColumns(255);
 		}
 		{
-			codigoTxt = new JTextField();
+			
 			codigoTxt.setBounds(305, 143, 96, 19);
 			contentPanel.add(codigoTxt);
 			codigoTxt.setColumns(255);
 		}
 		{
-			descripcionTxt = new JTextField();
+			
 			descripcionTxt.setBounds(305, 235, 152, 19);
 			contentPanel.add(descripcionTxt);
 			descripcionTxt.setColumns(255);
 		}
 		{
-			fabricanteTxt = new JTextField();
+			
 			fabricanteTxt.setBounds(305, 327, 96, 19);
 			contentPanel.add(fabricanteTxt);
 			fabricanteTxt.setColumns(255);
 		}
 		{
-			ubicacionTxt = new JTextField();
+			
 			ubicacionTxt.setBounds(305, 419, 152, 19);
 			contentPanel.add(ubicacionTxt);
 			ubicacionTxt.setColumns(255);
@@ -115,6 +127,14 @@ public class ModificarMaquinariaDialog extends JDialog {
 			JButton buscarBtn = new JButton("Buscar");
 			buscarBtn.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
+					String codigo = legajoTxt.getText(); // Get the value of the JTextField as a String
+					maquina = controlador.buscar(codigo);
+					
+					codigoTxt.setText(codigo);
+					descripcionTxt.setText(maquina.getDescripcion());
+					fabricanteTxt.setText(maquina.getFabricante());
+					ubicacionTxt.setText(maquina.getUbicacionAlmacenamiento());
+				
 				}
 			});
 			buscarBtn.setBounds(426, 50, 85, 21);
@@ -128,6 +148,17 @@ public class ModificarMaquinariaDialog extends JDialog {
 				JButton guardarBtn = new JButton("Guardar");
 				guardarBtn.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
+						String codigo = codigoTxt.getText();
+						String descripcion = descripcionTxt.getText();
+						String fabricante = fabricanteTxt.getText();
+						String ubicacion = ubicacionTxt.getText();
+						
+						maquina.setCodigo(codigo);
+						maquina.setDescripcion(descripcion);
+						maquina.setFabricante(fabricante);
+						maquina.setUbicacionAlmacenamiento(ubicacion);
+						
+						controlador.modificar(maquina);
 					}
 				});
 				guardarBtn.setActionCommand("OK");
