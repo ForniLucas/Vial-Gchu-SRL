@@ -111,6 +111,10 @@ public class BajaEmpleadoDialog extends JDialog {
 			getContentPane().add(buttonPane, BorderLayout.SOUTH);
 			{
 				JButton bajaEmpleadoBtn = new JButton("Dar de Baja");
+				bajaEmpleadoBtn.addActionListener(new ActionListener() {
+					public void actionPerformed(ActionEvent e) {
+					}
+				});
 				bajaEmpleadoBtn.setActionCommand("OK");
 				buttonPane.add(bajaEmpleadoBtn);
 				getRootPane().setDefaultButton(bajaEmpleadoBtn);
