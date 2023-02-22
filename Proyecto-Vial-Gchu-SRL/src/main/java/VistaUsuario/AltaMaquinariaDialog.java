@@ -7,6 +7,9 @@ import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
+import Controladoras.ControladorMaquinaria;
+
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 import javax.swing.JComboBox;
@@ -65,11 +68,11 @@ public class AltaMaquinariaDialog extends JDialog {
 			lblNewLabel_3.setBounds(95, 392, 150, 13);
 			contentPanel.add(lblNewLabel_3);
 		}
-		{
+		/*{
 			JLabel lblNewLabel_4 = new JLabel("Estado");
 			lblNewLabel_4.setBounds(200, 499, 45, 13);
 			contentPanel.add(lblNewLabel_4);
-		}
+		}*/
 		{
 			codigoTxt = new JTextField();
 			codigoTxt.setBounds(276, 71, 96, 19);
@@ -94,11 +97,11 @@ public class AltaMaquinariaDialog extends JDialog {
 			contentPanel.add(ubicacionTxt);
 			ubicacionTxt.setColumns(255);
 		}
-		{
+		/*{
 			JComboBox estadoBox = new JComboBox();
 			estadoBox.setBounds(276, 495, 96, 21);
 			contentPanel.add(estadoBox);
-		}
+		}*/
 		{
 			JPanel buttonPane = new JPanel();
 			buttonPane.setLayout(new FlowLayout(FlowLayout.RIGHT));
@@ -107,6 +110,16 @@ public class AltaMaquinariaDialog extends JDialog {
 				JButton guardarBtn = new JButton("Guardar");
 				guardarBtn.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
+						
+						ControladorMaquinaria controlador = new ControladorMaquinaria();
+						
+						String codigo = codigoTxt.getText();
+						String desc = descripcionTxt.getText();
+						String fabr = fabricanteTxt.getText();
+						String ubic = ubicacionTxt.getText();
+						
+						controlador.alta(codigo, desc, fabr, ubic);
+						
 					}
 				});
 				guardarBtn.setActionCommand("OK");

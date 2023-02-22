@@ -60,7 +60,7 @@ public class EmpleadoDialog extends JDialog {
 		scrollPane.setViewportView(table);
 		contentPanel.add(scrollPane);
 		//CARGAR EMPLEADOS ESTA ABAJO
-		//cargarEmpleados();
+		cargarEmpleados();
 		
 			JPanel buttonPane = new JPanel();
 			buttonPane.setLayout(new FlowLayout(FlowLayout.RIGHT));
@@ -112,19 +112,19 @@ public class EmpleadoDialog extends JDialog {
 			
 	}
 	
-	/*
+	
 	public void cargarEmpleados(){
 		DefaultTableModel modeloTablaEmpleado = (DefaultTableModel) table.getModel();
 		List<Empleado> filasTablaEmpleado = controladorEmpleado.listarEmpleados();
-		Iterator iterador = filasTablaEmpleado.iterator();
+		Iterator<Empleado> iterador = filasTablaEmpleado.iterator();
 		while (iterador.hasNext()) {
 			Empleado empleado = (Empleado) iterador.next();
-			String fila[] = {String.valueOf(Empleado.getId()),String.valueOf(Empleado.getApellido()),String.valueOf(Empleado.getNombre()),
-					String.valueOf(Empleado.getDni()),String.valueOf(Empleado.getTelefono()),String.valueOf(Empleado.getDireccion()),
-					String.valueOf(Empleado.FechaNac()),String.valueOf(Empleado.getDadoDeBaja())};
+			String fila[] = {String.valueOf(empleado.getId()),String.valueOf(empleado.getApellido()),String.valueOf(empleado.getNombre()),
+					String.valueOf(empleado.getDni()),String.valueOf(empleado.getTelefono()),String.valueOf(empleado.getDireccion()),
+					String.valueOf(empleado.getFechaNac()),String.valueOf(empleado.getDadoDeBaja())};
 			modeloTablaEmpleado.addRow(fila);
 		}
 		
 	}
-	*/
+	
 }

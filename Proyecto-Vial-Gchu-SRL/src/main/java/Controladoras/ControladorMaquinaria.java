@@ -21,7 +21,7 @@ import Domain.Maquinaria;
 public class ControladorMaquinaria {
 	private LinkedList<Maquinaria> maquinarias = new LinkedList<Maquinaria>();
 	
-	public void alta(Long idMaquinaria, String codigo, String descripcion, String fabricante, String ubicacionAlmacenamiento ) {
+	public void alta(String codigo, String descripcion, String fabricante, String ubicacionAlmacenamiento ) {
 		
 		// Iniciar la sesión de Hibernate
 	    StandardServiceRegistry registry = new StandardServiceRegistryBuilder().configure().build();
