@@ -21,7 +21,7 @@ public class BajaEmpleadoDialog extends JDialog {
 	private final JPanel contentPanel = new JPanel();
 	private JTextField textField;
 	ControladorEmpleado controlador = new ControladorEmpleado();
-	Empleado empleadoGlob = new Empleado();
+	Empleado empleado = new Empleado();
 	JLabel lblNewLabel_1 = new JLabel("");
 	JLabel lblNewLabel_2 = new JLabel("");
 	JLabel lblNewLabel_3 = new JLabel("");
@@ -86,7 +86,7 @@ public class BajaEmpleadoDialog extends JDialog {
 			lblNewLabel_3.setBounds(74, 116, 45, 13);
 			contentPanel.add(lblNewLabel_3);
 		}
-{
+		{
 			
 			lblNewLabel_4.setBounds(74, 116, 45, 13); //VER
 			contentPanel.add(lblNewLabel_4);
@@ -98,7 +98,7 @@ public class BajaEmpleadoDialog extends JDialog {
 					String dniString = textField.getText(); // Get the value of the JTextField as a String
 					int dni = Integer.parseInt(dniString); // Convert the String to an int
 					
-					Empleado empleado = controlador.buscarDNI(dni);
+					empleado = controlador.buscarDNI(dni);
 					lblNewLabel_1.setVisible(true);
 					lblNewLabel_2.setVisible(true);
 					lblNewLabel_3.setVisible(true);
@@ -108,7 +108,7 @@ public class BajaEmpleadoDialog extends JDialog {
 					lblNewLabel_2.setText("Apellido: " + empleado.getApellido());
 					lblNewLabel_3.setText("Dni: " + empleado.getDni());
 					lblNewLabel_4.setText("Estado: " + Boolean.toString(empleado.getDadoDeBaja()));
-					empleadoGlob = empleado;
+					
 					
 				}
 			});
@@ -123,7 +123,7 @@ public class BajaEmpleadoDialog extends JDialog {
 				JButton bajaEmpleadoBtn = new JButton("Dar de Baja");
 				bajaEmpleadoBtn.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
-						controlador.bajaLogica(empleadoGlob);
+						controlador.bajaLogica(empleado);
 					}
 				});
 				bajaEmpleadoBtn.setActionCommand("OK");
