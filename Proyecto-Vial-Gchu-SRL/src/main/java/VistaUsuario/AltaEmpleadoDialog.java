@@ -29,6 +29,7 @@ public class AltaEmpleadoDialog extends JDialog {
 	private JTextField telefonoTxt;
 	private JTextField direccionTxt;
 	private JTextField fechaDeNacimientoTxt;
+	ControladorEmpleado controlador = new ControladorEmpleado();
 
 	/**
 	 * Launch the application.
@@ -162,7 +163,7 @@ public class AltaEmpleadoDialog extends JDialog {
 				JButton guardarBtn = new JButton("Guardar");
 				guardarBtn.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
-						ControladorEmpleado controlador = new ControladorEmpleado();
+						
 						
 						String nombre = nombreTxt.getText();
 						String apellido = apellidoTxt.getText();
