@@ -99,37 +99,37 @@ public class ModificarEmpleadoDialog extends JDialog {
 			legajoTxt = new JTextField();
 			legajoTxt.setBounds(237, 37, 96, 19);
 			contentPanel.add(legajoTxt);
-			legajoTxt.setColumns(10);
+			legajoTxt.setColumns(255);
 		}
 		{
 			apellidoTxt = new JTextField();
 			apellidoTxt.setBounds(237, 101, 133, 19);
 			contentPanel.add(apellidoTxt);
-			apellidoTxt.setColumns(10);
+			apellidoTxt.setColumns(255);
 		}
 		{
 			nombreTxt = new JTextField();
 			nombreTxt.setBounds(237, 165, 133, 19);
 			contentPanel.add(nombreTxt);
-			nombreTxt.setColumns(10);
+			nombreTxt.setColumns(255);
 		}
 		{
 			dniTxt = new JTextField();
 			dniTxt.setBounds(237, 229, 96, 19);
 			contentPanel.add(dniTxt);
-			dniTxt.setColumns(10);
+			dniTxt.setColumns(255);
 		}
 		{
 			telefonoTxt = new JTextField();
 			telefonoTxt.setBounds(237, 293, 133, 19);
 			contentPanel.add(telefonoTxt);
-			telefonoTxt.setColumns(10);
+			telefonoTxt.setColumns(255);
 		}
 		{
 			direccionTxt = new JTextField();
 			direccionTxt.setBounds(237, 360, 133, 19);
 			contentPanel.add(direccionTxt);
-			direccionTxt.setColumns(10);
+			direccionTxt.setColumns(255);
 		}
 		{
 			fechaDeNacimientoTxt = new JTextField();

@@ -48,9 +48,9 @@ public class BajaMaquinariaDialog extends JDialog {
 		}
 		{
 			legajoTxt = new JTextField();
-			legajoTxt.setBounds(219, 28, 116, 19);
+			legajoTxt.setBounds(213, 28, 116, 19);
 			contentPanel.add(legajoTxt);
-			legajoTxt.setColumns(10);
+			legajoTxt.setColumns(255);
 		}
 		{
 			JButton buscarBtn = new JButton("Buscar");

@@ -107,31 +107,31 @@ public class AltaProyectoDialog extends JDialog {
 			estadoTxt = new JTextField();
 			estadoTxt.setBounds(190, 140, 96, 19);
 			contentPanel.add(estadoTxt);
-			estadoTxt.setColumns(10);
+			estadoTxt.setColumns(255);
 		}
 		{
 			nombreTxt = new JTextField();
 			nombreTxt.setBounds(190, 195, 196, 19);
 			contentPanel.add(nombreTxt);
-			nombreTxt.setColumns(10);
+			nombreTxt.setColumns(255);
 		}
 		{
 			descripcionTxt = new JTextField();
 			descripcionTxt.setBounds(190, 307, 196, 19);
 			contentPanel.add(descripcionTxt);
-			descripcionTxt.setColumns(10);
+			descripcionTxt.setColumns(255);
 		}
 		{
 			actividadesTxt = new JTextField();
 			actividadesTxt.setBounds(190, 360, 196, 19);
 			contentPanel.add(actividadesTxt);
-			actividadesTxt.setColumns(10);
+			actividadesTxt.setColumns(255);
 		}
 		{
 			insumosTxt = new JTextField();
 			insumosTxt.setBounds(190, 415, 196, 19);
 			contentPanel.add(insumosTxt);
-			insumosTxt.setColumns(10);
+			insumosTxt.setColumns(255);
 		}
 		{
 			JComboBox comboBox = new JComboBox(TipoDeProyecto.values());

@@ -74,25 +74,25 @@ public class AltaMaquinariaDialog extends JDialog {
 			codigoTxt = new JTextField();
 			codigoTxt.setBounds(276, 71, 96, 19);
 			contentPanel.add(codigoTxt);
-			codigoTxt.setColumns(10);
+			codigoTxt.setColumns(255);
 		}
 		{
 			descripcionTxt = new JTextField();
 			descripcionTxt.setBounds(276, 179, 137, 19);
 			contentPanel.add(descripcionTxt);
-			descripcionTxt.setColumns(10);
+			descripcionTxt.setColumns(255);
 		}
 		{
 			fabricanteTxt = new JTextField();
 			fabricanteTxt.setBounds(276, 287, 96, 19);
 			contentPanel.add(fabricanteTxt);
-			fabricanteTxt.setColumns(10);
+			fabricanteTxt.setColumns(255);
 		}
 		{
 			ubicacionTxt = new JTextField();
 			ubicacionTxt.setBounds(276, 395, 137, 19);
 			contentPanel.add(ubicacionTxt);
-			ubicacionTxt.setColumns(10);
+			ubicacionTxt.setColumns(255);
 		}
 		{
 			JComboBox estadoBox = new JComboBox();

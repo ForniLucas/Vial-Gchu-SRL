@@ -111,6 +111,7 @@ public class EmpleadoDialog extends JDialog {
 		}
 			
 	}
+	
 	/*
 	public void cargarEmpleados(){
 		DefaultTableModel modeloTablaEmpleado = (DefaultTableModel) table.getModel();
@@ -123,6 +124,7 @@ public class EmpleadoDialog extends JDialog {
 					String.valueOf(Empleado.FechaNac()),String.valueOf(Empleado.getDadoDeBaja())};
 			modeloTablaEmpleado.addRow(fila);
 		}
-		*/
+		
 	}
+	*/
 }

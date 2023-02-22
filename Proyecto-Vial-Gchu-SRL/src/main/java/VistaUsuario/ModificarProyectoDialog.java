@@ -99,7 +99,7 @@ public class ModificarProyectoDialog extends JDialog {
 			legajoTxt = new JTextField();
 			legajoTxt.setBounds(208, 33, 96, 19);
 			contentPanel.add(legajoTxt);
-			legajoTxt.setColumns(10);
+			legajoTxt.setColumns(255);
 		}
 		{
 			fechaDeInicioTxt = new JTextField();
@@ -119,31 +119,31 @@ public class ModificarProyectoDialog extends JDialog {
 			estadoTxt = new JTextField();
 			estadoTxt.setBounds(208, 195, 96, 19);
 			contentPanel.add(estadoTxt);
-			estadoTxt.setColumns(10);
+			estadoTxt.setColumns(255);
 		}
 		{
 			nombreTxt = new JTextField();
 			nombreTxt.setBounds(208, 249, 189, 19);
 			contentPanel.add(nombreTxt);
-			nombreTxt.setColumns(10);
+			nombreTxt.setColumns(255);
 		}
 		{
 			descripcionTxt = new JTextField();
 			descripcionTxt.setBounds(208, 357, 189, 19);
 			contentPanel.add(descripcionTxt);
-			descripcionTxt.setColumns(10);
+			descripcionTxt.setColumns(255);
 		}
 		{
 			actividadesTxt = new JTextField();
 			actividadesTxt.setBounds(208, 411, 189, 19);
 			contentPanel.add(actividadesTxt);
-			actividadesTxt.setColumns(10);
+			actividadesTxt.setColumns(255);
 		}
 		{
 			insumosTxt = new JTextField();
 			insumosTxt.setBounds(208, 465, 189, 19);
 			contentPanel.add(insumosTxt);
-			insumosTxt.setColumns(10);
+			insumosTxt.setColumns(255);
 		}
 		{
 			JComboBox tipoBox = new JComboBox(TipoDeProyecto.values());

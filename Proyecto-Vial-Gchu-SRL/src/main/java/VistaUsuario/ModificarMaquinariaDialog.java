@@ -80,31 +80,31 @@ public class ModificarMaquinariaDialog extends JDialog {
 			legajoTxt = new JTextField();
 			legajoTxt.setBounds(250, 51, 96, 19);
 			contentPanel.add(legajoTxt);
-			legajoTxt.setColumns(10);
+			legajoTxt.setColumns(255);
 		}
 		{
 			codigoTxt = new JTextField();
 			codigoTxt.setBounds(305, 143, 96, 19);
 			contentPanel.add(codigoTxt);
-			codigoTxt.setColumns(10);
+			codigoTxt.setColumns(255);
 		}
 		{
 			descripcionTxt = new JTextField();
 			descripcionTxt.setBounds(305, 235, 152, 19);
 			contentPanel.add(descripcionTxt);
-			descripcionTxt.setColumns(10);
+			descripcionTxt.setColumns(255);
 		}
 		{
 			fabricanteTxt = new JTextField();
 			fabricanteTxt.setBounds(305, 327, 96, 19);
 			contentPanel.add(fabricanteTxt);
-			fabricanteTxt.setColumns(10);
+			fabricanteTxt.setColumns(255);
 		}
 		{
 			ubicacionTxt = new JTextField();
 			ubicacionTxt.setBounds(305, 419, 152, 19);
 			contentPanel.add(ubicacionTxt);
-			ubicacionTxt.setColumns(10);
+			ubicacionTxt.setColumns(255);
 		}
 		{
 			JComboBox estadoBox = new JComboBox();

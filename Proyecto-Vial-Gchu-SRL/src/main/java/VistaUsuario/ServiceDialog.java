@@ -51,7 +51,7 @@ public class ServiceDialog extends JDialog {
 			legajoTxt = new JTextField();
 			legajoTxt.setBounds(232, 19, 119, 19);
 			contentPanel.add(legajoTxt);
-			legajoTxt.setColumns(10);
+			legajoTxt.setColumns(255);
 		}
 		{
 			JButton buscarBtn = new JButton("Buscar");
@@ -95,7 +95,7 @@ public class ServiceDialog extends JDialog {
 			observacionesTxt = new JTextField();
 			observacionesTxt.setBounds(306, 374, 152, 19);
 			contentPanel.add(observacionesTxt);
-			observacionesTxt.setColumns(10);
+			observacionesTxt.setColumns(255);
 		}
 		{
 			JPanel buttonPane = new JPanel();

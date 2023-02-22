@@ -58,28 +58,28 @@ public class AltaEmpleadoDialog extends JDialog {
 			apellidoTxt = new JTextField();
 			apellidoTxt.setBounds(248, 45, 204, 19);
 			contentPanel.add(apellidoTxt);
-			apellidoTxt.setColumns(10);
+			apellidoTxt.setColumns(255);
 		}
 		
 		nombreTxt = new JTextField();
 		nombreTxt.setBounds(248, 116, 204, 19);
 		contentPanel.add(nombreTxt);
-		nombreTxt.setColumns(10);
+		nombreTxt.setColumns(255);
 		
 		dniTxt = new JTextField();
 		dniTxt.setBounds(248, 187, 96, 19);
 		contentPanel.add(dniTxt);
-		dniTxt.setColumns(10);
+		dniTxt.setColumns(255);
 		
 		telefonoTxt = new JTextField();
 		telefonoTxt.setBounds(248, 258, 204, 19);
 		contentPanel.add(telefonoTxt);
-		telefonoTxt.setColumns(10);
+		telefonoTxt.setColumns(255);
 		
 		direccionTxt = new JTextField();
 		direccionTxt.setBounds(248, 329, 204, 19);
 		contentPanel.add(direccionTxt);
-		direccionTxt.setColumns(10);
+		direccionTxt.setColumns(255);
 		
 		fechaDeNacimientoTxt = new JTextField();
 		fechaDeNacimientoTxt.setText("dd-mm-aaaa");

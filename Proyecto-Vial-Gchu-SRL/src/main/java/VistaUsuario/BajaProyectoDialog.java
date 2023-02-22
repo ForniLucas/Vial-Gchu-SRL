@@ -50,7 +50,7 @@ public class BajaProyectoDialog extends JDialog {
 			textField = new JTextField();
 			textField.setBounds(167, 26, 132, 19);
 			contentPanel.add(textField);
-			textField.setColumns(10);
+			textField.setColumns(255);
 		}
 		{
 			JButton buscarBtn = new JButton("Buscar");
