@@ -60,6 +60,8 @@ public class ProyectoDialog extends JDialog {
 		scrollPane.setBounds(100, 40, 1000, 600);
 		scrollPane.setViewportView(table);
 		contentPanel.add(scrollPane);
+		
+		cargarProyectos();
 	
 		{
 			JPanel buttonPane = new JPanel();

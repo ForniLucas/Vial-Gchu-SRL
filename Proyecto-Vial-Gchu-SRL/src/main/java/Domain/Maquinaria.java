@@ -118,15 +118,15 @@ public class Maquinaria implements java.io.Serializable{
     }
 
     public void setEstadoBaja() {
-        if (getEstado()) {
-            this.estado = false; // Cambiar nombre
-        }
+        //if (getEstado()) {
+            this.estado = false; 
+        //}
     }
 
     public void setEstadoAlta() {
-        if (!getEstado()) {
+        //if (!getEstado()) {
             this.estado = true;
-        }
+        //}
     }
 
     public void modificarMaquinaria(Maquinaria unaMaquinaria) {

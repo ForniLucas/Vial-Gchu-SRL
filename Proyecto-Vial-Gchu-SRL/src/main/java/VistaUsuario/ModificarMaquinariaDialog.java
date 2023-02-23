@@ -25,6 +25,7 @@ public class ModificarMaquinariaDialog extends JDialog {
 	private JTextField descripcionTxt;
 	private JTextField fabricanteTxt;
 	private JTextField ubicacionTxt;
+	private JComboBox<String> estadoBox = new JComboBox<String>();
 	ControladorMaquinaria controlador = new ControladorMaquinaria();
 	Maquinaria maquina = new Maquinaria();
 
@@ -119,8 +120,10 @@ public class ModificarMaquinariaDialog extends JDialog {
 			ubicacionTxt.setColumns(255);
 		}
 		{
-			JComboBox estadoBox = new JComboBox();
+			
 			estadoBox.setBounds(305, 510, 96, 21);
+			estadoBox.addItem("En servicio");
+		    estadoBox.addItem("Fuera de Servicio");
 			contentPanel.add(estadoBox);
 		}
 		{
@@ -152,11 +155,17 @@ public class ModificarMaquinariaDialog extends JDialog {
 						String descripcion = descripcionTxt.getText();
 						String fabricante = fabricanteTxt.getText();
 						String ubicacion = ubicacionTxt.getText();
-						
+						String estado = (String) estadoBox.getSelectedItem();
 						maquina.setCodigo(codigo);
 						maquina.setDescripcion(descripcion);
 						maquina.setFabricante(fabricante);
 						maquina.setUbicacionAlmacenamiento(ubicacion);
+
+						if (estado.equals("En servicio")) {
+							maquina.setEstadoAlta();
+						}else {
+							maquina.setEstadoBaja();
+						}
 						
 						controlador.modificar(maquina);
 					}

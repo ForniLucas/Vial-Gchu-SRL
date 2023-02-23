@@ -60,6 +60,7 @@ public class MaquinariaDialog extends JDialog {
 		scrollPane.setViewportView(table);
 		contentPanel.add(scrollPane);
 		contentPanel.setLayout(null);
+		cargarMaquinaria();
 		{
 			JPanel buttonPane = new JPanel();
 			buttonPane.setLayout(new FlowLayout(FlowLayout.RIGHT));
@@ -122,8 +123,9 @@ public class MaquinariaDialog extends JDialog {
 		Iterator<Maquinaria> iterador = filasTablaEmpleado.iterator();
 		while (iterador.hasNext()) {
 			Maquinaria maquinaria = (Maquinaria) iterador.next();
+			String estado = maquinaria.getEstado() ? "En Servicio" : "Fuera De Servicio";
 			String fila[] = {String.valueOf(maquinaria.getId()),String.valueOf(maquinaria.getCodigo()),String.valueOf(maquinaria.getDescripcion()),
-					String.valueOf(maquinaria.getFabricante()),String.valueOf(maquinaria.getUbicacionAlmacenamiento()),String.valueOf(maquinaria.getEstado()),
+					String.valueOf(maquinaria.getFabricante()),String.valueOf(maquinaria.getUbicacionAlmacenamiento()),String.valueOf(estado),
 		};
 			modeloTablaMaquinaria.addRow(fila);
 		}
