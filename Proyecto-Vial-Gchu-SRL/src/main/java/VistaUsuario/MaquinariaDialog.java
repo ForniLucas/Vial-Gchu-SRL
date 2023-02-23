@@ -19,6 +19,8 @@ import java.awt.event.ActionListener;
 import java.util.Iterator;
 import java.util.List;
 import java.awt.event.ActionEvent;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 public class MaquinariaDialog extends JDialog {
 
@@ -29,6 +31,7 @@ public class MaquinariaDialog extends JDialog {
 	JTable table = new JTable(mt);
 	JScrollPane scrollPane = new JScrollPane(); 
 	ControladorMaquinaria controladorMaquinaria = new ControladorMaquinaria();
+	String codigo = new String();
 
 	/**
 	 * Launch the application.
@@ -56,6 +59,14 @@ public class MaquinariaDialog extends JDialog {
 		//Formato de tabla
 		mt.setColumnIdentifiers(ids);
 		table.setBounds(100, 40, 1000, 600);
+		scrollPane.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				int filaSeleccionada = table.getSelectedRow();
+		        DefaultTableModel mt = (DefaultTableModel)table.getModel();
+		        codigo = mt.getValueAt(filaSeleccionada, 1).toString(); 
+			}
+		});
 		scrollPane.setBounds(100, 40, 1000, 600);
 		scrollPane.setViewportView(table);
 		contentPanel.add(scrollPane);
@@ -109,6 +120,7 @@ public class MaquinariaDialog extends JDialog {
 						setVisible(false);
 						ServiceDialog serviceDialog = new ServiceDialog();
 						serviceDialog.setVisible(true);
+						serviceDialog.legajo = codigo;
 					}
 				});
 				buttonPane.add(serviceBtn);

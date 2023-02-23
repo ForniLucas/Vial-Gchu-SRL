@@ -15,6 +15,8 @@ import java.util.Iterator;
 import java.util.List;
 import java.awt.event.ActionEvent;
 import javax.swing.JTable;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 public class EmpleadoDialog extends JDialog {
  
@@ -56,6 +58,17 @@ public class EmpleadoDialog extends JDialog {
 		//Formato de tabla
 		mt.setColumnIdentifiers(ids);
 		table.setBounds(100, 40, 1000, 600);
+		scrollPane.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				int filaSeleccionada = table.getSelectedRow();
+		        DefaultTableModel modeloTablaVendedor = (DefaultTableModel)table.getModel();
+		        //idPersonaFld.setText(modeloTablaVendedor.getValueAt(filaSeleccionada, 0).toString());
+		        //idClienteFld.setText(modeloTablaVendedor.getValueAt(filaSeleccionada, 1).toString());
+		        //fechaAltaCFld.setText(modeloTablaVendedor.getValueAt(filaSeleccionada,2).toString());
+		        //emailClienteFld.setText(modeloTablaVendedor.getValueAt(filaSeleccionada, 8).toString());
+			}
+		});
 		scrollPane.setBounds(100, 40, 1000, 600);
 		scrollPane.setViewportView(table);
 		contentPanel.add(scrollPane);

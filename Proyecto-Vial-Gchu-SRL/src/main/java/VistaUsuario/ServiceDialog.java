@@ -6,8 +6,17 @@ import java.awt.FlowLayout;
 import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.JTable;
 import javax.swing.border.EmptyBorder;
+import javax.swing.table.DefaultTableModel;
+
+import Controladoras.ControladorMaquinaria;
+import Domain.Maquinaria;
+import Domain.Service;
+
 import java.awt.event.ActionListener;
+import java.util.Iterator;
 import java.awt.event.ActionEvent;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
@@ -19,6 +28,12 @@ public class ServiceDialog extends JDialog {
 	private JTextField fechaInicioTxt;
 	private JTextField fechaFinTxt;
 	private JTextField observacionesTxt;
+	String ids[] = {"Legajo","Fecha de Inicio","Fecha de Fin","Observaciones"}; 
+	DefaultTableModel mt = new DefaultTableModel();
+	JTable table = new JTable(mt);
+	JScrollPane scrollPane = new JScrollPane(); 
+	ControladorMaquinaria controladorMaquinaria = new ControladorMaquinaria();
+	public String legajo = new String();
 
 	/**
 	 * Launch the application.
@@ -42,6 +57,12 @@ public class ServiceDialog extends JDialog {
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
 		getContentPane().add(contentPanel, BorderLayout.CENTER);
 		contentPanel.setLayout(null);
+		//Formato de tabla
+		mt.setColumnIdentifiers(ids);
+		table.setBounds(26, 71, 532, 112);
+		scrollPane.setBounds(26, 71, 532, 112);
+		scrollPane.setViewportView(table);
+		contentPanel.add(scrollPane);
 		{
 			JLabel lblNewLabel = new JLabel("Ingrese el Legajo de la Maquinaria");
 			lblNewLabel.setBounds(26, 22, 173, 13);
@@ -124,6 +145,19 @@ public class ServiceDialog extends JDialog {
 				buttonPane.add(cancelarBtn);
 			}
 		}
+	}
+	
+	public void cargarService() {
+		DefaultTableModel modeloTablaService = (DefaultTableModel) table.getModel();
+		Maquinaria maquinaria = new Maquinaria();
+		maquinaria = controladorMaquinaria.buscar(legajo);
+		Iterator <Service>iterador = maquinaria.getServices().iterator();
+			while (iterador.hasNext()) {
+				Service service = (Service) iterador.next();
+				String fila [] = {String.valueOf(service.getId()), String.valueOf(service.getFechaInicio()),String.valueOf(service.getFechaFin()), 
+						String.valueOf(service.getObservaciones())};
+				modeloTablaService.addRow(fila);
+			}
 	}
 
 }
