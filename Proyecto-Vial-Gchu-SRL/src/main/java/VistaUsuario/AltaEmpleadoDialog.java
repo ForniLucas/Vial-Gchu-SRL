@@ -145,26 +145,6 @@ public class AltaEmpleadoDialog extends JDialog {
 			buttonPane.setLayout(new FlowLayout(FlowLayout.RIGHT));
 			getContentPane().add(buttonPane, BorderLayout.SOUTH);
 			{
-				JButton asignarESBtn = new JButton("Asiganr Elemento de Seguridad");
-				asignarESBtn.addActionListener(new ActionListener() {
-					public void actionPerformed(ActionEvent e) {
-						ElementoDeSeguridadDialog elementoDeSeguridadDialog = new ElementoDeSeguridadDialog();
-						elementoDeSeguridadDialog.setVisible(true);
-					}
-				});
-				buttonPane.add(asignarESBtn);
-			}
-			{
-				JButton asignarRTBtn = new JButton("Asignar Ropa de Trabajo");
-				asignarRTBtn.addActionListener(new ActionListener() {
-					public void actionPerformed(ActionEvent e) {
-						RopaDeTrabajoDialog ropaDeTrabajoDialog = new RopaDeTrabajoDialog();
-						ropaDeTrabajoDialog.setVisible(true);
-					}
-				});
-				buttonPane.add(asignarRTBtn);
-			}
-			{
 				JButton guardarBtn = new JButton("Guardar");
 				guardarBtn.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {

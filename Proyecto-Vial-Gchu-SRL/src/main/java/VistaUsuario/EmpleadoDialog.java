@@ -73,6 +73,26 @@ public class EmpleadoDialog extends JDialog {
 						AltaEmpleadoDialog altaEmpleadoDialog = new AltaEmpleadoDialog();
 					    altaEmpleadoDialog.setVisible(true);}
 				});
+				{
+					JButton ropaDTButton = new JButton("Asignar Ropa de Trabajo");
+					ropaDTButton.addActionListener(new ActionListener() {
+						public void actionPerformed(ActionEvent e) {
+							RopaDeTrabajoDialog ropaDeTrabajoDialog = new RopaDeTrabajoDialog();
+							ropaDeTrabajoDialog.setVisible(true);
+						}
+					});
+					buttonPane.add(ropaDTButton);
+				}
+				{
+					JButton elementoDSButton = new JButton("Asignar Elemento de Seguridad");
+					elementoDSButton.addActionListener(new ActionListener() {
+						public void actionPerformed(ActionEvent e) {
+							ElementoDeSeguridadDialog elementoDeSeguridadDialog = new ElementoDeSeguridadDialog();
+							elementoDeSeguridadDialog.setVisible(true);
+						}
+					});
+					buttonPane.add(elementoDSButton);
+				}
 				
 				buttonPane.add(altaEmpleadoBtn);
 			{
