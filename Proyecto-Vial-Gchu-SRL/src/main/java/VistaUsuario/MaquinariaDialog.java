@@ -1,18 +1,34 @@
 package VistaUsuario;
 
 import java.awt.BorderLayout;
+
 import java.awt.FlowLayout;
 
 import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.JTable;
 import javax.swing.border.EmptyBorder;
+import javax.swing.table.DefaultTableModel;
+
+import Domain.Maquinaria;
+import Controladoras.ControladorMaquinaria;
+
 import java.awt.event.ActionListener;
+import java.util.Iterator;
+import java.util.List;
 import java.awt.event.ActionEvent;
 
 public class MaquinariaDialog extends JDialog {
 
 	private final JPanel contentPanel = new JPanel();
+	//Tabla Principal
+	String ids[] = {"Legajo","Patente","Descripción","Fabricante","Ubicación de Almacenamiento","Estado"}; 
+	DefaultTableModel mt = new DefaultTableModel();
+	JTable table = new JTable(mt);
+	JScrollPane scrollPane = new JScrollPane(); 
+	ControladorMaquinaria controladorMaquinaria = new ControladorMaquinaria();
 
 	/**
 	 * Launch the application.
@@ -37,6 +53,12 @@ public class MaquinariaDialog extends JDialog {
 		getContentPane().setLayout(new BorderLayout());
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
 		getContentPane().add(contentPanel, BorderLayout.CENTER);
+		//Formato de tabla
+		mt.setColumnIdentifiers(ids);
+		table.setBounds(100, 40, 1000, 600);
+		scrollPane.setBounds(100, 40, 1000, 600);
+		scrollPane.setViewportView(table);
+		contentPanel.add(scrollPane);
 		contentPanel.setLayout(null);
 		{
 			JPanel buttonPane = new JPanel();
@@ -93,5 +115,18 @@ public class MaquinariaDialog extends JDialog {
 				buttonPane.add(cancelarBtn);
 			}
 		}
+	}
+	public void cargarMaquinaria(){
+		DefaultTableModel modeloTablaMaquinaria = (DefaultTableModel) table.getModel();
+		List<Maquinaria> filasTablaEmpleado = controladorMaquinaria.listarMaquinaria(); //falta listar maquinaria
+		Iterator<Maquinaria> iterador = filasTablaEmpleado.iterator();
+		while (iterador.hasNext()) {
+			Maquinaria maquinaria = (Maquinaria) iterador.next();
+			String fila[] = {String.valueOf(maquinaria.getId()),String.valueOf(maquinaria.getCodigo()),String.valueOf(maquinaria.getDescripcion()),
+					String.valueOf(maquinaria.getFabricante()),String.valueOf(maquinaria.getUbicacionAlmacenamiento()),String.valueOf(maquinaria.getEstado()),
+		};
+			modeloTablaMaquinaria.addRow(fila);
+		}
+		
 	}
 }

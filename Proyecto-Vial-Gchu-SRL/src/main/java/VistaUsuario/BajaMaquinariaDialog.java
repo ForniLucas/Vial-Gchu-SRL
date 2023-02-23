@@ -74,22 +74,22 @@ public class BajaMaquinariaDialog extends JDialog {
 		}
 		{
 			
-			lblNewLabel_1.setBounds(74, 69, 45, 13);
+			lblNewLabel_1.setBounds(263, 92, 174, 13);
 			contentPanel.add(lblNewLabel_1);
 		}
 		{
 			
-			lblNewLabel_2.setBounds(167, 69, 45, 13);
+			lblNewLabel_2.setBounds(49, 161, 163, 13);
 			contentPanel.add(lblNewLabel_2);
 		}
 		{
 			
-			lblNewLabel_3.setBounds(74, 116, 45, 13);
+			lblNewLabel_3.setBounds(263, 161, 174, 13);
 			contentPanel.add(lblNewLabel_3);
 		}
 		{
 			
-			lblNewLabel_4.setBounds(74, 116, 45, 13); //VER
+			lblNewLabel_4.setBounds(49, 92, 163, 13); //VER
 			contentPanel.add(lblNewLabel_4);
 		}
 		{

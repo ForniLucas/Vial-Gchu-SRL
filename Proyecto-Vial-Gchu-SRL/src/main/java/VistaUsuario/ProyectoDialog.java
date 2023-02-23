@@ -1,18 +1,33 @@
 package VistaUsuario;
 
 import java.awt.BorderLayout;
+
 import java.awt.FlowLayout;
 
 import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.JTable;
 import javax.swing.border.EmptyBorder;
+import javax.swing.table.DefaultTableModel;
+
+import Domain.Proyecto;
+import Controladoras.ControladorProyecto;
 import java.awt.event.ActionListener;
+import java.util.Iterator;
+import java.util.List;
 import java.awt.event.ActionEvent;
 
 public class ProyectoDialog extends JDialog {
 
 	private final JPanel contentPanel = new JPanel();
+	//Tabla Principal2
+	String ids[] = {"Legajo","Nombre","Fecha de Inicio","Fecha Estimada de Fin", "Estado","Fecha de Fin"}; 
+	DefaultTableModel mt = new DefaultTableModel();
+	JTable table = new JTable(mt);
+	JScrollPane scrollPane = new JScrollPane(); 
+	ControladorProyecto controladorProyecto = new ControladorProyecto();
 
 	/**
 	 * Launch the application.
@@ -38,6 +53,14 @@ public class ProyectoDialog extends JDialog {
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
 		getContentPane().add(contentPanel, BorderLayout.CENTER);
 		contentPanel.setLayout(null);
+		
+		//Formato de tabla
+		mt.setColumnIdentifiers(ids);
+		table.setBounds(100, 40, 1000, 600);
+		scrollPane.setBounds(100, 40, 1000, 600);
+		scrollPane.setViewportView(table);
+		contentPanel.add(scrollPane);
+	
 		{
 			JPanel buttonPane = new JPanel();
 			buttonPane.setLayout(new FlowLayout(FlowLayout.RIGHT));
@@ -86,6 +109,19 @@ public class ProyectoDialog extends JDialog {
 				buttonPane.add(cancelarBtn);
 			}
 		}
+	}
+	//"Legajo","Nombre","Fecha de Inicio","Fecha Estimada de Fin", "Estado","Fecha de Fin"
+	public void cargarProyectos(){
+		DefaultTableModel modeloTablaProyecto = (DefaultTableModel) table.getModel();
+		List<Proyecto> filasTablaProyecto = controladorProyecto.listarProyectos();
+		Iterator<Proyecto> iterador = filasTablaProyecto.iterator();
+		while (iterador.hasNext()) {
+			Proyecto proyecto = (Proyecto) iterador.next();
+			String fila[] = {String.valueOf(proyecto.getId()),String.valueOf(proyecto.getNombre()),String.valueOf(proyecto.getFechaInicio()),
+					String.valueOf(proyecto.getFechaEstmiadaFin()),String.valueOf(proyecto.getEstado()),String.valueOf(proyecto.getFechaFin())};
+			modeloTablaProyecto.addRow(fila);
+		}
+		
 	}
 
 }

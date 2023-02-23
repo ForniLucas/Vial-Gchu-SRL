@@ -73,22 +73,22 @@ public class BajaEmpleadoDialog extends JDialog {
 		}
 		{
 			
-			lblNewLabel_1.setBounds(74, 69, 45, 13);
+			lblNewLabel_1.setBounds(238, 83, 174, 13);
 			contentPanel.add(lblNewLabel_1);
 		}
 		{
 			
-			lblNewLabel_2.setBounds(167, 69, 45, 13);
+			lblNewLabel_2.setBounds(24, 152, 163, 13);
 			contentPanel.add(lblNewLabel_2);
 		}
 		{
 			
-			lblNewLabel_3.setBounds(74, 116, 45, 13);
+			lblNewLabel_3.setBounds(238, 152, 174, 13);
 			contentPanel.add(lblNewLabel_3);
 		}
 		{
 			
-			lblNewLabel_4.setBounds(74, 116, 45, 13); //VER
+			lblNewLabel_4.setBounds(24, 83, 163, 13); //VER
 			contentPanel.add(lblNewLabel_4);
 		}
 		{
