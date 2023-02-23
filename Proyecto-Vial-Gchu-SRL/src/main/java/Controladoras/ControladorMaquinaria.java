@@ -17,6 +17,7 @@ import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 
 import Domain.Empleado;
 import Domain.Maquinaria;
+import Domain.Proyecto;
 
 public class ControladorMaquinaria {
 	private LinkedList<Maquinaria> maquinarias = new LinkedList<Maquinaria>();
@@ -216,6 +217,40 @@ public class ControladorMaquinaria {
 	    if (index != -1) {
 	    	maquinarias.set(index, unaMaquina);
 	    }
+	}
+	
+	
+	public LinkedList<Maquinaria> listarMaquinaria() {
+		LinkedList<Maquinaria> resultados = new LinkedList<Maquinaria>();
+		StandardServiceRegistry registry = new StandardServiceRegistryBuilder().configure().build();
+		SessionFactory factory = null;
+		Session session = null;
+
+		try {
+			factory = new MetadataSources(registry).buildMetadata().buildSessionFactory();
+			session = factory.openSession();
+
+			CriteriaBuilder builder = session.getCriteriaBuilder();
+			CriteriaQuery<Maquinaria> criteria = builder.createQuery(Maquinaria.class);
+			Root<Maquinaria> root = criteria.from(Maquinaria.class);
+
+			criteria.select(root);
+			TypedQuery<Maquinaria> query = session.createQuery(criteria);
+			resultados = new LinkedList<Maquinaria>(query.getResultList());
+		} catch (Exception ex) {
+			System.out.println(ex.getMessage());
+			ex.printStackTrace();
+		} finally {
+			if (session != null) {
+				session.close();
+			}
+			if (factory != null) {
+				factory.close();
+			}
+			StandardServiceRegistryBuilder.destroy(registry);
+		}
+
+		return resultados;
 	}
 
 }
