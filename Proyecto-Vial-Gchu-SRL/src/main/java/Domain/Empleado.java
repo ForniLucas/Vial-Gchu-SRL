@@ -18,6 +18,7 @@ import javax.persistence.JoinTable;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+
 /**
  * @author lucas
  *
@@ -168,27 +169,41 @@ public class Empleado implements java.io.Serializable {
 
     }
 
-    /*
-     * 
+
     
     public void addEspecializacion(Especializacion unaEspecializacion) {
-
-        if (this.Especializacion == null) {
-            // block of code to be executed if the condition is true
-            this.Especializacion = unaEspecializacion;
-        } else {
-            // block of code to be executed if the condition is false
-            this.finalizarEspecializacion(LocalDate.now());
-            this.Especializacion = unaEspecializacion;
-        }
+   	
+    	if (Especializaciones == null) {
+    		this.Especializaciones.add(unaEspecializacion);
+    	}
+    	else {
+    		this.finalizarEspecializacion(LocalDate.now());
+    		this.Especializaciones.add(unaEspecializacion);
+    	}
 
     }
 
     public void finalizarEspecializacion(LocalDate unDia) {
-        this.Especializacion.fechaFin = unDia;
-    }
- */
         
+    	this.buscarEspecializacionActual().setFechaFin(unDia);
+    }
+ 
+     
+    public Especializacion buscarEspecializacionActual() {
+    	
+    	Especializacion esp = new Especializacion();
+    	
+    	for(Especializacion espe : Especializaciones) {
+    		if (espe.getFechaFin() == null) {
+    			esp = espe;
+    		}
+    	}
+    	
+    	return esp;
+    }
+    
+    
+    
     
     public void addTrabajo(Trabajo comment) {
     	     Trabajos.add(comment);

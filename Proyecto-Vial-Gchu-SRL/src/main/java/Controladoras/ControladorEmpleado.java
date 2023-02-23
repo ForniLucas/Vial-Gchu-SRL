@@ -5,7 +5,9 @@ import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import org.hibernate.cfg.Configuration;
 
+import Domain.ElementoDeSeguridad;
 import Domain.Empleado;
+import Domain.RopaDeTrabajo;
 
 import java.time.LocalDate;
 import java.util.LinkedList;
@@ -61,6 +63,76 @@ public class ControladorEmpleado
 	    	  StandardServiceRegistryBuilder.destroy(registry);
 	    }
 	  }
+
+	public void asignarElementoDeSeguridad(Empleado unEmpleado, ElementoDeSeguridad unElemento) {
+		// Iniciar sesión de Hibernate
+	    StandardServiceRegistry registry = new StandardServiceRegistryBuilder().configure().build();
+	    SessionFactory factory = null;
+	    Session session = null;
+	    Transaction transaction = null;
+	    try {
+	      factory = new MetadataSources(registry).buildMetadata().buildSessionFactory();
+	      session = factory.openSession();
+	      transaction = session.beginTransaction();
+	      
+	      // Actualizar empleado en la base de datos
+	      unEmpleado.addElemento(unElemento);
+	      session.update(unEmpleado);
+	      transaction.commit();
+	      
+	    } catch (Exception ex) {
+	    	  // Realizar un rollback en caso de una excepción
+	    	  if (transaction != null) {
+	    	    transaction.rollback();
+	    	  }
+	    	  System.out.println(ex.getMessage());
+	    	  ex.printStackTrace();
+	    	} finally {
+	    	  // Cerrar la sesión y destruir el registro del servicio
+	    	  if (session != null) {
+	    	    session.close();
+	    	  }
+	    	  if (factory != null) {
+	    	    factory.close();
+	    	  }
+	    	  StandardServiceRegistryBuilder.destroy(registry);
+	    }
+	}
+	
+	public void asignarRopaDeTrabajo(Empleado unEmpleado,RopaDeTrabajo unaRopa) {
+		// Iniciar sesión de Hibernate
+	    StandardServiceRegistry registry = new StandardServiceRegistryBuilder().configure().build();
+	    SessionFactory factory = null;
+	    Session session = null;
+	    Transaction transaction = null;
+	    try {
+	      factory = new MetadataSources(registry).buildMetadata().buildSessionFactory();
+	      session = factory.openSession();
+	      transaction = session.beginTransaction();
+	      
+	      // Actualizar empleado en la base de datos
+	      unEmpleado.addRopa(unaRopa);
+	      session.update(unEmpleado);
+	      transaction.commit();
+	      
+	    } catch (Exception ex) {
+	    	  // Realizar un rollback en caso de una excepción
+	    	  if (transaction != null) {
+	    	    transaction.rollback();
+	    	  }
+	    	  System.out.println(ex.getMessage());
+	    	  ex.printStackTrace();
+	    	} finally {
+	    	  // Cerrar la sesión y destruir el registro del servicio
+	    	  if (session != null) {
+	    	    session.close();
+	    	  }
+	    	  if (factory != null) {
+	    	    factory.close();
+	    	  }
+	    	  StandardServiceRegistryBuilder.destroy(registry);
+	    }
+	}
 
 	public void modificar(Empleado unEmpleado) {
 	    // Iniciar sesión de Hibernate

@@ -10,6 +10,7 @@ import javax.swing.border.EmptyBorder;
 
 import Controladoras.ControladorEmpleado;
 import Domain.Empleado;
+import Domain.Especializacion;
 import Enumeraciones.Profesion;
 import Enumeraciones.RolEmpleado;
 import java.awt.event.ActionListener;
@@ -19,6 +20,7 @@ import java.awt.event.ActionEvent;
 import javax.swing.JTextField;
 import javax.swing.JLabel;
 import javax.swing.JComboBox;
+//import com.toedter.calendar.JDateChooser;
 
 public class AltaEmpleadoDialog extends JDialog {
 
@@ -29,7 +31,10 @@ public class AltaEmpleadoDialog extends JDialog {
 	private JTextField telefonoTxt;
 	private JTextField direccionTxt;
 	private JTextField fechaDeNacimientoTxt;
+	private JComboBox especializacionBox = new JComboBox(Profesion.values());
+	private JComboBox rolBox = new JComboBox(RolEmpleado.values());
 	ControladorEmpleado controlador = new ControladorEmpleado();
+	//Especializacion especializacion = new Especializacion();
 
 	/**
 	 * Launch the application.
@@ -120,7 +125,7 @@ public class AltaEmpleadoDialog extends JDialog {
 		lblNewLabel_7.setBounds(176, 545, 32, 13);
 		contentPanel.add(lblNewLabel_7);
 		
-		JComboBox especializacionBox = new JComboBox(Profesion.values());
+		//JComboBox especializacionBox = new JComboBox(Profesion.values());
 		especializacionBox.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 			}
@@ -128,7 +133,7 @@ public class AltaEmpleadoDialog extends JDialog {
 		especializacionBox.setBounds(248, 469, 96, 21);
 		contentPanel.add(especializacionBox);
 		
-		JComboBox rolBox = new JComboBox(RolEmpleado.values());
+		//JComboBox rolBox = new JComboBox(RolEmpleado.values());
 		rolBox.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 			}
@@ -179,7 +184,14 @@ public class AltaEmpleadoDialog extends JDialog {
 						LocalDate fechaDeNacimiento = LocalDate.parse(fechaDeNacimientoString, formatter); // Convert the String to a LocalDate object using the formatter
 
 						
+						
+						
 						controlador.alta(nombre, apellido, dni, telefono, direccion, fechaDeNacimiento);
+						
+						//controlador.asignarElementoDeSeguridad(controlador.buscarDNI(dni), especializacion);
+						
+						
+						
 					}
 				});
 				guardarBtn.setActionCommand("OK");

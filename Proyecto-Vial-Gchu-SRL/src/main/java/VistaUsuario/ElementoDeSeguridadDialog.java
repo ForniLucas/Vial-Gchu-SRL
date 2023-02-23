@@ -3,6 +3,8 @@ package VistaUsuario;
 import java.awt.BorderLayout;
 import Enumeraciones.Elemento;
 import java.awt.FlowLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
 import javax.swing.JDialog;
@@ -60,6 +62,11 @@ public class ElementoDeSeguridadDialog extends JDialog {
 			getContentPane().add(buttonPane, BorderLayout.SOUTH);
 			{
 				JButton guardarBtn = new JButton("Guardar");
+				guardarBtn.addActionListener(new ActionListener() {
+					public void actionPerformed(ActionEvent e) {
+						
+					}
+				});
 				guardarBtn.setActionCommand("OK");
 				buttonPane.add(guardarBtn);
 				getRootPane().setDefaultButton(guardarBtn);

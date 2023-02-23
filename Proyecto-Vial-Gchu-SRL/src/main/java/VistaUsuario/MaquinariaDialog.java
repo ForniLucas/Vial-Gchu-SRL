@@ -119,7 +119,7 @@ public class MaquinariaDialog extends JDialog {
 	}
 	public void cargarMaquinaria(){
 		DefaultTableModel modeloTablaMaquinaria = (DefaultTableModel) table.getModel();
-		List<Maquinaria> filasTablaEmpleado = controladorMaquinaria.listarMaquinaria(); //falta listar maquinaria
+		List<Maquinaria> filasTablaEmpleado = controladorMaquinaria.listarMaquinaria();
 		Iterator<Maquinaria> iterador = filasTablaEmpleado.iterator();
 		while (iterador.hasNext()) {
 			Maquinaria maquinaria = (Maquinaria) iterador.next();
