@@ -40,14 +40,14 @@ public class RopaDeTrabajo implements java.io.Serializable{
     private Ropa tipo;
     
     @Column(name = "talle",nullable=false)
-    private short talle;
+    private String talle;
     
     @Column(name = "entrega",nullable=false)
     @UpdateTimestamp
     private LocalDate fechaEntrega;
     
 
-    public RopaDeTrabajo( Ropa tipo, short talle, LocalDate fechaEntrega) {
+    public RopaDeTrabajo( Ropa tipo, String talle, LocalDate fechaEntrega) {
         this.id = null;
         this.tipo = tipo;
         this.talle = talle;
@@ -75,11 +75,11 @@ public class RopaDeTrabajo implements java.io.Serializable{
         this.tipo = tipo;
     }
 
-    public short getTalle() {
+    public String getTalle() {
         return talle;
     }
 
-    public void setTalle(short talle) {
+    public void setTalle(String talle) {
         this.talle = talle;
     }
 

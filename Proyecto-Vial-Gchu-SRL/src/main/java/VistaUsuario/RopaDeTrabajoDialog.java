@@ -8,9 +8,16 @@ import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
+import Controladoras.ControladorEmpleado;
+import Domain.Empleado;
+import Domain.RopaDeTrabajo;
+
 import javax.swing.JLabel;
 import javax.swing.JComboBox;
 import java.awt.event.ActionListener;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.awt.event.ActionEvent;
 import javax.swing.JTextField;
 
@@ -19,6 +26,13 @@ public class RopaDeTrabajoDialog extends JDialog {
 	private final JPanel contentPanel = new JPanel();
 	private JTextField fechaTxt;
 	private JTextField textField;
+	private ControladorEmpleado controlador = new ControladorEmpleado();
+	private Empleado empleado = new Empleado();
+	private JLabel apellidoLbl = new JLabel("");
+	private JLabel nombreLbl = new JLabel("");
+	private String[] talles = {"1","2","3","4","5"};
+	private JComboBox<String> comboBox = new JComboBox<String>(talles);
+	private JComboBox<Ropa> comboBoxRopa = new JComboBox<Ropa>(Ropa.values());
 
 	/**
 	 * Launch the application.
@@ -60,13 +74,12 @@ public class RopaDeTrabajoDialog extends JDialog {
 			contentPanel.add(lblNewLabel_2);
 		}
 		{
-			JComboBox comboBox = new JComboBox(Ropa.values());
-			comboBox.setBounds(228, 192, 100, 21);
-			contentPanel.add(comboBox);
+			
+			comboBoxRopa.setBounds(228, 192, 100, 21);
+			contentPanel.add(comboBoxRopa);
 		}
 		
-		String[] talles = {"1","2","3","4","5"};
-		JComboBox comboBox = new JComboBox(talles);
+		
 		comboBox.setBounds(228, 253, 48, 21);
 		contentPanel.add(comboBox);
 		{
@@ -91,6 +104,11 @@ public class RopaDeTrabajoDialog extends JDialog {
 			JButton buscarBtn = new JButton("Buscar");
 			buscarBtn.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
+					String dniString = textField.getText(); 
+					int dni = Integer.parseInt(dniString); 
+					empleado = controlador.buscarDNI(dni);
+					apellidoLbl.setText("Apellido: " + empleado.getApellido());
+					nombreLbl.setText("Nombre: " + empleado.getNombre());
 				}
 			});
 			buscarBtn.setBounds(311, 18, 85, 21);
@@ -98,13 +116,13 @@ public class RopaDeTrabajoDialog extends JDialog {
 		}
 		{
 			//LABEL PARA CARGAR APELLIDO RESULTADO DE LA BUSQUEDA
-			JLabel apellidoLbl = new JLabel("");
+			
 			apellidoLbl.setBounds(57, 102, 137, 13);
 			contentPanel.add(apellidoLbl);
 		}
 		{
 			//LABEL PARA CARGAR EL NOMBRE RESIULTADO DE LA BUSQUEDA
-			JLabel nombreLbl = new JLabel("");
+			
 			nombreLbl.setBounds(240, 102, 137, 13);
 			contentPanel.add(nombreLbl);
 		}
@@ -116,6 +134,21 @@ public class RopaDeTrabajoDialog extends JDialog {
 				JButton guardarBtn = new JButton("Guardar");
 				guardarBtn.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
+						String fechaEtnregaString = fechaTxt.getText(); 
+						DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy"); 
+						LocalDate fechaEtnrega = LocalDate.parse(fechaEtnregaString, formatter); 
+						
+						String talle = (String) comboBox.getSelectedItem();
+						
+						Ropa ropa = (Ropa) comboBoxRopa.getSelectedItem();
+						
+						RopaDeTrabajo ropaTrabajo = new RopaDeTrabajo(ropa, talle, fechaEtnrega);
+						//RESOLVER ERROR: 
+						//failed to lazily initialize a collection of role: Domain.Empleado.RopasDeTrabajo, 
+						//could not initialize proxy - no Session
+						
+						controlador.asignarRopaDeTrabajo(empleado, ropaTrabajo);
+						
 					}
 				});
 				guardarBtn.setActionCommand("OK");

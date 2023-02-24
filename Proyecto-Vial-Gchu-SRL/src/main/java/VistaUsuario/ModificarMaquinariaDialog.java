@@ -26,8 +26,8 @@ public class ModificarMaquinariaDialog extends JDialog {
 	private JTextField fabricanteTxt;
 	private JTextField ubicacionTxt;
 	private JComboBox<String> estadoBox = new JComboBox<String>();
-	ControladorMaquinaria controlador = new ControladorMaquinaria();
-	Maquinaria maquina = new Maquinaria();
+	private ControladorMaquinaria controlador = new ControladorMaquinaria();
+	private Maquinaria maquina = new Maquinaria();
 
 	/**
 	 * Launch the application.
