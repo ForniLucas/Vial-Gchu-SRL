@@ -8,10 +8,15 @@ import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
+import Controladoras.ControladorProyecto;
+
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 import javax.swing.JComboBox;
 import java.awt.event.ActionListener;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.awt.event.ActionEvent;
 
 public class AltaProyectoDialog extends JDialog {
@@ -19,11 +24,13 @@ public class AltaProyectoDialog extends JDialog {
 	private final JPanel contentPanel = new JPanel();
 	private JTextField fechaInicioTxt;
 	private JTextField fechaFinTxt;
-	private JTextField estadoTxt;
+	private JComboBox<String> estadoBox= new JComboBox<String>();
 	private JTextField nombreTxt;
 	private JTextField descripcionTxt;
 	private JTextField actividadesTxt;
 	private JTextField insumosTxt;
+	private ControladorProyecto controlador = new ControladorProyecto();
+	private JComboBox comboBox = new JComboBox(TipoDeProyecto.values());
 
 	/**
 	 * Launch the application.
@@ -42,6 +49,14 @@ public class AltaProyectoDialog extends JDialog {
 	 * Create the dialog.
 	 */
 	public AltaProyectoDialog() {
+		
+		fechaInicioTxt = new JTextField();
+		fechaFinTxt = new JTextField();
+		nombreTxt = new JTextField();
+		descripcionTxt = new JTextField();
+		actividadesTxt = new JTextField();
+		insumosTxt = new JTextField();
+		
 		setBounds(50, 50, 450, 550);
 		this.setResizable(false);
 		this.setTitle("ALTA DE PROYECTOS");
@@ -90,51 +105,55 @@ public class AltaProyectoDialog extends JDialog {
 			contentPanel.add(lblNewLabel_7);
 		}
 		{
-			fechaInicioTxt = new JTextField();
-			fechaInicioTxt.setText("dd-mm-aaaa");
+			
+			
 			fechaInicioTxt.setBounds(190, 30, 96, 19);
 			contentPanel.add(fechaInicioTxt);
 			fechaInicioTxt.setColumns(10);
 		}
 		{
-			fechaFinTxt = new JTextField();
+			
 			fechaFinTxt.setText("dd-mm-aaaa");
 			fechaFinTxt.setBounds(190, 85, 96, 19);
 			contentPanel.add(fechaFinTxt);
 			fechaFinTxt.setColumns(10);
 		}
 		{
-			estadoTxt = new JTextField();
-			estadoTxt.setBounds(190, 140, 96, 19);
-			contentPanel.add(estadoTxt);
-			estadoTxt.setColumns(255);
+			
+			estadoBox.setBounds(190, 140, 96, 19);
+			estadoBox.addItem("Iniciado");
+		    estadoBox.addItem("En curso");
+		    estadoBox.addItem("Suspendido");
+		    estadoBox.addItem("Finalizado");
+		    estadoBox.addItem("Cancelado");
+			contentPanel.add(estadoBox);
 		}
 		{
-			nombreTxt = new JTextField();
+			
 			nombreTxt.setBounds(190, 195, 196, 19);
 			contentPanel.add(nombreTxt);
 			nombreTxt.setColumns(255);
 		}
 		{
-			descripcionTxt = new JTextField();
+			
 			descripcionTxt.setBounds(190, 307, 196, 19);
 			contentPanel.add(descripcionTxt);
 			descripcionTxt.setColumns(255);
 		}
 		{
-			actividadesTxt = new JTextField();
+			
 			actividadesTxt.setBounds(190, 360, 196, 19);
 			contentPanel.add(actividadesTxt);
 			actividadesTxt.setColumns(255);
 		}
 		{
-			insumosTxt = new JTextField();
+			
 			insumosTxt.setBounds(190, 415, 196, 19);
 			contentPanel.add(insumosTxt);
 			insumosTxt.setColumns(255);
 		}
 		{
-			JComboBox comboBox = new JComboBox(TipoDeProyecto.values());
+			
 			comboBox.setBounds(190, 249, 123, 21);
 			contentPanel.add(comboBox);
 		}
@@ -146,6 +165,25 @@ public class AltaProyectoDialog extends JDialog {
 				JButton guardarBtn = new JButton("Guardar");
 				guardarBtn.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
+						
+						String fechaInicioString = fechaInicioTxt.getText(); 
+						DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+						LocalDate fechaInicio = LocalDate.parse(fechaInicioString, formatter);
+						
+						String fechaFinString = fechaFinTxt.getText(); 
+						DateTimeFormatter formatter2 = DateTimeFormatter.ofPattern("dd/MM/yyyy"); 
+						LocalDate fechaFin = LocalDate.parse(fechaFinString, formatter2);
+						
+						String nombre = nombreTxt.getText();
+						//String desc = descripcionTxt.getText();
+						//String actividades = actividadesTxt.getText(); No los usamos VER!
+						//String insumos = insumosTxt.getText();
+						String estado = (String) estadoBox.getSelectedItem();
+						
+						TipoDeProyecto tipo = (TipoDeProyecto) comboBox.getSelectedItem(); //No lo agregamos
+						
+						controlador.alta(fechaInicio, fechaFin, estado, nombre, null);
+						
 					}
 				});
 				guardarBtn.setActionCommand("Guardar");

@@ -53,7 +53,7 @@ public class RopaDeTrabajo implements java.io.Serializable{
         this.talle = talle;
         this.fechaEntrega = fechaEntrega;
     }
-
+    
     
     public Empleado getEmpleado() {
         return Empleado;

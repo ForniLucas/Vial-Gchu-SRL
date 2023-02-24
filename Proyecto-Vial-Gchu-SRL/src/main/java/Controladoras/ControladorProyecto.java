@@ -27,7 +27,7 @@ public class ControladorProyecto {
 
 	private LinkedList<Proyecto> proyectos = new LinkedList<Proyecto>(); 
 	
-	public void alta(long id, LocalDate fechaInicio, LocalDate fechaEstimadaFin, String estado, String nombre, LocalDate fechaFin) {
+	public void alta(LocalDate fechaInicio, LocalDate fechaEstimadaFin, String estado, String nombre, LocalDate fechaFin) {
 		
 		// Iniciar la sesión de Hibernate
 	    StandardServiceRegistry registry = new StandardServiceRegistryBuilder().configure().build();
