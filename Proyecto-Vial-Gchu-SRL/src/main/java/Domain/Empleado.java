@@ -156,7 +156,7 @@ public class Empleado implements java.io.Serializable {
         this.estado = false;
     }
 
-    public boolean getDadoDeBaja() {
+    public boolean getEstado() {
         return this.estado;
     }
 
