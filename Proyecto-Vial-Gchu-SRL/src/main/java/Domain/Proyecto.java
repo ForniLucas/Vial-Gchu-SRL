@@ -170,6 +170,7 @@ public class Proyecto implements java.io.Serializable{
     	
     	return maquinas;
     }
+    
 
     public void addTrabajo(Trabajo comment) {
         Trabajadores.add(comment);

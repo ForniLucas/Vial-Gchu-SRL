@@ -1,8 +1,10 @@
 package Controladoras;
 
 import java.time.LocalDate;
+import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Set;
 
 import javax.persistence.TypedQuery;
 import javax.persistence.criteria.CriteriaBuilder;
@@ -17,6 +19,7 @@ import org.hibernate.boot.registry.StandardServiceRegistry;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 
 import Domain.Empleado;
+import Domain.Especializacion;
 import Domain.Maquinaria;
 import Domain.Proyecto;
 import Domain.TipoProyecto;
@@ -404,5 +407,44 @@ public class ControladorProyecto {
 	    }
 	}
 	
+	public Set<Utiliza> listarUtiliza(Long unId) {
+	    // Iniciar la sesión de Hibernate
+		Set<Utiliza> resultados = new HashSet<Utiliza>(0);
+	    StandardServiceRegistry registry = new StandardServiceRegistryBuilder().configure().build();
+	    SessionFactory factory = null;
+	    Session session = null;
+	    try {
+	      factory = new MetadataSources(registry).buildMetadata().buildSessionFactory();
+	      session = factory.openSession();
+	      
+	      // Crear un objeto CriteriaBuilder para construir la consulta
+	      CriteriaBuilder builder = session.getCriteriaBuilder();
+
+	      CriteriaQuery<Proyecto> criteria = builder.createQuery(Proyecto.class);
+	      // Definir la tabla (clase) a partir de la cual se hará la consulta
+	      Root<Proyecto> root = criteria.from(Proyecto.class);
+	      criteria.select(root).where(builder.equal(root.get("proyectoid"), unId));
+	      // Crear un objeto TypedQuery a partir de la consulta construida
+	      TypedQuery<Proyecto> query = session.createQuery(criteria);
+	      
+	      // Obtener el resultado de la consulta
+	      List<Proyecto> resultado = query.getResultList();
+	      if (!resultado.isEmpty()) {
+	      resultados = resultado.get(0).getMaquinasUtilizas();
+	      }
+	    } catch (Exception ex) {
+	      System.out.println(ex.getMessage());
+	      ex.printStackTrace();
+	    } finally {
+	      if (session != null) {
+	        session.close();
+	      }
+	      if (factory != null) {
+	        factory.close();
+	      }
+	      StandardServiceRegistryBuilder.destroy(registry);
+	    }
+	    return resultados;
+	  }
 	
 }
