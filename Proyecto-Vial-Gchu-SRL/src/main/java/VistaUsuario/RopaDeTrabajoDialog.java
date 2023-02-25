@@ -32,7 +32,13 @@ public class RopaDeTrabajoDialog extends JDialog {
 	private JLabel nombreLbl = new JLabel("");
 	String[] talles = {"1","2","3","4","5"};
 	private JComboBox comboBox = new JComboBox(talles);
-	private JComboBox comboBoxRopa = new JComboBox(Ropa.values());
+	private JComboBox<Ropa> comboBoxRopa = new JComboBox<Ropa>(Ropa.values()){
+		@Override
+	    public String toString() {
+	        String selectedItem = (String) getSelectedItem().toString();
+	        return selectedItem.replace('_', ' ');
+	    }
+	};
 
 	/**
 	 * Launch the application.
