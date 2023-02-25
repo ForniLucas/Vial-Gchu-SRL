@@ -218,6 +218,10 @@ public class Empleado implements java.io.Serializable {
 	     return this.RopasDeTrabajo;
   }
     
+    public Set<ElementoDeSeguridad> getElementos() {
+	     return this.ElementosDeSeguridad;
+ }
+    
     public void addElemento(ElementoDeSeguridad unElemento) {
 	     ElementosDeSeguridad.add(unElemento);
   }
