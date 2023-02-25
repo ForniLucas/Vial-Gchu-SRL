@@ -111,6 +111,7 @@ public class ProyectoDialog extends JDialog {
 					JButton eliminarBtn = new JButton("Eliminar");
 					eliminarBtn.addActionListener(new ActionListener() {
 						public void actionPerformed(ActionEvent e) {
+							setVisible(false);
 							EliminarProyectoDialog eliminarProyectoDialog = new EliminarProyectoDialog();
 							eliminarProyectoDialog.setVisible(true);
 						}

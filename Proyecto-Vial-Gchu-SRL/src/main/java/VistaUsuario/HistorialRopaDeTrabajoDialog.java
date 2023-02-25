@@ -13,6 +13,9 @@ import javax.swing.table.DefaultTableModel;
 
 import Controladoras.ControladorEmpleado;
 import Domain.Empleado;
+import javax.swing.SwingConstants;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class HistorialRopaDeTrabajoDialog extends JDialog {
 
@@ -52,23 +55,33 @@ public class HistorialRopaDeTrabajoDialog extends JDialog {
 	public HistorialRopaDeTrabajoDialog() {
 		setBounds(100, 100, 450, 300);
 		getContentPane().setLayout(new BorderLayout());
-		contentPanel.setLayout(new FlowLayout());
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
 		getContentPane().add(contentPanel, BorderLayout.CENTER);
+		contentPanel.setLayout(null);
 		{
 			JPanel buttonPane = new JPanel();
 			buttonPane.setLayout(new FlowLayout(FlowLayout.RIGHT));
 			getContentPane().add(buttonPane, BorderLayout.SOUTH);
 			{
-				JButton okButton = new JButton("OK");
-				okButton.setActionCommand("OK");
-				buttonPane.add(okButton);
-				getRootPane().setDefaultButton(okButton);
+				JButton asginarBtn = new JButton("Asignar");
+				asginarBtn.addActionListener(new ActionListener() {
+					public void actionPerformed(ActionEvent e) {
+					}
+				});
+				asginarBtn.setActionCommand("OK");
+				buttonPane.add(asginarBtn);
+				getRootPane().setDefaultButton(asginarBtn);
 			}
 			{
-				JButton cancelButton = new JButton("Cancel");
-				cancelButton.setActionCommand("Cancel");
-				buttonPane.add(cancelButton);
+				JButton cancelarBtn = new JButton("Cancelar");
+				cancelarBtn.addActionListener(new ActionListener() {
+					public void actionPerformed(ActionEvent e) {
+						setVisible(false);
+					}
+				});
+				cancelarBtn.setHorizontalAlignment(SwingConstants.RIGHT);
+				cancelarBtn.setActionCommand("Cancel");
+				buttonPane.add(cancelarBtn);
 			}
 		}
 	}
