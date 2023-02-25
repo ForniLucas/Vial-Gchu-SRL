@@ -52,6 +52,11 @@ public class HistorialEspecializacionDialog extends JDialog {
 	 * Create the dialog.
 	 */
 	public HistorialEspecializacionDialog(EmpleadoDialog dialog, String dni, String apellido, String nombre) {
+		super(dialog, "HistorialEspecializacionDialog",true);
+		this.dni = dni;
+		this.apellido = apellido;
+		this.nombre = nombre;
+		
 		setBounds(50, 50, 600, 600);
 		setTitle("HISTORIAL DE ESPECIALIZACIONES");
 		getContentPane().setLayout(new BorderLayout());
