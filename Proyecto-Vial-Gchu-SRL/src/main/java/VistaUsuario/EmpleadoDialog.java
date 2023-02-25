@@ -125,7 +125,7 @@ public class EmpleadoDialog extends JDialog {
 						hRTBtn.addActionListener(new ActionListener() {
 							public void actionPerformed(ActionEvent e) {
 								setVisible(false);
-								HistorialRopaDeTrabajoDialog historialRopa = new HistorialRopaDeTrabajoDialog();
+								HistorialRopaDeTrabajoDialog historialRopa = new HistorialRopaDeTrabajoDialog(EmpleadoDialog.this, dni, apellido, nombre);
 								historialRopa.setVisible(true);
 							}
 						});
