@@ -427,5 +427,45 @@ public class ControladorEmpleado
 	    }
 	    return resultados;
 	  }
+	
+	public Set<RopaDeTrabajo> listarRopaDeTrabajo(int unDni) {
+	    // Iniciar la sesión de Hibernate
+		Set<RopaDeTrabajo> resultados = new HashSet<RopaDeTrabajo>(0);
+	    StandardServiceRegistry registry = new StandardServiceRegistryBuilder().configure().build();
+	    SessionFactory factory = null;
+	    Session session = null;
+	    try {
+	      factory = new MetadataSources(registry).buildMetadata().buildSessionFactory();
+	      session = factory.openSession();
+	      
+	      // Crear un objeto CriteriaBuilder para construir la consulta
+	      CriteriaBuilder builder = session.getCriteriaBuilder();
+
+	      CriteriaQuery<Empleado> criteria = builder.createQuery(Empleado.class);
+	      // Definir la tabla (clase) a partir de la cual se hará la consulta
+	      Root<Empleado> root = criteria.from(Empleado.class);
+	      criteria.select(root).where(builder.equal(root.get("dni"), unDni));
+	      // Crear un objeto TypedQuery a partir de la consulta construida
+	      TypedQuery<Empleado> query = session.createQuery(criteria);
+	      
+	      // Obtener el resultado de la consulta
+	      List<Empleado> resultado = query.getResultList();
+	      if (!resultado.isEmpty()) {
+	      resultados = resultado.get(0).getRopas();
+	      }
+	    } catch (Exception ex) {
+	      System.out.println(ex.getMessage());
+	      ex.printStackTrace();
+	    } finally {
+	      if (session != null) {
+	        session.close();
+	      }
+	      if (factory != null) {
+	        factory.close();
+	      }
+	      StandardServiceRegistryBuilder.destroy(registry);
+	    }
+	    return resultados;
+	  }
 
 }

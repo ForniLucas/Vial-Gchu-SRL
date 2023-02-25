@@ -214,6 +214,9 @@ public class Empleado implements java.io.Serializable {
     public void addRopa(RopaDeTrabajo unaRopa) {
 	     RopasDeTrabajo.add(unaRopa);
    }
+    public Set<RopaDeTrabajo> getRopas() {
+	     return this.RopasDeTrabajo;
+  }
     
     public void addElemento(ElementoDeSeguridad unElemento) {
 	     ElementosDeSeguridad.add(unElemento);
