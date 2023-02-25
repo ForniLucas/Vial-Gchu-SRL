@@ -32,25 +32,32 @@ public class BajaEmpleadoDialog extends JDialog {
 	/**
 	 * Launch the application.
 	 */
-	public static void main(String[] args) {
+	/*public static void main(String[] args) {
 		try {
-			BajaEmpleadoDialog dialog = new BajaEmpleadoDialog();
+			BajaEmpleadoDialog dialog = new BajaEmpleadoDialog(dialog, dni);
 			dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
 			dialog.setVisible(true);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-	}
+	} */
 
 	/**
 	 * Create the dialog.
 	 */
-	public BajaEmpleadoDialog() {
-		
+	public BajaEmpleadoDialog(EmpleadoDialog dialog, String dni) {
+		super(dialog, "BajaEmpleadoDialog",true);
+		this.dni = dni;
+
 		lblNewLabel_1.setVisible(false);
 		lblNewLabel_2.setVisible(false);
 		lblNewLabel_3.setVisible(false);
 		lblNewLabel_4.setVisible(false);
+<<<<<<< HEAD
+=======
+		
+		
+>>>>>>> d1fe8d904f447a5367ad7251669d32bcdeac445f
 		dniTxt.setText(dni);
 		
 		setBounds(50, 50, 450, 300);
