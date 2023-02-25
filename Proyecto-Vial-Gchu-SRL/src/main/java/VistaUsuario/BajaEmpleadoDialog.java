@@ -20,6 +20,7 @@ import javax.swing.JTextField;
 public class BajaEmpleadoDialog extends JDialog {
 
 	private final JPanel contentPanel = new JPanel();
+	String dni = new String();
 	JTextField dniTxt = new JTextField();
 	ControladorEmpleado controlador = new ControladorEmpleado();
 	Empleado empleado = new Empleado();
@@ -51,7 +52,7 @@ public class BajaEmpleadoDialog extends JDialog {
 		lblNewLabel_3.setVisible(false);
 		lblNewLabel_4.setVisible(false);
 		
-		
+		dniTxt.setText(dni);
 		
 		setBounds(50, 50, 450, 300);
 		this.setTitle("BAJA DE EMPLEADOS");
@@ -71,7 +72,7 @@ public class BajaEmpleadoDialog extends JDialog {
 			//dniTxt = new JTextField();
 			dniTxt.setBounds(164, 23, 124, 19);
 			contentPanel.add(dniTxt);
-			dniTxt.setColumns(10);
+			dniTxt.setColumns(255);
 		}
 		{
 			
