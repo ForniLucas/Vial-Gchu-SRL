@@ -220,13 +220,15 @@ public class Empleado implements java.io.Serializable {
     
     public Set<ElementoDeSeguridad> getElementos() {
 	     return this.ElementosDeSeguridad;
- }
+    }
     
     public void addElemento(ElementoDeSeguridad unElemento) {
 	     ElementosDeSeguridad.add(unElemento);
-  }
+    }
     
-    
+    public Set<Trabajo> getTrabajos() {
+	     return this.Trabajos;
+    }
     public void modificarEmpleado(Empleado unEmpleado) {
         this.apellido = unEmpleado.apellido;
         this.nombre = unEmpleado.nombre;
