@@ -14,6 +14,7 @@ import Domain.Proyecto;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 
 public class BajaProyectoDialog extends JDialog {
@@ -27,6 +28,7 @@ public class BajaProyectoDialog extends JDialog {
 	JLabel lblNewLabel_4 = new JLabel("");
 	JLabel lblNewLabel_5 = new JLabel("");
 	Proyecto proyecto = new Proyecto();
+	JOptionPane optionPane = new JOptionPane();
 	/**
 	 * Launch the application.
 	 */
@@ -111,6 +113,8 @@ public class BajaProyectoDialog extends JDialog {
 				JButton bajaBtn = new JButton("Dar de Baja");
 				bajaBtn.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
+						//controladorProyecto.baja(proyecto); Se ELIMINA DE LA BASE DE DATOS
+						//optionPane.showMessageDialog(null, "Proyecto dado de Baja Exitosamente");
 					}
 				});
 				bajaBtn.setActionCommand("OK");

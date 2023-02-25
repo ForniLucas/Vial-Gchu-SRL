@@ -79,7 +79,8 @@ public class ControladorProyecto {
 	      transaction = session.beginTransaction();
 	      
 	      //Actualiza el proyecto
-	      unProyecto.setEstado("Cancelado"); //Consultar
+	      unProyecto.setEstado("Cancelado");
+	      unProyecto.setFechaFin(LocalDate.now());
 	      session.update(unProyecto);
 	      transaction.commit();
 
