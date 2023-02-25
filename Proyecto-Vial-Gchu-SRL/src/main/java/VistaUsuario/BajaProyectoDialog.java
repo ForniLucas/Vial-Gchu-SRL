@@ -113,8 +113,8 @@ public class BajaProyectoDialog extends JDialog {
 				JButton bajaBtn = new JButton("Dar de Baja");
 				bajaBtn.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
-						//controladorProyecto.baja(proyecto); Se ELIMINA DE LA BASE DE DATOS
-						//optionPane.showMessageDialog(null, "Proyecto dado de Baja Exitosamente");
+						controladorProyecto.bajaLogica(proyecto);
+						optionPane.showMessageDialog(null, "Proyecto dado de Baja Exitosamente");
 					}
 				});
 				bajaBtn.setActionCommand("OK");
