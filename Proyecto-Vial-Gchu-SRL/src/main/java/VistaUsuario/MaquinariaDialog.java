@@ -63,7 +63,7 @@ public class MaquinariaDialog extends JDialog {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				int filaSeleccionada = table.getSelectedRow();
-		        //DefaultTableModel mt = (DefaultTableModel)table.getModel();
+		        DefaultTableModel mt = (DefaultTableModel)table.getModel();
 		        codigo = mt.getValueAt(filaSeleccionada, 1).toString(); 
 			}
 		});
