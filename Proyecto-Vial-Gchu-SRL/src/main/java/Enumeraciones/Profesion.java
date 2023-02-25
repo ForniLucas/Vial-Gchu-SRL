@@ -8,8 +8,8 @@ package Enumeraciones;
  *
  */
 public enum Profesion {
-    tecnico,
-    ingeniero,
-    obrero,
-    capataz
+    Tecnico,
+    Ingeniero,
+    Obrero,
+    Capataz
 }

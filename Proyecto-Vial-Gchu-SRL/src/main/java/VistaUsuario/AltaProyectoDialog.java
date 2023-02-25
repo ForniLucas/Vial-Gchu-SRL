@@ -30,7 +30,13 @@ public class AltaProyectoDialog extends JDialog {
 	private JTextField actividadesTxt;
 	private JTextField insumosTxt;
 	private ControladorProyecto controlador = new ControladorProyecto();
-	private JComboBox comboBox = new JComboBox(TipoDeProyecto.values());
+	private JComboBox<TipoDeProyecto> comboBox = new JComboBox<TipoDeProyecto>(TipoDeProyecto.values()){
+	    @Override
+	    public String toString() {
+	        String selectedItem = (String) getSelectedItem().toString();
+	        return selectedItem.replace('_', ' ');
+	    }
+	};
 
 	/**
 	 * Launch the application.

@@ -53,11 +53,6 @@ public class BajaEmpleadoDialog extends JDialog {
 		lblNewLabel_2.setVisible(false);
 		lblNewLabel_3.setVisible(false);
 		lblNewLabel_4.setVisible(false);
-<<<<<<< HEAD
-=======
-		
-		
->>>>>>> d1fe8d904f447a5367ad7251669d32bcdeac445f
 		dniTxt.setText(dni);
 		
 		setBounds(50, 50, 450, 300);

@@ -31,7 +31,13 @@ public class ElementoDeSeguridadDialog extends JDialog {
 	private Empleado empleado = new Empleado();
 	private JLabel nombreLabel = new JLabel("");
 	private JLabel apellidoLabel = new JLabel("");
-	private JComboBox tipoBox = new JComboBox(Elemento.values());
+	private JComboBox<Elemento> tipoBox = new JComboBox<Elemento>(Elemento.values()){
+		@Override
+	    public String toString() {
+	        String selectedItem = (String) getSelectedItem().toString();
+	        return selectedItem.replace('_', ' ');
+	    }
+	};
 	
 	/**
 	 * Launch the application.

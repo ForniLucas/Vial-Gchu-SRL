@@ -30,7 +30,13 @@ public class ModificarProyectoDialog extends JDialog {
 	private JTextField descripcionTxt;
 	private JTextField actividadesTxt;
 	private JTextField insumosTxt;
-	JComboBox tipoBox = new JComboBox(TipoDeProyecto.values());
+	JComboBox<TipoDeProyecto> tipoBox = new JComboBox<TipoDeProyecto>(TipoDeProyecto.values()){
+	    @Override
+	    public String toString() {
+	        String selectedItem = (String) getSelectedItem().toString();
+	        return selectedItem.replace('_', ' ');
+	    }
+	};
 	Proyecto proyecto = new Proyecto();
 	ControladorProyecto controladorProyecto = new ControladorProyecto();
 
