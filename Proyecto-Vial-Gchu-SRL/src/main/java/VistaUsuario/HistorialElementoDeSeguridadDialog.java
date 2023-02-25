@@ -92,12 +92,12 @@ public class HistorialElementoDeSeguridadDialog extends JDialog {
 			buttonPane.setLayout(new FlowLayout(FlowLayout.RIGHT));
 			getContentPane().add(buttonPane, BorderLayout.SOUTH);
 			{
-				JButton modificarBtn = new JButton("Modificar Empleado");
+				JButton modificarBtn = new JButton("Asignar");
 				modificarBtn.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
 						setVisible(false);
-						ModificarEmpleadoDialog modificar = new ModificarEmpleadoDialog();
-						modificar.setVisible(true);
+						ElementoDeSeguridadDialog elementoDialog = new ElementoDeSeguridadDialog();
+						elementoDialog.setVisible(true);
 						}
 				});
 				modificarBtn.setActionCommand("OK");
