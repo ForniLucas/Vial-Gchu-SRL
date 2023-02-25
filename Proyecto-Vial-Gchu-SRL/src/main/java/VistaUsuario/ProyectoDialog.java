@@ -107,6 +107,14 @@ public class ProyectoDialog extends JDialog {
 						setVisible(false);
 					}
 				});
+				{
+					JButton eliminarBtn = new JButton("Eliminar");
+					eliminarBtn.addActionListener(new ActionListener() {
+						public void actionPerformed(ActionEvent e) {
+						}
+					});
+					buttonPane.add(eliminarBtn);
+				}
 				cancelarBtn.setActionCommand("Cancel");
 				buttonPane.add(cancelarBtn);
 			}
