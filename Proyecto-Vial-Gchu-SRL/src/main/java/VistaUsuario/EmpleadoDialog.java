@@ -196,7 +196,7 @@ public class EmpleadoDialog extends JDialog {
 		Iterator<Empleado> iterador = filasTablaEmpleado.iterator();
 		while (iterador.hasNext()) {
 			Empleado empleado = (Empleado) iterador.next();
-			String estado = empleado.getDadoDeBaja()? "Inactivo" : "Activo";
+			String estado = empleado.getEstado()? "Activo" : "Inactivo";
 			String fila[] = {String.valueOf(empleado.getId()),String.valueOf(empleado.getApellido()),String.valueOf(empleado.getNombre()),
 					String.valueOf(empleado.getDni()),String.valueOf(empleado.getTelefono()),String.valueOf(empleado.getDireccion()),
 					String.valueOf(empleado.getFechaNac()),String.valueOf(estado)};

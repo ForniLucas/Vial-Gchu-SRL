@@ -110,7 +110,7 @@ public class BajaEmpleadoDialog extends JDialog {
 					lblNewLabel_1.setText("Nombre: " + empleado.getNombre());
 					lblNewLabel_2.setText("Apellido: " + empleado.getApellido());
 					lblNewLabel_3.setText("Dni: " + empleado.getDni());
-					lblNewLabel_4.setText("Estado: " + Boolean.toString(empleado.getDadoDeBaja()));
+					lblNewLabel_4.setText("Estado: " + Boolean.toString(empleado.getEstado()));
 					
 					
 				}
