@@ -169,7 +169,9 @@ public class Empleado implements java.io.Serializable {
 
     }
 
-
+    public Set<Especializacion> getEspecializaciones() {
+        return this.Especializaciones;
+    }
     
     public void addEspecializacion(Especializacion unaEspecializacion) {
    	
