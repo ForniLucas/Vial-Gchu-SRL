@@ -70,7 +70,7 @@ public class EmpleadoDialog extends JDialog {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				int filaSeleccionada = table.getSelectedRow();
-		        //DefaultTableModel mt = (DefaultTableModel)table.getModel();
+		        DefaultTableModel mt = (DefaultTableModel)table.getModel();
 		        id = mt.getValueAt(filaSeleccionada, 0).toString();
 		        apellido = mt.getValueAt(filaSeleccionada, 1).toString();
 		        nombre = mt.getValueAt(filaSeleccionada, 2).toString();
