@@ -144,7 +144,7 @@ public class Proyecto implements java.io.Serializable{
     	return Trabajadores;
     }
     
-    public Set<Utiliza> getMaquinasUtiliza(){
+    public Set<Utiliza> getMaquinasUtilizas(){
     	return Maquinas;
     }
 
@@ -162,7 +162,7 @@ public class Proyecto implements java.io.Serializable{
 
     public LinkedList<Maquinaria> getMaquinas() {
     	LinkedList<Maquinaria> maquinas = new LinkedList<Maquinaria>();
-    	Set<Utiliza> Maquinas = getMaquinasUtiliza();
+    	Set<Utiliza> Maquinas = getMaquinasUtilizas();
     	
     	for (Utiliza maquina : Maquinas) {
     		maquinas.add(maquina.getMaquinaria());

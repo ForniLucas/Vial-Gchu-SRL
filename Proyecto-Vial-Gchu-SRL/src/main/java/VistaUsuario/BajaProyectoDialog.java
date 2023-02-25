@@ -7,6 +7,10 @@ import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
+import Controladoras.ControladorProyecto;
+import Domain.Proyecto;
+
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.JLabel;
@@ -15,8 +19,14 @@ import javax.swing.JTextField;
 public class BajaProyectoDialog extends JDialog {
 
 	private final JPanel contentPanel = new JPanel();
-	private JTextField textField;
-
+	private JTextField legajoTxt;
+	ControladorProyecto controladorProyecto = new ControladorProyecto();
+	JLabel lblNewLabel_1 = new JLabel("");
+	JLabel lblNewLabel_2 = new JLabel("");
+	JLabel lblNewLabel_3 = new JLabel("");
+	JLabel lblNewLabel_4 = new JLabel("");
+	JLabel lblNewLabel_5 = new JLabel("");
+	Proyecto proyecto = new Proyecto();
 	/**
 	 * Launch the application.
 	 */
@@ -34,7 +44,7 @@ public class BajaProyectoDialog extends JDialog {
 	 * Create the dialog.
 	 */
 	public BajaProyectoDialog() {
-		setBounds(50, 50, 450, 300);
+		setBounds(50, 50, 500, 300);
 		this.setResizable(false);
 		this.setTitle("BAJA DE PROYECTOS");
 		getContentPane().setLayout(new BorderLayout());
@@ -47,15 +57,47 @@ public class BajaProyectoDialog extends JDialog {
 			contentPanel.add(lblNewLabel);
 		}
 		{
-			textField = new JTextField();
-			textField.setBounds(167, 26, 132, 19);
-			contentPanel.add(textField);
-			textField.setColumns(255);
+			legajoTxt = new JTextField();
+			legajoTxt.setBounds(167, 26, 132, 19);
+			contentPanel.add(legajoTxt);
+			legajoTxt.setColumns(255);
+		}
+		{
+			
+			lblNewLabel_1.setBounds(263, 92, 174, 13);
+			contentPanel.add(lblNewLabel_1);
+		}
+		{
+			
+			lblNewLabel_2.setBounds(49, 161, 163, 13);
+			contentPanel.add(lblNewLabel_2);
+		}
+		{
+			
+			lblNewLabel_3.setBounds(263, 161, 174, 13);
+			contentPanel.add(lblNewLabel_3);
+		}
+		{
+			
+			lblNewLabel_4.setBounds(49, 92, 163, 13); //VER
+			contentPanel.add(lblNewLabel_4);
+		}
+		{
+			//AGREGAR UNO MAS PARA MOSTRAR LA UBICACIÓN
+			//lblNewLabel_5.setBounds(); //VER
+			//contentPanel.add(lblNewLabel_5);
 		}
 		{
 			JButton buscarBtn = new JButton("Buscar");
 			buscarBtn.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
+					String codigo = legajoTxt.getText();
+					int id = Integer.parseInt(codigo);
+					proyecto = controladorProyecto.buscarID(id);
+					lblNewLabel_1.setText("Legajo: " + proyecto.getId());
+					lblNewLabel_2.setText("Nombre: " + proyecto.getNombre());
+					lblNewLabel_3.setText("Tipo: " + proyecto.getTipoProyecto());
+					lblNewLabel_4.setText("Estado: " + (proyecto.getEstado()));
 				}
 			});
 			buscarBtn.setBounds(324, 25, 85, 21);
