@@ -128,7 +128,7 @@ public class ElementoDeSeguridadDialog extends JDialog {
 						elementoSeguridad.setTipo(elemento);
 						elementoSeguridad.setFechaEntrega(fechaEtnrega);
 						//RESOLVER ERROR: 
-						//failed to lazily initialize a collection of role: Domain.Empleado.RopasDeTrabajo, 
+						//failed to lazily initialize a collection of role: Domain.Empleado.ElementosDeSeguridad, 
 						//could not initialize proxy - no Session
 						controlador.asignarElementoDeSeguridad(empleado, elementoSeguridad);
 					}

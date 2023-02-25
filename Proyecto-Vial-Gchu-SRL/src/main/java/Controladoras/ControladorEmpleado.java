@@ -77,6 +77,7 @@ public class ControladorEmpleado
 	      
 	      // Actualizar empleado en la base de datos
 	      unEmpleado.addElemento(unElemento);
+	      session.save(unElemento);
 	      session.update(unEmpleado);
 	      transaction.commit();
 	      
