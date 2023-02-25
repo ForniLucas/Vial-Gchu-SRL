@@ -57,6 +57,7 @@ public class ServiceDialog extends JDialog {
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
 		getContentPane().add(contentPanel, BorderLayout.CENTER);
 		contentPanel.setLayout(null);
+		legajoTxt.setText(legajo);
 		//Formato de tabla
 		mt.setColumnIdentifiers(ids);
 		table.setBounds(26, 71, 532, 112);

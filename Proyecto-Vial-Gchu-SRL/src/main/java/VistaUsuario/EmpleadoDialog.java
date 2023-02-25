@@ -55,7 +55,7 @@ public class EmpleadoDialog extends JDialog {
 	 * Create the dialog.
 	 */
 	public EmpleadoDialog() {
-		setBounds(50, 50, 1200, 750);
+		setBounds(50, 50, 1390, 750);
 		setResizable(false);
 		this.setTitle("GESTIÓN DE EMPLEADOS");
 		getContentPane().setLayout(new BorderLayout());
@@ -65,7 +65,7 @@ public class EmpleadoDialog extends JDialog {
 		
 		//Formato de tabla
 		mt.setColumnIdentifiers(ids);
-		table.setBounds(100, 40, 1000, 600);
+		table.setBounds(89, 39, 1195, 600);
 		scrollPane.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
@@ -81,7 +81,7 @@ public class EmpleadoDialog extends JDialog {
 		        estado = modeloTablaEmpleado.getValueAt(filaSeleccionada, 7).toString();       
 			}
 		});
-		scrollPane.setBounds(100, 40, 1000, 600);
+		scrollPane.setBounds(89, 39, 1195, 600);
 		scrollPane.setViewportView(table);
 		contentPanel.add(scrollPane);
 		//CARGAR EMPLEADOS ESTA ABAJO
