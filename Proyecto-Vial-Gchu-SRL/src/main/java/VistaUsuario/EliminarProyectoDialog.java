@@ -110,11 +110,11 @@ public class EliminarProyectoDialog extends JDialog {
 			buttonPane.setLayout(new FlowLayout(FlowLayout.RIGHT));
 			getContentPane().add(buttonPane, BorderLayout.SOUTH);
 			{
-				JButton bajaBtn = new JButton("Dar de Baja");
+				JButton bajaBtn = new JButton("Eliminar");
 				bajaBtn.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
-						controladorProyecto.bajaLogica(proyecto);
-						optionPane.showMessageDialog(null, "Proyecto dado de Baja Exitosamente");
+						controladorProyecto.baja(proyecto);
+						optionPane.showMessageDialog(null, "Proyecto Eliminado Exitosamente");
 					}
 				});
 				bajaBtn.setActionCommand("OK");
