@@ -157,8 +157,8 @@ public class EmpleadoDialog extends JDialog {
 					public void actionPerformed(ActionEvent e) {
 						setVisible(false);
 						BajaEmpleadoDialog bajaEmpleadoDialog = new BajaEmpleadoDialog();
+						bajaEmpleadoDialog.dni = dni;
 				        bajaEmpleadoDialog.setVisible(true);
-				        bajaEmpleadoDialog.dni = dni;
 					}
 				});
 				buttonPane.add(bajaEmpleadoBtn);
