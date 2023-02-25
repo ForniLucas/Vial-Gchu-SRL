@@ -31,7 +31,7 @@ public class EmpleadoDialog extends JDialog {
 	String direccion = new String();
 	String fechaDeNacimiento = new String();
 	String estado = new String();
-	
+	EmpleadoDialog dialog = new EmpleadoDialog();
 	//Tabla Principal
 	String ids[] = {"Legajo","Apellido", "Nombre","DNI", "Teléfono","Dirección", "Fecha De Nacimiento","Estado"}; 
 	DefaultTableModel mt = new DefaultTableModel();
@@ -174,8 +174,8 @@ public class EmpleadoDialog extends JDialog {
 				bajaEmpleadoBtn.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
 						setVisible(false);
-						BajaEmpleadoDialog bajaEmpleadoDialog = new BajaEmpleadoDialog();
-						bajaEmpleadoDialog.dni = dni;
+						BajaEmpleadoDialog bajaEmpleadoDialog = new BajaEmpleadoDialog(dialog, dni);
+						//bajaEmpleadoDialog.dni = dni;
 				        bajaEmpleadoDialog.setVisible(true);
 					}
 				});
