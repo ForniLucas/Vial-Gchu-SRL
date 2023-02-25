@@ -23,10 +23,6 @@ public class HistorialElementoDeSeguridadDialog extends JDialog {
 	String apellido = new String();
 	String nombre = new String();
 	String dni = new String();
-	String telefono = new String();
-	String direccion = new String();
-	String fechaDeNacimiento = new String();
-	String estado = new String();
 	//Tabla Principal
 	String ids[] = {"Legajo","Apellido", "Nombre","DNI", "Teléfono","Dirección", "Fecha De Nacimiento","Estado"}; 
 	DefaultTableModel mt = new DefaultTableModel();

@@ -53,7 +53,13 @@ public class HistorialRopaDeTrabajoDialog extends JDialog {
 	 * Create the dialog.
 	 */
 	public HistorialRopaDeTrabajoDialog(EmpleadoDialog dialog, String dni, String apellido, String nombre) {
+		super(dialog, "HistorialRopaDeTrabajoDialog",true);
+		this.dni = dni;
+		this.apellido = apellido;
+		this.nombre = nombre;
+		
 		setBounds(50, 50, 600, 600);
+		setTitle("HISTORIAL DE ROPA DE TRABAJO");
 		getContentPane().setLayout(new BorderLayout());
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
 		getContentPane().add(contentPanel, BorderLayout.CENTER);
