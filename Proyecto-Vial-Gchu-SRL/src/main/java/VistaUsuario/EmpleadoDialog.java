@@ -70,15 +70,15 @@ public class EmpleadoDialog extends JDialog {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				int filaSeleccionada = table.getSelectedRow();
-		        DefaultTableModel modeloTablaEmpleado = (DefaultTableModel)table.getModel();
-		        id = modeloTablaEmpleado.getValueAt(filaSeleccionada, 0).toString();
-		        apellido = modeloTablaEmpleado.getValueAt(filaSeleccionada, 1).toString();
-		        nombre = modeloTablaEmpleado.getValueAt(filaSeleccionada, 2).toString();
-		        dni = modeloTablaEmpleado.getValueAt(filaSeleccionada, 3).toString();
-		        telefono = modeloTablaEmpleado.getValueAt(filaSeleccionada, 4).toString();
-		        direccion = modeloTablaEmpleado.getValueAt(filaSeleccionada, 5).toString();
-		        fechaDeNacimiento = modeloTablaEmpleado.getValueAt(filaSeleccionada, 6).toString();
-		        estado = modeloTablaEmpleado.getValueAt(filaSeleccionada, 7).toString();       
+		        //DefaultTableModel mt = (DefaultTableModel)table.getModel();
+		        id = mt.getValueAt(filaSeleccionada, 0).toString();
+		        apellido = mt.getValueAt(filaSeleccionada, 1).toString();
+		        nombre = mt.getValueAt(filaSeleccionada, 2).toString();
+		        dni = mt.getValueAt(filaSeleccionada, 3).toString();
+		        telefono = mt.getValueAt(filaSeleccionada, 4).toString();
+		        direccion = mt.getValueAt(filaSeleccionada, 5).toString();
+		        fechaDeNacimiento = mt.getValueAt(filaSeleccionada, 6).toString();
+		        estado = mt.getValueAt(filaSeleccionada, 7).toString();       
 			}
 		});
 		scrollPane.setBounds(89, 39, 1195, 600);
