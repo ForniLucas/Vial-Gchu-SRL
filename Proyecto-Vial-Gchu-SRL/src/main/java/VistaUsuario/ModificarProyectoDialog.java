@@ -53,7 +53,7 @@ public class ModificarProyectoDialog extends JDialog {
 	public ModificarProyectoDialog() {
 		setBounds(50, 50, 600, 700);
 		this.setResizable(false);
-		this.setTitle("BAJA DE PROYECTOS");
+		this.setTitle("MODIFICAR PROYECTOS");
 		getContentPane().setLayout(new BorderLayout());
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
 		getContentPane().add(contentPanel, BorderLayout.CENTER);

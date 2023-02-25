@@ -23,6 +23,14 @@ public class EmpleadoDialog extends JDialog {
 	private final JPanel contentPanel = new JPanel();
 	//private JTable table;
 	ControladorEmpleado controladorEmpleado = new ControladorEmpleado();
+	String id = new String();
+	String apellido = new String();
+	String nombre = new String();
+	String dni = new String();
+	String telefono = new String();
+	String direccion = new String();
+	String fechaDeNacimiento = new String();
+	String estado = new String();
 	
 	//Tabla Principal
 	String ids[] = {"Legajo","Apellido", "Nombre","DNI", "Teléfono","Dirección", "Fecha De Nacimiento","Estado"}; 
@@ -62,11 +70,15 @@ public class EmpleadoDialog extends JDialog {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				int filaSeleccionada = table.getSelectedRow();
-		        DefaultTableModel modeloTablaVendedor = (DefaultTableModel)table.getModel();
-		        //idPersonaFld.setText(modeloTablaVendedor.getValueAt(filaSeleccionada, 0).toString());
-		        //idClienteFld.setText(modeloTablaVendedor.getValueAt(filaSeleccionada, 1).toString());
-		        //fechaAltaCFld.setText(modeloTablaVendedor.getValueAt(filaSeleccionada,2).toString());
-		        //emailClienteFld.setText(modeloTablaVendedor.getValueAt(filaSeleccionada, 8).toString());
+		        DefaultTableModel modeloTablaEmpleado = (DefaultTableModel)table.getModel();
+		        id = modeloTablaEmpleado.getValueAt(filaSeleccionada, 0).toString();
+		        apellido = modeloTablaEmpleado.getValueAt(filaSeleccionada, 1).toString();
+		        nombre = modeloTablaEmpleado.getValueAt(filaSeleccionada, 2).toString();
+		        dni = modeloTablaEmpleado.getValueAt(filaSeleccionada, 3).toString();
+		        telefono = modeloTablaEmpleado.getValueAt(filaSeleccionada, 4).toString();
+		        direccion = modeloTablaEmpleado.getValueAt(filaSeleccionada, 5).toString();
+		        fechaDeNacimiento = modeloTablaEmpleado.getValueAt(filaSeleccionada, 6).toString();
+		        estado = modeloTablaEmpleado.getValueAt(filaSeleccionada, 7).toString();       
 			}
 		});
 		scrollPane.setBounds(100, 40, 1000, 600);
@@ -94,6 +106,22 @@ public class EmpleadoDialog extends JDialog {
 							ropaDeTrabajoDialog.setVisible(true);
 						}
 					});
+					{
+						JButton hRTBtnn = new JButton("Historial Ropa de Trabajo");
+						hRTBtnn.addActionListener(new ActionListener() {
+							public void actionPerformed(ActionEvent e) {
+							}
+						});
+						{
+							JButton hEspecializacionBtn = new JButton("Historial Especializacion de Empleado");
+							hEspecializacionBtn.addActionListener(new ActionListener() {
+								public void actionPerformed(ActionEvent e) {
+								}
+							});
+							buttonPane.add(hEspecializacionBtn);
+						}
+						buttonPane.add(hRTBtnn);
+					}
 					buttonPane.add(ropaDTButton);
 				}
 				{
@@ -104,6 +132,14 @@ public class EmpleadoDialog extends JDialog {
 							elementoDeSeguridadDialog.setVisible(true);
 						}
 					});
+					{
+						JButton hEDSBtn = new JButton("Historial Elemento de Seguridad");
+						hEDSBtn.addActionListener(new ActionListener() {
+							public void actionPerformed(ActionEvent e) {
+							}
+						});
+						buttonPane.add(hEDSBtn);
+					}
 					buttonPane.add(elementoDSButton);
 				}
 				
@@ -115,6 +151,7 @@ public class EmpleadoDialog extends JDialog {
 						setVisible(false);
 						BajaEmpleadoDialog bajaEmpleadoDialog = new BajaEmpleadoDialog();
 				        bajaEmpleadoDialog.setVisible(true);
+				        bajaEmpleadoDialog.dniTxt.setText("dni");
 					}
 				});
 				buttonPane.add(bajaEmpleadoBtn);

@@ -30,9 +30,9 @@ public class RopaDeTrabajoDialog extends JDialog {
 	private Empleado empleado = new Empleado();
 	private JLabel apellidoLbl = new JLabel("");
 	private JLabel nombreLbl = new JLabel("");
-	private String[] talles = {"1","2","3","4","5"};
-	private JComboBox<String> comboBox = new JComboBox<String>(talles);
-	private JComboBox<Ropa> comboBoxRopa = new JComboBox<Ropa>(Ropa.values());
+	String[] talles = {"1","2","3","4","5"};
+	private JComboBox comboBox = new JComboBox(talles);
+	private JComboBox comboBoxRopa = new JComboBox(Ropa.values());
 
 	/**
 	 * Launch the application.

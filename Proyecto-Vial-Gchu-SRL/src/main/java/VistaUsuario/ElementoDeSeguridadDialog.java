@@ -31,7 +31,7 @@ public class ElementoDeSeguridadDialog extends JDialog {
 	private Empleado empleado = new Empleado();
 	private JLabel nombreLabel = new JLabel("");
 	private JLabel apellidoLabel = new JLabel("");
-	private JComboBox<Elemento> tipoBox = new JComboBox<Elemento>(Elemento.values());
+	private JComboBox tipoBox = new JComboBox(Elemento.values());
 	
 	/**
 	 * Launch the application.
@@ -50,7 +50,7 @@ public class ElementoDeSeguridadDialog extends JDialog {
 	 * Create the dialog.
 	 */
 	public ElementoDeSeguridadDialog() {
-		setBounds(50, 50, 450, 450);
+		setBounds(50, 50, 500, 500);
 		this.setResizable(false);
 		this.setTitle("ELEMENTO DE SEGURIDAD");
 		getContentPane().setLayout(new BorderLayout());

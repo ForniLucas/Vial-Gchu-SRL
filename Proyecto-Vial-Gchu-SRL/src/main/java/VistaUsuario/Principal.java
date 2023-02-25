@@ -1,6 +1,7 @@
 package VistaUsuario;
 
 import java.awt.BorderLayout;
+
 import java.awt.event.ActionListener;
 import java.awt.Color;
 import java.awt.Dimension;

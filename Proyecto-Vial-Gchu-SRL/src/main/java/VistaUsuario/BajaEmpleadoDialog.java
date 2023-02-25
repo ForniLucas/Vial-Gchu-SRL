@@ -14,18 +14,20 @@ import Domain.Empleado;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 
 public class BajaEmpleadoDialog extends JDialog {
 
 	private final JPanel contentPanel = new JPanel();
-	private JTextField textField;
+	JTextField dniTxt = new JTextField();
 	ControladorEmpleado controlador = new ControladorEmpleado();
 	Empleado empleado = new Empleado();
 	JLabel lblNewLabel_1 = new JLabel("");
 	JLabel lblNewLabel_2 = new JLabel("");
 	JLabel lblNewLabel_3 = new JLabel("");
 	JLabel lblNewLabel_4 = new JLabel("");
+	JOptionPane optionPane = new JOptionPane();
 	/**
 	 * Launch the application.
 	 */
@@ -61,15 +63,15 @@ public class BajaEmpleadoDialog extends JDialog {
 		
 		
 		{
-			JLabel lblNewLabel = new JLabel("Ingrese Legajo del Empleado");
+			JLabel lblNewLabel = new JLabel("Ingrese DNI del Empleado");
 			lblNewLabel.setBounds(24, 26, 133, 13);
 			contentPanel.add(lblNewLabel);
 		}
 		{
-			textField = new JTextField();
-			textField.setBounds(167, 23, 132, 19);
-			contentPanel.add(textField);
-			textField.setColumns(10);
+			//dniTxt = new JTextField();
+			dniTxt.setBounds(164, 23, 124, 19);
+			contentPanel.add(dniTxt);
+			dniTxt.setColumns(10);
 		}
 		{
 			
@@ -95,7 +97,7 @@ public class BajaEmpleadoDialog extends JDialog {
 			JButton buscarBtn = new JButton("Buscar");
 			buscarBtn.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
-					String dniString = textField.getText(); // Get the value of the JTextField as a String
+					String dniString = dniTxt.getText(); // Get the value of the JTextField as a String
 					int dni = Integer.parseInt(dniString); // Convert the String to an int
 					
 					empleado = controlador.buscarDNI(dni);
@@ -124,6 +126,7 @@ public class BajaEmpleadoDialog extends JDialog {
 				bajaEmpleadoBtn.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
 						controlador.bajaLogica(empleado);
+						optionPane.showMessageDialog(null, "Baja de Empleado Exitosa");
 					}
 				});
 				bajaEmpleadoBtn.setActionCommand("OK");
