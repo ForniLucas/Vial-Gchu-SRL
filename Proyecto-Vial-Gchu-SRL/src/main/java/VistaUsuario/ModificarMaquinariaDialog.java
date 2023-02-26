@@ -132,7 +132,8 @@ public class ModificarMaquinariaDialog extends JDialog {
 				public void actionPerformed(ActionEvent e) {
 					String codigo = legajoTxt.getText(); // Get the value of the JTextField as a String
 					maquina = controlador.buscar(codigo);
-					
+					String estadoString = maquina.getEstado() ? "En servicio" : "Fuera de Servicio";
+					estadoBox.setSelectedItem(estadoString);
 					codigoTxt.setText(codigo);
 					descripcionTxt.setText(maquina.getDescripcion());
 					fabricanteTxt.setText(maquina.getFabricante());
