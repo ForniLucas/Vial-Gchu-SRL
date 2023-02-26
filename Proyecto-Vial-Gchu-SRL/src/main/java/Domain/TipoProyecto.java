@@ -55,6 +55,9 @@ public class TipoProyecto implements java.io.Serializable{
         this.insumos = insumos;
     }
     
+    public TipoProyecto() {
+    	
+    }
 
     public long getId() {
         return id;

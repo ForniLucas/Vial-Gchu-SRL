@@ -10,6 +10,8 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
 import Controladoras.ControladorProyecto;
+import Domain.Proyecto;
+import Domain.TipoProyecto;
 
 import javax.swing.JLabel;
 import javax.swing.JTextField;
@@ -181,14 +183,26 @@ public class AltaProyectoDialog extends JDialog {
 						LocalDate fechaFin = LocalDate.parse(fechaFinString, formatter2);
 						
 						String nombre = nombreTxt.getText();
-						//String desc = descripcionTxt.getText();
-						//String actividades = actividadesTxt.getText(); No los usamos VER!
-						//String insumos = insumosTxt.getText();
+						String desc = descripcionTxt.getText();
+						String actividades = actividadesTxt.getText(); 
+						String insumos = insumosTxt.getText();
 						String estado = (String) estadoBox.getSelectedItem();
 						
-						TipoDeProyecto tipo = (TipoDeProyecto) comboBox.getSelectedItem(); //No lo agregamos
+						TipoDeProyecto tipo = (TipoDeProyecto) comboBox.getSelectedItem(); 
+						TipoProyecto tipoProyecto = new TipoProyecto(tipo, desc, actividades, insumos);
+								
+						Proyecto proyecto = new Proyecto();
 						
-						controlador.alta(fechaInicio, fechaFin, estado, nombre, null);
+						proyecto.setFechaInicio(fechaInicio);
+						proyecto.setFechaEstmiadaFin(fechaFin);
+						proyecto.setFechaFin(fechaFin);
+						proyecto.setNombre(nombre);
+						proyecto.setEstado(estado);
+						proyecto.asignarTipoProyecto(tipoProyecto);
+						
+						controlador.alta(proyecto);
+						
+						
 						
 					}
 				});

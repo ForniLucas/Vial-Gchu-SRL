@@ -30,7 +30,7 @@ public class ControladorProyecto {
 
 	private LinkedList<Proyecto> proyectos = new LinkedList<Proyecto>(); 
 	
-	public void alta(LocalDate fechaInicio, LocalDate fechaEstimadaFin, String estado, String nombre, LocalDate fechaFin) {
+	public void alta(Proyecto poyecto) {
 		
 		// Iniciar la sesión de Hibernate
 	    StandardServiceRegistry registry = new StandardServiceRegistryBuilder().configure().build();
@@ -44,7 +44,7 @@ public class ControladorProyecto {
 		    transaction = session.beginTransaction();
 		    
 		    // Agregar el proytecto a la lista y guardar en la base de datos    
-		    Proyecto poyecto = new Proyecto(fechaInicio, fechaEstimadaFin, fechaFin, estado, nombre);  // a "estado" podriamos directamente poner "iniciado" o algo asi.
+		    //Proyecto poyecto = new Proyecto(fechaInicio, fechaEstimadaFin, fechaFin, estado, nombre);  // a "estado" podriamos directamente poner "iniciado" o algo asi.
 		    proyectos.add(poyecto);
 		    session.save(poyecto);
 		    transaction.commit();
