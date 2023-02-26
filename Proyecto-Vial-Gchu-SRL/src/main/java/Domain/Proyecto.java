@@ -60,7 +60,7 @@ public class Proyecto implements java.io.Serializable{
     private String estado; //Se modifico de Boolean a String
     
     @OneToOne(cascade = CascadeType.ALL,
-    		  fetch = FetchType.LAZY)
+    		  fetch = FetchType.EAGER)
     @JoinColumn(name = "tipoproyecto_id")
         private TipoProyecto TipoProyecto;
        

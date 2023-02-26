@@ -171,6 +171,7 @@ public class ModificarProyectoDialog extends JDialog {
 					String codigo = legajoTxt.getText(); 
 					int id = Integer.parseInt(codigo);
 					proyecto = controladorProyecto.buscarID(id);
+					nombreTxt.setText(proyecto.getNombre());
 					fechaDeInicioTxt.setText(proyecto.getFechaInicio().toString());
 					fechaFinTxt.setText(proyecto.getFechaEstmiadaFin().toString());
 					estadoTxt.setText(proyecto.getEstado());
