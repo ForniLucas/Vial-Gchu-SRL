@@ -58,10 +58,10 @@ public class Empleado implements java.io.Serializable {
 	 @Column(name="estado",nullable=true)
      private boolean estado;
 	 
-	 @OneToMany(fetch=FetchType.LAZY, mappedBy="Empleado",cascade = CascadeType.ALL,orphanRemoval = true)
+	 @OneToMany(fetch=FetchType.EAGER, mappedBy="Empleado",cascade = CascadeType.ALL,orphanRemoval = true)
 	 private Set<Especializacion> Especializaciones = new HashSet<Especializacion>(0);
 	 
-	 @OneToMany(fetch=FetchType.LAZY, mappedBy="Empleado",cascade = CascadeType.ALL,orphanRemoval = true)
+	 @OneToMany(fetch=FetchType.EAGER, mappedBy="Empleado",cascade = CascadeType.ALL,orphanRemoval = true)
 	 private Set<RopaDeTrabajo> RopasDeTrabajo = new HashSet<RopaDeTrabajo>(0);
 	 
 	 @OneToMany(fetch=FetchType.EAGER, mappedBy="Empleado",cascade = CascadeType.ALL,orphanRemoval = true)

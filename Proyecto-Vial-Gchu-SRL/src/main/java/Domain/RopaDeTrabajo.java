@@ -54,6 +54,10 @@ public class RopaDeTrabajo implements java.io.Serializable{
         this.fechaEntrega = fechaEntrega;
     }
     
+    public RopaDeTrabajo() {
+    	
+    }
+    
     
     public Empleado getEmpleado() {
         return Empleado;

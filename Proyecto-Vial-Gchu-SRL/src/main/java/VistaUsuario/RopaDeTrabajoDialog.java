@@ -148,10 +148,11 @@ public class RopaDeTrabajoDialog extends JDialog {
 						
 						Ropa ropa = (Ropa) comboBoxRopa.getSelectedItem();
 						
-						RopaDeTrabajo ropaTrabajo = new RopaDeTrabajo(ropa, talle, fechaEtnrega);
-						//RESOLVER ERROR: 
-						//failed to lazily initialize a collection of role: Domain.Empleado.RopasDeTrabajo, 
-						//could not initialize proxy - no Session
+						RopaDeTrabajo ropaTrabajo = new RopaDeTrabajo();
+						ropaTrabajo.setEmpleado(empleado);
+						ropaTrabajo.setTipo(ropa);
+						ropaTrabajo.setTalle(talle);
+						ropaTrabajo.setFechaEntrega(fechaEtnrega);
 						
 						controlador.asignarRopaDeTrabajo(empleado, ropaTrabajo);
 						
