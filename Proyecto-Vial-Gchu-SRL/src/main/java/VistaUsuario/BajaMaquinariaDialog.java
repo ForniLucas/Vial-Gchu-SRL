@@ -19,7 +19,6 @@ import java.awt.event.ActionEvent;
 public class BajaMaquinariaDialog extends JDialog {
 
 	private final JPanel contentPanel = new JPanel();
-	private JTextField legajoTxt;
 	ControladorMaquinaria controlador = new ControladorMaquinaria();
 	Maquinaria maquina = new Maquinaria();
 	JLabel lblNewLabel_1 = new JLabel("");
@@ -27,11 +26,12 @@ public class BajaMaquinariaDialog extends JDialog {
 	JLabel lblNewLabel_3 = new JLabel("");
 	JLabel lblNewLabel_4 = new JLabel("");
 	JLabel lblNewLabel_5 = new JLabel("");
-	
-	
+	String codigo = new String();
+	JTextField legajoTxt = new JTextField();
 	/**
 	 * Launch the application.
 	 */
+	/*
 	public static void main(String[] args) {
 		try {
 			BajaMaquinariaDialog dialog = new BajaMaquinariaDialog();
@@ -41,11 +41,16 @@ public class BajaMaquinariaDialog extends JDialog {
 			e.printStackTrace();
 		}
 	}
-
+	*/
 	/**
 	 * Create the dialog.
 	 */
-	public BajaMaquinariaDialog() {
+	public BajaMaquinariaDialog(MaquinariaDialog dialog, String codigo) {
+		super(dialog, "BajaEmpleadoDialog",true);
+		this.codigo = codigo;
+		
+		
+		legajoTxt.setText(codigo);
 		
 		lblNewLabel_1.setVisible(false);
 		lblNewLabel_2.setVisible(false);
@@ -66,7 +71,7 @@ public class BajaMaquinariaDialog extends JDialog {
 			contentPanel.add(lblNewLabel);
 		}
 		{
-			legajoTxt = new JTextField();
+			
 			legajoTxt.setBounds(213, 28, 116, 19);
 			contentPanel.add(legajoTxt);
 			legajoTxt.setColumns(255);

@@ -20,8 +20,9 @@ import javax.swing.JTextField;
 public class BajaProyectoDialog extends JDialog {
 
 	private final JPanel contentPanel = new JPanel();
-	private JTextField legajoTxt;
+	JTextField legajoTxt = new JTextField();
 	ControladorProyecto controladorProyecto = new ControladorProyecto();
+	String id = new String();
 	JLabel lblNewLabel_1 = new JLabel("");
 	JLabel lblNewLabel_2 = new JLabel("");
 	JLabel lblNewLabel_3 = new JLabel("");
@@ -32,6 +33,7 @@ public class BajaProyectoDialog extends JDialog {
 	/**
 	 * Launch the application.
 	 */
+	/*
 	public static void main(String[] args) {
 		try {
 			BajaProyectoDialog dialog = new BajaProyectoDialog();
@@ -41,11 +43,16 @@ public class BajaProyectoDialog extends JDialog {
 			e.printStackTrace();
 		}
 	}
-
+	*/
 	/**
 	 * Create the dialog.
 	 */
-	public BajaProyectoDialog() {
+	public BajaProyectoDialog(ProyectoDialog dialog, String id) {
+		super(dialog, "BajaProyectoDialog",true);
+		this.id = id;
+		
+		legajoTxt.setText(id);
+		
 		setBounds(50, 50, 500, 300);
 		this.setResizable(false);
 		this.setTitle("BAJA DE PROYECTOS");
@@ -54,12 +61,11 @@ public class BajaProyectoDialog extends JDialog {
 		getContentPane().add(contentPanel, BorderLayout.CENTER);
 		contentPanel.setLayout(null);
 		{
-			JLabel lblNewLabel = new JLabel("Ingresar Legajo de Proyecto");
+			JLabel lblNewLabel = new JLabel("Ingresar Legajo del Proyecto");
 			lblNewLabel.setBounds(10, 29, 147, 13);
 			contentPanel.add(lblNewLabel);
 		}
 		{
-			legajoTxt = new JTextField();
 			legajoTxt.setBounds(167, 26, 132, 19);
 			contentPanel.add(legajoTxt);
 			legajoTxt.setColumns(255);

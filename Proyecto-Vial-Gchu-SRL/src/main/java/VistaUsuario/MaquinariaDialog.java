@@ -31,8 +31,12 @@ public class MaquinariaDialog extends JDialog {
 	JTable table = new JTable(mt);
 	JScrollPane scrollPane = new JScrollPane(); 
 	ControladorMaquinaria controladorMaquinaria = new ControladorMaquinaria();
+	String id = new String();
 	String codigo = new String();
-
+	String descripcion = new String();
+	String fabricante = new String();
+	String ubicacion = new String();
+	String estado = new String();
 	/**
 	 * Launch the application.
 	 */
@@ -59,12 +63,17 @@ public class MaquinariaDialog extends JDialog {
 		//Formato de tabla
 		mt.setColumnIdentifiers(ids);
 		table.setBounds(100, 40, 1000, 600);
-		scrollPane.addMouseListener(new MouseAdapter() {
+		table.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				int filaSeleccionada = table.getSelectedRow();
 		        DefaultTableModel mt = (DefaultTableModel)table.getModel();
-		        codigo = mt.getValueAt(filaSeleccionada, 1).toString(); 
+		         id = mt.getValueAt(filaSeleccionada, 0).toString();
+		         codigo = mt.getValueAt(filaSeleccionada, 1).toString();
+		         descripcion = mt.getValueAt(filaSeleccionada, 2).toString();
+		         fabricante = mt.getValueAt(filaSeleccionada, 3).toString();
+		         ubicacion = mt.getValueAt(filaSeleccionada, 4).toString();
+		         estado = mt.getValueAt(filaSeleccionada, 5).toString();
 			}
 		});
 		scrollPane.setBounds(100, 40, 1000, 600);
@@ -91,7 +100,7 @@ public class MaquinariaDialog extends JDialog {
 			bajaBtn.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
 					setVisible(false);
-					BajaMaquinariaDialog bajaMaquinariaDialog = new BajaMaquinariaDialog();
+					BajaMaquinariaDialog bajaMaquinariaDialog = new BajaMaquinariaDialog(MaquinariaDialog.this, codigo);
 					bajaMaquinariaDialog.setVisible(true);
 				}
 			});
@@ -101,7 +110,7 @@ public class MaquinariaDialog extends JDialog {
 			modificarBtn.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
 					setVisible(false);
-					ModificarMaquinariaDialog modificarMaquinariaDialog = new ModificarMaquinariaDialog();
+					ModificarMaquinariaDialog modificarMaquinariaDialog = new ModificarMaquinariaDialog(MaquinariaDialog.this, codigo);
 					modificarMaquinariaDialog.setVisible(true);
 				}
 			});
@@ -118,9 +127,8 @@ public class MaquinariaDialog extends JDialog {
 				serviceBtn.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
 						setVisible(false);
-						ServiceDialog serviceDialog = new ServiceDialog();
+						ServiceDialog serviceDialog = new ServiceDialog(MaquinariaDialog.this, codigo);
 						serviceDialog.setVisible(true);
-						serviceDialog.legajo = codigo;
 					}
 				});
 				buttonPane.add(serviceBtn);

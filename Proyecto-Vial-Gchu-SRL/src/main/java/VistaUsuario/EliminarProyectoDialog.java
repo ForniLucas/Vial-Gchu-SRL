@@ -19,7 +19,7 @@ import Domain.Proyecto;
 public class EliminarProyectoDialog extends JDialog {
 
 	private final JPanel contentPanel = new JPanel();
-	private JTextField legajoTxt;
+	JTextField legajoTxt = new JTextField();
 	ControladorProyecto controladorProyecto = new ControladorProyecto();
 	JLabel lblNewLabel_1 = new JLabel("");
 	JLabel lblNewLabel_2 = new JLabel("");
@@ -28,10 +28,12 @@ public class EliminarProyectoDialog extends JDialog {
 	JLabel lblNewLabel_5 = new JLabel("");
 	Proyecto proyecto = new Proyecto();
 	JOptionPane optionPane = new JOptionPane();
+	String id = new String();
 
 	/**
 	 * Launch the application.
 	 */
+	/*
 	public static void main(String[] args) {
 		try {
 			EliminarProyectoDialog dialog = new EliminarProyectoDialog();
@@ -41,11 +43,16 @@ public class EliminarProyectoDialog extends JDialog {
 			e.printStackTrace();
 		}
 	}
-
+	*/
 	/**
 	 * Create the dialog.
 	 */
-	public EliminarProyectoDialog() {
+	public EliminarProyectoDialog(ProyectoDialog dialog, String id) {
+		super(dialog, "BajaProyectoDialog",true);
+		this.id = id;
+		
+		legajoTxt.setText(id);
+		
 		setBounds(50, 50, 500, 300);
 		this.setResizable(false);
 		this.setTitle("ELIMINAR PROYECTOS");
@@ -59,7 +66,6 @@ public class EliminarProyectoDialog extends JDialog {
 			contentPanel.add(lblNewLabel);
 		}
 		{
-			legajoTxt = new JTextField();
 			legajoTxt.setBounds(167, 26, 132, 19);
 			contentPanel.add(legajoTxt);
 			legajoTxt.setColumns(255);

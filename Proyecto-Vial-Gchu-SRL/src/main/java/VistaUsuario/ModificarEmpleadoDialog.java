@@ -24,13 +24,22 @@ import javax.swing.JComboBox;
 public class ModificarEmpleadoDialog extends JDialog {
 
 	private final JPanel contentPanel = new JPanel();
-	private JTextField legajoTxt;
-	private JTextField apellidoTxt;
-	private JTextField nombreTxt;
-	private JTextField dniTxt;
-	private JTextField telefonoTxt;
-	private JTextField direccionTxt;
-	private JTextField fechaDeNacimientoTxt;
+	String legajo = new String();
+	String apellido = new String();
+	String nombre = new String();
+	String dni = new String();
+	String telefono = new String();
+	String direccion = new String();
+	String fechaDeNacimiento = new String();
+	String estado = new String();
+	
+	JTextField dniidTxt = new JTextField();
+	JTextField apellidoTxt = new JTextField();
+	JTextField nombreTxt = new JTextField();
+	JTextField dniTxt = new JTextField();
+	JTextField telefonoTxt = new JTextField();
+	JTextField direccionTxt = new JTextField();
+	JTextField fechaDeNacimientoTxt = new JTextField();
 	ControladorEmpleado controlador = new ControladorEmpleado();
 	Empleado empleado = new Empleado();
 	//Empleado empleadoGlob = new Empleado();
@@ -44,7 +53,7 @@ public class ModificarEmpleadoDialog extends JDialog {
 	JLabel lblNewLabel_7 = new JLabel("");
 	JLabel lblNewLabel_8 = new JLabel("");*/
 	
-	
+	/*
 	public static void main(String[] args) {
 		try {
 			ModificarEmpleadoDialog dialog = new ModificarEmpleadoDialog();
@@ -53,19 +62,17 @@ public class ModificarEmpleadoDialog extends JDialog {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-	}
+	}*/
 
 	/**
 	 * Create the dialog.
 	 */
-	public ModificarEmpleadoDialog() {
+	public ModificarEmpleadoDialog(EmpleadoDialog dialog, String dni) {
+		super(dialog, "ModificarEmpleadoDialog",true);
+		this.dni = dni;
 		
-		apellidoTxt = new JTextField();
-		nombreTxt = new JTextField();
-		dniTxt = new JTextField();
-		direccionTxt = new JTextField();
-		telefonoTxt = new JTextField();
-		fechaDeNacimientoTxt = new JTextField();
+		dniidTxt.setText(dni);
+
 		/*lblNewLabel_1.setVisible(false);
 		lblNewLabel_2.setVisible(false);
 		lblNewLabel_3.setVisible(false);
@@ -76,6 +83,7 @@ public class ModificarEmpleadoDialog extends JDialog {
 		lblNewLabel_8.setVisible(false);*/
 		
 		
+		
 		setBounds(50, 50, 600, 700);
 		this.setTitle("MODIFICAR EMPLEADOS");
 		setResizable(false);
@@ -84,7 +92,7 @@ public class ModificarEmpleadoDialog extends JDialog {
 		getContentPane().add(contentPanel, BorderLayout.CENTER);
 		contentPanel.setLayout(null);
 		{
-			JLabel lblNewLabel = new JLabel("Ingrese Legajo del Empleado");
+			JLabel lblNewLabel = new JLabel("Ingrese el DNI del Empleado");
 			lblNewLabel.setBounds(41, 40, 149, 13);
 			contentPanel.add(lblNewLabel);
 		}
@@ -129,10 +137,10 @@ public class ModificarEmpleadoDialog extends JDialog {
 			contentPanel.add(lblNewLabel_8);
 		}
 		{
-			legajoTxt = new JTextField();
-			legajoTxt.setBounds(237, 37, 96, 19);
-			contentPanel.add(legajoTxt);
-			legajoTxt.setColumns(255);
+			dniidTxt = new JTextField();
+			dniidTxt.setBounds(237, 37, 96, 19);
+			contentPanel.add(dniidTxt);
+			dniidTxt.setColumns(255);
 		}
 		{
 			

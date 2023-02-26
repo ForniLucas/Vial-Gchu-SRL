@@ -80,21 +80,6 @@ public class EmpleadoDialog extends JDialog {
 		});
 		table.setBounds(89, 39, 1195, 600);
 		
-		/* scrollPane.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				int filaSeleccionada = table.getSelectedRow();
-		        DefaultTableModel mt = (DefaultTableModel)table.getModel();
-		        id = mt.getValueAt(filaSeleccionada, 0).toString();
-		        apellido = mt.getValueAt(filaSeleccionada, 1).toString();
-		        nombre = mt.getValueAt(filaSeleccionada, 2).toString();
-		        dni = mt.getValueAt(filaSeleccionada, 3).toString();
-		        telefono = mt.getValueAt(filaSeleccionada, 4).toString();
-		        direccion = mt.getValueAt(filaSeleccionada, 5).toString();
-		        fechaDeNacimiento = mt.getValueAt(filaSeleccionada, 6).toString();
-		        estado = mt.getValueAt(filaSeleccionada, 7).toString();       
-			}*/
-		
 		scrollPane.setBounds(89, 39, 1195, 600);
 		scrollPane.setViewportView(table);
 		contentPanel.add(scrollPane);
@@ -180,7 +165,7 @@ public class EmpleadoDialog extends JDialog {
 				modificarEmpleadoBtn.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
 						setVisible(false);
-						ModificarEmpleadoDialog modificarEmpleadoDialog = new ModificarEmpleadoDialog();
+						ModificarEmpleadoDialog modificarEmpleadoDialog = new ModificarEmpleadoDialog(EmpleadoDialog.this, dni);
 				        modificarEmpleadoDialog.setVisible(true);
 					}
 				});

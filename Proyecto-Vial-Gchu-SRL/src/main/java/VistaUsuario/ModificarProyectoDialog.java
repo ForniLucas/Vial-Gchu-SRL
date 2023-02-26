@@ -22,14 +22,17 @@ import javax.swing.JComboBox;
 public class ModificarProyectoDialog extends JDialog {
 
 	private final JPanel contentPanel = new JPanel();
-	private JTextField legajoTxt;
-	private JTextField fechaDeInicioTxt;
-	private JTextField fechaFinTxt;
-	private JTextField estadoTxt;
-	private JTextField nombreTxt;
-	private JTextField descripcionTxt;
-	private JTextField actividadesTxt;
-	private JTextField insumosTxt;
+	JTextField legajoTxt = new JTextField();
+	JTextField fechaDeInicioTxt = new JTextField();
+	JTextField fechaFinTxt = new JTextField();
+	JTextField estadoTxt = new JTextField();
+	JTextField nombreTxt = new JTextField();
+	JTextField descripcionTxt = new JTextField();
+	JTextField actividadesTxt = new JTextField();
+	JTextField insumosTxt = new JTextField();
+	
+	String id = new String();
+	
 	JComboBox<TipoDeProyecto> tipoBox = new JComboBox<TipoDeProyecto>(TipoDeProyecto.values()){
 	    @Override
 	    public String toString() {
@@ -43,6 +46,8 @@ public class ModificarProyectoDialog extends JDialog {
 	/**
 	 * Launch the application.
 	 */
+	
+	/*
 	public static void main(String[] args) {
 		try {
 			ModificarProyectoDialog dialog = new ModificarProyectoDialog();
@@ -51,12 +56,17 @@ public class ModificarProyectoDialog extends JDialog {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-	}
+	} */
 
 	/**
 	 * Create the dialog.
 	 */
-	public ModificarProyectoDialog() {
+	public ModificarProyectoDialog(ProyectoDialog dialog, String id) {
+		super(dialog, "BajaProyectoDialog",true);
+		this.id = id;
+		
+		legajoTxt.setText(id);
+		
 		setBounds(50, 50, 600, 700);
 		this.setResizable(false);
 		this.setTitle("MODIFICAR PROYECTOS");
@@ -65,7 +75,7 @@ public class ModificarProyectoDialog extends JDialog {
 		getContentPane().add(contentPanel, BorderLayout.CENTER);
 		contentPanel.setLayout(null);
 		{
-			JLabel lblNewLabel = new JLabel("Ingrese Legajo del Proyecto");
+			JLabel lblNewLabel = new JLabel("Ingrese el Legajo del Proyecto");
 			lblNewLabel.setBounds(37, 51, 140, 13);
 			contentPanel.add(lblNewLabel);
 		}
@@ -110,51 +120,51 @@ public class ModificarProyectoDialog extends JDialog {
 			contentPanel.add(lblNewLabel_8);
 		}
 		{
-			legajoTxt = new JTextField();
+			
 			legajoTxt.setBounds(220, 48, 151, 19);
 			contentPanel.add(legajoTxt);
 			legajoTxt.setColumns(255);
 		}
 		{
-			fechaDeInicioTxt = new JTextField();
+			
 			fechaDeInicioTxt.setText("dd-mm-aaaa");
 			fechaDeInicioTxt.setBounds(264, 122, 96, 19);
 			contentPanel.add(fechaDeInicioTxt);
 			fechaDeInicioTxt.setColumns(255);
 		}
 		{
-			fechaFinTxt = new JTextField();
+		
 			fechaFinTxt.setText("dd-mm-aaaa");
 			fechaFinTxt.setBounds(264, 176, 96, 19);
 			contentPanel.add(fechaFinTxt);
 			fechaFinTxt.setColumns(255);
 		}
 		{
-			estadoTxt = new JTextField();
+			
 			estadoTxt.setBounds(264, 230, 96, 19);
 			contentPanel.add(estadoTxt);
 			estadoTxt.setColumns(255);
 		}
 		{
-			nombreTxt = new JTextField();
+			
 			nombreTxt.setBounds(264, 284, 189, 19);
 			contentPanel.add(nombreTxt);
 			nombreTxt.setColumns(255);
 		}
 		{
-			descripcionTxt = new JTextField();
+			
 			descripcionTxt.setBounds(264, 392, 189, 19);
 			contentPanel.add(descripcionTxt);
 			descripcionTxt.setColumns(255);
 		}
 		{
-			actividadesTxt = new JTextField();
+			
 			actividadesTxt.setBounds(264, 446, 189, 19);
 			contentPanel.add(actividadesTxt);
 			actividadesTxt.setColumns(255);
 		}
 		{
-			insumosTxt = new JTextField();
+			
 			insumosTxt.setBounds(264, 500, 189, 19);
 			contentPanel.add(insumosTxt);
 			insumosTxt.setColumns(255);

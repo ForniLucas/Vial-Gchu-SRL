@@ -15,6 +15,8 @@ import javax.swing.table.DefaultTableModel;
 import Domain.Proyecto;
 import Controladoras.ControladorProyecto;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.util.Iterator;
 import java.util.List;
 import java.awt.event.ActionEvent;
@@ -28,7 +30,12 @@ public class ProyectoDialog extends JDialog {
 	JTable table = new JTable(mt);
 	JScrollPane scrollPane = new JScrollPane(); 
 	ControladorProyecto controladorProyecto = new ControladorProyecto();
-
+	String id = new String();
+	String nombre = new String();
+	String fechaDeInicio = new String();
+	String fechaEstimada = new String();
+	String estado = new String();
+	String fechaFin = new String();
 	/**
 	 * Launch the application.
 	 */
@@ -57,6 +64,19 @@ public class ProyectoDialog extends JDialog {
 		//Formato de tabla
 		mt.setColumnIdentifiers(ids);
 		table.setBounds(100, 40, 1000, 600);
+		table.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				int filaSeleccionada = table.getSelectedRow();
+		        DefaultTableModel mt = (DefaultTableModel)table.getModel();
+		        id = mt.getValueAt(filaSeleccionada, 0).toString();
+		        nombre = mt.getValueAt(filaSeleccionada, 1).toString();
+		        fechaDeInicio = mt.getValueAt(filaSeleccionada, 2).toString();
+		        fechaEstimada = mt.getValueAt(filaSeleccionada, 3).toString();
+		        estado = mt.getValueAt(filaSeleccionada, 4).toString();
+		        fechaFin = mt.getValueAt(filaSeleccionada, 5).toString();
+			}
+		});
 		scrollPane.setBounds(100, 40, 1000, 600);
 		scrollPane.setViewportView(table);
 		contentPanel.add(scrollPane);
@@ -83,7 +103,7 @@ public class ProyectoDialog extends JDialog {
 				bajaBtn.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
 						setVisible(false);
-						BajaProyectoDialog bajaProyectoDialog = new BajaProyectoDialog();
+						BajaProyectoDialog bajaProyectoDialog = new BajaProyectoDialog(ProyectoDialog.this, id);
 						bajaProyectoDialog.setVisible(true);
 					}
 				});
@@ -94,7 +114,7 @@ public class ProyectoDialog extends JDialog {
 				modificarBtn.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
 						setVisible(false);
-						ModificarProyectoDialog modificarProyectoDialog = new ModificarProyectoDialog();
+						ModificarProyectoDialog modificarProyectoDialog = new ModificarProyectoDialog(ProyectoDialog.this, id);
 						modificarProyectoDialog.setVisible(true);
 					}
 				});
@@ -112,7 +132,7 @@ public class ProyectoDialog extends JDialog {
 					eliminarBtn.addActionListener(new ActionListener() {
 						public void actionPerformed(ActionEvent e) {
 							setVisible(false);
-							EliminarProyectoDialog eliminarProyectoDialog = new EliminarProyectoDialog();
+							EliminarProyectoDialog eliminarProyectoDialog = new EliminarProyectoDialog(ProyectoDialog.this, id);
 							eliminarProyectoDialog.setVisible(true);
 						}
 					});

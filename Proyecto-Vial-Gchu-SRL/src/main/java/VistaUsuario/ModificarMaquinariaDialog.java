@@ -20,18 +20,21 @@ import javax.swing.JComboBox;
 public class ModificarMaquinariaDialog extends JDialog {
 
 	private final JPanel contentPanel = new JPanel();
-	private JTextField legajoTxt;
-	private JTextField codigoTxt;
-	private JTextField descripcionTxt;
-	private JTextField fabricanteTxt;
-	private JTextField ubicacionTxt;
+	JTextField legajoTxt = new JTextField();
+	JTextField codigoTxt = new JTextField();
+	JTextField descripcionTxt = new JTextField();
+	JTextField fabricanteTxt = new JTextField();
+	JTextField ubicacionTxt = new JTextField();
 	private JComboBox<String> estadoBox = new JComboBox<String>();
 	private ControladorMaquinaria controlador = new ControladorMaquinaria();
 	private Maquinaria maquina = new Maquinaria();
-
+	String codigo = new String();
+	
+	
 	/**
 	 * Launch the application.
 	 */
+	/*
 	public static void main(String[] args) {
 		try {
 			ModificarMaquinariaDialog dialog = new ModificarMaquinariaDialog();
@@ -41,16 +44,15 @@ public class ModificarMaquinariaDialog extends JDialog {
 			e.printStackTrace();
 		}
 	}
-
+	*/
 	/**
 	 * Create the dialog.
 	 */
-	public ModificarMaquinariaDialog() {
+	public ModificarMaquinariaDialog(MaquinariaDialog dialog, String codigo) {
+		super(dialog, "BajaEmpleadoDialog",true);
+		this.codigo = codigo;
 		
-		codigoTxt = new JTextField();
-		descripcionTxt = new JTextField();
-		fabricanteTxt = new JTextField();
-		ubicacionTxt = new JTextField();
+		legajoTxt.setText(codigo);
 		
 		setBounds(50, 50, 600, 700);
 		this.setResizable(false);

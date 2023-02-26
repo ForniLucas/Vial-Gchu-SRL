@@ -33,11 +33,12 @@ public class ServiceDialog extends JDialog {
 	JTable table = new JTable(mt);
 	JScrollPane scrollPane = new JScrollPane(); 
 	ControladorMaquinaria controladorMaquinaria = new ControladorMaquinaria();
-	public String legajo = new String();
+	public String codigo = new String();
 
 	/**
 	 * Launch the application.
 	 */
+	/*
 	public static void main(String[] args) {
 		try {
 			ServiceDialog dialog = new ServiceDialog();
@@ -47,17 +48,22 @@ public class ServiceDialog extends JDialog {
 			e.printStackTrace();
 		}
 	}
-
+	*/
 	/**
 	 * Create the dialog.
 	 */
-	public ServiceDialog() {
+	public ServiceDialog(MaquinariaDialog dialog, String codigo) {
+		super(dialog, "BajaEmpleadoDialog",true);
+		this.codigo = codigo;
+		
+		legajoTxt.setText(codigo);
+		
 		setBounds(50, 50, 600, 500);
 		getContentPane().setLayout(new BorderLayout());
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
 		getContentPane().add(contentPanel, BorderLayout.CENTER);
 		contentPanel.setLayout(null);
-		legajoTxt.setText(legajo);
+		legajoTxt.setText(codigo);
 		//Formato de tabla
 		mt.setColumnIdentifiers(ids);
 		table.setBounds(26, 71, 532, 112);
@@ -151,7 +157,7 @@ public class ServiceDialog extends JDialog {
 	public void cargarService() {
 		DefaultTableModel modeloTablaService = (DefaultTableModel) table.getModel();
 		Maquinaria maquinaria = new Maquinaria();
-		maquinaria = controladorMaquinaria.buscar(legajo);
+		maquinaria = controladorMaquinaria.buscar(codigo);
 		Iterator <Service>iterador = maquinaria.getServices().iterator();
 			while (iterador.hasNext()) {
 				Service service = (Service) iterador.next();
