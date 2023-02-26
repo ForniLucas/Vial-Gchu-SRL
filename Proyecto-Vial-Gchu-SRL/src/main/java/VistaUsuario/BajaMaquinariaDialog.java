@@ -51,7 +51,6 @@ public class BajaMaquinariaDialog extends JDialog {
 		lblNewLabel_2.setVisible(false);
 		lblNewLabel_3.setVisible(false);
 		lblNewLabel_4.setVisible(false);
-		//lblNewLabel_5.setVisible(false);
 		
 		
 		setBounds(50, 50, 500, 300);
@@ -93,11 +92,6 @@ public class BajaMaquinariaDialog extends JDialog {
 			contentPanel.add(lblNewLabel_4);
 		}
 		{
-			//AGREGAR UNO MAS PARA MOSTRAR LA UBICACIÓN
-			//lblNewLabel_5.setBounds(); //VER
-			//contentPanel.add(lblNewLabel_5);
-		}
-		{
 			JButton buscarBtn = new JButton("Buscar");
 			buscarBtn.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
@@ -108,13 +102,12 @@ public class BajaMaquinariaDialog extends JDialog {
 					lblNewLabel_2.setVisible(true);
 					lblNewLabel_3.setVisible(true);
 					lblNewLabel_4.setVisible(true);
-					//lblNewLabel_5.setVisible(true);
 					
+					String estadoString = maquina.getEstado() ? "En servicio" : "Fuera de Servicio";
 					lblNewLabel_1.setText("Patente: " + maquina.getCodigo());
 					lblNewLabel_2.setText("Descripción: " + maquina.getDescripcion());
 					lblNewLabel_3.setText("Fabricante: " + maquina.getFabricante());
-					lblNewLabel_4.setText("Estado: " + Boolean.toString(maquina.getEstado()));
-					//lblNewLabel_5.setText("Ubicación: " + maquina.getUbicacionAlmacenamiento());
+					lblNewLabel_4.setText("Estado: " + estadoString);
 				}
 			});
 			buscarBtn.setBounds(373, 27, 85, 21);
