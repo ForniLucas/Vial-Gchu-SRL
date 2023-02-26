@@ -98,7 +98,7 @@ public class BajaProyectoDialog extends JDialog {
 					proyecto = controladorProyecto.buscarID(id);
 					lblNewLabel_1.setText("Legajo: " + proyecto.getId());
 					lblNewLabel_2.setText("Nombre: " + proyecto.getNombre());
-					lblNewLabel_3.setText("Tipo: " + proyecto.getTipoProyecto());
+					lblNewLabel_3.setText("Tipo: " + proyecto.getTipoProyecto().getTipo().toString());
 					lblNewLabel_4.setText("Estado: " + (proyecto.getEstado()));
 				}
 			});
