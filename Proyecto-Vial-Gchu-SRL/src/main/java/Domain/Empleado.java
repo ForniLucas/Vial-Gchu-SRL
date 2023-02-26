@@ -64,7 +64,7 @@ public class Empleado implements java.io.Serializable {
 	 @OneToMany(fetch=FetchType.LAZY, mappedBy="Empleado",cascade = CascadeType.ALL,orphanRemoval = true)
 	 private Set<RopaDeTrabajo> RopasDeTrabajo = new HashSet<RopaDeTrabajo>(0);
 	 
-	 @OneToMany(fetch=FetchType.LAZY, mappedBy="Empleado",cascade = CascadeType.ALL,orphanRemoval = true)
+	 @OneToMany(fetch=FetchType.EAGER, mappedBy="Empleado",cascade = CascadeType.ALL,orphanRemoval = true)
 	 private Set<ElementoDeSeguridad> ElementosDeSeguridad = new HashSet<ElementoDeSeguridad>(0);
 	 
 	 

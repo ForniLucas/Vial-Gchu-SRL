@@ -127,15 +127,14 @@ public class ElementoDeSeguridadDialog extends JDialog {
 						LocalDate fechaEtnrega = LocalDate.parse(fechaEtnregaString, formatter);
 						
 						Elemento elemento = (Elemento) tipoBox.getSelectedItem();
+						System.out.println(elemento);
 						
 						ElementoDeSeguridad elementoSeguridad = new ElementoDeSeguridad();
 						
 						elementoSeguridad.setEmpleado(empleado);
 						elementoSeguridad.setTipo(elemento);
 						elementoSeguridad.setFechaEntrega(fechaEtnrega);
-						//RESOLVER ERROR: 
-						//failed to lazily initialize a collection of role: Domain.Empleado.ElementosDeSeguridad, 
-						//could not initialize proxy - no Session
+
 						controlador.asignarElementoDeSeguridad(empleado, elementoSeguridad);
 					}
 				});
