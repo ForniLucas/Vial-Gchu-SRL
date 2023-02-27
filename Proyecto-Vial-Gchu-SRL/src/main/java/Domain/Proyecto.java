@@ -50,8 +50,8 @@ public class Proyecto implements java.io.Serializable{
 	@Column(name = "fechaInicio",nullable=false)
     private LocalDate fechaInicio;
     
-    @Column(name = "FinEstimado",nullable=false)
-    private LocalDate fechaEstmiadaFin;
+    @Column(name = "fechaEstFin",nullable=false)
+    private LocalDate fechaEstFin;
     
     @Column(name = "fechaFin",nullable=true)
     private LocalDate fechaFin;
@@ -76,10 +76,10 @@ public class Proyecto implements java.io.Serializable{
     
    
 
-    public Proyecto(LocalDate fechaInicio, LocalDate fechaEstmiadaFin, LocalDate fechaFin, String estado, String nombre) {
+    public Proyecto(LocalDate fechaInicio, LocalDate fechaEstFin, LocalDate fechaFin, String estado, String nombre) {
         this.id = null;
         this.fechaInicio = fechaInicio;
-        this.fechaEstmiadaFin = fechaEstmiadaFin;
+        this.fechaEstFin = fechaEstFin;
         this.fechaFin = fechaFin;
         this.estado = estado;
         this.nombre = nombre;
@@ -87,8 +87,8 @@ public class Proyecto implements java.io.Serializable{
     
     public Proyecto() {}
     
-    public int getId() {
-        return id != null ? id.intValue() : -1;
+    public long getId() {
+        return this.id;
     }
 
     public LocalDate getFechaInicio() {
@@ -99,12 +99,12 @@ public class Proyecto implements java.io.Serializable{
         this.fechaInicio = fechaInicio;
     }
 
-    public LocalDate getFechaEstmiadaFin() {
-        return fechaEstmiadaFin;
+    public LocalDate getFechaEstFin() {
+        return fechaEstFin;
     }
 
-    public void setFechaEstmiadaFin(LocalDate fechaEstmiadaFin) {
-        this.fechaEstmiadaFin = fechaEstmiadaFin;
+    public void setFechaEstFin(LocalDate fechaEstFin) {
+        this.fechaEstFin = fechaEstFin;
     }
 
     public LocalDate getFechaFin() {
