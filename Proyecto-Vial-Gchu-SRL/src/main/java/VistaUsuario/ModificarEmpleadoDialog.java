@@ -24,6 +24,7 @@ import javax.swing.JComboBox;
 public class ModificarEmpleadoDialog extends JDialog {
 
 	private final JPanel contentPanel = new JPanel();
+	String dniid = new String();
 	String legajo = new String();
 	String apellido = new String();
 	String nombre = new String();
@@ -71,9 +72,9 @@ public class ModificarEmpleadoDialog extends JDialog {
 	public ModificarEmpleadoDialog(EmpleadoDialog dialog, String dni) {
 		super(dialog, "ModificarEmpleadoDialog",true);
 		
-		this.dni = dni;
+		this.dniid = dni;
 		
-		dniidTxt.setText(dni);
+		dniidTxt.setText(dniid);
 
 		/*lblNewLabel_1.setVisible(false);
 		lblNewLabel_2.setVisible(false);
