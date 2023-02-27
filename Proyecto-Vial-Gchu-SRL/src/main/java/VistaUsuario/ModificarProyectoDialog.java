@@ -234,6 +234,7 @@ public class ModificarProyectoDialog extends JDialog {
 						proyecto.setEstado(estado);
 						proyecto.asignarTipoProyecto(tipoProyecto);
 						
+						controladorProyecto.modificar(proyecto);
 					}
 				});
 				guardarBtn.setActionCommand("Guardar");
