@@ -120,8 +120,16 @@ public class EliminarProyectoDialog extends JDialog {
 				JButton bajaBtn = new JButton("Eliminar");
 				bajaBtn.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
-						controladorProyecto.baja(proyecto);
-						optionPane.showMessageDialog(null, "Proyecto Eliminado Exitosamente");
+						if (proyecto.getNombre() != null) {
+				            controladorProyecto.baja(proyecto);
+				            if (controladorProyecto.buscarID(proyecto.getId()) == null) {
+				                optionPane.showMessageDialog(null, "Proyecto Eliminado Exitosamente");
+				            } else {
+				                optionPane.showMessageDialog(null, "El proyecto no se pudo eliminar.");
+				            }
+				        } else {
+				            optionPane.showMessageDialog(null, "Debe buscar un proyecto primero.");
+				        }
 					}
 				});
 				bajaBtn.setActionCommand("OK");
