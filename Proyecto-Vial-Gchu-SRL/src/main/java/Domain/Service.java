@@ -53,7 +53,9 @@ public class Service implements java.io.Serializable{
         this.fechaFin = fechaFin;
         this.observaciones = observaciones;
     }
-
+    
+    public Service() {
+    }
     
     public LocalDate getFechaInicio() {
         return fechaInicio;

@@ -58,7 +58,7 @@ public class Trabajo implements java.io.Serializable{
 	@Column(name="finEstimado",nullable=false)
     private LocalDate fechaEstFin;
 	
-	@Column(name="fin",nullable=false)
+	@Column(name="fin",nullable=true)
     private LocalDate fechaFin;
     
 
