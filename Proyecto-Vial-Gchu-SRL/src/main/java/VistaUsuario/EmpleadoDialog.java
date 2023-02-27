@@ -119,7 +119,7 @@ public class EmpleadoDialog extends JDialog {
 							hEspecializacionBtn.addActionListener(new ActionListener() {
 								public void actionPerformed(ActionEvent e) {
 									HistorialEspecializacionDialog historialEspecializacion = new HistorialEspecializacionDialog(EmpleadoDialog.this, dni, apellido, nombre);
-									setVisible(false);									
+									historialEspecializacion.setVisible(true);									
 								}
 							});
 							buttonPane.add(hEspecializacionBtn);
