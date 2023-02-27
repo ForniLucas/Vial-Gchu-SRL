@@ -119,8 +119,16 @@ public class BajaProyectoDialog extends JDialog {
 				JButton bajaBtn = new JButton("Dar de Baja");
 				bajaBtn.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
-						controladorProyecto.bajaLogica(proyecto);
-						optionPane.showMessageDialog(null, "Proyecto dado de Baja Exitosamente");
+						if (proyecto.getNombre() != null) {
+				            controladorProyecto.bajaLogica(proyecto);
+				            if (controladorProyecto.buscarID(proyecto.getId()).getEstado() == "Cancelado") {
+				                optionPane.showMessageDialog(null, "Proyecto dado de Baja Exitosamente");
+				            } else {
+				                optionPane.showMessageDialog(null, "El proyecto no se pudo dar de Baja.");
+				            }
+				        } else {
+				            optionPane.showMessageDialog(null, "Debe buscar un proyecto primero.");
+				        }
 					}
 				});
 				bajaBtn.setActionCommand("OK");

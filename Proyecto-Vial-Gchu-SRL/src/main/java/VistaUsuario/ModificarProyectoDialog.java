@@ -14,6 +14,8 @@ import Domain.Proyecto;
 import Domain.TipoProyecto;
 
 import java.awt.event.ActionListener;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.awt.event.ActionEvent;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
@@ -22,18 +24,18 @@ import javax.swing.JComboBox;
 public class ModificarProyectoDialog extends JDialog {
 
 	private final JPanel contentPanel = new JPanel();
-	JTextField legajoTxt = new JTextField();
-	JTextField fechaDeInicioTxt = new JTextField();
-	JTextField fechaFinTxt = new JTextField();
-	JTextField estadoTxt = new JTextField();
-	JTextField nombreTxt = new JTextField();
-	JTextField descripcionTxt = new JTextField();
-	JTextField actividadesTxt = new JTextField();
-	JTextField insumosTxt = new JTextField();
+	private JTextField legajoTxt = new JTextField();
+	private JTextField fechaDeInicioTxt = new JTextField();
+	private JTextField fechaFinTxt = new JTextField();
+	private JComboBox<String> estadoBox= new JComboBox<String>();
+	private JTextField nombreTxt = new JTextField();
+	private JTextField descripcionTxt = new JTextField();
+	private JTextField actividadesTxt = new JTextField();
+	private JTextField insumosTxt = new JTextField();
 	
-	String id = new String();
+	private String id = new String();
 	
-	JComboBox<TipoDeProyecto> tipoBox = new JComboBox<TipoDeProyecto>(TipoDeProyecto.values()){
+	private JComboBox<TipoDeProyecto> tipoBox = new JComboBox<TipoDeProyecto>(TipoDeProyecto.values()){
 	    @Override
 	    public String toString() {
 	        String selectedItem = (String) getSelectedItem().toString();
@@ -127,23 +129,27 @@ public class ModificarProyectoDialog extends JDialog {
 		}
 		{
 			
-			fechaDeInicioTxt.setText("dd-mm-aaaa");
+			fechaDeInicioTxt.setText("dd/mm/aaaa");
 			fechaDeInicioTxt.setBounds(264, 122, 96, 19);
 			contentPanel.add(fechaDeInicioTxt);
 			fechaDeInicioTxt.setColumns(255);
 		}
 		{
 		
-			fechaFinTxt.setText("dd-mm-aaaa");
+			fechaFinTxt.setText("dd/mm/aaaa");
 			fechaFinTxt.setBounds(264, 176, 96, 19);
 			contentPanel.add(fechaFinTxt);
 			fechaFinTxt.setColumns(255);
 		}
 		{
 			
-			estadoTxt.setBounds(264, 230, 96, 19);
-			contentPanel.add(estadoTxt);
-			estadoTxt.setColumns(255);
+			estadoBox.setBounds(264, 230, 96, 19);
+			estadoBox.addItem("Iniciado");
+		    estadoBox.addItem("En curso");
+		    estadoBox.addItem("Suspendido");
+		    estadoBox.addItem("Finalizado");
+		    estadoBox.addItem("Cancelado");
+		    contentPanel.add(estadoBox);
 		}
 		{
 			
@@ -178,13 +184,14 @@ public class ModificarProyectoDialog extends JDialog {
 			JButton buscarBtn = new JButton("Buscar");
 			buscarBtn.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
+
 					String codigo = legajoTxt.getText(); 
 					int id = Integer.parseInt(codigo);
 					proyecto = controladorProyecto.buscarID(id);
 					nombreTxt.setText(proyecto.getNombre());
 					fechaDeInicioTxt.setText(proyecto.getFechaInicio().toString());
 					fechaFinTxt.setText(proyecto.getFechaEstmiadaFin().toString());
-					estadoTxt.setText(proyecto.getEstado());
+					estadoBox.setSelectedItem(proyecto.getEstado());
 					TipoProyecto tipo = (TipoProyecto)(proyecto.getTipoProyecto());
 					tipoBox.setSelectedItem(tipo.getTipo());
 					actividadesTxt.setText(tipo.getActividades());
@@ -204,9 +211,32 @@ public class ModificarProyectoDialog extends JDialog {
 				guardarBtn.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
 						
+						String fechaInicioString = fechaDeInicioTxt.getText(); 
+						DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+						LocalDate fechaInicio = LocalDate.parse(fechaInicioString, formatter);
+						
+						String fechaFinString = fechaFinTxt.getText(); 
+						DateTimeFormatter formatter2 = DateTimeFormatter.ofPattern("dd/MM/yyyy"); 
+						LocalDate fechaFin = LocalDate.parse(fechaFinString, formatter2);
+						
+						String nombre = nombreTxt.getText();
+						String desc = descripcionTxt.getText();
+						String actividades = actividadesTxt.getText(); 
+						String insumos = insumosTxt.getText();
+						String estado = (String) estadoBox.getSelectedItem();
+						
+						TipoDeProyecto tipo = (TipoDeProyecto) tipoBox.getSelectedItem(); 
+						TipoProyecto tipoProyecto = new TipoProyecto(tipo, desc, actividades, insumos);
+						
+						proyecto.setFechaInicio(fechaInicio);
+						proyecto.setFechaEstmiadaFin(fechaFin);
+						proyecto.setNombre(nombre);
+						proyecto.setEstado(estado);
+						proyecto.asignarTipoProyecto(tipoProyecto);
+						
 					}
 				});
-				guardarBtn.setActionCommand("OK");
+				guardarBtn.setActionCommand("Guardar");
 				buttonPane.add(guardarBtn);
 				getRootPane().setDefaultButton(guardarBtn);
 			}
