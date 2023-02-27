@@ -42,6 +42,7 @@ public class ModificarEmpleadoDialog extends JDialog {
 	JTextField fechaDeNacimientoTxt = new JTextField();
 	ControladorEmpleado controlador = new ControladorEmpleado();
 	Empleado empleado = new Empleado();
+	
 	//Empleado empleadoGlob = new Empleado();
 
 	/*JLabel lblNewLabel_1 = new JLabel("");
@@ -69,6 +70,7 @@ public class ModificarEmpleadoDialog extends JDialog {
 	 */
 	public ModificarEmpleadoDialog(EmpleadoDialog dialog, String dni) {
 		super(dialog, "ModificarEmpleadoDialog",true);
+		
 		this.dni = dni;
 		
 		dniidTxt.setText(dni);
@@ -206,8 +208,8 @@ public class ModificarEmpleadoDialog extends JDialog {
 			JButton buscarBtn = new JButton("Buscar");
 			buscarBtn.addActionListener(new ActionListener(){
 				public void actionPerformed(ActionEvent e) {
-					String dniString = dniTxt.getText(); // Get the value of the JTextField as a String
-					int dni_buscar = Integer.parseInt(dniString); // Convert the String to an int
+					//String dniString = dniTxt.getText(); // Get the value of the JTextField as a String
+					int dni_buscar = Integer.parseInt(dniidTxt.getText()); // Convert the String to an int
 					empleado = controlador.buscarDNI(dni_buscar);
 				
 					apellidoTxt.setText(empleado.getApellido());
