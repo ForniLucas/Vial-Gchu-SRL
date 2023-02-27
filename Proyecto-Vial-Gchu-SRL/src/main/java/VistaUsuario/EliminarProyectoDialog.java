@@ -104,7 +104,8 @@ public class EliminarProyectoDialog extends JDialog {
 					proyecto = controladorProyecto.buscarID(id);
 					lblNewLabel_1.setText("Legajo: " + proyecto.getId());
 					lblNewLabel_2.setText("Nombre: " + proyecto.getNombre());
-					lblNewLabel_3.setText("Tipo: " + proyecto.getTipoProyecto());
+					String tipoProyecto = proyecto.getTipoProyecto() != null ? proyecto.getTipoProyecto().getTipo().toString() : "(Vacio)";
+					lblNewLabel_3.setText("Tipo: " + tipoProyecto);
 					lblNewLabel_4.setText("Estado: " + (proyecto.getEstado()));
 				}
 			});
