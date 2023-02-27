@@ -206,7 +206,7 @@ public class ModificarEmpleadoDialog extends JDialog {
 			JButton buscarBtn = new JButton("Buscar");
 			buscarBtn.addActionListener(new ActionListener(){
 				public void actionPerformed(ActionEvent e) {
-					String dniString = legajoTxt.getText(); // Get the value of the JTextField as a String
+					String dniString = dniTxt.getText(); // Get the value of the JTextField as a String
 					int dni_buscar = Integer.parseInt(dniString); // Convert the String to an int
 					empleado = controlador.buscarDNI(dni_buscar);
 				
