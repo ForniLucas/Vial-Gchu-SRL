@@ -14,6 +14,7 @@ import Domain.Maquinaria;
 import Domain.Proyecto;
 
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
@@ -36,6 +37,7 @@ public class UtilizaDialog extends JDialog {
 	JLabel descripcionLbl = new JLabel("Descripción: ");
 	JLabel fabricanteLbl = new JLabel("Fabricante: ");
 	Proyecto proyecto = new Proyecto();
+	JOptionPane optionPane = new JOptionPane();
 	/**
 	 * Launch the application.
 	 */
@@ -137,7 +139,12 @@ public class UtilizaDialog extends JDialog {
 				JButton asignarBtn = new JButton("Asignar");
 				asignarBtn.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
-						controladorP.asignarUtiliza(maquinaria, proyecto);
+						if (maquinaria.getCodigo() !=  null)
+						{controladorP.asignarUtiliza(maquinaria, proyecto);
+						  optionPane.showMessageDialog(null, "Maquinaria asignada exitosamente.");
+						} else {
+							 optionPane.showMessageDialog(null, "Debe buscar una maquinaria primero.");
+						}
 					}
 				});
 				asignarBtn.setActionCommand("OK");

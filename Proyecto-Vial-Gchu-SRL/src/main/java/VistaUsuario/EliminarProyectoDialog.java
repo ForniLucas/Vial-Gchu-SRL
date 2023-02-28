@@ -122,7 +122,7 @@ public class EliminarProyectoDialog extends JDialog {
 					public void actionPerformed(ActionEvent e) {
 						if (proyecto.getNombre() != null) {
 				            controladorProyecto.baja(proyecto);
-				            if (controladorProyecto.buscarID(proyecto.getId()) == null) {
+				            if (controladorProyecto.buscarID(Integer.parseInt(proyecto.getId())== null)) {
 				                optionPane.showMessageDialog(null, "Proyecto Eliminado Exitosamente");
 				            } else {
 				                optionPane.showMessageDialog(null, "El proyecto no se pudo eliminar.");
