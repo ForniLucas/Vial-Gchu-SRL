@@ -96,6 +96,15 @@ public class ProyectoDialog extends JDialog {
 						altaProyectoDialog.setVisible(true);
 					}
 				});
+				{
+					JButton utilizaBtn = new JButton("Asignar Maquinaria");
+					utilizaBtn.addActionListener(new ActionListener() {
+						public void actionPerformed(ActionEvent e) {
+							UtilizaDialog utiliza = new UtilizaDialog(ProyectoDialog.this, id, "");
+						}
+					});
+					buttonPane.add(utilizaBtn);
+				}
 				buttonPane.add(altaBtn);
 			}
 			{
@@ -151,7 +160,7 @@ public class ProyectoDialog extends JDialog {
 		while (iterador.hasNext()) {
 			Proyecto proyecto = (Proyecto) iterador.next();
 			String fila[] = {String.valueOf(proyecto.getId()),String.valueOf(proyecto.getNombre()),String.valueOf(proyecto.getFechaInicio()),
-					String.valueOf(proyecto.getFechaEstmiadaFin()),String.valueOf(proyecto.getEstado()),String.valueOf(proyecto.getFechaFin())};
+					String.valueOf(proyecto.getFechaEstFin()),String.valueOf(proyecto.getEstado()),String.valueOf(proyecto.getFechaFin())};
 			modeloTablaProyecto.addRow(fila);
 		}
 		
