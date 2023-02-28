@@ -10,6 +10,8 @@ import javax.swing.border.EmptyBorder;
 
 import Controladoras.ControladorMaquinaria;
 import Controladoras.ControladorProyecto;
+import Domain.Maquinaria;
+import Domain.Proyecto;
 
 import javax.swing.JLabel;
 import javax.swing.JTextField;
@@ -21,6 +23,8 @@ public class UtilizaDialog extends JDialog {
 	private final JPanel contentPanel = new JPanel();
 	String idproyecto = new String();
 	String codigo = new String();
+	String fabricante = new String();
+	String descripcion = new String();
 	JTextField fechaInicioTxt = new JTextField();;
 	JTextField fechaEstimadaTxt = new JTextField();;
 	JTextField fechaFinTxt = new JTextField();;
@@ -28,6 +32,10 @@ public class UtilizaDialog extends JDialog {
 	ControladorMaquinaria controladorM = new ControladorMaquinaria();
 	ControladorProyecto controladorP = new ControladorProyecto();
 	JTextField codigoTxt = new JTextField();
+	Maquinaria maquinaria = new Maquinaria();
+	JLabel descripcionLbl = new JLabel("Descripción: ");
+	JLabel fabricanteLbl = new JLabel("Fabricante: ");
+	Proyecto proyecto = new Proyecto();
 	/**
 	 * Launch the application.
 	 */
@@ -49,9 +57,9 @@ public class UtilizaDialog extends JDialog {
 		super(dialog1, "UtilizaDialog",true);
 		this.idproyecto = idproyecto;
 		this.codigo = codigo;
-		this.dialog2 = dialog2;
 		
-		
+		codigoTxt.setText(codigo);
+		proyecto = controladorP.buscarID(Integer.parseInt(idproyecto));
 		
 		setBounds(50,50, 550, 500);
 		getContentPane().setLayout(new BorderLayout());
@@ -59,7 +67,7 @@ public class UtilizaDialog extends JDialog {
 		getContentPane().add(contentPanel, BorderLayout.CENTER);
 		contentPanel.setLayout(null);
 		
-		JLabel proyectoidLbl = new JLabel("Proyecto: ");
+		JLabel proyectoidLbl = new JLabel("Proyecto: "+ idproyecto);
 		proyectoidLbl.setBounds(54, 42, 221, 13);
 		contentPanel.add(proyectoidLbl);
 		
@@ -101,14 +109,24 @@ public class UtilizaDialog extends JDialog {
 		codigoTxt.setColumns(10);
 		
 		JButton buscarBtn = new JButton("Buscar");
+		buscarBtn.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				maquinaria = controladorM.buscar(codigoTxt.getText());
+				descripcion = maquinaria.getDescripcion();
+				fabricante = maquinaria.getFabricante();
+				
+				descripcionLbl.setText("Descripcion: "+ descripcion);
+				fabricanteLbl.setText("Fabricante: "+ fabricante);
+			}
+		});
 		buscarBtn.setBounds(391, 93, 85, 21);
 		contentPanel.add(buscarBtn);
 		
-		JLabel descripcionLbl = new JLabel("Descripción:");
+		
 		descripcionLbl.setBounds(54, 152, 221, 13);
 		contentPanel.add(descripcionLbl);
 		
-		JLabel fabricanteLbl = new JLabel("Fabricante: ");
+		
 		fabricanteLbl.setBounds(54, 207, 139, 13);
 		contentPanel.add(fabricanteLbl);
 		{
@@ -119,6 +137,7 @@ public class UtilizaDialog extends JDialog {
 				JButton asignarBtn = new JButton("Asignar");
 				asignarBtn.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
+						controladorP.asignarUtiliza(maquinaria, proyecto);
 					}
 				});
 				asignarBtn.setActionCommand("OK");
@@ -129,6 +148,7 @@ public class UtilizaDialog extends JDialog {
 				JButton cancelarBtn = new JButton("Cancelar");
 				cancelarBtn.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
+						setVisible(false);
 					}
 				});
 				cancelarBtn.setActionCommand("Cancel");
