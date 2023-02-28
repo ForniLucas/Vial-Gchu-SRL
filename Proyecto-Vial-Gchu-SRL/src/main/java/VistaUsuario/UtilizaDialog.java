@@ -63,6 +63,8 @@ public class UtilizaDialog extends JDialog {
 		codigoTxt.setText(codigo);
 		proyecto = controladorP.buscarID(Integer.parseInt(idproyecto));
 		
+		this.setResizable(false);
+		this.setTitle("ASIGNAR MAQUINARIA A PROYECTO");
 		setBounds(50,50, 550, 500);
 		getContentPane().setLayout(new BorderLayout());
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
