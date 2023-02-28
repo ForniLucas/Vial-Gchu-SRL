@@ -64,7 +64,7 @@ public class UtilizaDialog extends JDialog {
 		proyecto = controladorP.buscarID(Integer.parseInt(idproyecto));
 		
 		this.setResizable(false);
-		this.setTitle("ASIGNAR MAQUINARIA A PROYECTO");
+		this.setTitle("ASIGNAR MAQUINARIA AL PROYECTO");
 		setBounds(50,50, 550, 500);
 		getContentPane().setLayout(new BorderLayout());
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -143,6 +143,8 @@ public class UtilizaDialog extends JDialog {
 					public void actionPerformed(ActionEvent e) {
 						if (maquinaria.getCodigo() !=  null)
 						{controladorP.asignarUtiliza(maquinaria, proyecto);
+						
+						//donde se le pasan los datos que cargamos?
 						  optionPane.showMessageDialog(null, "Maquinaria asignada exitosamente.");
 						} else {
 							 optionPane.showMessageDialog(null, "Debe buscar una maquinaria primero.");
