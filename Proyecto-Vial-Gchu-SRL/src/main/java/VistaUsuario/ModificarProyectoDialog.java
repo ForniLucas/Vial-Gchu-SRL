@@ -20,12 +20,14 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.awt.event.ActionEvent;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import javax.swing.JComboBox;
 
 public class ModificarProyectoDialog extends JDialog {
 
 	private final JPanel contentPanel = new JPanel();
+	JOptionPane optionPane = new JOptionPane();
 	private JTextField legajoTxt = new JTextField();
 	private JTextField fechaDeInicioTxt = new JTextField();
 	private JTextField fechaFinTxt = new JTextField();
@@ -181,19 +183,23 @@ public class ModificarProyectoDialog extends JDialog {
 			JButton buscarBtn = new JButton("Buscar");
 			buscarBtn.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
-
-					String codigo = legajoTxt.getText(); 
-					int id = Integer.parseInt(codigo);
-					proyecto = controladorProyecto.buscarID(id);
-					nombreTxt.setText(proyecto.getNombre());
-					fechaDeInicioTxt.setText(proyecto.getFechaInicio().toString());
-					fechaFinTxt.setText(proyecto.getFechaEstFin().toString());
-					estadoBox.setSelectedItem(proyecto.getEstado());
-					TipoProyecto tipo = (TipoProyecto)(proyecto.getTipoProyecto());
-					tipoBox.setSelectedItem(tipo.getTipo());
-					actividadesTxt.setText(tipo.getActividades());
-					insumosTxt.setText(tipo.getInsumos());
-					descripcionTxt.setText(tipo.getDescripcion());
+					try { 
+						String codigo = legajoTxt.getText(); 
+						int id = Integer.parseInt(codigo);
+						proyecto = controladorProyecto.buscarID(id);
+						nombreTxt.setText(proyecto.getNombre());
+						fechaDeInicioTxt.setText(proyecto.getFechaInicio().toString());
+						fechaFinTxt.setText(proyecto.getFechaEstFin().toString());
+						estadoBox.setSelectedItem(proyecto.getEstado());
+						TipoProyecto tipo = (TipoProyecto)(proyecto.getTipoProyecto());
+						tipoBox.setSelectedItem(tipo.getTipo());
+						actividadesTxt.setText(tipo.getActividades());
+						insumosTxt.setText(tipo.getInsumos());
+						descripcionTxt.setText(tipo.getDescripcion());
+					} catch (Exception e1) {
+						optionPane.showMessageDialog(null, "Error al buscar: Valor Ingresado no valido o inexistente");
+					}
+					
 				}
 			});
 			buscarBtn.setBounds(418, 47, 85, 21);
@@ -207,31 +213,35 @@ public class ModificarProyectoDialog extends JDialog {
 				JButton guardarBtn = new JButton("Guardar");
 				guardarBtn.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
+						try {
+							String fechaInicioString = fechaDeInicioTxt.getText(); 
+							DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+							LocalDate fechaInicio = LocalDate.parse(fechaInicioString, formatter);
+							
+							String fechaFinString = fechaFinTxt.getText(); 
+							DateTimeFormatter formatter2 = DateTimeFormatter.ofPattern("dd/MM/yyyy"); 
+							LocalDate fechaFin = LocalDate.parse(fechaFinString, formatter2);
+							
+							String nombre = nombreTxt.getText();
+							String desc = descripcionTxt.getText();
+							String actividades = actividadesTxt.getText(); 
+							String insumos = insumosTxt.getText();
+							EstadoProyecto estado = (EstadoProyecto) estadoBox.getSelectedItem();
+							
+							TipoDeProyecto tipo = (TipoDeProyecto) tipoBox.getSelectedItem(); 
+							TipoProyecto tipoProyecto = new TipoProyecto(tipo, desc, actividades, insumos);
+							
+							proyecto.setFechaInicio(fechaInicio);
+							proyecto.setFechaEstFin(fechaFin);
+							proyecto.setNombre(nombre);
+							proyecto.setEstado(estado);
+							proyecto.asignarTipoProyecto(tipoProyecto);
+							
+							controladorProyecto.modificar(proyecto);
+						} catch (Exception e1) {
+							optionPane.showMessageDialog(null, "Error al Realizar la operación: " + e1.getMessage());
+						}
 						
-						String fechaInicioString = fechaDeInicioTxt.getText(); 
-						DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-						LocalDate fechaInicio = LocalDate.parse(fechaInicioString, formatter);
-						
-						String fechaFinString = fechaFinTxt.getText(); 
-						DateTimeFormatter formatter2 = DateTimeFormatter.ofPattern("dd/MM/yyyy"); 
-						LocalDate fechaFin = LocalDate.parse(fechaFinString, formatter2);
-						
-						String nombre = nombreTxt.getText();
-						String desc = descripcionTxt.getText();
-						String actividades = actividadesTxt.getText(); 
-						String insumos = insumosTxt.getText();
-						EstadoProyecto estado = (EstadoProyecto) estadoBox.getSelectedItem();
-						
-						TipoDeProyecto tipo = (TipoDeProyecto) tipoBox.getSelectedItem(); 
-						TipoProyecto tipoProyecto = new TipoProyecto(tipo, desc, actividades, insumos);
-						
-						proyecto.setFechaInicio(fechaInicio);
-						proyecto.setFechaEstFin(fechaFin);
-						proyecto.setNombre(nombre);
-						proyecto.setEstado(estado);
-						proyecto.asignarTipoProyecto(tipoProyecto);
-						
-						controladorProyecto.modificar(proyecto);
 					}
 				});
 				guardarBtn.setActionCommand("Guardar");
