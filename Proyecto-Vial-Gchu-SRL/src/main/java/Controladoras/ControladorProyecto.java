@@ -25,11 +25,13 @@ import Domain.Proyecto;
 import Domain.TipoProyecto;
 import Domain.Trabajo;
 import Domain.Utiliza;
+import Enumeraciones.EstadoProyecto;
 
 public class ControladorProyecto {
 
 	private LinkedList<Proyecto> proyectos = new LinkedList<Proyecto>(); 
 	
+
 	public void alta(Proyecto poyecto) {
 		
 		// Iniciar la sesión de Hibernate
@@ -68,7 +70,7 @@ public class ControladorProyecto {
 	    }
 
 	}
-	
+
 	public void bajaLogica(Proyecto unProyecto) {
 		
 		// Iniciar la sesión de Hibernate
@@ -80,9 +82,9 @@ public class ControladorProyecto {
 	      factory = new MetadataSources(registry).buildMetadata().buildSessionFactory();
 	      session = factory.openSession();
 	      transaction = session.beginTransaction();
-	      
+	      EstadoProyecto cancelado= EstadoProyecto.CANCELADO;
 	      //Actualiza el proyecto
-	      unProyecto.setEstado("Cancelado");
+	      unProyecto.setEstado(cancelado);
 	      unProyecto.setFechaFin(LocalDate.now());
 	      session.update(unProyecto);
 	      transaction.commit();
@@ -183,7 +185,7 @@ public class ControladorProyecto {
 	    }
 	}
 	
-public void finalizarProyecto(Proyecto unProyecto) {
+public void finalizarProyecto(Proyecto unProyecto, LocalDate unaFechaFin) {
 		
 		// Iniciar sesión de Hibernate
 	    StandardServiceRegistry registry = new StandardServiceRegistryBuilder().configure().build();
@@ -194,7 +196,8 @@ public void finalizarProyecto(Proyecto unProyecto) {
 	      factory = new MetadataSources(registry).buildMetadata().buildSessionFactory();
 	      session = factory.openSession();
 	      transaction = session.beginTransaction();
-	      
+	      unProyecto.setFechaFin(unaFechaFin);
+	      unProyecto.setEstado(EstadoProyecto.CANCELADO);
 	      //Actualiza el proyecto
 	      session.update(unProyecto);
 	      transaction.commit();

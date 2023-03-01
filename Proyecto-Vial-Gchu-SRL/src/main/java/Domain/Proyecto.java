@@ -23,6 +23,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Table;
 
+import Enumeraciones.EstadoProyecto;
+
 
 /**
  * @author lucas
@@ -57,7 +59,7 @@ public class Proyecto implements java.io.Serializable{
     private LocalDate fechaFin;
     
     @Column(name = "estado",nullable=true)
-    private String estado; //Se modifico de Boolean a String
+    private EstadoProyecto estado; //Se modifico de Boolean a String
     
     @OneToOne(cascade = CascadeType.ALL,
     		  fetch = FetchType.EAGER)
@@ -76,7 +78,7 @@ public class Proyecto implements java.io.Serializable{
     
    
 
-    public Proyecto(LocalDate fechaInicio, LocalDate fechaEstFin, LocalDate fechaFin, String estado, String nombre) {
+    public Proyecto(LocalDate fechaInicio, LocalDate fechaEstFin, LocalDate fechaFin, EstadoProyecto estado, String nombre) {
         this.id = null;
         this.fechaInicio = fechaInicio;
         this.fechaEstFin = fechaEstFin;
@@ -115,11 +117,11 @@ public class Proyecto implements java.io.Serializable{
         this.fechaFin = fechaFin;
     }
 
-    public String getEstado() {
+    public EstadoProyecto getEstado() {
         return estado;
     }
 
-    public void setEstado(String estado) {
+    public void setEstado(EstadoProyecto estado) {
         this.estado = estado;
     }
 
