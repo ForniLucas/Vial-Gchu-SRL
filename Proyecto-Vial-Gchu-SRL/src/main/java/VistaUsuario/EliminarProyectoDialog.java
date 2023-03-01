@@ -99,14 +99,20 @@ public class EliminarProyectoDialog extends JDialog {
 			JButton buscarBtn = new JButton("Buscar");
 			buscarBtn.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
-					String codigo = legajoTxt.getText();
-					int id = Integer.parseInt(codigo);
-					proyecto = controladorProyecto.buscarID(id);
-					lblNewLabel_1.setText("Legajo: " + proyecto.getId());
-					lblNewLabel_2.setText("Nombre: " + proyecto.getNombre());
-					String tipoProyecto = proyecto.getTipoProyecto() != null ? proyecto.getTipoProyecto().getTipo().toString() : "(Vacio)";
-					lblNewLabel_3.setText("Tipo: " + tipoProyecto);
-					lblNewLabel_4.setText("Estado: " + (proyecto.getEstado()));
+					try {
+						String codigo = legajoTxt.getText();
+						int id = Integer.parseInt(codigo);
+						proyecto = controladorProyecto.buscarID(id);
+						lblNewLabel_1.setText("Legajo: " + proyecto.getId());
+						lblNewLabel_2.setText("Nombre: " + proyecto.getNombre());
+						String tipoProyecto = proyecto.getTipoProyecto() != null ? proyecto.getTipoProyecto().getTipo().toString() : "(Vacio)";
+						lblNewLabel_3.setText("Tipo: " + tipoProyecto);
+						lblNewLabel_4.setText("Estado: " + (proyecto.getEstado()));
+					} catch (Exception e1) {
+						optionPane.showMessageDialog(null, "Error al buscar: Valor Ingresado no valido o inexistente");
+					}
+					
+					
 				}
 			});
 			buscarBtn.setBounds(324, 25, 85, 21);
@@ -120,16 +126,21 @@ public class EliminarProyectoDialog extends JDialog {
 				JButton bajaBtn = new JButton("Eliminar");
 				bajaBtn.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
-						if (proyecto.getNombre() != null) {
-				            controladorProyecto.baja(proyecto);
-				            if (controladorProyecto.buscarID(proyecto.getId()) == null) {
-				                optionPane.showMessageDialog(null, "Proyecto Eliminado Exitosamente");
-				            } else {
-				                optionPane.showMessageDialog(null, "El proyecto no se pudo eliminar.");
-				            }
-				        } else {
-				            optionPane.showMessageDialog(null, "Debe buscar un proyecto primero.");
-				        }
+						try {
+							if (proyecto.getNombre() != null) {
+					            controladorProyecto.baja(proyecto);
+					            if (controladorProyecto.buscarID(proyecto.getId()) == null) {
+					                optionPane.showMessageDialog(null, "Proyecto Eliminado Exitosamente");
+					            } else {
+					                optionPane.showMessageDialog(null, "El proyecto no se pudo eliminar.");
+					            }
+					        } else {
+					            optionPane.showMessageDialog(null, "Debe buscar un proyecto primero.");
+					        }
+						} catch (Exception e1) {
+							optionPane.showMessageDialog(null, "Error al intentar eliminar" + e1.getMessage());
+						}
+						
 					}
 				});
 				bajaBtn.setActionCommand("OK");
