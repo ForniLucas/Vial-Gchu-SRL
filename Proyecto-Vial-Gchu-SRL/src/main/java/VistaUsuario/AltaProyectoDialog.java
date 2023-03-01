@@ -194,8 +194,6 @@ public class AltaProyectoDialog extends JDialog {
 						proyecto.setFechaEstFin(fechaFin);
 						proyecto.setFechaFin(fechaFin);
 						proyecto.setNombre(nombre);
-						
-						System.out.println(estado);
 						proyecto.setEstado(estado);
 						proyecto.asignarTipoProyecto(tipoProyecto);
 						
