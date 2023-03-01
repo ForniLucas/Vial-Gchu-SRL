@@ -12,6 +12,7 @@ import Controladoras.ControladorMaquinaria;
 import Domain.Maquinaria;
 
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
@@ -26,6 +27,7 @@ public class BajaMaquinariaDialog extends JDialog {
 	JLabel lblNewLabel_3 = new JLabel("");
 	JLabel lblNewLabel_4 = new JLabel("");
 	JLabel lblNewLabel_5 = new JLabel("");
+	JOptionPane optionPane = new JOptionPane();
 	String codigo = new String();
 	JTextField legajoTxt = new JTextField();
 	/**
@@ -100,19 +102,25 @@ public class BajaMaquinariaDialog extends JDialog {
 			JButton buscarBtn = new JButton("Buscar");
 			buscarBtn.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
-					String codigo = legajoTxt.getText();
+					try {
+						String codigo = legajoTxt.getText();
+						
+						maquina = controlador.buscar(codigo);
+						lblNewLabel_1.setVisible(true);
+						lblNewLabel_2.setVisible(true);
+						lblNewLabel_3.setVisible(true);
+						lblNewLabel_4.setVisible(true);
+						
+						String estadoString = maquina.getEstado() ? "En servicio" : "Fuera de Servicio";
+						lblNewLabel_1.setText("Patente: " + maquina.getCodigo());
+						lblNewLabel_2.setText("Descripción: " + maquina.getDescripcion());
+						lblNewLabel_3.setText("Fabricante: " + maquina.getFabricante());
+						lblNewLabel_4.setText("Estado: " + estadoString);
+					} catch (Exception e1) {
+						optionPane.showMessageDialog(null, "Error al buscar: Valor Ingresado no valido o inexistente");
+					}
 					
-					maquina = controlador.buscar(codigo);
-					lblNewLabel_1.setVisible(true);
-					lblNewLabel_2.setVisible(true);
-					lblNewLabel_3.setVisible(true);
-					lblNewLabel_4.setVisible(true);
 					
-					String estadoString = maquina.getEstado() ? "En servicio" : "Fuera de Servicio";
-					lblNewLabel_1.setText("Patente: " + maquina.getCodigo());
-					lblNewLabel_2.setText("Descripción: " + maquina.getDescripcion());
-					lblNewLabel_3.setText("Fabricante: " + maquina.getFabricante());
-					lblNewLabel_4.setText("Estado: " + estadoString);
 				}
 			});
 			buscarBtn.setBounds(373, 27, 85, 21);
@@ -126,7 +134,22 @@ public class BajaMaquinariaDialog extends JDialog {
 				JButton bajaBtn = new JButton("Dar de Baja");
 				bajaBtn.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
-						controlador.bajaLogica(maquina);
+						try {
+							if (maquina.getCodigo() != null) {
+								if (controlador.buscar(maquina.getCodigo()).getEstado()) {
+									controlador.bajaLogica(maquina);
+									optionPane.showMessageDialog(null, "Baja Exitosa");
+								}else {
+									optionPane.showMessageDialog(null, "La Maquina ya esta dado de baja");
+								}
+							}else {
+								optionPane.showMessageDialog(null, "Debe buscar una Maquina primero.");
+							}
+							
+						} catch(Exception e1) {
+							optionPane.showMessageDialog(null, "Error al dar de baja la Maquinaria: " + e1.getMessage());
+						}
+						
 					}
 				});
 				bajaBtn.setActionCommand("OK");
