@@ -190,7 +190,7 @@ public class ModificarProyectoDialog extends JDialog {
 					proyecto = controladorProyecto.buscarID(id);
 					nombreTxt.setText(proyecto.getNombre());
 					fechaDeInicioTxt.setText(proyecto.getFechaInicio().toString());
-					fechaFinTxt.setText(proyecto.getFechaEstmiadaFin().toString());
+					fechaFinTxt.setText(proyecto.getFechaEstFin().toString());
 					estadoBox.setSelectedItem(proyecto.getEstado());
 					TipoProyecto tipo = (TipoProyecto)(proyecto.getTipoProyecto());
 					tipoBox.setSelectedItem(tipo.getTipo());
@@ -229,7 +229,7 @@ public class ModificarProyectoDialog extends JDialog {
 						TipoProyecto tipoProyecto = new TipoProyecto(tipo, desc, actividades, insumos);
 						
 						proyecto.setFechaInicio(fechaInicio);
-						proyecto.setFechaEstmiadaFin(fechaFin);
+						proyecto.setFechaEstFin(fechaFin);
 						proyecto.setNombre(nombre);
 						proyecto.setEstado(estado);
 						proyecto.asignarTipoProyecto(tipoProyecto);

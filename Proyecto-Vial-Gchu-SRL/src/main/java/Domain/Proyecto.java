@@ -87,8 +87,8 @@ public class Proyecto implements java.io.Serializable{
     
     public Proyecto() {}
     
-    public long getId() {
-        return this.id;
+    public int getId() {
+        return this.id != null ? this.id.intValue() : -1;
     }
 
     public LocalDate getFechaInicio() {
