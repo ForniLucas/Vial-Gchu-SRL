@@ -100,19 +100,24 @@ public class BajaEmpleadoDialog extends JDialog {
 			JButton buscarBtn = new JButton("Buscar");
 			buscarBtn.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
-					String dniString = dniTxt.getText(); // Get the value of the JTextField as a String
-					int dni = Integer.parseInt(dniString); // Convert the String to an int
+					try {
+						String dniString = dniTxt.getText(); // Get the value of the JTextField as a String
+						int dni = Integer.parseInt(dniString); // Convert the String to an int
+						
+						empleado = controlador.buscarDNI(dni);
+						lblNewLabel_1.setVisible(true);
+						lblNewLabel_2.setVisible(true);
+						lblNewLabel_3.setVisible(true);
+						lblNewLabel_4.setVisible(true);
+						
+						lblNewLabel_1.setText("Nombre: " + empleado.getNombre());
+						lblNewLabel_2.setText("Apellido: " + empleado.getApellido());
+						lblNewLabel_3.setText("Dni: " + empleado.getDni());
+						lblNewLabel_4.setText("Estado: " + Boolean.toString(empleado.getEstado()));	
+					} catch (Exception e1) {
+						optionPane.showMessageDialog(null, "Error al buscar: Valor Ingresado no valido o inexistente");
+					}
 					
-					empleado = controlador.buscarDNI(dni);
-					lblNewLabel_1.setVisible(true);
-					lblNewLabel_2.setVisible(true);
-					lblNewLabel_3.setVisible(true);
-					lblNewLabel_4.setVisible(true);
-					
-					lblNewLabel_1.setText("Nombre: " + empleado.getNombre());
-					lblNewLabel_2.setText("Apellido: " + empleado.getApellido());
-					lblNewLabel_3.setText("Dni: " + empleado.getDni());
-					lblNewLabel_4.setText("Estado: " + Boolean.toString(empleado.getEstado()));	
 				}
 			});
 			buscarBtn.setBounds(309, 22, 85, 21);
@@ -128,8 +133,9 @@ public class BajaEmpleadoDialog extends JDialog {
 					public void actionPerformed(ActionEvent e) {
 						try {
 							if (empleado.getApellido() != null) {
-								controlador.bajaLogica(empleado);
+								
 								if (controlador.buscarDNI(empleado.getDni()).getEstado()) {
+									controlador.bajaLogica(empleado);
 									optionPane.showMessageDialog(null, "Baja de Empleado Exitosa");
 								}
 								else {

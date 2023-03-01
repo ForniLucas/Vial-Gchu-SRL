@@ -14,12 +14,14 @@ import Domain.Maquinaria;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import javax.swing.JComboBox;
 
 public class ModificarMaquinariaDialog extends JDialog {
 
 	private final JPanel contentPanel = new JPanel();
+	JOptionPane optionPane = new JOptionPane();
 	JTextField legajoTxt = new JTextField();
 	JTextField codigoTxt = new JTextField();
 	JTextField descripcionTxt = new JTextField();
@@ -132,15 +134,18 @@ public class ModificarMaquinariaDialog extends JDialog {
 			JButton buscarBtn = new JButton("Buscar");
 			buscarBtn.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
-					String codigo = legajoTxt.getText(); // Get the value of the JTextField as a String
-					maquina = controlador.buscar(codigo);
-					String estadoString = maquina.getEstado() ? "En servicio" : "Fuera de Servicio";
-					estadoBox.setSelectedItem(estadoString);
-					codigoTxt.setText(codigo);
-					descripcionTxt.setText(maquina.getDescripcion());
-					fabricanteTxt.setText(maquina.getFabricante());
-					ubicacionTxt.setText(maquina.getUbicacionAlmacenamiento());
-				
+					try {
+						String codigo = legajoTxt.getText(); 
+						maquina = controlador.buscar(codigo);
+						String estadoString = maquina.getEstado() ? "En servicio" : "Fuera de Servicio";
+						estadoBox.setSelectedItem(estadoString);
+						codigoTxt.setText(codigo);
+						descripcionTxt.setText(maquina.getDescripcion());
+						fabricanteTxt.setText(maquina.getFabricante());
+						ubicacionTxt.setText(maquina.getUbicacionAlmacenamiento());
+					} catch (Exception e1) {
+						optionPane.showMessageDialog(null, "Error al buscar: Valor Ingresado no valido o inexistente");
+					}
 				}
 			});
 			buscarBtn.setBounds(426, 50, 85, 21);
@@ -154,23 +159,27 @@ public class ModificarMaquinariaDialog extends JDialog {
 				JButton guardarBtn = new JButton("Guardar");
 				guardarBtn.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
-						String codigo = codigoTxt.getText();
-						String descripcion = descripcionTxt.getText();
-						String fabricante = fabricanteTxt.getText();
-						String ubicacion = ubicacionTxt.getText();
-						String estado = (String) estadoBox.getSelectedItem();
-						maquina.setCodigo(codigo);
-						maquina.setDescripcion(descripcion);
-						maquina.setFabricante(fabricante);
-						maquina.setUbicacionAlmacenamiento(ubicacion);
+						try {
+							String codigo = codigoTxt.getText();
+							String descripcion = descripcionTxt.getText();
+							String fabricante = fabricanteTxt.getText();
+							String ubicacion = ubicacionTxt.getText();
+							String estado = (String) estadoBox.getSelectedItem();
+							maquina.setCodigo(codigo);
+							maquina.setDescripcion(descripcion);
+							maquina.setFabricante(fabricante);
+							maquina.setUbicacionAlmacenamiento(ubicacion);
 
-						if (estado.equals("En servicio")) {
-							maquina.setEstadoAlta();
-						}else {
-							maquina.setEstadoBaja();
+							if (estado.equals("En servicio")) {
+								maquina.setEstadoAlta();
+							}else {
+								maquina.setEstadoBaja();
+							}
+							
+							controlador.modificar(maquina);
+						} catch (Exception e1) {
+							optionPane.showMessageDialog(null, "Error al modificar Maquinaria: " + e1.getMessage());
 						}
-						
-						controlador.modificar(maquina);
 					}
 				});
 				guardarBtn.setActionCommand("OK");
