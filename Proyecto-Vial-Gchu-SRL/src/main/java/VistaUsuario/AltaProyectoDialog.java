@@ -24,7 +24,7 @@ import java.time.format.DateTimeFormatter;
 import java.awt.event.ActionEvent;
 
 public class AltaProyectoDialog extends JDialog {
-
+	
 	private final JPanel contentPanel = new JPanel();
 	private JTextField fechaInicioTxt;
 	private JTextField fechaFinTxt;
@@ -35,7 +35,8 @@ public class AltaProyectoDialog extends JDialog {
 	private JTextField insumosTxt;
 	private ControladorProyecto controlador = new ControladorProyecto();
 	private JComboBox<TipoDeProyecto> comboBox = new JComboBox<TipoDeProyecto>(TipoDeProyecto.values()){
-	    @Override
+	
+		@Override
 	    public String toString() {
 	        String selectedItem = (String) getSelectedItem().toString();
 	        return selectedItem.replace('_', ' ');
@@ -67,7 +68,7 @@ public class AltaProyectoDialog extends JDialog {
 		actividadesTxt = new JTextField();
 		insumosTxt = new JTextField();
 		
-		setBounds(50, 50, 450, 550);
+		setBounds(50, 50, 500, 550);
 		this.setResizable(false);
 		this.setTitle("ALTA DE PROYECTOS");
 		getContentPane().setLayout(new BorderLayout());
@@ -76,42 +77,42 @@ public class AltaProyectoDialog extends JDialog {
 		contentPanel.setLayout(null);
 		{
 			JLabel lblNewLabel = new JLabel("Fecha de Inicio");
-			lblNewLabel.setBounds(104, 33, 76, 13);
+			lblNewLabel.setBounds(75, 36, 95, 13);
 			contentPanel.add(lblNewLabel);
 		}
 		{
 			JLabel lblNewLabel_1 = new JLabel("Fecha Estimada de Fin");
-			lblNewLabel_1.setBounds(65, 88, 115, 13);
+			lblNewLabel_1.setBounds(36, 91, 134, 13);
 			contentPanel.add(lblNewLabel_1);
 		}
 		{
 			JLabel lblNewLabel_2 = new JLabel("Estado");
-			lblNewLabel_2.setBounds(135, 143, 45, 13);
+			lblNewLabel_2.setBounds(106, 146, 64, 13);
 			contentPanel.add(lblNewLabel_2);
 		}
 		{
 			JLabel lblNewLabel_3 = new JLabel("Nombre de Proyecto");
-			lblNewLabel_3.setBounds(72, 198, 108, 13);
+			lblNewLabel_3.setBounds(43, 201, 124, 13);
 			contentPanel.add(lblNewLabel_3);
 		}
 		{
 			JLabel lblNewLabel_4 = new JLabel("Tipo de Proyecto");
-			lblNewLabel_4.setBounds(85, 253, 95, 13);
+			lblNewLabel_4.setBounds(56, 256, 111, 13);
 			contentPanel.add(lblNewLabel_4);
 		}
 		{
 			JLabel lblNewLabel_5 = new JLabel("Descripción");
-			lblNewLabel_5.setBounds(112, 310, 68, 13);
+			lblNewLabel_5.setBounds(83, 313, 87, 13);
 			contentPanel.add(lblNewLabel_5);
 		}
 		{
 			JLabel lblNewLabel_6 = new JLabel("Actividades");
-			lblNewLabel_6.setBounds(119, 363, 61, 13);
+			lblNewLabel_6.setBounds(90, 366, 77, 13);
 			contentPanel.add(lblNewLabel_6);
 		}
 		{
 			JLabel lblNewLabel_7 = new JLabel("Insumos");
-			lblNewLabel_7.setBounds(135, 418, 45, 13);
+			lblNewLabel_7.setBounds(106, 421, 64, 13);
 			contentPanel.add(lblNewLabel_7);
 		}
 		{
@@ -141,26 +142,27 @@ public class AltaProyectoDialog extends JDialog {
 		}
 		{
 			
-			descripcionTxt.setBounds(190, 307, 196, 19);
+			descripcionTxt.setBounds(190, 307, 223, 19);
 			contentPanel.add(descripcionTxt);
 			descripcionTxt.setColumns(255);
 		}
 		{
 			
-			actividadesTxt.setBounds(190, 360, 196, 19);
+			actividadesTxt.setBounds(190, 360, 223, 19);
 			contentPanel.add(actividadesTxt);
 			actividadesTxt.setColumns(255);
 		}
 		{
 			
-			insumosTxt.setBounds(190, 415, 196, 19);
+			insumosTxt.setBounds(190, 415, 223, 19);
 			contentPanel.add(insumosTxt);
 			insumosTxt.setColumns(255);
 		}
 		{
 			
-			comboBox.setBounds(190, 249, 123, 21);
+			comboBox.setBounds(190, 249, 130, 21);
 			contentPanel.add(comboBox);
+		
 		}
 		{
 			JPanel buttonPane = new JPanel();
