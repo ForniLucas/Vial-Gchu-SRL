@@ -126,17 +126,23 @@ public class BajaEmpleadoDialog extends JDialog {
 				JButton bajaEmpleadoBtn = new JButton("Dar de Baja");
 				bajaEmpleadoBtn.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
-						if (empleado.getApellido() != null) {
-							controlador.bajaLogica(empleado);
-							if (controlador.buscarDNI(empleado.getDni()).getEstado()) {
-								optionPane.showMessageDialog(null, "Baja de Empleado Exitosa");
+						try {
+							if (empleado.getApellido() != null) {
+								controlador.bajaLogica(empleado);
+								if (controlador.buscarDNI(empleado.getDni()).getEstado()) {
+									optionPane.showMessageDialog(null, "Baja de Empleado Exitosa");
+								}
+								else {
+									optionPane.showMessageDialog(null, "El Empleado ya esta dado de baja");
+								}
+							} else {
+								optionPane.showMessageDialog(null, "Debe buscar un Empleado primero.");
 							}
-							else {
-								optionPane.showMessageDialog(null, "El Empleado ya esta dado de baja");
-							}
-						} else {
-							optionPane.showMessageDialog(null, "Debe buscar un Empleado primero.");
+						} catch (Exception e1) {
+							optionPane.showMessageDialog(null, "Error al intentar dar de baja el empleado: " + e1.getMessage());
 						}
+						
+						
 					}
 				});
 				bajaEmpleadoBtn.setActionCommand("OK");
