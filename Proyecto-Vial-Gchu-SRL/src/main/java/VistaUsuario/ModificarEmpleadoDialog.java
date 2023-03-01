@@ -18,6 +18,7 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.awt.event.ActionEvent;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import javax.swing.JComboBox;
 
@@ -33,7 +34,7 @@ public class ModificarEmpleadoDialog extends JDialog {
 	String direccion = new String();
 	String fechaDeNacimiento = new String();
 	String estado = new String();
-	
+	JOptionPane optionPane = new JOptionPane();
 	JTextField dniidTxt = new JTextField();
 	JTextField apellidoTxt = new JTextField();
 	JTextField nombreTxt = new JTextField();
@@ -209,25 +210,29 @@ public class ModificarEmpleadoDialog extends JDialog {
 			JButton buscarBtn = new JButton("Buscar");
 			buscarBtn.addActionListener(new ActionListener(){
 				public void actionPerformed(ActionEvent e) {
-					//String dniString = dniTxt.getText(); // Get the value of the JTextField as a String
-					int dni_buscar = Integer.parseInt(dniidTxt.getText()); // Convert the String to an int
-					empleado = controlador.buscarDNI(dni_buscar);
-				
-					apellidoTxt.setText(empleado.getApellido());
-					nombreTxt.setText(empleado.getNombre());
-					String dni = Integer.toString(dni_buscar);
-					dniTxt.setText(dni);
-					String telefon = Integer.toString(empleado.getTelefono());
-					telefonoTxt.setText(telefon);
-					direccionTxt.setText(empleado.getDireccion());
-					DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-					String fechaNac = empleado.getFechaNac() != null ? empleado.getFechaNac().format(formatter) : null;
-					if (fechaNac != null && !fechaNac.isEmpty()) {
-					    fechaDeNacimientoTxt.setText(fechaNac);
-					} else {
-					    fechaDeNacimientoTxt.setText("");
+					try {
+						int dni_buscar = Integer.parseInt(dniidTxt.getText()); 
+						empleado = controlador.buscarDNI(dni_buscar);
+					
+						apellidoTxt.setText(empleado.getApellido());
+						nombreTxt.setText(empleado.getNombre());
+						String dni = Integer.toString(dni_buscar);
+						dniTxt.setText(dni);
+						String telefon = Integer.toString(empleado.getTelefono());
+						telefonoTxt.setText(telefon);
+						direccionTxt.setText(empleado.getDireccion());
+						DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+						String fechaNac = empleado.getFechaNac() != null ? empleado.getFechaNac().format(formatter) : null;
+						if (fechaNac != null && !fechaNac.isEmpty()) {
+						    fechaDeNacimientoTxt.setText(fechaNac);
+						} else {
+						    fechaDeNacimientoTxt.setText("");
+						}
+						fechaDeNacimientoTxt.setText(fechaNac);
+					} catch (Exception e1) {
+						optionPane.showMessageDialog(null, "Error al buscar: Valor Ingresado no valido o inexistente");
 					}
-					fechaDeNacimientoTxt.setText(fechaNac);
+					
 					
 				}
 			});
@@ -262,25 +267,35 @@ public class ModificarEmpleadoDialog extends JDialog {
 				JButton guardarModEmpleadoBtn = new JButton("Guardar");
 				guardarModEmpleadoBtn.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
-						String nombre = nombreTxt.getText();
-						String apellido = apellidoTxt.getText();
-						String dniString = dniTxt.getText(); // Get the value of the JTextField as a String
-						int dni = Integer.parseInt(dniString); // Convert the String to an int
-						String telefonoString = telefonoTxt.getText(); 
-						int telefono = Integer.parseInt(telefonoString); 
-						String direccion = direccionTxt.getText(); 
-						String fechaDeNacimientoString = fechaDeNacimientoTxt.getText(); // Get the value of the JTextField as a String
-						DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy"); // Specify the input format
-						LocalDate fechaDeNacimiento = LocalDate.parse(fechaDeNacimientoString, formatter);
-						
-						empleado.setNombre(nombre);
-						empleado.setApellido(apellido);
-						empleado.setDni(dni);
-						empleado.setTelefono(telefono);
-						empleado.setDireccion(direccion);
-						empleado.setFechaNac(fechaDeNacimiento);
-						
-						controlador.modificar(empleado);
+					try {
+						if (empleado.getApellido() != null) {
+							String nombre = nombreTxt.getText();
+							String apellido = apellidoTxt.getText();
+							String dniString = dniTxt.getText(); // Get the value of the JTextField as a String
+							int dni = Integer.parseInt(dniString); // Convert the String to an int
+							String telefonoString = telefonoTxt.getText(); 
+							int telefono = Integer.parseInt(telefonoString); 
+							String direccion = direccionTxt.getText(); 
+							String fechaDeNacimientoString = fechaDeNacimientoTxt.getText(); // Get the value of the JTextField as a String
+							DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy"); // Specify the input format
+							LocalDate fechaDeNacimiento = LocalDate.parse(fechaDeNacimientoString, formatter);
+							
+							empleado.setNombre(nombre);
+							empleado.setApellido(apellido);
+							empleado.setDni(dni);
+							empleado.setTelefono(telefono);
+							empleado.setDireccion(direccion);
+							empleado.setFechaNac(fechaDeNacimiento);
+							
+							controlador.modificar(empleado);
+							optionPane.showMessageDialog(null, "Empleado modificado exitosamente.");
+						}
+						else {
+							optionPane.showMessageDialog(null, "Debe buscar un empleado primero.");
+						}
+					}catch (Exception e1) {
+						optionPane.showMessageDialog(null, "Error al modificar el empleado: " + e1.getMessage());
+					}
 						
 					}
 				});
