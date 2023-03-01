@@ -159,8 +159,9 @@ public class ProyectoDialog extends JDialog {
 		Iterator<Proyecto> iterador = filasTablaProyecto.iterator();
 		while (iterador.hasNext()) {
 			Proyecto proyecto = (Proyecto) iterador.next();
+			String estado = proyecto.getEstado().toString();
 			String fila[] = {String.valueOf(proyecto.getId()),String.valueOf(proyecto.getNombre()),String.valueOf(proyecto.getFechaInicio()),
-					String.valueOf(proyecto.getFechaEstFin()),String.valueOf(proyecto.getEstado()),String.valueOf(proyecto.getFechaFin())};
+					String.valueOf(proyecto.getFechaEstFin()),String.valueOf(estado),String.valueOf(proyecto.getFechaFin())};
 			modeloTablaProyecto.addRow(fila);
 		}
 		

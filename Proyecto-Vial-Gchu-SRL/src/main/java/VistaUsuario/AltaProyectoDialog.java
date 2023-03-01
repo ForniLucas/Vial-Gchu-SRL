@@ -1,6 +1,8 @@
 package VistaUsuario;
 
 import java.awt.BorderLayout;
+
+import Enumeraciones.EstadoProyecto;
 import Enumeraciones.TipoDeProyecto;
 import java.awt.FlowLayout;
 
@@ -26,7 +28,7 @@ public class AltaProyectoDialog extends JDialog {
 	private final JPanel contentPanel = new JPanel();
 	private JTextField fechaInicioTxt;
 	private JTextField fechaFinTxt;
-	private JComboBox<String> estadoBox= new JComboBox<String>();
+	private JComboBox<EstadoProyecto> estadoBox= new JComboBox<EstadoProyecto>(EstadoProyecto.values());
 	private JTextField nombreTxt;
 	private JTextField descripcionTxt;
 	private JTextField actividadesTxt;
@@ -129,11 +131,6 @@ public class AltaProyectoDialog extends JDialog {
 		{
 			
 			estadoBox.setBounds(190, 140, 96, 19);
-			estadoBox.addItem("Iniciado");
-		    estadoBox.addItem("En curso");
-		    estadoBox.addItem("Suspendido");
-		    estadoBox.addItem("Finalizado");
-		    estadoBox.addItem("Cancelado");
 			contentPanel.add(estadoBox);
 		}
 		{
@@ -186,7 +183,7 @@ public class AltaProyectoDialog extends JDialog {
 						String desc = descripcionTxt.getText();
 						String actividades = actividadesTxt.getText(); 
 						String insumos = insumosTxt.getText();
-						String estado = (String) estadoBox.getSelectedItem();
+						EstadoProyecto estado = (EstadoProyecto) estadoBox.getSelectedItem();
 						
 						TipoDeProyecto tipo = (TipoDeProyecto) comboBox.getSelectedItem(); 
 						TipoProyecto tipoProyecto = new TipoProyecto(tipo, desc, actividades, insumos);
@@ -197,6 +194,8 @@ public class AltaProyectoDialog extends JDialog {
 						proyecto.setFechaEstFin(fechaFin);
 						proyecto.setFechaFin(fechaFin);
 						proyecto.setNombre(nombre);
+						
+						System.out.println(estado);
 						proyecto.setEstado(estado);
 						proyecto.asignarTipoProyecto(tipoProyecto);
 						

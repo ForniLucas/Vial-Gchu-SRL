@@ -52,14 +52,14 @@ public class Proyecto implements java.io.Serializable{
 	@Column(name = "fechaInicio",nullable=false)
     private LocalDate fechaInicio;
     
-    @Column(name = "fechaEstFin",nullable=false)
+    @Column(name = "fechaEstFin",nullable=true)
     private LocalDate fechaEstFin;
     
     @Column(name = "fechaFin",nullable=true)
     private LocalDate fechaFin;
     
     @Column(name = "estado",nullable=true)
-    private EstadoProyecto estado; //Se modifico de Boolean a String
+    private EstadoProyecto estado; 
     
     @OneToOne(cascade = CascadeType.ALL,
     		  fetch = FetchType.EAGER)

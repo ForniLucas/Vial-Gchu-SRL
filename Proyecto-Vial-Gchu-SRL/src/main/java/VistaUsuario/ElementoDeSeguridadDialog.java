@@ -128,7 +128,6 @@ public class ElementoDeSeguridadDialog extends JDialog {
 						LocalDate fechaEtnrega = LocalDate.parse(fechaEtnregaString, formatter);
 						
 						Elemento elemento = (Elemento) tipoBox.getSelectedItem();
-						System.out.println(elemento);
 						
 						ElementoDeSeguridad elementoSeguridad = new ElementoDeSeguridad();
 						

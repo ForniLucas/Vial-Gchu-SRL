@@ -1,6 +1,8 @@
 package VistaUsuario;
 
 import java.awt.BorderLayout;
+
+import Enumeraciones.EstadoProyecto;
 import Enumeraciones.TipoDeProyecto;
 import java.awt.FlowLayout;
 
@@ -27,7 +29,7 @@ public class ModificarProyectoDialog extends JDialog {
 	private JTextField legajoTxt = new JTextField();
 	private JTextField fechaDeInicioTxt = new JTextField();
 	private JTextField fechaFinTxt = new JTextField();
-	private JComboBox<String> estadoBox= new JComboBox<String>();
+	private JComboBox<EstadoProyecto> estadoBox= new JComboBox<EstadoProyecto>(EstadoProyecto.values());
 	private JTextField nombreTxt = new JTextField();
 	private JTextField descripcionTxt = new JTextField();
 	private JTextField actividadesTxt = new JTextField();
@@ -144,11 +146,6 @@ public class ModificarProyectoDialog extends JDialog {
 		{
 			
 			estadoBox.setBounds(264, 230, 96, 19);
-			estadoBox.addItem("Iniciado");
-		    estadoBox.addItem("En curso");
-		    estadoBox.addItem("Suspendido");
-		    estadoBox.addItem("Finalizado");
-		    estadoBox.addItem("Cancelado");
 		    contentPanel.add(estadoBox);
 		}
 		{
@@ -223,7 +220,7 @@ public class ModificarProyectoDialog extends JDialog {
 						String desc = descripcionTxt.getText();
 						String actividades = actividadesTxt.getText(); 
 						String insumos = insumosTxt.getText();
-						String estado = (String) estadoBox.getSelectedItem();
+						EstadoProyecto estado = (EstadoProyecto) estadoBox.getSelectedItem();
 						
 						TipoDeProyecto tipo = (TipoDeProyecto) tipoBox.getSelectedItem(); 
 						TipoProyecto tipoProyecto = new TipoProyecto(tipo, desc, actividades, insumos);
