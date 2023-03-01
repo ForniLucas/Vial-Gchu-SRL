@@ -183,6 +183,45 @@ public class ControladorProyecto {
 	    }
 	}
 	
+public void finalizarProyecto(Proyecto unProyecto) {
+		
+		// Iniciar sesión de Hibernate
+	    StandardServiceRegistry registry = new StandardServiceRegistryBuilder().configure().build();
+	    SessionFactory factory = null;
+	    Session session = null;
+	    Transaction transaction = null;
+	    try {
+	      factory = new MetadataSources(registry).buildMetadata().buildSessionFactory();
+	      session = factory.openSession();
+	      transaction = session.beginTransaction();
+	      
+	      //Actualiza el proyecto
+	      session.update(unProyecto);
+	      transaction.commit();
+	      
+	      //Actualizar el proyecto en la lista
+	      actualizarlistado(unProyecto);
+	      
+	    } catch (Exception ex) {
+	    	  // Realizar un rollback en caso de una excepción
+	    	  if (transaction != null) {
+	    	    transaction.rollback();
+	    	  }
+	    	  System.out.println(ex.getMessage());
+	    	  ex.printStackTrace();
+	    	} finally {
+	    	  // Cerrar la sesión y destruir el registro del servicio
+	    	  if (session != null) {
+	    	    session.close();
+	    	  }
+	    	  if (factory != null) {
+	    	    factory.close();
+	    	  }
+	    	  StandardServiceRegistryBuilder.destroy(registry);
+	    }
+	}
+	
+	
 	public Proyecto buscarID (int idProyecto) {
 		
 		// Iniciar la sesión de Hibernate
