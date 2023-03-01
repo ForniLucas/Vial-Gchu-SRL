@@ -114,7 +114,7 @@ public class AltaEmpleadoDialog extends JDialog {
 		contentPanel.add(lblNewLabel_4);
 		
 		JLabel lblNewLabel_5 = new JLabel("Fecha de Nacimiento");
-		lblNewLabel_5.setBounds(98, 403, 110, 13);
+		lblNewLabel_5.setBounds(98, 403, 133, 13);
 		contentPanel.add(lblNewLabel_5);
 		
 		JLabel lblNewLabel_6 = new JLabel("Especialización");

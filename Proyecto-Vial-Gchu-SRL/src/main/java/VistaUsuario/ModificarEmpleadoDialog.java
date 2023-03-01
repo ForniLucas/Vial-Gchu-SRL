@@ -122,17 +122,17 @@ public class ModificarEmpleadoDialog extends JDialog {
 		}
 		{
 			JLabel lblNewLabel_5 = new JLabel("Dirección");
-			lblNewLabel_5.setBounds(137, 360, 53, 13);
+			lblNewLabel_5.setBounds(137, 360, 90, 13);
 			contentPanel.add(lblNewLabel_5);
 		}
 		{
 			JLabel lblNewLabel_6 = new JLabel("Fecha de Nacimiento");
-			lblNewLabel_6.setBounds(83, 424, 107, 13);
+			lblNewLabel_6.setBounds(83, 424, 144, 13);
 			contentPanel.add(lblNewLabel_6);
 		}
 		{
 			JLabel lblNewLabel_7 = new JLabel("Especialización");
-			lblNewLabel_7.setBounds(114, 488, 76, 13);
+			lblNewLabel_7.setBounds(114, 488, 113, 13);
 			contentPanel.add(lblNewLabel_7);
 		}
 		{
