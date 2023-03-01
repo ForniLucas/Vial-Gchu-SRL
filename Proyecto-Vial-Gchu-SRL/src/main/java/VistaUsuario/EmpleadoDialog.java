@@ -118,6 +118,7 @@ public class EmpleadoDialog extends JDialog {
 							JButton hEspecializacionBtn = new JButton("Historial Especializacion de Empleado");
 							hEspecializacionBtn.addActionListener(new ActionListener() {
 								public void actionPerformed(ActionEvent e) {
+									setVisible(false);
 									HistorialEspecializacionDialog historialEspecializacion = new HistorialEspecializacionDialog(EmpleadoDialog.this, dni, apellido, nombre);
 									historialEspecializacion.setVisible(true);									
 								}
@@ -154,7 +155,6 @@ public class EmpleadoDialog extends JDialog {
 					public void actionPerformed(ActionEvent e) {
 						setVisible(false);
 						BajaEmpleadoDialog bajaEmpleadoDialog = new BajaEmpleadoDialog(EmpleadoDialog.this, dni);
-						//bajaEmpleadoDialog.dni = dni;
 				        bajaEmpleadoDialog.setVisible(true);
 					}
 				});
