@@ -87,42 +87,42 @@ public class ModificarProyectoDialog extends JDialog {
 		}
 		{
 			JLabel lblNewLabel_1 = new JLabel("Fecha de Inicio");
-			lblNewLabel_1.setBounds(170, 122, 84, 13);
+			lblNewLabel_1.setBounds(100, 128, 84, 13);
 			contentPanel.add(lblNewLabel_1);
 		}
 		{
 			JLabel lblNewLabel_2 = new JLabel("Fecha Estimada de Fin");
-			lblNewLabel_2.setBounds(140, 176, 114, 13);
+			lblNewLabel_2.setBounds(70, 182, 114, 13);
 			contentPanel.add(lblNewLabel_2);
 		}
 		{
 			JLabel lblNewLabel_3 = new JLabel("Estado");
-			lblNewLabel_3.setBounds(209, 230, 45, 13);
+			lblNewLabel_3.setBounds(139, 236, 45, 13);
 			contentPanel.add(lblNewLabel_3);
 		}
 		{
 			JLabel lblNewLabel_4 = new JLabel("Nombre de Proyecto");
-			lblNewLabel_4.setBounds(151, 284, 103, 13);
+			lblNewLabel_4.setBounds(81, 290, 103, 13);
 			contentPanel.add(lblNewLabel_4);
 		}
 		{
 			JLabel lblNewLabel_5 = new JLabel("Tipo De Proyecto");
-			lblNewLabel_5.setBounds(154, 338, 100, 13);
+			lblNewLabel_5.setBounds(84, 344, 100, 13);
 			contentPanel.add(lblNewLabel_5);
 		}
 		{
 			JLabel lblNewLabel_6 = new JLabel("Descripción");
-			lblNewLabel_6.setBounds(183, 392, 71, 13);
+			lblNewLabel_6.setBounds(113, 398, 71, 13);
 			contentPanel.add(lblNewLabel_6);
 		}
 		{
 			JLabel lblNewLabel_7 = new JLabel("Actividades");
-			lblNewLabel_7.setBounds(183, 446, 71, 13);
+			lblNewLabel_7.setBounds(113, 452, 71, 13);
 			contentPanel.add(lblNewLabel_7);
 		}
 		{
 			JLabel lblNewLabel_8 = new JLabel("Insumos");
-			lblNewLabel_8.setBounds(196, 500, 58, 13);
+			lblNewLabel_8.setBounds(126, 506, 58, 13);
 			contentPanel.add(lblNewLabel_8);
 		}
 		{
@@ -134,14 +134,14 @@ public class ModificarProyectoDialog extends JDialog {
 		{
 			
 			fechaDeInicioTxt.setText("dd/mm/aaaa");
-			fechaDeInicioTxt.setBounds(264, 122, 96, 19);
+			fechaDeInicioTxt.setBounds(220, 125, 96, 19);
 			contentPanel.add(fechaDeInicioTxt);
 			fechaDeInicioTxt.setColumns(255);
 		}
 		{
 		
 			fechaFinTxt.setText("dd/mm/aaaa");
-			fechaFinTxt.setBounds(264, 176, 96, 19);
+			fechaFinTxt.setBounds(220, 179, 96, 19);
 			contentPanel.add(fechaFinTxt);
 			fechaFinTxt.setColumns(255);
 		}
@@ -152,31 +152,31 @@ public class ModificarProyectoDialog extends JDialog {
 		}
 		{
 			
-			nombreTxt.setBounds(264, 284, 189, 19);
+			nombreTxt.setBounds(220, 287, 247, 19);
 			contentPanel.add(nombreTxt);
 			nombreTxt.setColumns(255);
 		}
 		{
 			
-			descripcionTxt.setBounds(264, 392, 189, 19);
+			descripcionTxt.setBounds(220, 395, 247, 19);
 			contentPanel.add(descripcionTxt);
 			descripcionTxt.setColumns(255);
 		}
 		{
 			
-			actividadesTxt.setBounds(264, 446, 189, 19);
+			actividadesTxt.setBounds(220, 446, 247, 19);
 			contentPanel.add(actividadesTxt);
 			actividadesTxt.setColumns(255);
 		}
 		{
 			
-			insumosTxt.setBounds(264, 500, 189, 19);
+			insumosTxt.setBounds(220, 500, 247, 19);
 			contentPanel.add(insumosTxt);
 			insumosTxt.setColumns(255);
 		}
 		{
 			
-			tipoBox.setBounds(264, 337, 114, 21);
+			tipoBox.setBounds(264, 337, 130, 21);
 			contentPanel.add(tipoBox);
 		}
 		{
