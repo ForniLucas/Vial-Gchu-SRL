@@ -4,6 +4,7 @@ import java.awt.BorderLayout;
 import java.awt.FlowLayout;
 import javax.swing.JButton;
 import javax.swing.JDialog;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.border.EmptyBorder;
@@ -22,6 +23,7 @@ public class EmpleadoDialog extends JDialog {
 	private final JPanel contentPanel = new JPanel();
 	//private JTable table;
 	ControladorEmpleado controladorEmpleado = new ControladorEmpleado();
+	JOptionPane optionPane = new JOptionPane();
 	String id = new String();
 	String apellido = new String();
 	String nombre = new String();
@@ -99,28 +101,34 @@ public class EmpleadoDialog extends JDialog {
 				});
 
 					{
-						JButton hRTBtn = new JButton("Gestionar ropa de Trabajo");
+						JButton hRTBtn = new JButton("Gestionar ropa de trabajo");
 						hRTBtn.addActionListener(new ActionListener() {
 							public void actionPerformed(ActionEvent e) {
-								setVisible(false);
-								HistorialRopaDeTrabajoDialog historialRopa = new HistorialRopaDeTrabajoDialog(EmpleadoDialog.this, dni, apellido, nombre);
-								historialRopa.setVisible(true);
+								try {									
+										HistorialRopaDeTrabajoDialog historialRopa = new HistorialRopaDeTrabajoDialog(EmpleadoDialog.this, dni, apellido, nombre);
+										historialRopa.setVisible(true);	
+								} catch (Exception e1) {
+									optionPane.showMessageDialog(null, "Error: Debe seleccionar un empleado ");
+								}
+								
 							}
 						});
 						{
-							JButton hEspecializacionBtn = new JButton("Historial Especializacion de Empleado");
+							JButton hEspecializacionBtn = new JButton("Gestionar especializacion de empleado");
 							hEspecializacionBtn.addActionListener(new ActionListener() {
 								public void actionPerformed(ActionEvent e) {
-									setVisible(false);
-									HistorialEspecializacionDialog historialEspecializacion = new HistorialEspecializacionDialog(EmpleadoDialog.this, dni, apellido, nombre);
-									historialEspecializacion.setVisible(true);									
+									try {
+											HistorialEspecializacionDialog historialEspecializacion = new HistorialEspecializacionDialog(EmpleadoDialog.this, dni, apellido, nombre);
+											historialEspecializacion.setVisible(true);	
+										} catch (Exception e1) {
+										optionPane.showMessageDialog(null, "Error: Debe seleccionar un empleado ");
+									}
 								}
 							});
 							buttonPane.add(hEspecializacionBtn);
 						}
 						buttonPane.add(hRTBtn);
 					}
-				//	buttonPane.add(ropaDTButton);
 				}
 				{
 					JButton elementoDSButton = new JButton("Asignar Elemento de Seguridad");
@@ -131,12 +139,15 @@ public class EmpleadoDialog extends JDialog {
 						}
 					});
 					{
-						JButton hEDSBtn = new JButton("Historial Elemento de Seguridad");
+						JButton hEDSBtn = new JButton("Gestionar elemento de seguridad");
 						hEDSBtn.addActionListener(new ActionListener() {
 							public void actionPerformed(ActionEvent e) {
-								setVisible(false);
-								HistorialElementoDeSeguridadDialog historialElementoDeSeguridad = new HistorialElementoDeSeguridadDialog(EmpleadoDialog.this, dni, apellido, nombre);
-								historialElementoDeSeguridad.setVisible(true);
+								try {
+									HistorialElementoDeSeguridadDialog historialElementoDeSeguridad = new HistorialElementoDeSeguridadDialog(EmpleadoDialog.this, dni, apellido, nombre);
+									historialElementoDeSeguridad.setVisible(true);
+								} catch (Exception e1) {
+									optionPane.showMessageDialog(null, "Error: Debe seleccionar un empleado ");
+								}
 							}
 						});
 						buttonPane.add(hEDSBtn);
