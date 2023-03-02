@@ -97,16 +97,9 @@ public class EmpleadoDialog extends JDialog {
 						AltaEmpleadoDialog altaEmpleadoDialog = new AltaEmpleadoDialog();
 					    altaEmpleadoDialog.setVisible(true);}
 				});
-				{
-					JButton ropaDTButton = new JButton("Asignar Ropa de Trabajo");
-					ropaDTButton.addActionListener(new ActionListener() {
-						public void actionPerformed(ActionEvent e) {
-							RopaDeTrabajoDialog ropaDeTrabajoDialog = new RopaDeTrabajoDialog();
-							ropaDeTrabajoDialog.setVisible(true);
-						}
-					});
+
 					{
-						JButton hRTBtn = new JButton("Historial Ropa de Trabajo");
+						JButton hRTBtn = new JButton("Gestionar ropa de Trabajo");
 						hRTBtn.addActionListener(new ActionListener() {
 							public void actionPerformed(ActionEvent e) {
 								setVisible(false);
@@ -127,7 +120,7 @@ public class EmpleadoDialog extends JDialog {
 						}
 						buttonPane.add(hRTBtn);
 					}
-					buttonPane.add(ropaDTButton);
+				//	buttonPane.add(ropaDTButton);
 				}
 				{
 					JButton elementoDSButton = new JButton("Asignar Elemento de Seguridad");
@@ -148,7 +141,7 @@ public class EmpleadoDialog extends JDialog {
 					buttonPane.add(elementoDSButton);
 				}
 				
-				buttonPane.add(altaEmpleadoBtn);
+			//	buttonPane.add(altaEmpleadoBtn);
 			{
 				JButton bajaEmpleadoBtn = new JButton("Baja");
 				bajaEmpleadoBtn.addActionListener(new ActionListener() {
@@ -184,7 +177,7 @@ public class EmpleadoDialog extends JDialog {
 			}
 		}
 			
-	}
+
 	
 	
 	public void cargarEmpleados(){
