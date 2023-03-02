@@ -134,6 +134,9 @@ public class EmpleadoDialog extends JDialog {
 						JButton hEDSBtn = new JButton("Historial Elemento de Seguridad");
 						hEDSBtn.addActionListener(new ActionListener() {
 							public void actionPerformed(ActionEvent e) {
+								setVisible(false);
+								HistorialElementoDeSeguridadDialog historialElementoDeSeguridad = new HistorialElementoDeSeguridadDialog(EmpleadoDialog.this, dni, apellido, nombre);
+								historialElementoDeSeguridad.setVisible(true);
 							}
 						});
 						buttonPane.add(hEDSBtn);
