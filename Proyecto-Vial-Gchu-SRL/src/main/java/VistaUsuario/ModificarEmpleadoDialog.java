@@ -44,49 +44,14 @@ public class ModificarEmpleadoDialog extends JDialog {
 	JTextField fechaDeNacimientoTxt = new JTextField();
 	ControladorEmpleado controlador = new ControladorEmpleado();
 	Empleado empleado = new Empleado();
-	
-	//Empleado empleadoGlob = new Empleado();
-
-	/*JLabel lblNewLabel_1 = new JLabel("");
-	JLabel lblNewLabel_2 = new JLabel("");
-	JLabel lblNewLabel_3 = new JLabel("");
-	JLabel lblNewLabel_4 = new JLabel("");
-	JLabel lblNewLabel_5 = new JLabel("");
-	JLabel lblNewLabel_6 = new JLabel("");
-	JLabel lblNewLabel_7 = new JLabel("");
-	JLabel lblNewLabel_8 = new JLabel("");*/
-	
-	/*
-	public static void main(String[] args) {
-		try {
-			ModificarEmpleadoDialog dialog = new ModificarEmpleadoDialog();
-			dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
-			dialog.setVisible(true);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-	}*/
-
 	/**
 	 * Create the dialog.
 	 */
-	public ModificarEmpleadoDialog(EmpleadoDialog dialog, String dni) {
+	public ModificarEmpleadoDialog(EmpleadoDialog dialog, String dniid) {
 		super(dialog, "ModificarEmpleadoDialog",true);
-		
-		this.dniid = dni;
+		this.dniid = dniid;
 		
 		dniidTxt.setText(dniid);
-
-		/*lblNewLabel_1.setVisible(false);
-		lblNewLabel_2.setVisible(false);
-		lblNewLabel_3.setVisible(false);
-		lblNewLabel_4.setVisible(false);
-		lblNewLabel_5.setVisible(false);
-		lblNewLabel_6.setVisible(false);
-		lblNewLabel_7.setVisible(false);
-		lblNewLabel_8.setVisible(false);*/
-		
-		
 		
 		setBounds(50, 50, 600, 700);
 		this.setTitle("MODIFICAR EMPLEADOS");
