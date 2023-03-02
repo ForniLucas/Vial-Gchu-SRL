@@ -14,6 +14,7 @@ import Domain.Empleado;
 import Domain.RopaDeTrabajo;
 
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JComboBox;
 import java.awt.event.ActionListener;
 import java.time.LocalDate;
@@ -26,6 +27,7 @@ public class RopaDeTrabajoDialog extends JDialog {
 	private final JPanel contentPanel = new JPanel();
 	private JTextField fechaTxt;
 	private JTextField textField;
+	JOptionPane optionPane = new JOptionPane();
 	private ControladorEmpleado controlador = new ControladorEmpleado();
 	private Empleado empleado = new Empleado();
 	private JLabel apellidoLbl = new JLabel("");
@@ -90,7 +92,7 @@ public class RopaDeTrabajoDialog extends JDialog {
 		contentPanel.add(comboBox);
 		{
 			fechaTxt = new JTextField();
-			fechaTxt.setText("dd-mm-aaaa");
+			fechaTxt.setText("dd/mm/aaaa");
 			fechaTxt.setBounds(232, 308, 96, 19);
 			contentPanel.add(fechaTxt);
 			fechaTxt.setColumns(10);
@@ -110,11 +112,16 @@ public class RopaDeTrabajoDialog extends JDialog {
 			JButton buscarBtn = new JButton("Buscar");
 			buscarBtn.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
-					String dniString = textField.getText(); 
-					int dni = Integer.parseInt(dniString); 
-					empleado = controlador.buscarDNI(dni);
-					apellidoLbl.setText("Apellido: " + empleado.getApellido());
-					nombreLbl.setText("Nombre: " + empleado.getNombre());
+					try {
+						String dniString = textField.getText(); 
+						int dni = Integer.parseInt(dniString); 
+						empleado = controlador.buscarDNI(dni);
+						apellidoLbl.setText("Apellido: " + empleado.getApellido());
+						nombreLbl.setText("Nombre: " + empleado.getNombre());
+					} catch (Exception e1) {
+						optionPane.showMessageDialog(null, "Error al buscar: Valor Ingresado no valido o inexistente");
+					}
+					
 				}
 			});
 			buscarBtn.setBounds(311, 18, 85, 21);
@@ -140,21 +147,30 @@ public class RopaDeTrabajoDialog extends JDialog {
 				JButton guardarBtn = new JButton("Guardar");
 				guardarBtn.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
-						String fechaEtnregaString = fechaTxt.getText(); 
-						DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy"); 
-						LocalDate fechaEtnrega = LocalDate.parse(fechaEtnregaString, formatter); 
+						try {
+							if (empleado.getApellido() != null) {
+								String fechaEtnregaString = fechaTxt.getText(); 
+								DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy"); 
+								LocalDate fechaEtnrega = LocalDate.parse(fechaEtnregaString, formatter); 
+								
+								String talle = (String) comboBox.getSelectedItem();
+								
+								Ropa ropa = (Ropa) comboBoxRopa.getSelectedItem();
+								
+								RopaDeTrabajo ropaTrabajo = new RopaDeTrabajo();
+								ropaTrabajo.setEmpleado(empleado);
+								ropaTrabajo.setTipo(ropa);
+								ropaTrabajo.setTalle(talle);
+								ropaTrabajo.setFechaEntrega(fechaEtnrega);
+								
+								controlador.asignarRopaDeTrabajo(empleado, ropaTrabajo);
+							}else {
+								optionPane.showMessageDialog(null, "Debe buscar un Empleado primero.");
+							}
+						} catch (Exception e1) {
+							optionPane.showMessageDialog(null, "Error al Guardar: " + e1.getMessage());
+						}
 						
-						String talle = (String) comboBox.getSelectedItem();
-						
-						Ropa ropa = (Ropa) comboBoxRopa.getSelectedItem();
-						
-						RopaDeTrabajo ropaTrabajo = new RopaDeTrabajo();
-						ropaTrabajo.setEmpleado(empleado);
-						ropaTrabajo.setTipo(ropa);
-						ropaTrabajo.setTalle(talle);
-						ropaTrabajo.setFechaEntrega(fechaEtnrega);
-						
-						controlador.asignarRopaDeTrabajo(empleado, ropaTrabajo);
 						
 					}
 				});
