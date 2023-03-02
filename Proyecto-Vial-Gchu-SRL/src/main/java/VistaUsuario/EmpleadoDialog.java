@@ -131,13 +131,6 @@ public class EmpleadoDialog extends JDialog {
 					}
 				}
 				{
-					JButton elementoDSButton = new JButton("Asignar Elemento de Seguridad");
-					elementoDSButton.addActionListener(new ActionListener() {
-						public void actionPerformed(ActionEvent e) {
-							ElementoDeSeguridadDialog elementoDeSeguridadDialog = new ElementoDeSeguridadDialog();
-							elementoDeSeguridadDialog.setVisible(true);
-						}
-					});
 					{
 						JButton hEDSBtn = new JButton("Gestionar elemento de seguridad");
 						hEDSBtn.addActionListener(new ActionListener() {
@@ -152,7 +145,6 @@ public class EmpleadoDialog extends JDialog {
 						});
 						buttonPane.add(hEDSBtn);
 					}
-					buttonPane.add(elementoDSButton);
 				}
 				
 			//	buttonPane.add(altaEmpleadoBtn);
@@ -165,6 +157,16 @@ public class EmpleadoDialog extends JDialog {
 				        bajaEmpleadoDialog.setVisible(true);
 					}
 				});
+				
+				JButton altaBtn = new JButton("Alta");
+				altaBtn.addActionListener(new ActionListener() {
+					public void actionPerformed(ActionEvent e) {
+						setVisible(false);
+						AltaEmpleadoDialog altaEmpleadoDialog = new AltaEmpleadoDialog();
+				        altaEmpleadoDialog.setVisible(true);
+					}
+				});
+				buttonPane.add(altaBtn);
 				buttonPane.add(bajaEmpleadoBtn);
 			}
 			{
@@ -208,5 +210,4 @@ public class EmpleadoDialog extends JDialog {
 		}
 		
 	}
-	
 }
