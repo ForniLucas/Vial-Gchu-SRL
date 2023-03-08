@@ -209,26 +209,6 @@ public class ModificarEmpleadoDialog extends JDialog {
 			buttonPane.setLayout(new FlowLayout(FlowLayout.RIGHT));
 			getContentPane().add(buttonPane, BorderLayout.SOUTH);
 			{
-				JButton elementoSeguridadBtn = new JButton("Asignar Elemento de Seguridad");
-				elementoSeguridadBtn.addActionListener(new ActionListener() {
-					public void actionPerformed(ActionEvent e) {
-						ElementoDeSeguridadDialog elementoDeSeguridadDialog = new ElementoDeSeguridadDialog();
-						elementoDeSeguridadDialog.setVisible(true);
-					}
-				});
-				buttonPane.add(elementoSeguridadBtn);
-			}
-			{
-				JButton ropaTrabajoBtn = new JButton("Asignar Ropa de Trabajo");
-				ropaTrabajoBtn.addActionListener(new ActionListener() {
-					public void actionPerformed(ActionEvent e) {
-						RopaDeTrabajoDialog ropaDeTrabajoDialog = new RopaDeTrabajoDialog();
-						ropaDeTrabajoDialog.setVisible(true);
-					}
-				});
-				buttonPane.add(ropaTrabajoBtn);
-			}
-			{
 				JButton guardarModEmpleadoBtn = new JButton("Guardar");
 				guardarModEmpleadoBtn.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {

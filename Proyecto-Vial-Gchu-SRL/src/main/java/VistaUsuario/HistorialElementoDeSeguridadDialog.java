@@ -55,7 +55,6 @@ public class HistorialElementoDeSeguridadDialog extends JDialog {
 	 * Create the dialog.
 	 */
 	public HistorialElementoDeSeguridadDialog(EmpleadoDialog dialog, String dni, String apellido, String nombre) {
-		super(dialog, "HistorialEspecializacionDialog",true);
 		this.dni = dni;
 		this.apellido = apellido;
 		this.nombre = nombre;
@@ -92,11 +91,11 @@ public class HistorialElementoDeSeguridadDialog extends JDialog {
 			buttonPane.setLayout(new FlowLayout(FlowLayout.RIGHT));
 			getContentPane().add(buttonPane, BorderLayout.SOUTH);
 			{
-				JButton modificarBtn = new JButton("Asignar");
+				JButton modificarBtn = new JButton("Asignar Nuevo Elemento de Seguridad");
 				modificarBtn.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
 						setVisible(false);
-						ElementoDeSeguridadDialog elementoDialog = new ElementoDeSeguridadDialog();
+						ElementoDeSeguridadDialog elementoDialog = new ElementoDeSeguridadDialog(HistorialElementoDeSeguridadDialog.this, HistorialElementoDeSeguridadDialog.this.dni);
 						elementoDialog.setVisible(true);
 						}
 				});

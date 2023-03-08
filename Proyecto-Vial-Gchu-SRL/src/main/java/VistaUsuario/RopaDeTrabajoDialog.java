@@ -1,6 +1,7 @@
 package VistaUsuario;
 
 import java.awt.BorderLayout;
+
 import Enumeraciones.Ropa;
 import java.awt.FlowLayout;
 
@@ -32,7 +33,10 @@ public class RopaDeTrabajoDialog extends JDialog {
 	private Empleado empleado = new Empleado();
 	private JLabel apellidoLbl = new JLabel("");
 	private JLabel nombreLbl = new JLabel("");
-	String[] talles = {"1","2","3","4","5"};
+	
+	private String dni = new String();
+	
+	private String[] talles = {"1","2","3","4","5"};
 	private JComboBox comboBox = new JComboBox(talles);
 	private JComboBox<Ropa> comboBoxRopa = new JComboBox<Ropa>(Ropa.values()){
 		@Override
@@ -45,6 +49,7 @@ public class RopaDeTrabajoDialog extends JDialog {
 	/**
 	 * Launch the application.
 	 */
+	/*
 	public static void main(String[] args) {
 		try {
 			RopaDeTrabajoDialog dialog = new RopaDeTrabajoDialog();
@@ -54,11 +59,16 @@ public class RopaDeTrabajoDialog extends JDialog {
 			e.printStackTrace();
 		}
 	}
-
+	*/
 	/**
 	 * Create the dialog.
 	 */
-	public RopaDeTrabajoDialog() {
+	public RopaDeTrabajoDialog(HistorialRopaDeTrabajoDialog dialog, String dni) {
+		super(dialog, "RopaDeTrabajoDialog",true);
+		this.dni = dni;
+		
+		textField.setText(dni);
+		
 		setBounds(50, 50, 450, 450);
 		this.setResizable(false);
 		this.setTitle("ROPA DE TRABAJO");

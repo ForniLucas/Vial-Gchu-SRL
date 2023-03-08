@@ -89,11 +89,11 @@ public class HistorialRopaDeTrabajoDialog extends JDialog {
 			buttonPane.setLayout(new FlowLayout(FlowLayout.RIGHT));
 			getContentPane().add(buttonPane, BorderLayout.SOUTH);
 			{
-				JButton asginarBtn = new JButton("Asignar");
+				JButton asginarBtn = new JButton("Asignar Nueva Ropa De Trabajo");
 				asginarBtn.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
 						setVisible(false);
-						RopaDeTrabajoDialog ropaDeTrabajoDialog = new RopaDeTrabajoDialog();
+						RopaDeTrabajoDialog ropaDeTrabajoDialog = new RopaDeTrabajoDialog(HistorialRopaDeTrabajoDialog.this, HistorialRopaDeTrabajoDialog.this.dni);
 						ropaDeTrabajoDialog.setVisible(true);					
 						}
 				});

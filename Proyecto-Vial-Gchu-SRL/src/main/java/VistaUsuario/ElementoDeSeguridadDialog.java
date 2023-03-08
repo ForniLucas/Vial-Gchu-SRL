@@ -27,6 +27,7 @@ public class ElementoDeSeguridadDialog extends JDialog {
 	private final JPanel contentPanel = new JPanel();
 	private JTextField textField;
 	private JTextField textField_1;
+	private String dni = new String();
 	private ControladorEmpleado controlador = new ControladorEmpleado();
 	private Empleado empleado = new Empleado();
 	private JLabel nombreLabel = new JLabel("");
@@ -56,7 +57,12 @@ public class ElementoDeSeguridadDialog extends JDialog {
 	/**
 	 * Create the dialog.
 	 */
-	public ElementoDeSeguridadDialog() {
+	public ElementoDeSeguridadDialog(HistorialElementoDeSeguridadDialog dialog, String dni) {
+		super(dialog, "ElementoDeSeguridadDialog",true);
+		this.dni = dni;
+		
+		textField_1.setText(dni);
+		
 		setBounds(50, 50, 500, 500);
 		this.setResizable(false);
 		this.setTitle("ELEMENTO DE SEGURIDAD");
