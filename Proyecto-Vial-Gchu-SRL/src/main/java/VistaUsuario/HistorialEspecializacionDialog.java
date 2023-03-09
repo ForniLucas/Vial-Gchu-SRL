@@ -87,7 +87,7 @@ public class HistorialEspecializacionDialog extends JDialog {
 			buttonPane.setLayout(new FlowLayout(FlowLayout.RIGHT));
 			getContentPane().add(buttonPane, BorderLayout.SOUTH);
 			{
-				JButton modificarBtn = new JButton("Modificar Empleado");
+				JButton modificarBtn = new JButton("Asignar nueva Especializacion");
 				modificarBtn.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
 						setVisible(false);

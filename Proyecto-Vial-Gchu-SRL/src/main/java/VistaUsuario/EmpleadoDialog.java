@@ -114,7 +114,7 @@ public class EmpleadoDialog extends JDialog {
 							}
 						});
 						{
-							JButton hEspecializacionBtn = new JButton("Gestionar especializacion de empleado");
+							JButton hEspecializacionBtn = new JButton("Gestionar especializacion");
 							hEspecializacionBtn.addActionListener(new ActionListener() {
 								public void actionPerformed(ActionEvent e) {
 									try {
