@@ -83,6 +83,10 @@ public class HistorialTrabaja extends JDialog {
 				});
 				
 				JButton asignarBtn = new JButton("Asignar Empleado");
+				asignarBtn.addActionListener(new ActionListener() {
+					public void actionPerformed(ActionEvent e) {
+					}
+				});
 				buttonPane.add(asignarBtn);
 				cancelarBtn.setHorizontalAlignment(SwingConstants.RIGHT);
 				cancelarBtn.setActionCommand("Cancel");
