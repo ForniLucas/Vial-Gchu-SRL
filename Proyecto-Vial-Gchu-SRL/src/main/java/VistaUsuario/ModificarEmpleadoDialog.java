@@ -44,6 +44,7 @@ public class ModificarEmpleadoDialog extends JDialog {
 	JTextField fechaDeNacimientoTxt = new JTextField();
 	ControladorEmpleado controlador = new ControladorEmpleado();
 	Empleado empleado = new Empleado();
+
 	/**
 	 * Create the dialog.
 	 */
@@ -96,16 +97,6 @@ public class ModificarEmpleadoDialog extends JDialog {
 			contentPanel.add(lblNewLabel_6);
 		}
 		{
-			JLabel lblNewLabel_7 = new JLabel("Especialización");
-			lblNewLabel_7.setBounds(114, 488, 113, 13);
-			contentPanel.add(lblNewLabel_7);
-		}
-		{
-			JLabel lblNewLabel_8 = new JLabel("Rol");
-			lblNewLabel_8.setBounds(145, 552, 45, 13);
-			contentPanel.add(lblNewLabel_8);
-		}
-		{
 			dniidTxt = new JTextField();
 			dniidTxt.setBounds(237, 37, 96, 19);
 			contentPanel.add(dniidTxt);
@@ -154,24 +145,6 @@ public class ModificarEmpleadoDialog extends JDialog {
 			fechaDeNacimientoTxt.setColumns(10);
 		}
 		{
-			JComboBox especializacionBox = new JComboBox(Profesion.values());
-			especializacionBox.addActionListener(new ActionListener() {
-				public void actionPerformed(ActionEvent e) {
-				}
-			});
-			especializacionBox.setBounds(237, 484, 96, 21);
-			contentPanel.add(especializacionBox);
-		}
-		{
-			JComboBox rolBox = new JComboBox(RolEmpleado.values());
-			rolBox.addActionListener(new ActionListener() {
-				public void actionPerformed(ActionEvent e) {
-				}
-			});
-			rolBox.setBounds(237, 548, 96, 21);
-			contentPanel.add(rolBox);
-		}
-		{
 			JButton buscarBtn = new JButton("Buscar");
 			buscarBtn.addActionListener(new ActionListener(){
 				public void actionPerformed(ActionEvent e) {
@@ -186,6 +159,7 @@ public class ModificarEmpleadoDialog extends JDialog {
 						String telefon = Integer.toString(empleado.getTelefono());
 						telefonoTxt.setText(telefon);
 						direccionTxt.setText(empleado.getDireccion());
+						
 						DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
 						String fechaNac = empleado.getFechaNac() != null ? empleado.getFechaNac().format(formatter) : null;
 						if (fechaNac != null && !fechaNac.isEmpty()) {
@@ -224,6 +198,8 @@ public class ModificarEmpleadoDialog extends JDialog {
 							String fechaDeNacimientoString = fechaDeNacimientoTxt.getText(); // Get the value of the JTextField as a String
 							DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy"); // Specify the input format
 							LocalDate fechaDeNacimiento = LocalDate.parse(fechaDeNacimientoString, formatter);
+							//RolEmpleado rol = (RolEmpleado) rolBox.getSelectedItem();
+							//Profesion especializacion = (Profesion) especializacionBox.getSelectedItem();
 							
 							empleado.setNombre(nombre);
 							empleado.setApellido(apellido);
