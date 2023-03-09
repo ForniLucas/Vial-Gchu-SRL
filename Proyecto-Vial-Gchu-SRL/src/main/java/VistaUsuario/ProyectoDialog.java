@@ -101,6 +101,7 @@ public class ProyectoDialog extends JDialog {
 					utilizaBtn.addActionListener(new ActionListener() {
 						public void actionPerformed(ActionEvent e) {
 							UtilizaDialog utiliza = new UtilizaDialog(ProyectoDialog.this, id, "");
+							
 						}
 					});
 					buttonPane.add(utilizaBtn);

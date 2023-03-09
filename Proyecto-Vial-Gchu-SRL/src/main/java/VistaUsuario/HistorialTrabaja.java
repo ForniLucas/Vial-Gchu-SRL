@@ -81,6 +81,9 @@ public class HistorialTrabaja extends JDialog {
 						setVisible(false);
 					}
 				});
+				
+				JButton asignarBtn = new JButton("Asignar Empleado");
+				buttonPane.add(asignarBtn);
 				cancelarBtn.setHorizontalAlignment(SwingConstants.RIGHT);
 				cancelarBtn.setActionCommand("Cancel");
 				buttonPane.add(cancelarBtn);
@@ -101,5 +104,4 @@ public class HistorialTrabaja extends JDialog {
 			modeloTablaTrabaja.addRow(fila);
 		}
 	}
-
 }
