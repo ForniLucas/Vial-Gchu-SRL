@@ -54,7 +54,7 @@ public class HistorialElementoDeSeguridadDialog extends JDialog {
 	/**
 	 * Create the dialog.
 	 */
-	public HistorialElementoDeSeguridadDialog(EmpleadoDialog dialog, String dni, String apellido, String nombre) {
+	public HistorialElementoDeSeguridadDialog(ModificarEmpleadoDialog dialog, String dni, String apellido, String nombre) {
 		this.dni = dni;
 		this.apellido = apellido;
 		this.nombre = nombre;

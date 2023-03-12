@@ -21,6 +21,8 @@ import java.util.List;
 import java.awt.event.ActionEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import javax.swing.JLabel;
+import javax.swing.JTextField;
 
 public class MaquinariaDialog extends JDialog {
 
@@ -37,6 +39,7 @@ public class MaquinariaDialog extends JDialog {
 	String fabricante = new String();
 	String ubicacion = new String();
 	String estado = new String();
+	private JTextField buscarPatenteTxt;
 	/**
 	 * Launch the application.
 	 */
@@ -76,10 +79,27 @@ public class MaquinariaDialog extends JDialog {
 		         estado = mt.getValueAt(filaSeleccionada, 5).toString();
 			}
 		});
-		scrollPane.setBounds(100, 40, 1000, 600);
+		scrollPane.setBounds(91, 72, 1000, 600);
 		scrollPane.setViewportView(table);
 		contentPanel.add(scrollPane);
 		contentPanel.setLayout(null);
+		
+		JLabel codigoLbl = new JLabel("Ingrese una patente:");
+		codigoLbl.setBounds(91, 32, 127, 13);
+		contentPanel.add(codigoLbl);
+		
+		buscarPatenteTxt = new JTextField();
+		buscarPatenteTxt.setColumns(10);
+		buscarPatenteTxt.setBounds(228, 29, 205, 19);
+		contentPanel.add(buscarPatenteTxt);
+		
+		JButton buscarBtn = new JButton("Buscar");
+		buscarBtn.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
+		buscarBtn.setBounds(460, 29, 85, 19);
+		contentPanel.add(buscarBtn);
 		cargarMaquinaria();
 		{
 			JPanel buttonPane = new JPanel();
@@ -150,5 +170,8 @@ public class MaquinariaDialog extends JDialog {
 			modeloTablaMaquinaria.addRow(fila);
 		}
 		
+	}
+	public void refrescar() {
+		table.repaint();;
 	}
 }

@@ -54,7 +54,7 @@ public class ModificarEmpleadoDialog extends JDialog {
 		
 		dniidTxt.setText(dniid);
 		
-		setBounds(50, 50, 600, 700);
+		setBounds(50, 50, 675, 700);
 		this.setTitle("MODIFICAR EMPLEADOS");
 		setResizable(false);
 		getContentPane().setLayout(new BorderLayout());
@@ -63,84 +63,84 @@ public class ModificarEmpleadoDialog extends JDialog {
 		contentPanel.setLayout(null);
 		{
 			JLabel lblNewLabel = new JLabel("Ingrese el DNI del Empleado");
-			lblNewLabel.setBounds(41, 40, 149, 13);
+			lblNewLabel.setBounds(83, 82, 149, 13);
 			contentPanel.add(lblNewLabel);
 		}
 		{
 			JLabel lblNewLabel_1 = new JLabel("Apellido");
-			lblNewLabel_1.setBounds(145, 104, 45, 13);
+			lblNewLabel_1.setBounds(187, 146, 45, 13);
 			contentPanel.add(lblNewLabel_1);
 		}
 		{
 			JLabel lblNewLabel_2 = new JLabel("Nombre");
-			lblNewLabel_2.setBounds(145, 168, 45, 13);
+			lblNewLabel_2.setBounds(187, 210, 45, 13);
 			contentPanel.add(lblNewLabel_2);
 		}
 		{
 			JLabel lblNewLabel_3 = new JLabel("DNI");
-			lblNewLabel_3.setBounds(156, 232, 34, 13);
+			lblNewLabel_3.setBounds(198, 274, 34, 13);
 			contentPanel.add(lblNewLabel_3);
 		}
 		{
 			JLabel lblNewLabel_4 = new JLabel("Teléfono");
-			lblNewLabel_4.setBounds(137, 296, 53, 13);
+			lblNewLabel_4.setBounds(179, 338, 53, 13);
 			contentPanel.add(lblNewLabel_4);
 		}
 		{
 			JLabel lblNewLabel_5 = new JLabel("Dirección");
-			lblNewLabel_5.setBounds(137, 360, 90, 13);
+			lblNewLabel_5.setBounds(179, 402, 90, 13);
 			contentPanel.add(lblNewLabel_5);
 		}
 		{
 			JLabel lblNewLabel_6 = new JLabel("Fecha de Nacimiento");
-			lblNewLabel_6.setBounds(83, 424, 144, 13);
+			lblNewLabel_6.setBounds(125, 466, 144, 13);
 			contentPanel.add(lblNewLabel_6);
 		}
 		{
 			dniidTxt = new JTextField();
-			dniidTxt.setBounds(237, 37, 96, 19);
+			dniidTxt.setBounds(279, 79, 96, 19);
 			contentPanel.add(dniidTxt);
 			dniidTxt.setColumns(255);
 		}
 		{
 			
 			
-			apellidoTxt.setBounds(237, 101, 133, 19);
+			apellidoTxt.setBounds(279, 143, 133, 19);
 			contentPanel.add(apellidoTxt);
 			apellidoTxt.setColumns(255);
 		}
 		{
 			
 			
-			nombreTxt.setBounds(237, 165, 133, 19);
+			nombreTxt.setBounds(279, 207, 133, 19);
 			contentPanel.add(nombreTxt);
 			nombreTxt.setColumns(255);
 		}
 		{
 			
 			
-			dniTxt.setBounds(237, 229, 96, 19);
+			dniTxt.setBounds(279, 271, 96, 19);
 			contentPanel.add(dniTxt);
 			dniTxt.setColumns(255);
 		}
 		{
 			
 			
-			telefonoTxt.setBounds(237, 293, 133, 19);
+			telefonoTxt.setBounds(279, 335, 133, 19);
 			contentPanel.add(telefonoTxt);
 			telefonoTxt.setColumns(255);
 		}
 		{
 			
 			
-			direccionTxt.setBounds(237, 360, 133, 19);
+			direccionTxt.setBounds(279, 402, 133, 19);
 			contentPanel.add(direccionTxt);
 			direccionTxt.setColumns(255);
 		}
 		{
 			
 			
-			fechaDeNacimientoTxt.setBounds(237, 421, 96, 19);
+			fechaDeNacimientoTxt.setBounds(279, 463, 96, 19);
 			contentPanel.add(fechaDeNacimientoTxt);
 			fechaDeNacimientoTxt.setColumns(10);
 		}
@@ -175,7 +175,7 @@ public class ModificarEmpleadoDialog extends JDialog {
 					
 				}
 			});
-			buscarBtn.setBounds(392, 36, 85, 21);
+			buscarBtn.setBounds(434, 78, 85, 21);
 			contentPanel.add(buscarBtn);
 		}
 		{
@@ -220,6 +220,39 @@ public class ModificarEmpleadoDialog extends JDialog {
 						
 					}
 				});
+				{
+					JButton gestionarEspBtn = new JButton("Gestionar Especialización");
+					gestionarEspBtn.addActionListener(new ActionListener() {
+						public void actionPerformed(ActionEvent e) {
+							HistorialEspecializacionDialog historialEspecializacion = new HistorialEspecializacionDialog(ModificarEmpleadoDialog.this,
+									ModificarEmpleadoDialog.this.dni, ModificarEmpleadoDialog.this.apellido, ModificarEmpleadoDialog.this.nombre);
+							historialEspecializacion.setVisible(true);
+						}
+					});
+					buttonPane.add(gestionarEspBtn);
+				}
+				{
+					JButton gestionarElemBtn = new JButton("Gestionar Elementos de Seguridad");
+					gestionarElemBtn.addActionListener(new ActionListener() {
+						public void actionPerformed(ActionEvent e) {
+							HistorialElementoDeSeguridadDialog historialElemento = new HistorialElementoDeSeguridadDialog(ModificarEmpleadoDialog.this,
+									ModificarEmpleadoDialog.this.dni, ModificarEmpleadoDialog.this.apellido, ModificarEmpleadoDialog.this.nombre);
+							historialElemento.setVisible(true);
+						}
+					});
+					buttonPane.add(gestionarElemBtn);
+				}
+				{
+					JButton gestionarRopaBtn = new JButton("Gestionar Ropa");
+					gestionarRopaBtn.addActionListener(new ActionListener() {
+						public void actionPerformed(ActionEvent e) {
+							HistorialRopaDeTrabajoDialog historialRopa = new HistorialRopaDeTrabajoDialog(ModificarEmpleadoDialog.this,
+									ModificarEmpleadoDialog.this.dni, ModificarEmpleadoDialog.this.apellido, ModificarEmpleadoDialog.this.nombre);
+							historialRopa.setVisible(true);
+						}
+					});
+					buttonPane.add(gestionarRopaBtn);
+				}
 				guardarModEmpleadoBtn.setActionCommand("OK");
 				buttonPane.add(guardarModEmpleadoBtn);
 				getRootPane().setDefaultButton(guardarModEmpleadoBtn);

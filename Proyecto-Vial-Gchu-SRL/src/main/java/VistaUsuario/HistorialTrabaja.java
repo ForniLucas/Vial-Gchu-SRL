@@ -20,6 +20,8 @@ import javax.swing.table.DefaultTableModel;
 import Controladoras.ControladorProyecto;
 import Domain.Trabajo;
 import Domain.Utiliza;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 public class HistorialTrabaja extends JDialog {
 
@@ -31,6 +33,7 @@ public class HistorialTrabaja extends JDialog {
 	DefaultTableModel mt = new DefaultTableModel();
 	JTable table = new JTable(mt);
 	JScrollPane scrollPane = new JScrollPane();
+	String dni = new String();
 	/**
 	 * Launch the application.
 	 */
@@ -48,7 +51,7 @@ public class HistorialTrabaja extends JDialog {
 	/**
 	 * Create the dialog.
 	 */
-	public HistorialTrabaja(ProyectoDialog dialog, String id) {
+	public HistorialTrabaja(ModificarProyectoDialog dialog, String id) {
 		super(dialog, "HistorialUtiliza",true);
 		this.id = id;
 		
@@ -62,6 +65,14 @@ public class HistorialTrabaja extends JDialog {
 		contentPanel.setLayout(null);
 		contentPanel.setLayout(null);
 		table.setBounds(89, 39, 500, 500);
+		table.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				int filaSeleccionada = table.getSelectedRow();
+		        DefaultTableModel mt = (DefaultTableModel)table.getModel();
+		        dni = mt.getValueAt(filaSeleccionada, 0).toString();
+			}
+		});
 		scrollPane.setBounds(42, 55, 500, 455);
 		scrollPane.setViewportView(table);
 		contentPanel.add(scrollPane);
@@ -85,6 +96,7 @@ public class HistorialTrabaja extends JDialog {
 				JButton asignarBtn = new JButton("Asignar Empleado");
 				asignarBtn.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
+						TrabajaDialog trabaja = new TrabajaDialog(HistorialTrabaja.this, HistorialTrabaja.this.id, HistorialTrabaja.this.dni);
 					}
 				});
 				buttonPane.add(asignarBtn);

@@ -18,6 +18,8 @@ import java.awt.event.ActionEvent;
 import javax.swing.JTable;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import javax.swing.JLabel;
+import javax.swing.JTextField;
 
 public class EmpleadoDialog extends JDialog {
 	private final JPanel contentPanel = new JPanel();
@@ -38,6 +40,8 @@ public class EmpleadoDialog extends JDialog {
 	DefaultTableModel mt = new DefaultTableModel();
 	JTable table = new JTable(mt);
 	JScrollPane scrollPane = new JScrollPane(); 
+	private JTextField busquedaApellidoTxt;
+	private JTextField busquedaDniTxt;
 	/**
 	 * Launch the application.
 	 */
@@ -82,9 +86,36 @@ public class EmpleadoDialog extends JDialog {
 		});
 		table.setBounds(89, 39, 1195, 600);
 		
-		scrollPane.setBounds(89, 39, 1195, 600);
+		scrollPane.setBounds(91, 72, 1195, 600);
 		scrollPane.setViewportView(table);
 		contentPanel.add(scrollPane);
+		
+		JLabel apellidoLbl = new JLabel("Ingrese un apellido:");
+		apellidoLbl.setBounds(91, 29, 127, 13);
+		contentPanel.add(apellidoLbl);
+		
+		busquedaApellidoTxt = new JTextField();
+		busquedaApellidoTxt.setBounds(228, 26, 205, 19);
+		contentPanel.add(busquedaApellidoTxt);
+		busquedaApellidoTxt.setColumns(10);
+		
+		JLabel dniLbl = new JLabel("O ingrese un dni:");
+		dniLbl.setBounds(465, 29, 127, 13);
+		contentPanel.add(dniLbl);
+		
+		busquedaDniTxt = new JTextField();
+		busquedaDniTxt.setColumns(10);
+		busquedaDniTxt.setBounds(589, 26, 205, 19);
+		contentPanel.add(busquedaDniTxt);
+		
+		JButton buscarBtn = new JButton("Buscar");
+		buscarBtn.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+			}
+		});
+		buscarBtn.setBounds(840, 26, 85, 19);
+		contentPanel.add(buscarBtn);
 		//CARGAR EMPLEADOS ESTA ABAJO
 		cargarEmpleados();
 		
@@ -99,52 +130,6 @@ public class EmpleadoDialog extends JDialog {
 						AltaEmpleadoDialog altaEmpleadoDialog = new AltaEmpleadoDialog();
 					    altaEmpleadoDialog.setVisible(true);}
 				});
-
-					{
-						JButton hRTBtn = new JButton("Gestionar ropa de trabajo");
-						hRTBtn.addActionListener(new ActionListener() {
-							public void actionPerformed(ActionEvent e) {
-								try {									
-										HistorialRopaDeTrabajoDialog historialRopa = new HistorialRopaDeTrabajoDialog(EmpleadoDialog.this, dni, apellido, nombre);
-										historialRopa.setVisible(true);	
-								} catch (Exception e1) {
-									optionPane.showMessageDialog(null, "Error: Debe seleccionar un empleado ");
-								}
-								
-							}
-						});
-						{
-							JButton hEspecializacionBtn = new JButton("Gestionar especializacion");
-							hEspecializacionBtn.addActionListener(new ActionListener() {
-								public void actionPerformed(ActionEvent e) {
-									try {
-											HistorialEspecializacionDialog historialEspecializacion = new HistorialEspecializacionDialog(EmpleadoDialog.this, dni, apellido, nombre);
-											historialEspecializacion.setVisible(true);	
-										} catch (Exception e1) {
-										optionPane.showMessageDialog(null, "Error: Debe seleccionar un empleado ");
-									}
-								}
-							});
-							buttonPane.add(hEspecializacionBtn);
-						}
-						buttonPane.add(hRTBtn);
-					}
-				}
-				{
-					{
-						JButton hEDSBtn = new JButton("Gestionar elemento de seguridad");
-						hEDSBtn.addActionListener(new ActionListener() {
-							public void actionPerformed(ActionEvent e) {
-								try {
-									HistorialElementoDeSeguridadDialog historialElementoDeSeguridad = new HistorialElementoDeSeguridadDialog(EmpleadoDialog.this, dni, apellido, nombre);
-									historialElementoDeSeguridad.setVisible(true);
-								} catch (Exception e1) {
-									optionPane.showMessageDialog(null, "Error: Debe seleccionar un empleado ");
-								}
-							}
-						});
-						buttonPane.add(hEDSBtn);
-					}
 				}
 				
 			//	buttonPane.add(altaEmpleadoBtn);
@@ -209,5 +194,9 @@ public class EmpleadoDialog extends JDialog {
 			modeloTablaEmpleado.addRow(fila);
 		}
 		
+	}
+	
+	public void refrescar() {
+		table.repaint();;
 	}
 }

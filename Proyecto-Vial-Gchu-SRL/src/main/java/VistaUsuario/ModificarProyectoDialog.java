@@ -190,9 +190,9 @@ public class ModificarProyectoDialog extends JDialog {
 						nombreTxt.setText(proyecto.getNombre());
 						fechaDeInicioTxt.setText(proyecto.getFechaInicio().toString());
 						fechaFinTxt.setText(proyecto.getFechaEstFin().toString());
-						estadoBox.setSelectedItem(proyecto.getEstado());
+						//estadoBox.setSelectedItem(proyecto.getEstado());
 						TipoProyecto tipo = (TipoProyecto)(proyecto.getTipoProyecto());
-						tipoBox.setSelectedItem(tipo.getTipo());
+						//tipoBox.setSelectedItem(tipo.getTipo());
 						actividadesTxt.setText(tipo.getActividades());
 						insumosTxt.setText(tipo.getInsumos());
 						descripcionTxt.setText(tipo.getDescripcion());
@@ -244,6 +244,24 @@ public class ModificarProyectoDialog extends JDialog {
 						
 					}
 				});
+				
+				JButton gestionMaqBtn = new JButton("Gestionar Maquinaria");
+				gestionMaqBtn.addActionListener(new ActionListener() {
+					public void actionPerformed(ActionEvent e) {
+						HistorialUtiliza historialUtiliza = new HistorialUtiliza(ModificarProyectoDialog.this, ModificarProyectoDialog.this.id);
+						historialUtiliza.setVisible(true);
+					}
+				});
+				buttonPane.add(gestionMaqBtn);
+				
+				JButton gestionEmplBtn = new JButton("Gestionar Empleados");
+				gestionEmplBtn.addActionListener(new ActionListener() {
+					public void actionPerformed(ActionEvent e) {
+						HistorialTrabaja historialTrabaja = new HistorialTrabaja(ModificarProyectoDialog.this, ModificarProyectoDialog.this.id);
+						historialTrabaja.setVisible(true);
+					}
+				});
+				buttonPane.add(gestionEmplBtn);
 				guardarBtn.setActionCommand("Guardar");
 				buttonPane.add(guardarBtn);
 				getRootPane().setDefaultButton(guardarBtn);

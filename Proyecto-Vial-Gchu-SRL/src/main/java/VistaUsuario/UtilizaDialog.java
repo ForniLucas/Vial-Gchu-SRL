@@ -55,7 +55,7 @@ public class UtilizaDialog extends JDialog {
 	/**
 	 * Create the dialog.
 	 */
-	public UtilizaDialog(ProyectoDialog dialog1, String idproyecto, String codigo) {
+	public UtilizaDialog(HistorialUtiliza dialog1, String idproyecto, String codigo) {
 		super(dialog1, "UtilizaDialog",true);
 		this.idproyecto = idproyecto;
 		this.codigo = codigo;

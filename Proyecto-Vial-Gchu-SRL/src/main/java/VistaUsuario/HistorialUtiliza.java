@@ -19,17 +19,21 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.table.DefaultTableModel;
 import Controladoras.ControladorProyecto;
 import Domain.Utiliza;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 public class HistorialUtiliza extends JDialog {
 
 	private final JPanel contentPanel = new JPanel();
-	String id = new String();
-	ControladorProyecto controladorP = new ControladorProyecto();
+	private String id = new String();
+	private ControladorProyecto controladorP = new ControladorProyecto();
 	//Tabla Principal
-	String ids[] = {"Fecha de Inicio", "Fecha Estimada de Fin","Fecha de Fin", "Patente","Descripcion"}; 
-	DefaultTableModel mt = new DefaultTableModel();
-	JTable table = new JTable(mt);
-	JScrollPane scrollPane = new JScrollPane();
+	private String ids[] = {"Fecha de Inicio", "Fecha Estimada de Fin","Fecha de Fin", "Patente","Descripcion"}; 
+	private DefaultTableModel mt = new DefaultTableModel();
+	private JTable table = new JTable(mt);
+	private JScrollPane scrollPane = new JScrollPane();
+	private final JButton asignarMaquinariaBtn = new JButton("Asignar Maquinaria");
+	private String codigo = new String();
 	/**
 	 * Launch the application.
 	 */
@@ -47,7 +51,7 @@ public class HistorialUtiliza extends JDialog {
 	/**
 	 * Create the dialog.
 	 */
-	public HistorialUtiliza(ProyectoDialog dialog, String id) {
+	public HistorialUtiliza(ModificarProyectoDialog dialog, String id) {
 		super(dialog, "HistorialUtiliza",true);
 		this.id = id;
 		
@@ -61,6 +65,14 @@ public class HistorialUtiliza extends JDialog {
 		contentPanel.setLayout(null);
 		contentPanel.setLayout(null);
 		table.setBounds(89, 39, 500, 500);
+		table.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				int filaSeleccionada = table.getSelectedRow();
+		        DefaultTableModel mt = (DefaultTableModel)table.getModel();
+		        codigo = mt.getValueAt(filaSeleccionada, 3).toString();
+			}
+		});
 		scrollPane.setBounds(42, 55, 500, 455);
 		scrollPane.setViewportView(table);
 		contentPanel.add(scrollPane);
@@ -80,6 +92,14 @@ public class HistorialUtiliza extends JDialog {
 						setVisible(false);
 					}
 				});
+				asignarMaquinariaBtn.addActionListener(new ActionListener() {
+					public void actionPerformed(ActionEvent e) {
+						UtilizaDialog utiliza = new UtilizaDialog(HistorialUtiliza.this, HistorialUtiliza.this.id, HistorialUtiliza.this.codigo);
+						utiliza.setVisible(true);
+					}
+				});
+				
+				buttonPane.add(asignarMaquinariaBtn);
 				cancelarBtn.setHorizontalAlignment(SwingConstants.RIGHT);
 				cancelarBtn.setActionCommand("Cancel");
 				buttonPane.add(cancelarBtn);

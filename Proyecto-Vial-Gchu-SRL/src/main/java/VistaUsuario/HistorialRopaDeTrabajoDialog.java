@@ -52,7 +52,7 @@ public class HistorialRopaDeTrabajoDialog extends JDialog {
 	/**
 	 * Create the dialog.
 	 */
-	public HistorialRopaDeTrabajoDialog(EmpleadoDialog dialog, String dni, String apellido, String nombre) {
+	public HistorialRopaDeTrabajoDialog(ModificarEmpleadoDialog dialog, String dni, String apellido, String nombre) {
 		super(dialog, "HistorialRopaDeTrabajoDialog",true);
 		this.dni = dni;
 		this.apellido = apellido;

@@ -56,7 +56,7 @@ public class TrabajaDialog extends JDialog {
 	/**
 	 * Create the dialog.
 	 */
-	public TrabajaDialog(ProyectoDialog dialog1, String idproyecto, String dni) {
+	public TrabajaDialog(HistorialTrabaja dialog1, String idproyecto, String dni) {
 		super(dialog1, "UtilizaDialog",true);
 		this.idproyecto = idproyecto;
 		this.dni = dni;

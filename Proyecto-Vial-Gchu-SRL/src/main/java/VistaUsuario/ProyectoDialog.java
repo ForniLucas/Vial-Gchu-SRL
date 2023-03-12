@@ -20,6 +20,8 @@ import java.awt.event.MouseEvent;
 import java.util.Iterator;
 import java.util.List;
 import java.awt.event.ActionEvent;
+import javax.swing.JLabel;
+import javax.swing.JTextField;
 
 public class ProyectoDialog extends JDialog {
 
@@ -36,6 +38,8 @@ public class ProyectoDialog extends JDialog {
 	String fechaEstimada = new String();
 	String estado = new String();
 	String fechaFin = new String();
+	private JTextField buscarNombreTxt;
+	private JTextField buscarIdTxt;
 	/**
 	 * Launch the application.
 	 */
@@ -77,9 +81,40 @@ public class ProyectoDialog extends JDialog {
 		        fechaFin = mt.getValueAt(filaSeleccionada, 5).toString();
 			}
 		});
-		scrollPane.setBounds(100, 40, 1000, 600);
+		scrollPane.setBounds(102, 72, 1000, 600);
 		scrollPane.setViewportView(table);
 		contentPanel.add(scrollPane);
+		{
+			JLabel nombreLbl = new JLabel("Ingrese un nombre:");
+			nombreLbl.setBounds(102, 28, 127, 13);
+			contentPanel.add(nombreLbl);
+		}
+		{
+			buscarNombreTxt = new JTextField();
+			buscarNombreTxt.setColumns(10);
+			buscarNombreTxt.setBounds(239, 25, 205, 19);
+			contentPanel.add(buscarNombreTxt);
+		}
+		{
+			JLabel idLbl = new JLabel("O ingrese un ID:");
+			idLbl.setBounds(476, 28, 127, 13);
+			contentPanel.add(idLbl);
+		}
+		{
+			buscarIdTxt = new JTextField();
+			buscarIdTxt.setColumns(10);
+			buscarIdTxt.setBounds(600, 25, 205, 19);
+			contentPanel.add(buscarIdTxt);
+		}
+		{
+			JButton buscarBtn = new JButton("Buscar");
+			buscarBtn.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+				}
+			});
+			buscarBtn.setBounds(851, 25, 85, 19);
+			contentPanel.add(buscarBtn);
+		}
 		
 		cargarProyectos();
 	
@@ -96,16 +131,6 @@ public class ProyectoDialog extends JDialog {
 						altaProyectoDialog.setVisible(true);
 					}
 				});
-				{
-					JButton utilizaBtn = new JButton("Asignar Maquinaria");
-					utilizaBtn.addActionListener(new ActionListener() {
-						public void actionPerformed(ActionEvent e) {
-							UtilizaDialog utiliza = new UtilizaDialog(ProyectoDialog.this, id, "");
-							
-						}
-					});
-					buttonPane.add(utilizaBtn);
-				}
 				buttonPane.add(altaBtn);
 			}
 			{
@@ -166,6 +191,9 @@ public class ProyectoDialog extends JDialog {
 			modeloTablaProyecto.addRow(fila);
 		}
 		
+	}
+	public void refrescar() {
+		table.repaint();;
 	}
 
 }
