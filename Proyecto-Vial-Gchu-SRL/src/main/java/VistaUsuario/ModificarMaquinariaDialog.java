@@ -69,7 +69,7 @@ public class ModificarMaquinariaDialog extends JDialog {
 			contentPanel.add(lblNewLabel);
 		}
 		{
-			JLabel lblNewLabel_1 = new JLabel("Patente");
+			JLabel lblNewLabel_1 = new JLabel("Código");
 			lblNewLabel_1.setBounds(220, 146, 45, 13);
 			contentPanel.add(lblNewLabel_1);
 		}

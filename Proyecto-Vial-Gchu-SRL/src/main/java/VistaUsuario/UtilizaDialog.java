@@ -75,7 +75,7 @@ public class UtilizaDialog extends JDialog {
 		proyectoidLbl.setBounds(54, 42, 221, 13);
 		contentPanel.add(proyectoidLbl);
 		
-		JLabel codigoidLbl = new JLabel("Ingrese una patente: ");
+		JLabel codigoidLbl = new JLabel("Ingrese un código: ");
 		codigoidLbl.setBounds(54, 97, 109, 13);
 		contentPanel.add(codigoidLbl);
 		

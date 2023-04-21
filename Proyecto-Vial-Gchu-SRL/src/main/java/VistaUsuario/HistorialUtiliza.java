@@ -28,7 +28,7 @@ public class HistorialUtiliza extends JDialog {
 	private String id = new String();
 	private ControladorProyecto controladorP = new ControladorProyecto();
 	//Tabla Principal
-	private String ids[] = {"Fecha de Inicio", "Fecha Estimada de Fin","Fecha de Fin", "Patente","Descripcion"}; 
+	private String ids[] = {"Fecha de Inicio", "Fecha Estimada de Fin","Fecha de Fin", "Código","Descripcion"}; 
 	private DefaultTableModel mt = new DefaultTableModel();
 	private JTable table = new JTable(mt);
 	private JScrollPane scrollPane = new JScrollPane();

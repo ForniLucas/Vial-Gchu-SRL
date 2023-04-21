@@ -28,7 +28,7 @@ public class MaquinariaDialog extends JDialog {
 
 	private final JPanel contentPanel = new JPanel();
 	//Tabla Principal
-	String ids[] = {"Legajo","Patente","Descripción","Fabricante","Ubicación de Almacenamiento","Estado"}; 
+	String ids[] = {"Legajo","codigo","Descripción","Fabricante","Ubicación de Almacenamiento","Estado"}; 
 	DefaultTableModel mt = new DefaultTableModel();
 	JTable table = new JTable(mt);
 	JScrollPane scrollPane = new JScrollPane(); 
@@ -39,7 +39,7 @@ public class MaquinariaDialog extends JDialog {
 	String fabricante = new String();
 	String ubicacion = new String();
 	String estado = new String();
-	private JTextField buscarPatenteTxt;
+	private JTextField buscarcodigoTxt;
 	/**
 	 * Launch the application.
 	 */
@@ -84,14 +84,14 @@ public class MaquinariaDialog extends JDialog {
 		contentPanel.add(scrollPane);
 		contentPanel.setLayout(null);
 		
-		JLabel codigoLbl = new JLabel("Ingrese una patente:");
+		JLabel codigoLbl = new JLabel("Ingrese el código:");
 		codigoLbl.setBounds(91, 32, 127, 13);
 		contentPanel.add(codigoLbl);
 		
-		buscarPatenteTxt = new JTextField();
-		buscarPatenteTxt.setColumns(10);
-		buscarPatenteTxt.setBounds(228, 29, 205, 19);
-		contentPanel.add(buscarPatenteTxt);
+		buscarcodigoTxt = new JTextField();
+		buscarcodigoTxt.setColumns(10);
+		buscarcodigoTxt.setBounds(228, 29, 205, 19);
+		contentPanel.add(buscarcodigoTxt);
 		
 		JButton buscarBtn = new JButton("Buscar");
 		buscarBtn.addActionListener(new ActionListener() {

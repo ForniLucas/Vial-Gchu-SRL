@@ -49,7 +49,7 @@ public class AltaMaquinariaDialog extends JDialog {
 		getContentPane().add(contentPanel, BorderLayout.CENTER);
 		contentPanel.setLayout(null);
 		{
-			JLabel lblNewLabel = new JLabel("Patente");
+			JLabel lblNewLabel = new JLabel("Código");
 			lblNewLabel.setBounds(200, 71, 45, 13);
 			contentPanel.add(lblNewLabel);
 		}

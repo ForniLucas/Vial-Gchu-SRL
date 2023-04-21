@@ -112,7 +112,7 @@ public class BajaMaquinariaDialog extends JDialog {
 						lblNewLabel_4.setVisible(true);
 						
 						String estadoString = maquina.getEstado() ? "En servicio" : "Fuera de Servicio";
-						lblNewLabel_1.setText("Patente: " + maquina.getCodigo());
+						lblNewLabel_1.setText("Código: " + maquina.getCodigo());
 						lblNewLabel_2.setText("Descripción: " + maquina.getDescripcion());
 						lblNewLabel_3.setText("Fabricante: " + maquina.getFabricante());
 						lblNewLabel_4.setText("Estado: " + estadoString);
