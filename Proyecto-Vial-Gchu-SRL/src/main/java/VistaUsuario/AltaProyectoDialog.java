@@ -77,90 +77,69 @@ public class AltaProyectoDialog extends JDialog {
 		contentPanel.setLayout(null);
 		{
 			JLabel lblNewLabel = new JLabel("Fecha de Inicio");
-			lblNewLabel.setBounds(75, 36, 95, 13);
+			lblNewLabel.setBounds(121, 46, 95, 13);
 			contentPanel.add(lblNewLabel);
 		}
 		{
 			JLabel lblNewLabel_1 = new JLabel("Fecha Estimada de Fin");
-			lblNewLabel_1.setBounds(36, 91, 134, 13);
+			lblNewLabel_1.setBounds(82, 110, 134, 13);
 			contentPanel.add(lblNewLabel_1);
 		}
 		{
 			JLabel lblNewLabel_2 = new JLabel("Estado");
-			lblNewLabel_2.setBounds(106, 146, 64, 13);
+			lblNewLabel_2.setBounds(152, 186, 64, 13);
 			contentPanel.add(lblNewLabel_2);
 		}
 		{
 			JLabel lblNewLabel_3 = new JLabel("Nombre de Proyecto");
-			lblNewLabel_3.setBounds(43, 201, 124, 13);
+			lblNewLabel_3.setBounds(89, 256, 124, 13);
 			contentPanel.add(lblNewLabel_3);
 		}
 		{
 			JLabel lblNewLabel_4 = new JLabel("Tipo de Proyecto");
-			lblNewLabel_4.setBounds(56, 256, 111, 13);
+			lblNewLabel_4.setBounds(102, 326, 111, 13);
 			contentPanel.add(lblNewLabel_4);
 		}
 		{
 			JLabel lblNewLabel_5 = new JLabel("Descripción");
-			lblNewLabel_5.setBounds(83, 313, 87, 13);
+			lblNewLabel_5.setBounds(129, 396, 87, 13);
 			contentPanel.add(lblNewLabel_5);
 		}
+
 		{
-			JLabel lblNewLabel_6 = new JLabel("Actividades");
-			lblNewLabel_6.setBounds(90, 366, 77, 13);
-			contentPanel.add(lblNewLabel_6);
-		}
-		{
-			JLabel lblNewLabel_7 = new JLabel("Insumos");
-			lblNewLabel_7.setBounds(106, 421, 64, 13);
-			contentPanel.add(lblNewLabel_7);
-		}
-		{
-			
-			
-			fechaInicioTxt.setBounds(190, 30, 96, 19);
+				
+			fechaInicioTxt.setBounds(226, 43, 96, 19);
 			contentPanel.add(fechaInicioTxt);
 			fechaInicioTxt.setColumns(10);
 		}
 		{
-			
+		
 			fechaFinTxt.setText("dd-mm-aaaa");
-			fechaFinTxt.setBounds(190, 85, 96, 19);
+			fechaFinTxt.setBounds(226, 107, 96, 19);
 			contentPanel.add(fechaFinTxt);
 			fechaFinTxt.setColumns(10);
 		}
 		{
-			
-			estadoBox.setBounds(190, 140, 96, 19);
+		
+			estadoBox.setBounds(226, 183, 96, 19);
 			contentPanel.add(estadoBox);
 		}
 		{
 			
-			nombreTxt.setBounds(190, 195, 196, 19);
+			nombreTxt.setBounds(226, 253, 196, 19);
 			contentPanel.add(nombreTxt);
 			nombreTxt.setColumns(255);
 		}
 		{
 			
-			descripcionTxt.setBounds(190, 307, 223, 19);
+			descripcionTxt.setBounds(226, 393, 223, 42);
 			contentPanel.add(descripcionTxt);
 			descripcionTxt.setColumns(255);
 		}
+
 		{
 			
-			actividadesTxt.setBounds(190, 360, 223, 19);
-			contentPanel.add(actividadesTxt);
-			actividadesTxt.setColumns(255);
-		}
-		{
-			
-			insumosTxt.setBounds(190, 415, 223, 19);
-			contentPanel.add(insumosTxt);
-			insumosTxt.setColumns(255);
-		}
-		{
-			
-			comboBox.setBounds(190, 249, 130, 21);
+			comboBox.setBounds(226, 323, 130, 21);
 			contentPanel.add(comboBox);
 		
 		}
@@ -185,10 +164,10 @@ public class AltaProyectoDialog extends JDialog {
 						String desc = descripcionTxt.getText();
 						String actividades = actividadesTxt.getText(); 
 						String insumos = insumosTxt.getText();
-						EstadoProyecto estado = (EstadoProyecto) estadoBox.getSelectedItem();
+					//	EstadoProyecto estado = (EstadoProyecto) estadoBox.getSelectedItem();
 						
-						TipoDeProyecto tipo = (TipoDeProyecto) comboBox.getSelectedItem(); 
-						TipoProyecto tipoProyecto = new TipoProyecto(tipo, desc, actividades, insumos);
+					//	TipoDeProyecto tipo = (TipoDeProyecto) comboBox.getSelectedItem(); 
+					//	TipoProyecto tipoProyecto = new TipoProyecto(tipo, desc, actividades, insumos);
 								
 						Proyecto proyecto = new Proyecto();
 						
@@ -196,8 +175,8 @@ public class AltaProyectoDialog extends JDialog {
 						proyecto.setFechaEstFin(fechaFin);
 						proyecto.setFechaFin(fechaFin);
 						proyecto.setNombre(nombre);
-						proyecto.setEstado(estado);
-						proyecto.asignarTipoProyecto(tipoProyecto);
+					//	proyecto.setEstado(estado);
+					//	proyecto.asignarTipoProyecto(tipoProyecto);
 						
 						controlador.alta(proyecto);
 						

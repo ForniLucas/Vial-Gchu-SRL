@@ -62,38 +62,38 @@ public class ModificarEmpleadoDialog extends JDialog {
 		getContentPane().add(contentPanel, BorderLayout.CENTER);
 		contentPanel.setLayout(null);
 		{
-			JLabel lblNewLabel = new JLabel("Ingrese el DNI del Empleado");
-			lblNewLabel.setBounds(83, 82, 149, 13);
+			JLabel lblNewLabel = new JLabel("Ingrese el DNI:");
+			lblNewLabel.setBounds(161, 82, 85, 13);
 			contentPanel.add(lblNewLabel);
 		}
 		{
 			JLabel lblNewLabel_1 = new JLabel("Apellido");
-			lblNewLabel_1.setBounds(187, 146, 45, 13);
+			lblNewLabel_1.setBounds(201, 146, 68, 13);
 			contentPanel.add(lblNewLabel_1);
 		}
 		{
 			JLabel lblNewLabel_2 = new JLabel("Nombre");
-			lblNewLabel_2.setBounds(187, 210, 45, 13);
+			lblNewLabel_2.setBounds(201, 210, 45, 13);
 			contentPanel.add(lblNewLabel_2);
 		}
 		{
 			JLabel lblNewLabel_3 = new JLabel("DNI");
-			lblNewLabel_3.setBounds(198, 274, 34, 13);
+			lblNewLabel_3.setBounds(212, 274, 34, 13);
 			contentPanel.add(lblNewLabel_3);
 		}
 		{
 			JLabel lblNewLabel_4 = new JLabel("Teléfono");
-			lblNewLabel_4.setBounds(179, 338, 53, 13);
+			lblNewLabel_4.setBounds(193, 338, 53, 13);
 			contentPanel.add(lblNewLabel_4);
 		}
 		{
 			JLabel lblNewLabel_5 = new JLabel("Dirección");
-			lblNewLabel_5.setBounds(179, 402, 90, 13);
+			lblNewLabel_5.setBounds(178, 402, 68, 13);
 			contentPanel.add(lblNewLabel_5);
 		}
 		{
 			JLabel lblNewLabel_6 = new JLabel("Fecha de Nacimiento");
-			lblNewLabel_6.setBounds(125, 466, 144, 13);
+			lblNewLabel_6.setBounds(136, 466, 133, 13);
 			contentPanel.add(lblNewLabel_6);
 		}
 		{

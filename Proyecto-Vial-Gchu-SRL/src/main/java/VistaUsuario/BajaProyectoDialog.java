@@ -61,8 +61,8 @@ public class BajaProyectoDialog extends JDialog {
 		getContentPane().add(contentPanel, BorderLayout.CENTER);
 		contentPanel.setLayout(null);
 		{
-			JLabel lblNewLabel = new JLabel("Ingresar Legajo del Proyecto");
-			lblNewLabel.setBounds(10, 29, 147, 13);
+			JLabel lblNewLabel = new JLabel("Ingresar Legajo:");
+			lblNewLabel.setBounds(48, 29, 147, 13);
 			contentPanel.add(lblNewLabel);
 		}
 		{

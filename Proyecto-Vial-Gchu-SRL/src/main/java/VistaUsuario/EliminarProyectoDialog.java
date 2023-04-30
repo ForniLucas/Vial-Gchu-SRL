@@ -61,8 +61,8 @@ public class EliminarProyectoDialog extends JDialog {
 		getContentPane().add(contentPanel, BorderLayout.CENTER);
 		contentPanel.setLayout(null);
 		{
-			JLabel lblNewLabel = new JLabel("Ingresar Legajo de Proyecto");
-			lblNewLabel.setBounds(10, 29, 147, 13);
+			JLabel lblNewLabel = new JLabel("Ingresar el Legajo:");
+			lblNewLabel.setBounds(37, 29, 147, 13);
 			contentPanel.add(lblNewLabel);
 		}
 		{

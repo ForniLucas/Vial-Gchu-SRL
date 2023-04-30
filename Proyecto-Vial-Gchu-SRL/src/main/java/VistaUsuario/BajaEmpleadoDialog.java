@@ -66,8 +66,8 @@ public class BajaEmpleadoDialog extends JDialog {
 		
 		
 		{
-			JLabel lblNewLabel = new JLabel("Ingrese DNI del Empleado");
-			lblNewLabel.setBounds(24, 26, 133, 13);
+			JLabel lblNewLabel = new JLabel("Ingrese el DNI");
+			lblNewLabel.setBounds(54, 26, 133, 13);
 			contentPanel.add(lblNewLabel);
 		}
 		{

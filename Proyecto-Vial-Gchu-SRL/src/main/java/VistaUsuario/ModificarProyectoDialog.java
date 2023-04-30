@@ -73,7 +73,7 @@ public class ModificarProyectoDialog extends JDialog {
 		
 		legajoTxt.setText(id);
 		
-		setBounds(50, 50, 600, 700);
+		setBounds(50, 50, 550, 550);
 		this.setResizable(false);
 		this.setTitle("MODIFICAR PROYECTOS");
 		getContentPane().setLayout(new BorderLayout());
@@ -81,102 +81,82 @@ public class ModificarProyectoDialog extends JDialog {
 		getContentPane().add(contentPanel, BorderLayout.CENTER);
 		contentPanel.setLayout(null);
 		{
-			JLabel lblNewLabel = new JLabel("Ingrese el Legajo del Proyecto");
-			lblNewLabel.setBounds(37, 51, 140, 13);
+			JLabel lblNewLabel = new JLabel("Ingrese el Legajo:");
+			lblNewLabel.setBounds(38, 43, 109, 13);
 			contentPanel.add(lblNewLabel);
 		}
 		{
 			JLabel lblNewLabel_1 = new JLabel("Fecha de Inicio");
-			lblNewLabel_1.setBounds(100, 128, 84, 13);
+			lblNewLabel_1.setBounds(94, 112, 84, 13);
 			contentPanel.add(lblNewLabel_1);
 		}
 		{
 			JLabel lblNewLabel_2 = new JLabel("Fecha Estimada de Fin");
-			lblNewLabel_2.setBounds(70, 182, 114, 13);
+			lblNewLabel_2.setBounds(64, 166, 129, 13);
 			contentPanel.add(lblNewLabel_2);
 		}
 		{
 			JLabel lblNewLabel_3 = new JLabel("Estado");
-			lblNewLabel_3.setBounds(139, 236, 45, 13);
+			lblNewLabel_3.setBounds(133, 220, 45, 13);
 			contentPanel.add(lblNewLabel_3);
 		}
 		{
 			JLabel lblNewLabel_4 = new JLabel("Nombre de Proyecto");
-			lblNewLabel_4.setBounds(81, 290, 103, 13);
+			lblNewLabel_4.setBounds(75, 274, 129, 13);
 			contentPanel.add(lblNewLabel_4);
 		}
 		{
 			JLabel lblNewLabel_5 = new JLabel("Tipo De Proyecto");
-			lblNewLabel_5.setBounds(84, 344, 100, 13);
+			lblNewLabel_5.setBounds(91, 324, 102, 13);
 			contentPanel.add(lblNewLabel_5);
 		}
 		{
 			JLabel lblNewLabel_6 = new JLabel("Descripción");
-			lblNewLabel_6.setBounds(113, 398, 71, 13);
+			lblNewLabel_6.setBounds(107, 382, 71, 13);
 			contentPanel.add(lblNewLabel_6);
 		}
-		{
-			JLabel lblNewLabel_7 = new JLabel("Actividades");
-			lblNewLabel_7.setBounds(113, 452, 71, 13);
-			contentPanel.add(lblNewLabel_7);
-		}
-		{
-			JLabel lblNewLabel_8 = new JLabel("Insumos");
-			lblNewLabel_8.setBounds(126, 506, 58, 13);
-			contentPanel.add(lblNewLabel_8);
-		}
+		
 		{
 			
-			legajoTxt.setBounds(220, 48, 151, 19);
+			legajoTxt.setBounds(193, 40, 151, 19);
 			contentPanel.add(legajoTxt);
 			legajoTxt.setColumns(255);
 		}
 		{
 			
 			fechaDeInicioTxt.setText("dd/mm/aaaa");
-			fechaDeInicioTxt.setBounds(220, 125, 96, 19);
+			fechaDeInicioTxt.setBounds(214, 109, 96, 19);
 			contentPanel.add(fechaDeInicioTxt);
 			fechaDeInicioTxt.setColumns(255);
 		}
 		{
-		
+		//(64, 166, 129, 13)
 			fechaFinTxt.setText("dd/mm/aaaa");
-			fechaFinTxt.setBounds(220, 179, 96, 19);
+			fechaFinTxt.setBounds(214, 163, 96, 19);
 			contentPanel.add(fechaFinTxt);
 			fechaFinTxt.setColumns(255);
 		}
 		{
-			
-			estadoBox.setBounds(264, 230, 96, 19);
+			//(133, 220, 45, 13)
+			estadoBox.setBounds(214, 217, 96, 19);
 		    contentPanel.add(estadoBox);
 		}
 		{
 			
-			nombreTxt.setBounds(220, 287, 247, 19);
+			nombreTxt.setBounds(214, 271, 247, 19);
 			contentPanel.add(nombreTxt);
 			nombreTxt.setColumns(255);
 		}
 		{
 			
-			descripcionTxt.setBounds(220, 395, 247, 19);
+			descripcionTxt.setBounds(214, 379, 247, 45);
 			contentPanel.add(descripcionTxt);
 			descripcionTxt.setColumns(255);
 		}
+		//(78, 328, 100, 13)
 		{
 			
-			actividadesTxt.setBounds(220, 446, 247, 19);
-			contentPanel.add(actividadesTxt);
-			actividadesTxt.setColumns(255);
-		}
-		{
-			
-			insumosTxt.setBounds(220, 500, 247, 19);
-			contentPanel.add(insumosTxt);
-			insumosTxt.setColumns(255);
-		}
-		{
-			
-			tipoBox.setBounds(264, 337, 130, 21);
+			tipoBox.setBounds(214, 325, 130, 21);
 			contentPanel.add(tipoBox);
 		}
 		{
@@ -190,9 +170,9 @@ public class ModificarProyectoDialog extends JDialog {
 						nombreTxt.setText(proyecto.getNombre());
 						fechaDeInicioTxt.setText(proyecto.getFechaInicio().toString());
 						fechaFinTxt.setText(proyecto.getFechaEstFin().toString());
-						//estadoBox.setSelectedItem(proyecto.getEstado());
+						estadoBox.setSelectedItem(proyecto.getEstado());
 						TipoProyecto tipo = (TipoProyecto)(proyecto.getTipoProyecto());
-						//tipoBox.setSelectedItem(tipo.getTipo());
+						tipoBox.setSelectedItem(tipo.getTipo());
 						actividadesTxt.setText(tipo.getActividades());
 						insumosTxt.setText(tipo.getInsumos());
 						descripcionTxt.setText(tipo.getDescripcion());
@@ -202,7 +182,7 @@ public class ModificarProyectoDialog extends JDialog {
 					
 				}
 			});
-			buscarBtn.setBounds(418, 47, 85, 21);
+			buscarBtn.setBounds(391, 39, 85, 21);
 			contentPanel.add(buscarBtn);
 		}
 		{
