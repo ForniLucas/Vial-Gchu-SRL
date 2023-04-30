@@ -16,7 +16,18 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.OneToMany;
+import javax.persistence.PrePersist;
 import javax.persistence.Table;
+import javax.persistence.criteria.CriteriaBuilder;
+import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Root;
+
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+import org.hibernate.Transaction;
+import org.hibernate.boot.MetadataSources;
+import org.hibernate.boot.registry.StandardServiceRegistry;
+import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 
 
 /**
@@ -74,6 +85,35 @@ public class Empleado implements java.io.Serializable {
         , mappedBy = "Empleado")
     private Set<Trabajo> Trabajos = new HashSet<Trabajo>(0);
 
+@PrePersist
+public void onPrePersist() {
+    //Se fija si un empleado con el mismo dni ya esta en la base de datos.
+	StandardServiceRegistry registry = new StandardServiceRegistryBuilder().configure().build();
+    SessionFactory factory = null;
+    Session session = null;
+    Transaction transaction = null;
+    try {
+      factory = new MetadataSources(registry).buildMetadata().buildSessionFactory();
+      session = factory.openSession();
+      transaction = session.beginTransaction();
+    CriteriaBuilder builder = session.getCriteriaBuilder();
+    CriteriaQuery<Empleado> criteria = builder.createQuery(Empleado.class);
+    Root<Empleado> root = criteria.from(Empleado.class);
+    criteria.select(root).where(builder.equal(root.get("dni"), this.getDni()));
+    List<Empleado> empleados = session.createQuery(criteria).getResultList();
+    if (!empleados.isEmpty()) {
+        throw new RuntimeException("Ya existe un empleado con el mismo dni.");
+    } 
+    }
+    finally {
+        if (session != null) {
+            session.close();
+        }
+        if (factory != null) {
+            factory.close();
+        }
+    }
+}
   
     public Empleado (String nombre, String apellido, int dni, int telefono, String direccion, LocalDate fechaNac) {
         this.id = null;

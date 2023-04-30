@@ -16,6 +16,7 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Set;
 
+import javax.persistence.PrePersist;
 import javax.persistence.TypedQuery;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
@@ -41,6 +42,8 @@ public class ControladorEmpleado
 	      factory = new MetadataSources(registry).buildMetadata().buildSessionFactory();
 	      session = factory.openSession();
 	      transaction = session.beginTransaction();
+	      
+	      
 	      
 	      // Agregar el empleado a la lista y guardar en la base de datos
 	      Empleado empleado = new Empleado(nombre, apellido, dni, telefono, direccion, fechaNac);
@@ -543,5 +546,8 @@ public class ControladorEmpleado
 	    }
 	    return resultados;
 	  }
+	
+	
+	
 
 }
