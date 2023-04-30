@@ -100,7 +100,7 @@ public class EspecializacionDialog extends JDialog {
 				guardarBtn.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
 						empleado = controlador.buscarDNI(Integer.parseInt(dniTxt.getText()));
-						//como damos de "baja" la ultima especializacion?
+						//controlador.asignarEspecializacion(empleado, null);
 					}
 				});
 				guardarBtn.setActionCommand("OK");
