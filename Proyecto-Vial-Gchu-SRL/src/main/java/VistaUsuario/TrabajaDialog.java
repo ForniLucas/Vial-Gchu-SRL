@@ -24,8 +24,7 @@ import Domain.Proyecto;
 
 public class TrabajaDialog extends JDialog {
 	JTextField fechaInicioTxt = new JTextField();;
-	JTextField fechaEstimadaTxt = new JTextField();;
-	JTextField fechaFinTxt = new JTextField();
+	JTextField fechaEstimadaTxt = new JTextField();
 	JTextField horasTrabajadasTxt = new JTextField();
 	MaquinariaDialog dialog2 = new MaquinariaDialog();
 	ControladorEmpleado controladorE = new ControladorEmpleado();
@@ -87,12 +86,8 @@ public class TrabajaDialog extends JDialog {
 		lblNewLabel.setBounds(127, 303, 139, 13);
 		contentPanel.add(lblNewLabel);
 		
-		JLabel lblNewLabel_1 = new JLabel("Fecha de Fin:");
-		lblNewLabel_1.setBounds(127, 346, 139, 13);
-		contentPanel.add(lblNewLabel_1);
-		
 		JLabel lblNewLabel_2 = new JLabel("Horas Trabajadas:");
-		lblNewLabel_2.setBounds(127, 393, 109, 16);
+		lblNewLabel_2.setBounds(127, 344, 109, 16);
 		contentPanel.add(lblNewLabel_2);
 		fechaInicioTxt.setBounds(276, 258, 109, 19);
 		
@@ -104,13 +99,7 @@ public class TrabajaDialog extends JDialog {
 		fechaEstimadaTxt.setText("dd/mm/aaaa");
 		contentPanel.add(fechaEstimadaTxt);
 		fechaEstimadaTxt.setColumns(255);
-		fechaFinTxt.setBounds(276, 343, 109, 19);
-		
-		//saca esto Luciana VALIENTE si tenes coraje
-		fechaFinTxt.setText("dd/mm/aaaa");
-		contentPanel.add(fechaFinTxt);
-		fechaFinTxt.setColumns(255);
-		horasTrabajadasTxt.setBounds(276, 392, 109, 20);
+		horasTrabajadasTxt.setBounds(276, 343, 109, 20);
 		
 		horasTrabajadasTxt.setText("");
 		contentPanel.add(horasTrabajadasTxt);

@@ -30,7 +30,6 @@ public class UtilizaDialog extends JDialog {
 	String descripcion = new String();
 	JTextField fechaInicioTxt = new JTextField();;
 	JTextField fechaEstimadaTxt = new JTextField();;
-	JTextField fechaFinTxt = new JTextField();;
 	MaquinariaDialog dialog2 = new MaquinariaDialog();
 	ControladorMaquinaria controladorM = new ControladorMaquinaria();
 	ControladorProyecto controladorP = new ControladorProyecto();
@@ -89,10 +88,6 @@ public class UtilizaDialog extends JDialog {
 		lblNewLabel.setBounds(131, 317, 125, 13);
 		contentPanel.add(lblNewLabel);
 		
-		JLabel lblNewLabel_1 = new JLabel("Fecha de Fin:");
-		lblNewLabel_1.setBounds(131, 372, 125, 13);
-		contentPanel.add(lblNewLabel_1);
-		
 		
 		fechaInicioTxt.setText("dd-mm-aaaa");
 		fechaInicioTxt.setBounds(286, 259, 109, 19);
@@ -105,13 +100,6 @@ public class UtilizaDialog extends JDialog {
 		fechaEstimadaTxt.setBounds(286, 314, 109, 19);
 		contentPanel.add(fechaEstimadaTxt);
 		fechaEstimadaTxt.setColumns(10);
-		
-		// SACA ESTO LUCY!!! :v
-		
-		fechaFinTxt.setText("dd/mm/aaaa");
-		fechaFinTxt.setBounds(286, 369, 109, 19);
-		contentPanel.add(fechaFinTxt);
-		fechaFinTxt.setColumns(10);
 		
 		
 		codigoTxt = new JTextField();
