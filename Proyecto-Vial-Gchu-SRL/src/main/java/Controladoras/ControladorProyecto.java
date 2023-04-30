@@ -437,7 +437,7 @@ public Proyecto buscarNombre (String nombreProyecto) {
 	    }
 	}
 
-	public void asignarTrabajo(Empleado unEmpleado, Proyecto unProyecto) {
+	public void asignarTrabajo(Empleado unEmpleado, Proyecto unProyecto, int horasDeTrabajo, LocalDate fechaInicio, LocalDate fechaEstFin) {
 		// Iniciar sesión de Hibernate
 	    StandardServiceRegistry registry = new StandardServiceRegistryBuilder().configure().build();
 	    SessionFactory factory = null;
@@ -448,7 +448,7 @@ public Proyecto buscarNombre (String nombreProyecto) {
 	      session = factory.openSession();
 	      transaction = session.beginTransaction();
 	      
-	      Trabajo trabajo = new Trabajo();
+	      Trabajo trabajo = new Trabajo(horasDeTrabajo,fechaInicio,fechaEstFin);
 	      trabajo.asignar(unProyecto, unEmpleado);
 	      unEmpleado.addTrabajo(trabajo);
 	      unProyecto.addTrabajo(trabajo);

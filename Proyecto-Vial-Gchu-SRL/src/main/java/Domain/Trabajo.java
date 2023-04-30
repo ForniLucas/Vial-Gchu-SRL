@@ -62,12 +62,12 @@ public class Trabajo implements java.io.Serializable{
     private LocalDate fechaFin;
     
 
-    public Trabajo(int horasDeTrabajo, LocalDate fechaInicio, LocalDate fechaEstFin, LocalDate fechaFin) {
+    public Trabajo(int horasDeTrabajo, LocalDate fechaInicio, LocalDate fechaEstFin) {
         this.id=null;
     	this.horasDeTrabajo = horasDeTrabajo;
         this.fechaInicio = fechaInicio;
         this.fechaEstFin = fechaEstFin;
-        this.fechaFin = fechaFin;
+       // this.fechaFin = fechaFin;
     }
 	public Trabajo() {}
 	

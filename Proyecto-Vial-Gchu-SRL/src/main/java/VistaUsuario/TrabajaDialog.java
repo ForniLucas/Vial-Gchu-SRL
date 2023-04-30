@@ -4,6 +4,8 @@ import java.awt.BorderLayout;
 import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 
 import javax.swing.JButton;
 import javax.swing.JDialog;
@@ -24,7 +26,7 @@ public class TrabajaDialog extends JDialog {
 	JTextField fechaInicioTxt = new JTextField();;
 	JTextField fechaEstimadaTxt = new JTextField();;
 	JTextField fechaFinTxt = new JTextField();
-	JTextField horasTrabajadas = new JTextField();
+	JTextField horasTrabajadasTxt = new JTextField();
 	MaquinariaDialog dialog2 = new MaquinariaDialog();
 	ControladorEmpleado controladorE = new ControladorEmpleado();
 	ControladorProyecto controladorP = new ControladorProyecto();
@@ -104,14 +106,15 @@ public class TrabajaDialog extends JDialog {
 		fechaEstimadaTxt.setColumns(255);
 		fechaFinTxt.setBounds(276, 343, 109, 19);
 		
+		//saca esto Luciana VALIENTE si tenes coraje
 		fechaFinTxt.setText("dd-mm-aaaa");
 		contentPanel.add(fechaFinTxt);
 		fechaFinTxt.setColumns(255);
-		horasTrabajadas.setBounds(276, 392, 109, 20);
+		horasTrabajadasTxt.setBounds(276, 392, 109, 20);
 		
-		horasTrabajadas.setText("");
-		contentPanel.add(horasTrabajadas);
-		horasTrabajadas.setColumns(255);
+		horasTrabajadasTxt.setText("");
+		contentPanel.add(horasTrabajadasTxt);
+		horasTrabajadasTxt.setColumns(255);
 		
 		dniTxt = new JTextField();
 		dniTxt.setBounds(219, 94, 116, 19);
@@ -145,7 +148,14 @@ public class TrabajaDialog extends JDialog {
 				okButton.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
 						if (empleado.getApellido()!= null) {
-							controladorP.asignarTrabajo(empleado, proyecto); //
+							String fechaInicioString = fechaInicioTxt.getText(); // Get the value of the JTextField as a String
+							DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy"); // Specify the input format
+							LocalDate fechaInicio = LocalDate.parse(fechaInicioString, formatter); // Convert the String to a LocalDate object using the formatter
+							String fechaEstimadaString = fechaEstimadaTxt.getText();
+							LocalDate fechaEstimadaFin = LocalDate.parse(fechaEstimadaString, formatter);
+							String horasTrabajadasString = horasTrabajadasTxt.getText();
+							int horasTrabajadas = Integer.parseInt(horasTrabajadasString);
+							controladorP.asignarTrabajo(empleado, proyecto,horasTrabajadas,fechaInicio,fechaEstimadaFin); //
 							optionPane.showMessageDialog(null, "Empleado asignado exitosamente.");
 						}
 						else {optionPane.showMessageDialog(null, "Debe buscar un empleado primero.");}
