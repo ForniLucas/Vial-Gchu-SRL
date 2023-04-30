@@ -54,7 +54,7 @@ public class ModificarEmpleadoDialog extends JDialog {
 		
 		dniidTxt.setText(dniid);
 		
-		setBounds(50, 50, 675, 700);
+		setBounds(50, 50, 750, 700);
 		this.setTitle("MODIFICAR EMPLEADOS");
 		setResizable(false);
 		getContentPane().setLayout(new BorderLayout());
@@ -68,32 +68,32 @@ public class ModificarEmpleadoDialog extends JDialog {
 		}
 		{
 			JLabel lblNewLabel_1 = new JLabel("Apellido");
-			lblNewLabel_1.setBounds(201, 146, 68, 13);
+			lblNewLabel_1.setBounds(226, 181, 68, 13);
 			contentPanel.add(lblNewLabel_1);
 		}
 		{
 			JLabel lblNewLabel_2 = new JLabel("Nombre");
-			lblNewLabel_2.setBounds(201, 210, 45, 13);
+			lblNewLabel_2.setBounds(226, 245, 45, 13);
 			contentPanel.add(lblNewLabel_2);
 		}
 		{
 			JLabel lblNewLabel_3 = new JLabel("DNI");
-			lblNewLabel_3.setBounds(212, 274, 34, 13);
+			lblNewLabel_3.setBounds(237, 309, 34, 13);
 			contentPanel.add(lblNewLabel_3);
 		}
 		{
 			JLabel lblNewLabel_4 = new JLabel("Teléfono");
-			lblNewLabel_4.setBounds(193, 338, 53, 13);
+			lblNewLabel_4.setBounds(218, 373, 53, 13);
 			contentPanel.add(lblNewLabel_4);
 		}
 		{
 			JLabel lblNewLabel_5 = new JLabel("Dirección");
-			lblNewLabel_5.setBounds(178, 402, 68, 13);
+			lblNewLabel_5.setBounds(203, 437, 68, 13);
 			contentPanel.add(lblNewLabel_5);
 		}
 		{
 			JLabel lblNewLabel_6 = new JLabel("Fecha de Nacimiento");
-			lblNewLabel_6.setBounds(136, 466, 133, 13);
+			lblNewLabel_6.setBounds(161, 501, 133, 13);
 			contentPanel.add(lblNewLabel_6);
 		}
 		{
@@ -105,42 +105,42 @@ public class ModificarEmpleadoDialog extends JDialog {
 		{
 			
 			
-			apellidoTxt.setBounds(279, 143, 133, 19);
+			apellidoTxt.setBounds(304, 178, 167, 19);
 			contentPanel.add(apellidoTxt);
 			apellidoTxt.setColumns(255);
 		}
 		{
 			
 			
-			nombreTxt.setBounds(279, 207, 133, 19);
+			nombreTxt.setBounds(304, 242, 167, 19);
 			contentPanel.add(nombreTxt);
 			nombreTxt.setColumns(255);
 		}
 		{
 			
 			
-			dniTxt.setBounds(279, 271, 96, 19);
+			dniTxt.setBounds(304, 306, 96, 19);
 			contentPanel.add(dniTxt);
 			dniTxt.setColumns(255);
 		}
 		{
 			
 			
-			telefonoTxt.setBounds(279, 335, 133, 19);
+			telefonoTxt.setBounds(304, 370, 133, 19);
 			contentPanel.add(telefonoTxt);
 			telefonoTxt.setColumns(255);
 		}
 		{
 			
 			
-			direccionTxt.setBounds(279, 402, 133, 19);
+			direccionTxt.setBounds(304, 437, 167, 19);
 			contentPanel.add(direccionTxt);
 			direccionTxt.setColumns(255);
 		}
 		{
 			
 			
-			fechaDeNacimientoTxt.setBounds(279, 463, 96, 19);
+			fechaDeNacimientoTxt.setBounds(304, 498, 96, 19);
 			contentPanel.add(fechaDeNacimientoTxt);
 			fechaDeNacimientoTxt.setColumns(10);
 		}
