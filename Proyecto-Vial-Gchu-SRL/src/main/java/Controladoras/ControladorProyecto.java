@@ -482,7 +482,7 @@ public Proyecto buscarNombre (String nombreProyecto) {
 	    }
 	}
 	
-	public void asignarUtiliza(Maquinaria unaMaquinaria, Proyecto unProyecto) {
+	public void asignarUtiliza(Maquinaria unaMaquinaria, Proyecto unProyecto, LocalDate fechaInicio, LocalDate fechaEstFin) {
 		// Iniciar sesión de Hibernate
 	    StandardServiceRegistry registry = new StandardServiceRegistryBuilder().configure().build();
 	    SessionFactory factory = null;
@@ -493,8 +493,8 @@ public Proyecto buscarNombre (String nombreProyecto) {
 	      session = factory.openSession();
 	      transaction = session.beginTransaction();
 	      
-	      Utiliza unaUtiliza = new Utiliza(); //Deberiamos pasarle los argumentos correspondientes?
-	      										//Debemos pasarle los parametros
+	      Utiliza unaUtiliza = new Utiliza( fechaInicio, fechaEstFin, null); 
+	      										
 	      unaUtiliza.asignar(unProyecto, unaMaquinaria);
 	      unaMaquinaria.addTrabajo(unaUtiliza);
 	      unProyecto.addMaquina(unaUtiliza);

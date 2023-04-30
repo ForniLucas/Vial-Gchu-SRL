@@ -17,6 +17,8 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import java.awt.event.ActionListener;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.awt.event.ActionEvent;
 
 public class UtilizaDialog extends JDialog {
@@ -94,18 +96,23 @@ public class UtilizaDialog extends JDialog {
 		
 		fechaInicioTxt.setText("dd-mm-aaaa");
 		fechaInicioTxt.setBounds(286, 259, 109, 19);
+		fechaInicioTxt.setText("dd/mm/aaaa");
+		fechaInicioTxt.setBounds(286, 259, 109, 19);
 		contentPanel.add(fechaInicioTxt);
 		fechaInicioTxt.setColumns(10);
 		
-		fechaEstimadaTxt.setText("dd-mm-aaaa");
+		fechaEstimadaTxt.setText("dd/mm/aaaa");
 		fechaEstimadaTxt.setBounds(286, 314, 109, 19);
 		contentPanel.add(fechaEstimadaTxt);
 		fechaEstimadaTxt.setColumns(10);
 		
-		fechaFinTxt.setText("dd-mm-aaaa");
+		// SACA ESTO LUCY!!! :v
+		
+		fechaFinTxt.setText("dd/mm/aaaa");
 		fechaFinTxt.setBounds(286, 369, 109, 19);
 		contentPanel.add(fechaFinTxt);
 		fechaFinTxt.setColumns(10);
+		
 		
 		codigoTxt = new JTextField();
 		codigoTxt.setBounds(219, 94, 116, 19);
@@ -141,8 +148,17 @@ public class UtilizaDialog extends JDialog {
 				JButton asignarBtn = new JButton("Asignar");
 				asignarBtn.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
+						String fechaInicioString = fechaInicioTxt.getText(); 
+						DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy"); 
+						LocalDate fechaInicio = LocalDate.parse(fechaInicioString, formatter);
+						
+						String fechaEstimadaString = fechaEstimadaTxt.getText(); 
+						LocalDate fechaEstimada = LocalDate.parse(fechaEstimadaString, formatter);
+						
 						if (maquinaria.getCodigo() !=  null)
-						{controladorP.asignarUtiliza(maquinaria, proyecto);
+						{
+							
+							controladorP.asignarUtiliza(maquinaria, proyecto, fechaInicio, fechaEstimada);
 						
 						//donde se le pasan los datos que cargamos?
 						  optionPane.showMessageDialog(null, "Maquinaria asignada exitosamente.");

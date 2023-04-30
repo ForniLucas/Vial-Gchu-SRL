@@ -96,18 +96,18 @@ public class TrabajaDialog extends JDialog {
 		contentPanel.add(lblNewLabel_2);
 		fechaInicioTxt.setBounds(276, 258, 109, 19);
 		
-		fechaInicioTxt.setText("dd-mm-aaaa");
+		fechaInicioTxt.setText("dd/mm/aaaa");
 		contentPanel.add(fechaInicioTxt);
 		fechaInicioTxt.setColumns(255);
 		fechaEstimadaTxt.setBounds(276, 300, 109, 19);
 		
-		fechaEstimadaTxt.setText("dd-mm-aaaa");
+		fechaEstimadaTxt.setText("dd/mm/aaaa");
 		contentPanel.add(fechaEstimadaTxt);
 		fechaEstimadaTxt.setColumns(255);
 		fechaFinTxt.setBounds(276, 343, 109, 19);
 		
 		//saca esto Luciana VALIENTE si tenes coraje
-		fechaFinTxt.setText("dd-mm-aaaa");
+		fechaFinTxt.setText("dd/mm/aaaa");
 		contentPanel.add(fechaFinTxt);
 		fechaFinTxt.setColumns(255);
 		horasTrabajadasTxt.setBounds(276, 392, 109, 20);
