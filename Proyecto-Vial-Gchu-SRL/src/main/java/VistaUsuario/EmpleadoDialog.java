@@ -120,11 +120,11 @@ public class EmpleadoDialog extends JDialog {
 		
 		busquedaNombreTxt = new JTextField();
 		busquedaNombreTxt.setColumns(10);
-		busquedaNombreTxt.setBounds(568, 26, 205, 19);
+		busquedaNombreTxt.setBounds(545, 26, 205, 19);
 		contentPanel.add(busquedaNombreTxt);
 		
 		JLabel lblYNombre = new JLabel("Y un nombre:");
-		lblYNombre.setBounds(468, 29, 231, 13);
+		lblYNombre.setBounds(447, 29, 231, 13);
 		contentPanel.add(lblYNombre);
 		//CARGAR EMPLEADOS ESTA ABAJO
 		cargarEmpleados();
