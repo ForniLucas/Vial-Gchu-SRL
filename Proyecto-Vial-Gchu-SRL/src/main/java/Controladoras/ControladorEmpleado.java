@@ -352,8 +352,8 @@ public class ControladorEmpleado
 	      // Seleccionar el empleado con el nombre y apellido especificados
 	      criteria.select(root).where(
 	          builder.and(
-	              builder.equal(root.get("nombre"), pNombre),
-	              builder.equal(root.get("apellido"), pApellido)
+	              builder.like(root.get("nombre").as(String.class), "%" + pNombre + "%"),
+	              builder.like(root.get("apellido").as(String.class), "%" + pApellido + "%")
 	          )
 	      );
 	      // Crear un objeto TypedQuery a partir de la consulta construida
