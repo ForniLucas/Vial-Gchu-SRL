@@ -97,7 +97,7 @@ public class ModificarEmpleadoDialog extends JDialog {
 			contentPanel.add(lblNewLabel_6);
 		}
 		{
-			dniidTxt = new JTextField();
+			dniidTxt = new JTextField(dniid);
 			dniidTxt.setBounds(279, 79, 96, 19);
 			contentPanel.add(dniidTxt);
 			dniidTxt.setColumns(255);
@@ -235,6 +235,7 @@ public class ModificarEmpleadoDialog extends JDialog {
 					JButton gestionarElemBtn = new JButton("Gestionar Elementos de Seguridad");
 					gestionarElemBtn.addActionListener(new ActionListener() {
 						public void actionPerformed(ActionEvent e) {
+							System.out.println(ModificarEmpleadoDialog.this.dni);
 							HistorialElementoDeSeguridadDialog historialElemento = new HistorialElementoDeSeguridadDialog(ModificarEmpleadoDialog.this,
 									ModificarEmpleadoDialog.this.dni, ModificarEmpleadoDialog.this.apellido, ModificarEmpleadoDialog.this.nombre);
 							historialElemento.setVisible(true);

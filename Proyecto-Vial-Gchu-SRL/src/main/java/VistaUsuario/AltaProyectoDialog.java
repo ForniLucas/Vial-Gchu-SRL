@@ -164,10 +164,10 @@ public class AltaProyectoDialog extends JDialog {
 						String desc = descripcionTxt.getText();
 						String actividades = actividadesTxt.getText(); 
 						String insumos = insumosTxt.getText();
-					//	EstadoProyecto estado = (EstadoProyecto) estadoBox.getSelectedItem();
+						EstadoProyecto estado = (EstadoProyecto) estadoBox.getSelectedItem();
 						
-					//	TipoDeProyecto tipo = (TipoDeProyecto) comboBox.getSelectedItem(); 
-					//	TipoProyecto tipoProyecto = new TipoProyecto(tipo, desc, actividades, insumos);
+						TipoDeProyecto tipo = (TipoDeProyecto) comboBox.getSelectedItem(); 
+						TipoProyecto tipoProyecto = new TipoProyecto(tipo, desc, actividades, insumos);
 								
 						Proyecto proyecto = new Proyecto();
 						
@@ -175,8 +175,8 @@ public class AltaProyectoDialog extends JDialog {
 						proyecto.setFechaEstFin(fechaFin);
 						proyecto.setFechaFin(fechaFin);
 						proyecto.setNombre(nombre);
-					//	proyecto.setEstado(estado);
-					//	proyecto.asignarTipoProyecto(tipoProyecto);
+						proyecto.setEstado(estado);
+						proyecto.asignarTipoProyecto(tipoProyecto);
 						
 						controlador.alta(proyecto);
 						

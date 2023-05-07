@@ -68,11 +68,11 @@ public class AltaMaquinariaDialog extends JDialog {
 			lblNewLabel_3.setBounds(95, 392, 150, 13);
 			contentPanel.add(lblNewLabel_3);
 		}
-		/*{
+		{
 			JLabel lblNewLabel_4 = new JLabel("Estado");
 			lblNewLabel_4.setBounds(200, 499, 45, 13);
 			contentPanel.add(lblNewLabel_4);
-		}*/
+		}
 		{
 			codigoTxt = new JTextField();
 			codigoTxt.setBounds(276, 71, 96, 19);
@@ -97,11 +97,11 @@ public class AltaMaquinariaDialog extends JDialog {
 			contentPanel.add(ubicacionTxt);
 			ubicacionTxt.setColumns(255);
 		}
-		/*{
+		{
 			JComboBox estadoBox = new JComboBox();
 			estadoBox.setBounds(276, 495, 96, 21);
 			contentPanel.add(estadoBox);
-		}*/
+		}
 		{
 			JPanel buttonPane = new JPanel();
 			buttonPane.setLayout(new FlowLayout(FlowLayout.RIGHT));
