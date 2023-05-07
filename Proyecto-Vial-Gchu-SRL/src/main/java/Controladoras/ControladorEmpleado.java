@@ -328,11 +328,12 @@ public class ControladorEmpleado
 	    return resultado;
 	  }
 
-	public Empleado buscarApellidoyNombre(String pNombre, String pApellido) {
+	public LinkedList<Empleado> buscarApellidoyNombre(String pNombre, String pApellido) {
 	    // Inicializar las variables para la sesión y la fábrica de sesiones
 	    SessionFactory factory = null;
 	    Session session = null;
-	    Empleado empleado = null;
+	    LinkedList<Empleado> resultados = new LinkedList<Empleado>();
+	    
 
 	    try {
 	      // Crear una fábrica de sesiones
@@ -358,7 +359,7 @@ public class ControladorEmpleado
 	      // Crear un objeto TypedQuery a partir de la consulta construida
 	      TypedQuery<Empleado> typedQuery = session.createQuery(criteria);
 	      // Obtener el resultado de la consulta
-	      empleado = typedQuery.getSingleResult();
+	      resultados = new LinkedList<Empleado>(typedQuery.getResultList());
 
 	      // Realizar un commit de la transacción
 	      transaction.commit();
@@ -378,7 +379,7 @@ public class ControladorEmpleado
 	      }
 	    }
 
-	    return empleado;
+	    return resultados;
 	  }
 	
 	
