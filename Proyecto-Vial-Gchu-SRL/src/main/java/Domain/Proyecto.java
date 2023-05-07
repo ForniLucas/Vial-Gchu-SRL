@@ -6,6 +6,7 @@ package Domain;
 import java.time.LocalDate;
 import java.util.HashSet;
 import java.util.LinkedList;
+import java.util.List;
 //import java.util.LinkedList;
 //import java.util.List;
 import java.util.Set;
@@ -17,11 +18,22 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
+import javax.persistence.PrePersist;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Table;
+import javax.persistence.criteria.CriteriaBuilder;
+import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Root;
+
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+import org.hibernate.Transaction;
+import org.hibernate.boot.MetadataSources;
+import org.hibernate.boot.registry.StandardServiceRegistry;
+import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 
 import Enumeraciones.EstadoProyecto;
 
@@ -76,7 +88,35 @@ public class Proyecto implements java.io.Serializable{
         , mappedBy = "Proyecto")
     private Set<Utiliza> Maquinas = new HashSet<Utiliza>(0);
     
-   
+    @PrePersist
+    public void onPrePersist() {
+        //Se fija si un empleado con el mismo dni ya esta en la base de datos.
+    	StandardServiceRegistry registry = new StandardServiceRegistryBuilder().configure().build();
+        SessionFactory factory = null;
+        Session session = null;
+        Transaction transaction = null;
+        try {
+          factory = new MetadataSources(registry).buildMetadata().buildSessionFactory();
+          session = factory.openSession();
+          transaction = session.beginTransaction();
+        CriteriaBuilder builder = session.getCriteriaBuilder();
+        CriteriaQuery<Proyecto> criteria = builder.createQuery(Proyecto.class);
+        Root<Proyecto> root = criteria.from(Proyecto.class);
+        criteria.select(root).where(builder.equal(root.get("nombre"), this.getNombre()));
+        List<Proyecto> proyectos = session.createQuery(criteria).getResultList();
+        if (!proyectos.isEmpty()) {
+            throw new RuntimeException("Ya existe un proyecto con el mismo nombre.");
+        } 
+        }
+        finally {
+            if (session != null) {
+                session.close();
+            }
+            if (factory != null) {
+                factory.close();
+            }
+        }
+    }
 
     public Proyecto(LocalDate fechaInicio, LocalDate fechaEstFin, LocalDate fechaFin, EstadoProyecto estado, String nombre) {
         this.id = null;
