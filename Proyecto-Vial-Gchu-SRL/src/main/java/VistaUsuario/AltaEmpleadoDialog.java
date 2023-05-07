@@ -34,7 +34,7 @@ public class AltaEmpleadoDialog extends JDialog {
 	private JComboBox especializacionBox = new JComboBox(Profesion.values());
 	private JComboBox rolBox = new JComboBox(RolEmpleado.values());
 	ControladorEmpleado controlador = new ControladorEmpleado();
-	//Especializacion especializacion = new Especializacion();
+	Especializacion especializacion = new Especializacion();
 
 	/**
 	 * Launch the application.
@@ -125,7 +125,7 @@ public class AltaEmpleadoDialog extends JDialog {
 		lblNewLabel_7.setBounds(176, 545, 32, 13);
 		contentPanel.add(lblNewLabel_7);
 		
-		//JComboBox especializacionBox = new JComboBox(Profesion.values());
+		JComboBox especializacionBox = new JComboBox(Profesion.values());
 		especializacionBox.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 			}
@@ -133,7 +133,7 @@ public class AltaEmpleadoDialog extends JDialog {
 		especializacionBox.setBounds(248, 469, 96, 21);
 		contentPanel.add(especializacionBox);
 		
-		//JComboBox rolBox = new JComboBox(RolEmpleado.values());
+		JComboBox rolBox = new JComboBox(RolEmpleado.values());
 		rolBox.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 			}
