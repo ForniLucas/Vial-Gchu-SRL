@@ -39,11 +39,9 @@ public class HistorialEspecializacionDialog extends JDialog {
 	/**
 	 * Create the dialog.
 	 */
-	public HistorialEspecializacionDialog(ModificarEmpleadoDialog dialog, String dni, String apellido, String nombre) {
+	public HistorialEspecializacionDialog(ModificarEmpleadoDialog dialog, String dniID) {
 		super(dialog, "HistorialEspecializacionDialog",true);
-		this.dni = dni;
-		this.apellido = apellido;
-		this.nombre = nombre;
+		this.dni = dniID;
 		
 		setBounds(50, 50, 600, 600);
 		setTitle("HISTORIAL DE ESPECIALIZACIONES");
@@ -62,14 +60,6 @@ public class HistorialEspecializacionDialog extends JDialog {
 		JLabel dniLbl = new JLabel("DNI: " + dni);
 		dniLbl.setBounds(55, 26, 108, 13);
 		contentPanel.add(dniLbl);
-		
-		JLabel apellidoLbl = new JLabel("Apellido: "+apellido);
-		apellidoLbl.setBounds(173, 26, 147, 13);
-		contentPanel.add(apellidoLbl);
-		
-		JLabel nombreLbl = new JLabel("Nombre: "+nombre);
-		nombreLbl.setBounds(330, 26, 212, 13);
-		contentPanel.add(nombreLbl);
 		{
 			JPanel buttonPane = new JPanel();
 			buttonPane.setLayout(new FlowLayout(FlowLayout.RIGHT));
@@ -79,8 +69,8 @@ public class HistorialEspecializacionDialog extends JDialog {
 				modificarBtn.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
 						setVisible(false);
-						EmpleadoDialog empleadoDialog = new EmpleadoDialog();
-						empleadoDialog.setVisible(true);
+						EspecializacionDialog especializacionDialog = new EspecializacionDialog(HistorialEspecializacionDialog.this, dni);
+						especializacionDialog.setVisible(true);
 						}
 				});
 				modificarBtn.setActionCommand("OK");

@@ -198,18 +198,15 @@ public class ModificarEmpleadoDialog extends JDialog {
 							String fechaDeNacimientoString = fechaDeNacimientoTxt.getText(); // Get the value of the JTextField as a String
 							DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy"); // Specify the input format
 							LocalDate fechaDeNacimiento = LocalDate.parse(fechaDeNacimientoString, formatter);
-							//RolEmpleado rol = (RolEmpleado) rolBox.getSelectedItem();
-							//Profesion especializacion = (Profesion) especializacionBox.getSelectedItem();
-							
 							empleado.setNombre(nombre);
 							empleado.setApellido(apellido);
 							empleado.setDni(dni);
 							empleado.setTelefono(telefono);
 							empleado.setDireccion(direccion);
 							empleado.setFechaNac(fechaDeNacimiento);
-							
 							controlador.modificar(empleado);
 							optionPane.showMessageDialog(null, "Empleado modificado exitosamente.");
+							System.out.println(ModificarEmpleadoDialog.this.dni);
 						}
 						else {
 							optionPane.showMessageDialog(null, "Debe buscar un empleado primero.");
@@ -225,7 +222,7 @@ public class ModificarEmpleadoDialog extends JDialog {
 					gestionarEspBtn.addActionListener(new ActionListener() {
 						public void actionPerformed(ActionEvent e) {
 							HistorialEspecializacionDialog historialEspecializacion = new HistorialEspecializacionDialog(ModificarEmpleadoDialog.this,
-									ModificarEmpleadoDialog.this.dni, ModificarEmpleadoDialog.this.apellido, ModificarEmpleadoDialog.this.nombre);
+									ModificarEmpleadoDialog.this.dniid);
 							historialEspecializacion.setVisible(true);
 						}
 					});
@@ -235,9 +232,9 @@ public class ModificarEmpleadoDialog extends JDialog {
 					JButton gestionarElemBtn = new JButton("Gestionar Elementos de Seguridad");
 					gestionarElemBtn.addActionListener(new ActionListener() {
 						public void actionPerformed(ActionEvent e) {
-							System.out.println(ModificarEmpleadoDialog.this.dni);
+							
 							HistorialElementoDeSeguridadDialog historialElemento = new HistorialElementoDeSeguridadDialog(ModificarEmpleadoDialog.this,
-									ModificarEmpleadoDialog.this.dni, ModificarEmpleadoDialog.this.apellido, ModificarEmpleadoDialog.this.nombre);
+									ModificarEmpleadoDialog.this.dniid, ModificarEmpleadoDialog.this.apellido, ModificarEmpleadoDialog.this.nombre);
 							historialElemento.setVisible(true);
 						}
 					});
@@ -248,7 +245,7 @@ public class ModificarEmpleadoDialog extends JDialog {
 					gestionarRopaBtn.addActionListener(new ActionListener() {
 						public void actionPerformed(ActionEvent e) {
 							HistorialRopaDeTrabajoDialog historialRopa = new HistorialRopaDeTrabajoDialog(ModificarEmpleadoDialog.this,
-									ModificarEmpleadoDialog.this.dni, ModificarEmpleadoDialog.this.apellido, ModificarEmpleadoDialog.this.nombre);
+									ModificarEmpleadoDialog.this.dniid, ModificarEmpleadoDialog.this.apellido, ModificarEmpleadoDialog.this.nombre);
 							historialRopa.setVisible(true);
 						}
 					});
