@@ -90,22 +90,22 @@ public class EmpleadoDialog extends JDialog {
 		scrollPane.setViewportView(table);
 		contentPanel.add(scrollPane);
 		
-		JLabel apellidoLbl = new JLabel("Ingrese un apellido:");
-		apellidoLbl.setBounds(91, 29, 127, 13);
+		JLabel apellidoLbl = new JLabel("Ingrese un apellido y nombre:");
+		apellidoLbl.setBounds(91, 29, 231, 13);
 		contentPanel.add(apellidoLbl);
 		
 		busquedaApellidoTxt = new JTextField();
-		busquedaApellidoTxt.setBounds(228, 26, 205, 19);
+		busquedaApellidoTxt.setBounds(264, 26, 205, 19);
 		contentPanel.add(busquedaApellidoTxt);
 		busquedaApellidoTxt.setColumns(10);
 		
 		JLabel dniLbl = new JLabel("O ingrese un dni:");
-		dniLbl.setBounds(465, 29, 127, 13);
+		dniLbl.setBounds(540, 29, 127, 13);
 		contentPanel.add(dniLbl);
 		
 		busquedaDniTxt = new JTextField();
 		busquedaDniTxt.setColumns(10);
-		busquedaDniTxt.setBounds(589, 26, 205, 19);
+		busquedaDniTxt.setBounds(670, 26, 205, 19);
 		contentPanel.add(busquedaDniTxt);
 		
 		JButton buscarBtn = new JButton("Buscar");
@@ -114,7 +114,7 @@ public class EmpleadoDialog extends JDialog {
 				
 			}
 		});
-		buscarBtn.setBounds(840, 26, 85, 19);
+		buscarBtn.setBounds(902, 26, 85, 19);
 		contentPanel.add(buscarBtn);
 		//CARGAR EMPLEADOS ESTA ABAJO
 		cargarEmpleados();
