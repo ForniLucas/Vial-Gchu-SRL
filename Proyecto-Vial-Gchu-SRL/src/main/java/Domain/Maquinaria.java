@@ -5,6 +5,7 @@ package Domain;
 
 import java.time.LocalDate;
 import java.util.HashSet;
+import java.util.List;
 //import java.util.LinkedList;
 //import java.util.List;
 import java.util.Set;
@@ -19,7 +20,18 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.OneToMany;
+import javax.persistence.PrePersist;
 import javax.persistence.Table;
+import javax.persistence.criteria.CriteriaBuilder;
+import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Root;
+
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+import org.hibernate.Transaction;
+import org.hibernate.boot.MetadataSources;
+import org.hibernate.boot.registry.StandardServiceRegistry;
+import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 
 import Enumeraciones.Elemento;
 
@@ -61,6 +73,35 @@ public class Maquinaria implements java.io.Serializable{
 
     @OneToMany(fetch=FetchType.LAZY, mappedBy="Maquinaria",cascade = CascadeType.ALL,orphanRemoval = true)
 	private Set<Service> Services = new HashSet<Service>(0);
+    
+    @PrePersist
+    public void onPrePersist() {
+    	StandardServiceRegistry registry = new StandardServiceRegistryBuilder().configure().build();
+        SessionFactory factory = null;
+        Session session = null;
+        Transaction transaction = null;
+        try {
+          factory = new MetadataSources(registry).buildMetadata().buildSessionFactory();
+          session = factory.openSession();
+          transaction = session.beginTransaction();
+        CriteriaBuilder builder = session.getCriteriaBuilder();
+        CriteriaQuery<Maquinaria> criteria = builder.createQuery(Maquinaria.class);
+        Root<Maquinaria> root = criteria.from(Maquinaria.class);
+        criteria.select(root).where(builder.equal(root.get("Codigo"), this.getCodigo()));
+        List<Maquinaria> maquinarias = session.createQuery(criteria).getResultList();
+        if (!maquinarias.isEmpty()) {
+            throw new RuntimeException("Ya existe una maquinaria con el mismo codigo.");
+        } 
+        }
+        finally {
+            if (session != null) {
+                session.close();
+            }
+            if (factory != null) {
+                factory.close();
+            }
+        }
+    }
     
 
     public Maquinaria(String codigo, String descripcion, String fabricante, String ubicacionAlmacenamiento) {
