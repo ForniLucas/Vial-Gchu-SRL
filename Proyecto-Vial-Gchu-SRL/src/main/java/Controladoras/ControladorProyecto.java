@@ -304,13 +304,13 @@ public void asignarTipoProyecto(Proyecto unProyecto, TipoProyecto unTipo) {
 		    return resultado;
 	}
 	
-public Proyecto buscarNombre (String nombreProyecto) {
+public LinkedList<Proyecto> buscarNombre (String nombreProyecto) {
 		
 		// Iniciar la sesión de Hibernate
 	    StandardServiceRegistry registry = new StandardServiceRegistryBuilder().configure().build();
 	    SessionFactory factory = null;
 	    Session session = null;
-	    Proyecto resultado = null;
+	    LinkedList<Proyecto> resultados = new LinkedList<Proyecto>();
 	    try {
 	      factory = new MetadataSources(registry).buildMetadata().buildSessionFactory();
 	      session = factory.openSession();
@@ -322,14 +322,12 @@ public Proyecto buscarNombre (String nombreProyecto) {
 	      // Definir la tabla (clase) a partir de la cual se hará la consulta
 	      Root<Proyecto> root = criteria.from(Proyecto.class);
 	      // Seleccionar el empleado con el DNI especificado
-	      criteria.select(root).where(builder.equal(root.get("nombre"), nombreProyecto));
+	      criteria.select(root).where(builder.like(root.get("nombre").as(String.class), "%" + nombreProyecto + "%"));
 	      TypedQuery<Proyecto> query = session.createQuery(criteria);
 	      
 	      // Obtener el resultado de la consulta
-	      List<Proyecto> resultados = query.getResultList();
-	      if (!resultados.isEmpty()) {
-		        resultado = resultados.get(0);
-		      }
+	      resultados = new LinkedList<Proyecto>(query.getResultList());
+	      
 		    } catch (Exception ex) {
 		      System.out.println(ex.getMessage());
 		      ex.printStackTrace();
@@ -342,7 +340,7 @@ public Proyecto buscarNombre (String nombreProyecto) {
 		      }
 		      StandardServiceRegistryBuilder.destroy(registry);
 		    }
-		    return resultado;
+		    return resultados;
 	}
 	
 	public LinkedList<Proyecto> buscarEntreFechas(LocalDate unaFecha, LocalDate otraFecha){
