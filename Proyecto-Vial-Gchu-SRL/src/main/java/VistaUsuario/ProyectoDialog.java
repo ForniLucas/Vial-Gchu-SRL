@@ -38,8 +38,9 @@ public class ProyectoDialog extends JDialog {
 	String fechaEstimada = new String();
 	String estado = new String();
 	String fechaFin = new String();
-	private JTextField buscarNombreTxt;
+	private JTextField buscarFechaDesde;
 	private JTextField buscarIdTxt;
+	private JTextField buscarFechaHasta;
 	/**
 	 * Launch the application.
 	 */
@@ -85,25 +86,25 @@ public class ProyectoDialog extends JDialog {
 		scrollPane.setViewportView(table);
 		contentPanel.add(scrollPane);
 		{
-			JLabel nombreLbl = new JLabel("Ingrese un nombre:");
-			nombreLbl.setBounds(102, 28, 127, 13);
+			JLabel nombreLbl = new JLabel("Ingrese fecha desde:");
+			nombreLbl.setBounds(102, 28, 161, 13);
 			contentPanel.add(nombreLbl);
 		}
 		{
-			buscarNombreTxt = new JTextField();
-			buscarNombreTxt.setColumns(10);
-			buscarNombreTxt.setBounds(239, 25, 205, 19);
-			contentPanel.add(buscarNombreTxt);
+			buscarFechaDesde = new JTextField();
+			buscarFechaDesde.setColumns(10);
+			buscarFechaDesde.setBounds(223, 25, 121, 19);
+			contentPanel.add(buscarFechaDesde);
 		}
 		{
 			JLabel idLbl = new JLabel("O ingrese un ID:");
-			idLbl.setBounds(476, 28, 127, 13);
+			idLbl.setBounds(638, 28, 127, 13);
 			contentPanel.add(idLbl);
 		}
 		{
 			buscarIdTxt = new JTextField();
 			buscarIdTxt.setColumns(10);
-			buscarIdTxt.setBounds(600, 25, 205, 19);
+			buscarIdTxt.setBounds(760, 25, 205, 19);
 			contentPanel.add(buscarIdTxt);
 		}
 		{
@@ -112,9 +113,18 @@ public class ProyectoDialog extends JDialog {
 				public void actionPerformed(ActionEvent e) {
 				}
 			});
-			buscarBtn.setBounds(851, 25, 85, 19);
+			buscarBtn.setBounds(1017, 25, 85, 19);
 			contentPanel.add(buscarBtn);
 		}
+		
+		JLabel lblHasta = new JLabel("Hasta:");
+		lblHasta.setBounds(382, 28, 102, 13);
+		contentPanel.add(lblHasta);
+		
+		buscarFechaHasta = new JTextField();
+		buscarFechaHasta.setColumns(10);
+		buscarFechaHasta.setBounds(446, 25, 121, 19);
+		contentPanel.add(buscarFechaHasta);
 		
 		cargarProyectos();
 	
@@ -195,5 +205,4 @@ public class ProyectoDialog extends JDialog {
 	public void refrescar() {
 		table.repaint();;
 	}
-
 }
