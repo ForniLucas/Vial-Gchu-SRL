@@ -73,17 +73,17 @@ public class ModificarEmpleadoDialog extends JDialog {
 		}
 		{
 			JLabel lblNewLabel_2 = new JLabel("Nombre");
-			lblNewLabel_2.setBounds(226, 245, 45, 13);
+			lblNewLabel_2.setBounds(226, 245, 96, 13);
 			contentPanel.add(lblNewLabel_2);
 		}
 		{
 			JLabel lblNewLabel_3 = new JLabel("DNI");
-			lblNewLabel_3.setBounds(237, 309, 34, 13);
+			lblNewLabel_3.setBounds(237, 309, 68, 13);
 			contentPanel.add(lblNewLabel_3);
 		}
 		{
 			JLabel lblNewLabel_4 = new JLabel("Teléfono");
-			lblNewLabel_4.setBounds(218, 373, 53, 13);
+			lblNewLabel_4.setBounds(218, 373, 76, 13);
 			contentPanel.add(lblNewLabel_4);
 		}
 		{

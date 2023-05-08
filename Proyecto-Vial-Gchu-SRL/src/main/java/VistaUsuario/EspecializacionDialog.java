@@ -66,12 +66,12 @@ public class EspecializacionDialog extends JDialog {
 		}
 		{
 			JLabel tipoLbl = new JLabel("Especializacion:");
-			tipoLbl.setBounds(96, 109, 72, 13);
+			tipoLbl.setBounds(96, 109, 126, 13);
 			contentPanel.add(tipoLbl);
 		}
 		{
 			JLabel lblNewLabel_1 = new JLabel("Rol:");
-			lblNewLabel_1.setBounds(150, 164, 18, 13);
+			lblNewLabel_1.setBounds(150, 164, 72, 13);
 			contentPanel.add(lblNewLabel_1);
 		}
 		{
@@ -96,10 +96,8 @@ public class EspecializacionDialog extends JDialog {
 						LocalDate currentDate = LocalDate.now();
 				        Profesion prof = (Profesion)espComboBox.getSelectedItem();
 				        RolEmpleado rol =(RolEmpleado)rolComboBox.getSelectedItem();
-				        Empleado empleado = controlador.buscarDNI(Integer.parseInt(dniTxt.getText()));
-						//empleado = controlador.buscarDNI(Integer.parseInt(dniTxt.getText()));
-						Especializacion especializacion = new Especializacion(prof, currentDate, rol);
-						controlador.asignarEspecializacion(empleado, especializacion);
+				        Especializacion especializacion = new Especializacion(prof, currentDate, rol);
+				        controlador.asignarEspecializacion(empleado, especializacion);
 					}
 				});
 				guardarBtn.setActionCommand("OK");
