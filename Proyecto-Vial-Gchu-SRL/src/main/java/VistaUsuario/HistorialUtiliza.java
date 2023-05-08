@@ -90,8 +90,6 @@ public class HistorialUtiliza extends JDialog {
 				cancelarBtn.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
 						setVisible(false);
-						ProyectoDialog proyecto = new ProyectoDialog();
-						proyecto.setVisible(true);
 					}
 				});
 				asignarMaquinariaBtn.addActionListener(new ActionListener() {

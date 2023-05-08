@@ -85,7 +85,7 @@ public class UtilizaDialog extends JDialog {
 		contentPanel.add(fechaInicioLbl);
 		
 		JLabel lblNewLabel = new JLabel("Fecha Estimada de Fin");
-		lblNewLabel.setBounds(131, 317, 125, 13);
+		lblNewLabel.setBounds(131, 317, 185, 13);
 		contentPanel.add(lblNewLabel);
 		
 		
@@ -164,8 +164,6 @@ public class UtilizaDialog extends JDialog {
 				cancelarBtn.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
 						setVisible(false);
-						ProyectoDialog proyecto = new ProyectoDialog();
-						proyecto.setVisible(true);
 					}
 				});
 				cancelarBtn.setActionCommand("Cancel");

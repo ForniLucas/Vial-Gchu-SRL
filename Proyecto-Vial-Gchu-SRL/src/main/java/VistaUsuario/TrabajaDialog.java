@@ -159,8 +159,6 @@ public class TrabajaDialog extends JDialog {
 				cancelButton.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
 						setVisible(false);
-						ProyectoDialog proyectoDialog = new ProyectoDialog();
-						proyectoDialog.setVisible(true);
 					}
 				});
 				cancelButton.setActionCommand("Cancel");
