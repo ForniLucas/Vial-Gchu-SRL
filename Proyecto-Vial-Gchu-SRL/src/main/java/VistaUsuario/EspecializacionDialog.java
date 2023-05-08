@@ -33,7 +33,7 @@ public class EspecializacionDialog extends JDialog {
 	private JComboBox<Profesion> espComboBox= new JComboBox<Profesion>(Profesion.values());
 	private JComboBox<RolEmpleado> rolComboBox = new JComboBox<RolEmpleado>(RolEmpleado.values());
 	private ControladorEmpleado controlador = new ControladorEmpleado();
-	//private Empleado empleado = new Empleado();
+	private Empleado empleado = new Empleado();
 
 	/**
 	 * Launch the application.
@@ -41,9 +41,9 @@ public class EspecializacionDialog extends JDialog {
 	/**
 	 * Create the dialog.
 	 */
-	public EspecializacionDialog(HistorialEspecializacionDialog dialog, String dni) {
+	public EspecializacionDialog(HistorialEspecializacionDialog dialog, String dniid) {
 		super(dialog, "EspecializacionDialog",true);
-		this.dni = dni;
+		this.dni = dniid;
 		setBounds(50, 50, 450, 360);
 		this.setResizable(false);
 		this.setTitle("ROPA DE TRABAJO");
@@ -92,6 +92,7 @@ public class EspecializacionDialog extends JDialog {
 				JButton guardarBtn = new JButton("Guardar");
 				guardarBtn.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
+						empleado = controlador.buscarDNI(Integer.parseInt(dni));
 						LocalDate currentDate = LocalDate.now();
 				        Profesion prof = (Profesion)espComboBox.getSelectedItem();
 				        RolEmpleado rol =(RolEmpleado)rolComboBox.getSelectedItem();

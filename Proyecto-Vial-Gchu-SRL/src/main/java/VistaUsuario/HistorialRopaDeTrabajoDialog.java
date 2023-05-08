@@ -50,9 +50,9 @@ public class HistorialRopaDeTrabajoDialog extends JDialog {
 	/**
 	 * Create the dialog.
 	 */
-	public HistorialRopaDeTrabajoDialog(ModificarEmpleadoDialog dialog, String dni) {
+	public HistorialRopaDeTrabajoDialog(ModificarEmpleadoDialog dialog, String dniid) {
 		super(dialog, "HistorialRopaDeTrabajoDialog",true);
-		this.dni = dni;
+		this.dni = dniid;
 
 		setBounds(50, 50, 600, 600);
 		setTitle("HISTORIAL DE ROPA DE TRABAJO");
@@ -81,7 +81,7 @@ public class HistorialRopaDeTrabajoDialog extends JDialog {
 				asginarBtn.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
 						setVisible(false);
-						RopaDeTrabajoDialog ropaDeTrabajoDialog = new RopaDeTrabajoDialog(HistorialRopaDeTrabajoDialog.this, HistorialRopaDeTrabajoDialog.this.dni);
+						RopaDeTrabajoDialog ropaDeTrabajoDialog = new RopaDeTrabajoDialog(HistorialRopaDeTrabajoDialog.this, dni);
 						ropaDeTrabajoDialog.setVisible(true);					
 						}
 				});

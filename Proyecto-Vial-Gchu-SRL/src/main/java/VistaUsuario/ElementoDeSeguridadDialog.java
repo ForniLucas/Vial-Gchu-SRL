@@ -85,6 +85,7 @@ public class ElementoDeSeguridadDialog extends JDialog {
 				JButton guardarBtn = new JButton("Guardar");
 				guardarBtn.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
+						empleado = controlador.buscarDNI(Integer.parseInt(dni));
 						String fechaEtnregaString = textField.getText(); 
 						DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy"); 
 						LocalDate fechaEtnrega = LocalDate.parse(fechaEtnregaString, formatter);
