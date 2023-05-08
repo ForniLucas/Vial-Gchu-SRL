@@ -56,10 +56,10 @@ public class UtilizaDialog extends JDialog {
 	/**
 	 * Create the dialog.
 	 */
-	public UtilizaDialog(HistorialUtiliza dialog1, String idproyecto, String codigo) {
+	public UtilizaDialog(HistorialUtiliza dialog1, String idproyecto) {
 		super(dialog1, "UtilizaDialog",true);
 		this.idproyecto = idproyecto;
-		this.codigo = codigo;
+		
 		
 		codigoTxt.setText(codigo);
 		proyecto = controladorP.buscarID(Integer.parseInt(idproyecto));
@@ -164,6 +164,8 @@ public class UtilizaDialog extends JDialog {
 				cancelarBtn.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
 						setVisible(false);
+						ProyectoDialog proyecto = new ProyectoDialog();
+						proyecto.setVisible(true);
 					}
 				});
 				cancelarBtn.setActionCommand("Cancel");

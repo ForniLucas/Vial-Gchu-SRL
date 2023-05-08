@@ -51,9 +51,9 @@ public class HistorialTrabaja extends JDialog {
 	/**
 	 * Create the dialog.
 	 */
-	public HistorialTrabaja(ModificarProyectoDialog dialog, String id) {
+	public HistorialTrabaja(ModificarProyectoDialog dialog, String idc) {
 		super(dialog, "HistorialUtiliza",true);
-		this.id = id;
+		this.id = idc;
 		
 		setBounds(50, 50, 600, 600);
 		this.setResizable(false);
@@ -89,14 +89,17 @@ public class HistorialTrabaja extends JDialog {
 				JButton cancelarBtn = new JButton("Cancelar");
 				cancelarBtn.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
-						setVisible(false);
+						ProyectoDialog proyecto = new ProyectoDialog();
+						proyecto.setVisible(true);setVisible(false);
 					}
 				});
 				
 				JButton asignarBtn = new JButton("Asignar Empleado");
 				asignarBtn.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
-						TrabajaDialog trabaja = new TrabajaDialog(HistorialTrabaja.this, HistorialTrabaja.this.id, HistorialTrabaja.this.dni);
+						TrabajaDialog trabaja = new TrabajaDialog(HistorialTrabaja.this, id);
+						setVisible(false);
+						trabaja.setVisible(true);
 					}
 				});
 				buttonPane.add(asignarBtn);
