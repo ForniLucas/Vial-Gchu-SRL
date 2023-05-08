@@ -96,7 +96,8 @@ public class EspecializacionDialog extends JDialog {
 						LocalDate currentDate = LocalDate.now();
 				        Profesion prof = (Profesion)espComboBox.getSelectedItem();
 				        RolEmpleado rol =(RolEmpleado)rolComboBox.getSelectedItem();
-				        Especializacion especializacion = new Especializacion(prof, currentDate, rol);
+				        Especializacion especializacion = new Especializacion(empleado,prof, currentDate, rol);
+				       
 				        controlador.asignarEspecializacion(empleado, especializacion);
 					}
 				});

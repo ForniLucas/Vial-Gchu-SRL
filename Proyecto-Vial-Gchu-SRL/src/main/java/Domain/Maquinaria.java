@@ -50,19 +50,19 @@ public class Maquinaria implements java.io.Serializable{
     @GeneratedValue(strategy = GenerationType.IDENTITY)
      private Long id;
     
-    @Column(name = "Codigo",nullable=false)
+    @Column(name = "codigo",nullable=false)
     private String codigo;
     
-    @Column(name = "Descrpición",nullable=false)
+    @Column(name = "descrpición",nullable=false)
     private String descripcion;
     
-    @Column(name = "Fabricante",nullable=false)
+    @Column(name = "fabricante",nullable=false)
     private String fabricante;
     
-    @Column(name = "Ubicación",nullable=false)
+    @Column(name = "ubicación",nullable=false)
     private String ubicacionAlmacenamiento;
     
-    @Column(name = "estado",nullable=false)
+    @Column(name = "estado",nullable=true)
     private boolean estado;
     
     @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL,
@@ -87,7 +87,7 @@ public class Maquinaria implements java.io.Serializable{
         CriteriaBuilder builder = session.getCriteriaBuilder();
         CriteriaQuery<Maquinaria> criteria = builder.createQuery(Maquinaria.class);
         Root<Maquinaria> root = criteria.from(Maquinaria.class);
-        criteria.select(root).where(builder.equal(root.get("Codigo"), this.getCodigo()));
+        criteria.select(root).where(builder.equal(root.get("codigo"), this.getCodigo()));
         List<Maquinaria> maquinarias = session.createQuery(criteria).getResultList();
         if (!maquinarias.isEmpty()) {
             throw new RuntimeException("Ya existe una maquinaria con el mismo codigo.");
