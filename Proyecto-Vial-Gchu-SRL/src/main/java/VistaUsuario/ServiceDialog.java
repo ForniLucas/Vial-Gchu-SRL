@@ -53,7 +53,7 @@ public class ServiceDialog extends JDialog {
 	 * Create the dialog.
 	 */
 	public ServiceDialog(MaquinariaDialog dialog, String codigo) {
-		super(dialog, "BajaEmpleadoDialog",true);
+		super(dialog, "ServiceDialog",true);
 		this.codigo = codigo;
 		
 		legajoTxt.setText(codigo);
@@ -92,29 +92,29 @@ public class ServiceDialog extends JDialog {
 		}
 		{
 			JLabel lblNewLabel_1 = new JLabel("Fecha de Inicio");
-			lblNewLabel_1.setBounds(164, 228, 85, 13);
+			lblNewLabel_1.setBounds(164, 228, 132, 13);
 			contentPanel.add(lblNewLabel_1);
 		}
 		{
 			JLabel lblNewLabel_2 = new JLabel("Fecha de Fin");
-			lblNewLabel_2.setBounds(176, 299, 73, 13);
+			lblNewLabel_2.setBounds(176, 299, 120, 13);
 			contentPanel.add(lblNewLabel_2);
 		}
 		{
 			JLabel lblNewLabel_3 = new JLabel("Observaciones");
-			lblNewLabel_3.setBounds(164, 377, 85, 13);
+			lblNewLabel_3.setBounds(164, 377, 132, 13);
 			contentPanel.add(lblNewLabel_3);
 		}
 		{
 			fechaInicioTxt = new JTextField();
-			fechaInicioTxt.setText("dd-mm-aaaa");
+			fechaInicioTxt.setText("dd/mm/aaaa");
 			fechaInicioTxt.setBounds(306, 225, 96, 19);
 			contentPanel.add(fechaInicioTxt);
 			fechaInicioTxt.setColumns(10);
 		}
 		{
 			fechaFinTxt = new JTextField();
-			fechaFinTxt.setText("dd-mm-aaaa");
+			fechaFinTxt.setText("dd/mm/aaaa");
 			fechaFinTxt.setBounds(306, 296, 96, 19);
 			contentPanel.add(fechaFinTxt);
 			fechaFinTxt.setColumns(10);

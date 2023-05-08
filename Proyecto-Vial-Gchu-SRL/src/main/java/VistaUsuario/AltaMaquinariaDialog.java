@@ -50,27 +50,27 @@ public class AltaMaquinariaDialog extends JDialog {
 		contentPanel.setLayout(null);
 		{
 			JLabel lblNewLabel = new JLabel("Código");
-			lblNewLabel.setBounds(200, 71, 45, 13);
+			lblNewLabel.setBounds(200, 74, 86, 13);
 			contentPanel.add(lblNewLabel);
 		}
 		{
 			JLabel lblNewLabel_1 = new JLabel("Descripción");
-			lblNewLabel_1.setBounds(180, 178, 65, 13);
+			lblNewLabel_1.setBounds(180, 178, 106, 13);
 			contentPanel.add(lblNewLabel_1);
 		}
 		{
 			JLabel lblNewLabel_2 = new JLabel("Fabricante");
-			lblNewLabel_2.setBounds(180, 285, 65, 13);
+			lblNewLabel_2.setBounds(185, 285, 81, 13);
 			contentPanel.add(lblNewLabel_2);
 		}
 		{
 			JLabel lblNewLabel_3 = new JLabel("Ubicación de Almacenamiento");
-			lblNewLabel_3.setBounds(95, 392, 150, 13);
+			lblNewLabel_3.setBounds(101, 392, 240, 13);
 			contentPanel.add(lblNewLabel_3);
 		}
 		{
 			JLabel lblNewLabel_4 = new JLabel("Estado");
-			lblNewLabel_4.setBounds(200, 499, 45, 13);
+			lblNewLabel_4.setBounds(203, 499, 83, 13);
 			contentPanel.add(lblNewLabel_4);
 		}
 		{
@@ -81,25 +81,25 @@ public class AltaMaquinariaDialog extends JDialog {
 		}
 		{
 			descripcionTxt = new JTextField();
-			descripcionTxt.setBounds(276, 179, 137, 19);
+			descripcionTxt.setBounds(276, 175, 137, 19);
 			contentPanel.add(descripcionTxt);
 			descripcionTxt.setColumns(255);
 		}
 		{
 			fabricanteTxt = new JTextField();
-			fabricanteTxt.setBounds(276, 287, 96, 19);
+			fabricanteTxt.setBounds(276, 282, 96, 19);
 			contentPanel.add(fabricanteTxt);
 			fabricanteTxt.setColumns(255);
 		}
 		{
 			ubicacionTxt = new JTextField();
-			ubicacionTxt.setBounds(276, 395, 137, 19);
+			ubicacionTxt.setBounds(276, 389, 137, 19);
 			contentPanel.add(ubicacionTxt);
 			ubicacionTxt.setColumns(255);
 		}
 		{
 			JComboBox estadoBox = new JComboBox();
-			estadoBox.setBounds(276, 495, 96, 21);
+			estadoBox.setBounds(276, 495, 111, 21);
 			contentPanel.add(estadoBox);
 		}
 		{

@@ -102,7 +102,7 @@ public class Principal {
 		proyecto.setBackground(new Color(192, 192, 192));
 		
 		//BOTON MAQUINARIA
-		JButton maquinaria = new JButton("Gestionar Maquinaria");
+		JButton maquinaria = new JButton("Gestionar Maquinarias");
 		maquinaria.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				MaquinariaDialog maquinariaDialog = new MaquinariaDialog();
