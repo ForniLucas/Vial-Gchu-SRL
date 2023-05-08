@@ -28,7 +28,6 @@ public class HistorialElementoDeSeguridadDialog extends JDialog {
 	ControladorEmpleado controladorEmpleado = new ControladorEmpleado();
 	Empleado empleado = new Empleado();
 	String id = new String();
-	String apellido = new String();
 	String nombre = new String();
 	String dni = new String();
 	//Tabla Principal
@@ -54,10 +53,8 @@ public class HistorialElementoDeSeguridadDialog extends JDialog {
 	/**
 	 * Create the dialog.
 	 */
-	public HistorialElementoDeSeguridadDialog(ModificarEmpleadoDialog dialog, String dni, String apellido, String nombre) {
-		this.dni = dni;
-		this.apellido = apellido;
-		this.nombre = nombre;
+	public HistorialElementoDeSeguridadDialog(ModificarEmpleadoDialog dialog, String dniid) {
+		this.dni = dniid;
 		
 		setBounds(50, 50, 600, 600);
 		setTitle("HISTORIAL DE ELEMENTO DE SEGURIDAD");
@@ -78,14 +75,6 @@ public class HistorialElementoDeSeguridadDialog extends JDialog {
 		JLabel dniLbl = new JLabel("DNI: " + dni);
 		dniLbl.setBounds(55, 26, 108, 13);
 		contentPanel.add(dniLbl);
-		
-		JLabel apellidoLbl = new JLabel("Apellido: "+apellido);
-		apellidoLbl.setBounds(173, 26, 147, 13);
-		contentPanel.add(apellidoLbl);
-		
-		JLabel nombreLbl = new JLabel("Nombre: "+nombre);
-		nombreLbl.setBounds(330, 26, 212, 13);
-		contentPanel.add(nombreLbl);
 		{
 			JPanel buttonPane = new JPanel();
 			buttonPane.setLayout(new FlowLayout(FlowLayout.RIGHT));
@@ -95,7 +84,7 @@ public class HistorialElementoDeSeguridadDialog extends JDialog {
 				modificarBtn.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
 						setVisible(false);
-						ElementoDeSeguridadDialog elementoDialog = new ElementoDeSeguridadDialog(HistorialElementoDeSeguridadDialog.this, HistorialElementoDeSeguridadDialog.this.dni);
+						ElementoDeSeguridadDialog elementoDialog = new ElementoDeSeguridadDialog(HistorialElementoDeSeguridadDialog.this, dni);
 						elementoDialog.setVisible(true);
 						}
 				});
@@ -107,6 +96,8 @@ public class HistorialElementoDeSeguridadDialog extends JDialog {
 				JButton cancelarBtn = new JButton("Cancelar");
 				cancelarBtn.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
+						EmpleadoDialog empleados = new EmpleadoDialog();
+						empleados.setVisible(true);
 						setVisible(false);
 					}
 				});

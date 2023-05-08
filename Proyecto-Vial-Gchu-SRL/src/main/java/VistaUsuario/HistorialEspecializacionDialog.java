@@ -82,6 +82,8 @@ public class HistorialEspecializacionDialog extends JDialog {
 				cancelarBtn.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
 						setVisible(false);
+						EmpleadoDialog empleados = new EmpleadoDialog();
+						empleados.setVisible(true);
 					}
 				});
 				cancelarBtn.setHorizontalAlignment(SwingConstants.RIGHT);

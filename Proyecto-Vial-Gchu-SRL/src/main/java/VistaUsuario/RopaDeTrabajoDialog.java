@@ -45,21 +45,6 @@ public class RopaDeTrabajoDialog extends JDialog {
 	        return selectedItem.replace('_', ' ');
 	    }
 	};
-
-	/**
-	 * Launch the application.
-	 */
-	/*
-	public static void main(String[] args) {
-		try {
-			RopaDeTrabajoDialog dialog = new RopaDeTrabajoDialog();
-			dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
-			dialog.setVisible(true);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-	}
-	*/
 	/**
 	 * Create the dialog.
 	 */
@@ -72,6 +57,7 @@ public class RopaDeTrabajoDialog extends JDialog {
 		setBounds(50, 50, 450, 450);
 		this.setResizable(false);
 		this.setTitle("ROPA DE TRABAJO");
+		this.toFront();
 		getContentPane().setLayout(new BorderLayout());
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
 		getContentPane().add(contentPanel, BorderLayout.CENTER);

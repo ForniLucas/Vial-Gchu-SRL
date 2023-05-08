@@ -27,8 +27,6 @@ public class HistorialRopaDeTrabajoDialog extends JDialog {
 
 	private final JPanel contentPanel = new JPanel();
 	ControladorEmpleado controladorEmpleado = new ControladorEmpleado();
-	String apellido = new String();
-	String nombre = new String();
 	String dni = new String();
 	//Tabla Principal
 	String ids[] = {"Legajo","Tipo", "Talle","Fecha de Entrega"}; 
@@ -52,12 +50,10 @@ public class HistorialRopaDeTrabajoDialog extends JDialog {
 	/**
 	 * Create the dialog.
 	 */
-	public HistorialRopaDeTrabajoDialog(ModificarEmpleadoDialog dialog, String dni, String apellido, String nombre) {
+	public HistorialRopaDeTrabajoDialog(ModificarEmpleadoDialog dialog, String dni) {
 		super(dialog, "HistorialRopaDeTrabajoDialog",true);
 		this.dni = dni;
-		this.apellido = apellido;
-		this.nombre = nombre;
-		
+
 		setBounds(50, 50, 600, 600);
 		setTitle("HISTORIAL DE ROPA DE TRABAJO");
 		getContentPane().setLayout(new BorderLayout());
@@ -76,14 +72,6 @@ public class HistorialRopaDeTrabajoDialog extends JDialog {
 		JLabel dniLbl = new JLabel("DNI: " + dni);
 		dniLbl.setBounds(55, 26, 108, 13);
 		contentPanel.add(dniLbl);
-		
-		JLabel apellidoLbl = new JLabel("Apellido: "+apellido);
-		apellidoLbl.setBounds(173, 26, 147, 13);
-		contentPanel.add(apellidoLbl);
-		
-		JLabel nombreLbl = new JLabel("Nombre: "+nombre);
-		nombreLbl.setBounds(330, 26, 212, 13);
-		contentPanel.add(nombreLbl);
 		{
 			JPanel buttonPane = new JPanel();
 			buttonPane.setLayout(new FlowLayout(FlowLayout.RIGHT));
@@ -105,6 +93,8 @@ public class HistorialRopaDeTrabajoDialog extends JDialog {
 				JButton cancelarBtn = new JButton("Cancelar");
 				cancelarBtn.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
+						EmpleadoDialog empleados = new EmpleadoDialog();
+						empleados.setVisible(true);
 						setVisible(false);
 					}
 				});

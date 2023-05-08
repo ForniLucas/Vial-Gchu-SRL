@@ -123,7 +123,6 @@ public class Principal {
 		panel5.add(lblNewLabel);
 		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		lblNewLabel.setIcon(new ImageIcon(Principal.class.getResource("/Vista/img/3.2 400x400.png")));
-		
 	}
 
 }

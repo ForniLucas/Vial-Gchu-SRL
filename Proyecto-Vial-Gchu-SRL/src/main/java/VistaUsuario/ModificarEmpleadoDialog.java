@@ -221,6 +221,7 @@ public class ModificarEmpleadoDialog extends JDialog {
 					JButton gestionarEspBtn = new JButton("Gestionar Especialización");
 					gestionarEspBtn.addActionListener(new ActionListener() {
 						public void actionPerformed(ActionEvent e) {
+							setVisible(false);
 							HistorialEspecializacionDialog historialEspecializacion = new HistorialEspecializacionDialog(ModificarEmpleadoDialog.this,
 									ModificarEmpleadoDialog.this.dniid);
 							historialEspecializacion.setVisible(true);
@@ -232,9 +233,9 @@ public class ModificarEmpleadoDialog extends JDialog {
 					JButton gestionarElemBtn = new JButton("Gestionar Elementos de Seguridad");
 					gestionarElemBtn.addActionListener(new ActionListener() {
 						public void actionPerformed(ActionEvent e) {
-							
+							setVisible(false);
 							HistorialElementoDeSeguridadDialog historialElemento = new HistorialElementoDeSeguridadDialog(ModificarEmpleadoDialog.this,
-									ModificarEmpleadoDialog.this.dniid, ModificarEmpleadoDialog.this.apellido, ModificarEmpleadoDialog.this.nombre);
+									ModificarEmpleadoDialog.this.dniid);
 							historialElemento.setVisible(true);
 						}
 					});
@@ -244,8 +245,9 @@ public class ModificarEmpleadoDialog extends JDialog {
 					JButton gestionarRopaBtn = new JButton("Gestionar Ropa");
 					gestionarRopaBtn.addActionListener(new ActionListener() {
 						public void actionPerformed(ActionEvent e) {
+							setVisible(false);
 							HistorialRopaDeTrabajoDialog historialRopa = new HistorialRopaDeTrabajoDialog(ModificarEmpleadoDialog.this,
-									ModificarEmpleadoDialog.this.dniid, ModificarEmpleadoDialog.this.apellido, ModificarEmpleadoDialog.this.nombre);
+									ModificarEmpleadoDialog.this.dniid);
 							historialRopa.setVisible(true);
 						}
 					});
