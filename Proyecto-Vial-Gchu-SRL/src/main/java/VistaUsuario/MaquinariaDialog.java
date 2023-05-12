@@ -126,7 +126,7 @@ public class MaquinariaDialog extends JDialog {
 			});
 			buttonPane.add(bajaBtn);
 			
-			JButton modificarBtn = new JButton("Modificación");
+			JButton modificarBtn = new JButton("Modificar");
 			modificarBtn.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
 					setVisible(false);

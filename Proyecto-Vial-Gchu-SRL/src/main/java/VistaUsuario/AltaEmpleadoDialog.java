@@ -19,6 +19,7 @@ import java.time.format.DateTimeFormatter;
 import java.awt.event.ActionEvent;
 import javax.swing.JTextField;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JComboBox;
 //import com.toedter.calendar.JDateChooser;
 
@@ -35,6 +36,7 @@ public class AltaEmpleadoDialog extends JDialog {
 	private JComboBox rolBox = new JComboBox(RolEmpleado.values());
 	ControladorEmpleado controlador = new ControladorEmpleado();
 	Especializacion especializacion = new Especializacion();
+	JOptionPane optionPane = new JOptionPane();
 
 	/**
 	 * Launch the application.
@@ -144,7 +146,7 @@ public class AltaEmpleadoDialog extends JDialog {
 						
 						
 						controlador.alta(nombre, apellido, dni, telefono, direccion, fechaDeNacimiento);
-						
+						optionPane.showMessageDialog(null,"Datos almacenados con éxito");
 						//controlador.asignarElementoDeSeguridad(controlador.buscarDNI(dni), especializacion);
 						
 						

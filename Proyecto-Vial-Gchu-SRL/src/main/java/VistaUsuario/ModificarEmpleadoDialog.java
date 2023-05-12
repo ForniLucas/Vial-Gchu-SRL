@@ -205,7 +205,7 @@ public class ModificarEmpleadoDialog extends JDialog {
 							empleado.setDireccion(direccion);
 							empleado.setFechaNac(fechaDeNacimiento);
 							controlador.modificar(empleado);
-							optionPane.showMessageDialog(null, "Empleado modificado exitosamente.");
+							optionPane.showMessageDialog(null, "Datos modificados con éxito");
 							System.out.println(ModificarEmpleadoDialog.this.dni);
 						}
 						else {
