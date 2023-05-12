@@ -34,7 +34,7 @@ public class AltaEmpleadoDialog extends JDialog {
 	private JComboBox especializacionBox = new JComboBox(Profesion.values());
 	private JComboBox rolBox = new JComboBox(RolEmpleado.values());
 	ControladorEmpleado controlador = new ControladorEmpleado();
-	//Especializacion especializacion = new Especializacion();
+	Especializacion especializacion = new Especializacion();
 
 	/**
 	 * Launch the application.
@@ -62,84 +62,61 @@ public class AltaEmpleadoDialog extends JDialog {
 		contentPanel.setLayout(null);
 		{
 			apellidoTxt = new JTextField();
-			apellidoTxt.setBounds(248, 45, 204, 19);
+			apellidoTxt.setBounds(271, 61, 204, 19);
 			contentPanel.add(apellidoTxt);
 			apellidoTxt.setColumns(255);
 		}
 		
 		nombreTxt = new JTextField();
-		nombreTxt.setBounds(248, 116, 204, 19);
+		nombreTxt.setBounds(271, 156, 204, 19);
 		contentPanel.add(nombreTxt);
 		nombreTxt.setColumns(255);
 		
 		dniTxt = new JTextField();
-		dniTxt.setBounds(248, 187, 96, 19);
+		dniTxt.setBounds(271, 245, 96, 19);
 		contentPanel.add(dniTxt);
 		dniTxt.setColumns(255);
 		
 		telefonoTxt = new JTextField();
-		telefonoTxt.setBounds(248, 258, 204, 19);
+		telefonoTxt.setBounds(271, 337, 204, 19);
 		contentPanel.add(telefonoTxt);
 		telefonoTxt.setColumns(255);
 		
 		direccionTxt = new JTextField();
-		direccionTxt.setBounds(248, 329, 204, 19);
+		direccionTxt.setBounds(271, 429, 204, 19);
 		contentPanel.add(direccionTxt);
 		direccionTxt.setColumns(255);
 		
 		fechaDeNacimientoTxt = new JTextField();
-		fechaDeNacimientoTxt.setText("dd-mm-aaaa");
-		fechaDeNacimientoTxt.setBounds(248, 400, 96, 19);
+		fechaDeNacimientoTxt.setText("dd/mm/aaaa");
+		fechaDeNacimientoTxt.setBounds(271, 521, 96, 19);
 		contentPanel.add(fechaDeNacimientoTxt);
 		fechaDeNacimientoTxt.setColumns(10);
 		
 		JLabel lblNewLabel = new JLabel("Apellido");
-		lblNewLabel.setBounds(152, 48, 56, 13);
+		lblNewLabel.setBounds(165, 64, 156, 13);
 		contentPanel.add(lblNewLabel);
 		
 		JLabel lblNewLabel_1 = new JLabel("Nombre");
-		lblNewLabel_1.setBounds(152, 119, 56, 13);
+		lblNewLabel_1.setBounds(160, 159, 161, 13);
 		contentPanel.add(lblNewLabel_1);
 		
 		JLabel lblNewLabel_2 = new JLabel("DNI");
-		lblNewLabel_2.setBounds(176, 190, 32, 13);
+		lblNewLabel_2.setBounds(179, 248, 108, 13);
 		contentPanel.add(lblNewLabel_2);
 		
 		JLabel lblNewLabel_3 = new JLabel("Teléfono");
-		lblNewLabel_3.setBounds(152, 261, 56, 13);
+		lblNewLabel_3.setBounds(160, 340, 127, 13);
 		contentPanel.add(lblNewLabel_3);
 		
 		JLabel lblNewLabel_4 = new JLabel("Dirección");
-		lblNewLabel_4.setBounds(152, 332, 56, 13);
+		lblNewLabel_4.setBounds(154, 432, 133, 13);
 		contentPanel.add(lblNewLabel_4);
 		
 		JLabel lblNewLabel_5 = new JLabel("Fecha de Nacimiento");
-		lblNewLabel_5.setBounds(98, 403, 133, 13);
+		lblNewLabel_5.setBounds(105, 524, 195, 13);
 		contentPanel.add(lblNewLabel_5);
 		
-		JLabel lblNewLabel_6 = new JLabel("Especialización");
-		lblNewLabel_6.setBounds(119, 473, 89, 13);
-		contentPanel.add(lblNewLabel_6);
-		
-		JLabel lblNewLabel_7 = new JLabel("Rol");
-		lblNewLabel_7.setBounds(176, 545, 32, 13);
-		contentPanel.add(lblNewLabel_7);
-		
-		//JComboBox especializacionBox = new JComboBox(Profesion.values());
-		especializacionBox.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-			}
-		});
-		especializacionBox.setBounds(248, 469, 96, 21);
-		contentPanel.add(especializacionBox);
-		
-		//JComboBox rolBox = new JComboBox(RolEmpleado.values());
-		rolBox.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-			}
-		});
-		rolBox.setBounds(248, 541, 96, 21);
-		contentPanel.add(rolBox);
 		{
 			JPanel buttonPane = new JPanel();
 			buttonPane.setLayout(new FlowLayout(FlowLayout.RIGHT));

@@ -73,17 +73,17 @@ public class ModificarEmpleadoDialog extends JDialog {
 		}
 		{
 			JLabel lblNewLabel_2 = new JLabel("Nombre");
-			lblNewLabel_2.setBounds(226, 245, 45, 13);
+			lblNewLabel_2.setBounds(226, 245, 96, 13);
 			contentPanel.add(lblNewLabel_2);
 		}
 		{
 			JLabel lblNewLabel_3 = new JLabel("DNI");
-			lblNewLabel_3.setBounds(237, 309, 34, 13);
+			lblNewLabel_3.setBounds(237, 309, 68, 13);
 			contentPanel.add(lblNewLabel_3);
 		}
 		{
 			JLabel lblNewLabel_4 = new JLabel("Teléfono");
-			lblNewLabel_4.setBounds(218, 373, 53, 13);
+			lblNewLabel_4.setBounds(218, 373, 76, 13);
 			contentPanel.add(lblNewLabel_4);
 		}
 		{
@@ -97,7 +97,7 @@ public class ModificarEmpleadoDialog extends JDialog {
 			contentPanel.add(lblNewLabel_6);
 		}
 		{
-			dniidTxt = new JTextField();
+			dniidTxt = new JTextField(dniid);
 			dniidTxt.setBounds(279, 79, 96, 19);
 			contentPanel.add(dniidTxt);
 			dniidTxt.setColumns(255);
@@ -198,18 +198,15 @@ public class ModificarEmpleadoDialog extends JDialog {
 							String fechaDeNacimientoString = fechaDeNacimientoTxt.getText(); // Get the value of the JTextField as a String
 							DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy"); // Specify the input format
 							LocalDate fechaDeNacimiento = LocalDate.parse(fechaDeNacimientoString, formatter);
-							//RolEmpleado rol = (RolEmpleado) rolBox.getSelectedItem();
-							//Profesion especializacion = (Profesion) especializacionBox.getSelectedItem();
-							
 							empleado.setNombre(nombre);
 							empleado.setApellido(apellido);
 							empleado.setDni(dni);
 							empleado.setTelefono(telefono);
 							empleado.setDireccion(direccion);
 							empleado.setFechaNac(fechaDeNacimiento);
-							
 							controlador.modificar(empleado);
 							optionPane.showMessageDialog(null, "Empleado modificado exitosamente.");
+							System.out.println(ModificarEmpleadoDialog.this.dni);
 						}
 						else {
 							optionPane.showMessageDialog(null, "Debe buscar un empleado primero.");
@@ -224,8 +221,9 @@ public class ModificarEmpleadoDialog extends JDialog {
 					JButton gestionarEspBtn = new JButton("Gestionar Especialización");
 					gestionarEspBtn.addActionListener(new ActionListener() {
 						public void actionPerformed(ActionEvent e) {
+							setVisible(false);
 							HistorialEspecializacionDialog historialEspecializacion = new HistorialEspecializacionDialog(ModificarEmpleadoDialog.this,
-									ModificarEmpleadoDialog.this.dni, ModificarEmpleadoDialog.this.apellido, ModificarEmpleadoDialog.this.nombre);
+									ModificarEmpleadoDialog.this.dniid);
 							historialEspecializacion.setVisible(true);
 						}
 					});
@@ -235,8 +233,9 @@ public class ModificarEmpleadoDialog extends JDialog {
 					JButton gestionarElemBtn = new JButton("Gestionar Elementos de Seguridad");
 					gestionarElemBtn.addActionListener(new ActionListener() {
 						public void actionPerformed(ActionEvent e) {
+							setVisible(false);
 							HistorialElementoDeSeguridadDialog historialElemento = new HistorialElementoDeSeguridadDialog(ModificarEmpleadoDialog.this,
-									ModificarEmpleadoDialog.this.dni, ModificarEmpleadoDialog.this.apellido, ModificarEmpleadoDialog.this.nombre);
+									ModificarEmpleadoDialog.this.dniid);
 							historialElemento.setVisible(true);
 						}
 					});
@@ -246,8 +245,9 @@ public class ModificarEmpleadoDialog extends JDialog {
 					JButton gestionarRopaBtn = new JButton("Gestionar Ropa");
 					gestionarRopaBtn.addActionListener(new ActionListener() {
 						public void actionPerformed(ActionEvent e) {
+							setVisible(false);
 							HistorialRopaDeTrabajoDialog historialRopa = new HistorialRopaDeTrabajoDialog(ModificarEmpleadoDialog.this,
-									ModificarEmpleadoDialog.this.dni, ModificarEmpleadoDialog.this.apellido, ModificarEmpleadoDialog.this.nombre);
+									ModificarEmpleadoDialog.this.dniid);
 							historialRopa.setVisible(true);
 						}
 					});

@@ -102,7 +102,7 @@ public class Principal {
 		proyecto.setBackground(new Color(192, 192, 192));
 		
 		//BOTON MAQUINARIA
-		JButton maquinaria = new JButton("Gestionar Maquinaria");
+		JButton maquinaria = new JButton("Gestionar Maquinarias");
 		maquinaria.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				MaquinariaDialog maquinariaDialog = new MaquinariaDialog();
@@ -123,7 +123,6 @@ public class Principal {
 		panel5.add(lblNewLabel);
 		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		lblNewLabel.setIcon(new ImageIcon(Principal.class.getResource("/Vista/img/3.2 400x400.png")));
-		
 	}
 
 }

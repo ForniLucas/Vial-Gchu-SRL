@@ -10,48 +10,40 @@ import javax.swing.border.EmptyBorder;
 
 import Controladoras.ControladorEmpleado;
 import Domain.Empleado;
+import Domain.Especializacion;
+import Enumeraciones.EstadoProyecto;
 import Enumeraciones.Profesion;
 import Enumeraciones.RolEmpleado;
+import Enumeraciones.TipoDeProyecto;
 
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 import javax.swing.JComboBox;
 import java.awt.event.ActionListener;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.awt.event.ActionEvent;
+import Enumeraciones.Profesion;
 
 public class EspecializacionDialog extends JDialog {
 
 	private final JPanel contentPanel = new JPanel();
 	private JTextField dniTxt;
 	private String dni;
-	private JComboBox espComboBox = new JComboBox(Profesion.values());
-	private JComboBox rolComboBox = new JComboBox(RolEmpleado.values());
+	private JComboBox<Profesion> espComboBox= new JComboBox<Profesion>(Profesion.values());
+	private JComboBox<RolEmpleado> rolComboBox = new JComboBox<RolEmpleado>(RolEmpleado.values());
 	private ControladorEmpleado controlador = new ControladorEmpleado();
 	private Empleado empleado = new Empleado();
+
 	/**
 	 * Launch the application.
 	 */
-	/*
-	public static void main(String[] args) {
-		try {
-			EspecializacionDialog dialog = new EspecializacionDialog();
-			dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
-			dialog.setVisible(true);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-	}
-|*/
 	/**
 	 * Create the dialog.
 	 */
-	public EspecializacionDialog(HistorialEspecializacionDialog dialog, String dni) {
+	public EspecializacionDialog(HistorialEspecializacionDialog dialog, String dniid) {
 		super(dialog, "EspecializacionDialog",true);
-		
-		this.dni = dni;
-		
-		dniTxt.setText(dni);
-		
+		this.dni = dniid;
 		setBounds(50, 50, 450, 360);
 		this.setResizable(false);
 		this.setTitle("ROPA DE TRABAJO");
@@ -70,15 +62,16 @@ public class EspecializacionDialog extends JDialog {
 			contentPanel.add(dniTxt);
 			dniTxt.setColumns(250);
 			dniTxt.setEnabled(false);
+			dniTxt.setText(dni);
 		}
 		{
 			JLabel tipoLbl = new JLabel("Especializacion:");
-			tipoLbl.setBounds(96, 109, 72, 13);
+			tipoLbl.setBounds(96, 109, 126, 13);
 			contentPanel.add(tipoLbl);
 		}
 		{
 			JLabel lblNewLabel_1 = new JLabel("Rol:");
-			lblNewLabel_1.setBounds(150, 164, 18, 13);
+			lblNewLabel_1.setBounds(150, 164, 72, 13);
 			contentPanel.add(lblNewLabel_1);
 		}
 		{
@@ -99,8 +92,13 @@ public class EspecializacionDialog extends JDialog {
 				JButton guardarBtn = new JButton("Guardar");
 				guardarBtn.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
-						empleado = controlador.buscarDNI(Integer.parseInt(dniTxt.getText()));
-						//controlador.asignarEspecializacion(empleado, null);
+						empleado = controlador.buscarDNI(Integer.parseInt(dni));
+						LocalDate currentDate = LocalDate.now();
+				        Profesion prof = (Profesion)espComboBox.getSelectedItem();
+				        RolEmpleado rol =(RolEmpleado)rolComboBox.getSelectedItem();
+				        Especializacion especializacion = new Especializacion(empleado,prof, currentDate, rol);
+				       
+				        controlador.asignarEspecializacion(empleado, especializacion);
 					}
 				});
 				guardarBtn.setActionCommand("OK");

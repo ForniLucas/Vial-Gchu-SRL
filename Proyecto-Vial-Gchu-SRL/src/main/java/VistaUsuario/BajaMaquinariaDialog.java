@@ -69,7 +69,7 @@ public class BajaMaquinariaDialog extends JDialog {
 		contentPanel.setLayout(null);
 		{
 			JLabel lblNewLabel = new JLabel("Ingrese Codigo de la Maquinaria");
-			lblNewLabel.setBounds(20, 31, 173, 13);
+			lblNewLabel.setBounds(20, 31, 246, 13);
 			contentPanel.add(lblNewLabel);
 		}
 		{

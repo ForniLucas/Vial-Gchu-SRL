@@ -56,10 +56,10 @@ public class UtilizaDialog extends JDialog {
 	/**
 	 * Create the dialog.
 	 */
-	public UtilizaDialog(HistorialUtiliza dialog1, String idproyecto, String codigo) {
+	public UtilizaDialog(HistorialUtiliza dialog1, String idproyecto) {
 		super(dialog1, "UtilizaDialog",true);
 		this.idproyecto = idproyecto;
-		this.codigo = codigo;
+		
 		
 		codigoTxt.setText(codigo);
 		proyecto = controladorP.buscarID(Integer.parseInt(idproyecto));
@@ -85,7 +85,7 @@ public class UtilizaDialog extends JDialog {
 		contentPanel.add(fechaInicioLbl);
 		
 		JLabel lblNewLabel = new JLabel("Fecha Estimada de Fin");
-		lblNewLabel.setBounds(131, 317, 125, 13);
+		lblNewLabel.setBounds(131, 317, 185, 13);
 		contentPanel.add(lblNewLabel);
 		
 		

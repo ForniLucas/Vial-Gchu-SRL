@@ -50,11 +50,11 @@ public class ModificarMaquinariaDialog extends JDialog {
 	/**
 	 * Create the dialog.
 	 */
-	public ModificarMaquinariaDialog(MaquinariaDialog dialog, String codigo) {
+	public ModificarMaquinariaDialog(MaquinariaDialog dialog, String codigoid) {
 		super(dialog, "BajaEmpleadoDialog",true);
-		this.codigo = codigo;
+		this.codigo = codigoid;
 		
-		legajoTxt.setText(codigo);
+		
 		
 		setBounds(50, 50, 600, 700);
 		this.setResizable(false);
@@ -64,72 +64,73 @@ public class ModificarMaquinariaDialog extends JDialog {
 		getContentPane().add(contentPanel, BorderLayout.CENTER);
 		contentPanel.setLayout(null);
 		{
-			JLabel lblNewLabel = new JLabel("Ingresar el Legajo de la Maquinaria");
-			lblNewLabel.setBounds(28, 54, 177, 13);
+			JLabel lblNewLabel = new JLabel("Ingresar el código de la Maquinaria");
+			lblNewLabel.setBounds(40, 54, 212, 13);
 			contentPanel.add(lblNewLabel);
 		}
 		{
 			JLabel lblNewLabel_1 = new JLabel("Código");
-			lblNewLabel_1.setBounds(220, 146, 45, 13);
+			lblNewLabel_1.setBounds(186, 135, 96, 13);
 			contentPanel.add(lblNewLabel_1);
 		}
 		{
 			JLabel lblNewLabel_2 = new JLabel("Descripción");
-			lblNewLabel_2.setBounds(197, 238, 68, 13);
+			lblNewLabel_2.setBounds(163, 264, 119, 13);
 			contentPanel.add(lblNewLabel_2);
 		}
 		{
 			JLabel lblNewLabel_3 = new JLabel("Fabricante");
-			lblNewLabel_3.setBounds(201, 330, 64, 13);
+			lblNewLabel_3.setBounds(163, 393, 119, 13);
 			contentPanel.add(lblNewLabel_3);
 		}
 		{
 			JLabel lblNewLabel_4 = new JLabel("Ubicación de Almacenamiento");
-			lblNewLabel_4.setBounds(113, 422, 152, 13);
+			lblNewLabel_4.setBounds(84, 519, 198, 13);
 			contentPanel.add(lblNewLabel_4);
 		}
-		{
+		/*{
 			JLabel lblNewLabel_5 = new JLabel("Estado");
-			lblNewLabel_5.setBounds(220, 514, 45, 13);
+			lblNewLabel_5.setBounds(220, 514, 75, 13);
 			contentPanel.add(lblNewLabel_5);
-		}
+		}*/
 		{
 			legajoTxt = new JTextField();
 			legajoTxt.setBounds(250, 51, 96, 19);
 			contentPanel.add(legajoTxt);
 			legajoTxt.setColumns(255);
+			legajoTxt.setText(codigo);
 		}
 		{
 			
-			codigoTxt.setBounds(305, 143, 96, 19);
+			codigoTxt.setBounds(299, 132, 96, 19);
 			contentPanel.add(codigoTxt);
 			codigoTxt.setColumns(255);
 		}
 		{
 			
-			descripcionTxt.setBounds(305, 235, 152, 19);
+			descripcionTxt.setBounds(299, 261, 152, 19);
 			contentPanel.add(descripcionTxt);
 			descripcionTxt.setColumns(255);
 		}
 		{
 			
-			fabricanteTxt.setBounds(305, 327, 96, 19);
+			fabricanteTxt.setBounds(299, 390, 96, 19);
 			contentPanel.add(fabricanteTxt);
 			fabricanteTxt.setColumns(255);
 		}
 		{
 			
-			ubicacionTxt.setBounds(305, 419, 152, 19);
+			ubicacionTxt.setBounds(299, 516, 152, 19);
 			contentPanel.add(ubicacionTxt);
 			ubicacionTxt.setColumns(255);
 		}
-		{
+		/*{
 			
-			estadoBox.setBounds(305, 510, 96, 21);
+			estadoBox.setBounds(305, 510, 119, 21);
 			estadoBox.addItem("En servicio");
 		    estadoBox.addItem("Fuera de Servicio");
 			contentPanel.add(estadoBox);
-		}
+		}*/
 		{
 			JButton buscarBtn = new JButton("Buscar");
 			buscarBtn.addActionListener(new ActionListener() {
@@ -148,7 +149,7 @@ public class ModificarMaquinariaDialog extends JDialog {
 					}
 				}
 			});
-			buscarBtn.setBounds(426, 50, 85, 21);
+			buscarBtn.setBounds(416, 50, 85, 21);
 			contentPanel.add(buscarBtn);
 		}
 		{
@@ -170,12 +171,12 @@ public class ModificarMaquinariaDialog extends JDialog {
 							maquina.setFabricante(fabricante);
 							maquina.setUbicacionAlmacenamiento(ubicacion);
 
-							if (estado.equals("En servicio")) {
+							/*if (estado.equals("En servicio")) {
 								maquina.setEstadoAlta();
 							}else {
 								maquina.setEstadoBaja();
 							}
-							
+							*/
 							controlador.modificar(maquina);
 						} catch (Exception e1) {
 							optionPane.showMessageDialog(null, "Error al modificar Maquinaria: " + e1.getMessage());

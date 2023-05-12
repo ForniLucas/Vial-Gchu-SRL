@@ -56,8 +56,9 @@ public class Especializacion implements java.io.Serializable {
     
     
     
-	public Especializacion( Profesion tipo, LocalDate fechaActualizacion, RolEmpleado unRol) {
-        this.id = null;
+	public Especializacion(Empleado unEmpleado, Profesion tipo, LocalDate fechaActualizacion, RolEmpleado unRol) {
+        this.setEmpleado(unEmpleado);
+		this.id = null;
         this.profesion = tipo;
         this.fechaActualizacion = fechaActualizacion;
         this.rol = unRol;
