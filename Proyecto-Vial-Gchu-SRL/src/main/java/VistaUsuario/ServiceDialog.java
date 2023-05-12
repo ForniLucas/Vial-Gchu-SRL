@@ -16,6 +16,9 @@ import Domain.Maquinaria;
 import Domain.Service;
 
 import java.awt.event.ActionListener;
+import java.sql.Date;
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
 import java.util.Iterator;
 import java.awt.event.ActionEvent;
 import javax.swing.JLabel;
@@ -33,8 +36,8 @@ public class ServiceDialog extends JDialog {
 	JTable table = new JTable(mt);
 	JScrollPane scrollPane = new JScrollPane(); 
 	ControladorMaquinaria controladorMaquinaria = new ControladorMaquinaria();
-	public String codigo = new String();
-
+	private String codigo = new String();
+	private Maquinaria maquinaria = new Maquinaria(); 
 	/**
 	 * Launch the application.
 	 */
@@ -52,11 +55,9 @@ public class ServiceDialog extends JDialog {
 	/**
 	 * Create the dialog.
 	 */
-	public ServiceDialog(MaquinariaDialog dialog, String codigo) {
+	public ServiceDialog(MaquinariaDialog dialog, String codigoid) {
 		super(dialog, "ServiceDialog",true);
-		this.codigo = codigo;
-		
-		legajoTxt.setText(codigo);
+		this.codigo = codigoid;
 		
 		setBounds(50, 50, 600, 500);
 		getContentPane().setLayout(new BorderLayout());
@@ -80,11 +81,14 @@ public class ServiceDialog extends JDialog {
 			legajoTxt.setBounds(232, 19, 119, 19);
 			contentPanel.add(legajoTxt);
 			legajoTxt.setColumns(255);
+			legajoTxt.setText(codigo);
 		}
 		{
 			JButton buscarBtn = new JButton("Buscar");
 			buscarBtn.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
+					//maquinaria = controladorMaquinaria.buscar(codigo);
+					cargarService();
 				}
 			});
 			buscarBtn.setBounds(416, 18, 85, 21);
@@ -133,6 +137,15 @@ public class ServiceDialog extends JDialog {
 				JButton serviceBtn = new JButton("Añadir Service");
 				serviceBtn.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
+						//control TRY CATCH, si hay algo en los TxtField debería pasar lo de abajo, si no hay nada, error y no se añade nada
+						String inicio = fechaInicioTxt.getText();
+						String fin = fechaFinTxt.getText();
+						String obs = observacionesTxt.getText();
+						SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
+						/*
+						Service service = new Service(fechainicio, fechafin, obs);
+						maquinaria.asignarService(service);
+						actualizarTabla();*/
 					}
 				});
 				serviceBtn.setActionCommand("OK");
@@ -156,7 +169,7 @@ public class ServiceDialog extends JDialog {
 	
 	public void cargarService() {
 		DefaultTableModel modeloTablaService = (DefaultTableModel) table.getModel();
-		Maquinaria maquinaria = new Maquinaria();
+		//Maquinaria maquinaria = new Maquinaria();
 		maquinaria = controladorMaquinaria.buscar(codigo);
 		Iterator <Service>iterador = maquinaria.getServices().iterator();
 			while (iterador.hasNext()) {
@@ -166,5 +179,11 @@ public class ServiceDialog extends JDialog {
 				modeloTablaService.addRow(fila);
 			}
 	}
-
+	public void actualizarTabla() {
+		 DefaultTableModel modelo = (DefaultTableModel) table.getModel();
+		    modelo.setRowCount(0); // Limpia la tabla
+		    cargarService();
+	}
 }
+
+

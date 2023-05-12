@@ -57,10 +57,9 @@ public class TrabajaDialog extends JDialog {
 	/**
 	 * Create the dialog.
 	 */
-	public TrabajaDialog(HistorialTrabaja dialog1, String idproyecto, String dni) {
+	public TrabajaDialog(HistorialTrabaja dialog1, String idproyectoc) {
 		super(dialog1, "UtilizaDialog",true);
-		this.idproyecto = idproyecto;
-		this.dni = dni;
+		this.idproyecto = idproyectoc;
 		
 		this.setResizable(false);
 		this.setTitle("ASIGNAR EMPLEADOS AL PROYECTO");
@@ -137,6 +136,7 @@ public class TrabajaDialog extends JDialog {
 				okButton.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
 						if (empleado.getApellido()!= null) {
+							controladorP.buscarID(Integer.parseInt(idproyecto));
 							String fechaInicioString = fechaInicioTxt.getText(); // Get the value of the JTextField as a String
 							DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy"); // Specify the input format
 							LocalDate fechaInicio = LocalDate.parse(fechaInicioString, formatter); // Convert the String to a LocalDate object using the formatter

@@ -82,82 +82,93 @@ public class ModificarProyectoDialog extends JDialog {
 		contentPanel.setLayout(null);
 		{
 			JLabel lblNewLabel = new JLabel("Ingrese el Legajo:");
-			lblNewLabel.setBounds(38, 43, 109, 13);
+			lblNewLabel.setBounds(69, 18, 120, 13);
 			contentPanel.add(lblNewLabel);
 		}
 		{
 			JLabel lblNewLabel_1 = new JLabel("Fecha de Inicio");
-			lblNewLabel_1.setBounds(94, 112, 84, 13);
+			lblNewLabel_1.setBounds(140, 54, 120, 13);
 			contentPanel.add(lblNewLabel_1);
 		}
 		{
 			JLabel lblNewLabel_2 = new JLabel("Fecha Estimada de Fin");
-			lblNewLabel_2.setBounds(64, 166, 129, 13);
+			lblNewLabel_2.setBounds(105, 100, 170, 13);
 			contentPanel.add(lblNewLabel_2);
 		}
 		{
 			JLabel lblNewLabel_3 = new JLabel("Estado");
-			lblNewLabel_3.setBounds(133, 220, 45, 13);
+			lblNewLabel_3.setBounds(169, 155, 120, 13);
 			contentPanel.add(lblNewLabel_3);
 		}
 		{
 			JLabel lblNewLabel_4 = new JLabel("Nombre de Proyecto");
-			lblNewLabel_4.setBounds(75, 274, 129, 13);
+			lblNewLabel_4.setBounds(118, 210, 120, 13);
 			contentPanel.add(lblNewLabel_4);
 		}
 		{
 			JLabel lblNewLabel_5 = new JLabel("Tipo De Proyecto");
-			lblNewLabel_5.setBounds(91, 324, 102, 13);
+			lblNewLabel_5.setBounds(129, 265, 120, 13);
 			contentPanel.add(lblNewLabel_5);
 		}
 		{
 			JLabel lblNewLabel_6 = new JLabel("Descripción");
-			lblNewLabel_6.setBounds(107, 382, 71, 13);
+			lblNewLabel_6.setBounds(157, 430, 120, 13);
 			contentPanel.add(lblNewLabel_6);
 		}
 		
 		{
 			
-			legajoTxt.setBounds(193, 40, 151, 19);
+			legajoTxt.setBounds(199, 15, 151, 19);
 			contentPanel.add(legajoTxt);
 			legajoTxt.setColumns(255);
 		}
 		{
 			
 			fechaDeInicioTxt.setText("dd/mm/aaaa");
-			fechaDeInicioTxt.setBounds(214, 109, 96, 19);
+			fechaDeInicioTxt.setBounds(254, 51, 96, 19);
 			contentPanel.add(fechaDeInicioTxt);
 			fechaDeInicioTxt.setColumns(255);
 		}
 		{
-		//(64, 166, 129, 13)
+		//105, 100, 109, 13
 			fechaFinTxt.setText("dd/mm/aaaa");
-			fechaFinTxt.setBounds(214, 163, 96, 19);
+			fechaFinTxt.setBounds(254, 97, 96, 19);
 			contentPanel.add(fechaFinTxt);
 			fechaFinTxt.setColumns(255);
 		}
 		{
-			//(133, 220, 45, 13)
-			estadoBox.setBounds(214, 217, 96, 19);
+			//169, 155, 45, 13
+			estadoBox.setBounds(254, 152, 96, 19);
 		    contentPanel.add(estadoBox);
 		}
 		{
 			
-			nombreTxt.setBounds(214, 271, 247, 19);
+			nombreTxt.setBounds(254, 207, 247, 19);
 			contentPanel.add(nombreTxt);
 			nombreTxt.setColumns(255);
 		}
 		{
 			
-			descripcionTxt.setBounds(214, 379, 247, 45);
+			descripcionTxt.setBounds(254, 414, 247, 45);
 			contentPanel.add(descripcionTxt);
 			descripcionTxt.setColumns(255);
 		}
-		//(78, 328, 100, 13)
+		//129, 265, 85, 13
 		{
 			
-			tipoBox.setBounds(214, 325, 130, 21);
+			tipoBox.setBounds(254, 262, 130, 21);
 			contentPanel.add(tipoBox);
+			
+		}
+		{
+			actividadesTxt.setBounds(254, 321, 196, 19);
+			contentPanel.add(actividadesTxt);
+			actividadesTxt.setColumns(225);
+		}
+		{
+			insumosTxt.setBounds(254, 372, 196, 19);
+			contentPanel.add(insumosTxt);
+			insumosTxt.setColumns(225);
 		}
 		{
 			JButton buscarBtn = new JButton("Buscar");
@@ -182,8 +193,18 @@ public class ModificarProyectoDialog extends JDialog {
 					
 				}
 			});
-			buscarBtn.setBounds(391, 39, 85, 21);
+			buscarBtn.setBounds(376, 14, 85, 21);
 			contentPanel.add(buscarBtn);
+		}
+		{
+			JLabel actLbl = new JLabel("Actividades");
+			actLbl.setBounds(157, 320, 120, 13);
+			contentPanel.add(actLbl);
+		}
+		{
+			JLabel insumosLbl = new JLabel("Insumos");
+			insumosLbl.setBounds(169, 375, 120, 13);
+			contentPanel.add(insumosLbl);
 		}
 		{
 			JPanel buttonPane = new JPanel();

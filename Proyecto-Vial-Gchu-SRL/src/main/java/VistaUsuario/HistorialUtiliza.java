@@ -51,9 +51,9 @@ public class HistorialUtiliza extends JDialog {
 	/**
 	 * Create the dialog.
 	 */
-	public HistorialUtiliza(ModificarProyectoDialog dialog, String id) {
+	public HistorialUtiliza(ModificarProyectoDialog dialog, String idc) {
 		super(dialog, "HistorialUtiliza",true);
-		this.id = id;
+		this.id = idc;
 		
 		setBounds(50, 50, 600, 600);
 		this.setResizable(false);
@@ -94,7 +94,8 @@ public class HistorialUtiliza extends JDialog {
 				});
 				asignarMaquinariaBtn.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
-						UtilizaDialog utiliza = new UtilizaDialog(HistorialUtiliza.this, HistorialUtiliza.this.id, HistorialUtiliza.this.codigo);
+						UtilizaDialog utiliza = new UtilizaDialog(HistorialUtiliza.this, id);
+						setVisible(false);
 						utiliza.setVisible(true);
 					}
 				});
