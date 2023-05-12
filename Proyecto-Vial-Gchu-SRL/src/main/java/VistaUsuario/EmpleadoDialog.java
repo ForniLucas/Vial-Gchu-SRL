@@ -13,6 +13,7 @@ import Domain.Empleado;
 import Controladoras.ControladorEmpleado;
 import java.awt.event.ActionListener;
 import java.util.Iterator;
+import java.util.LinkedList;
 import java.util.List;
 import java.awt.event.ActionEvent;
 import javax.swing.JTable;
@@ -112,7 +113,55 @@ public class EmpleadoDialog extends JDialog {
 		JButton buscarBtn = new JButton("Buscar");
 		buscarBtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
+				try {
+				    String dni = busquedaDniTxt.getText();
+				    String apellido = busquedaApellidoTxt.getText();
+				    String nombre = busquedaNombreTxt.getText();
+
+				    // Asegurarse que si nombre tiene algo, entonces apellido debe tener algo, pero NO dni
+				    if (!nombre.isEmpty() && dni.isEmpty()) {
+				        if (apellido.isEmpty()) {
+				            throw new Exception("Debe ingresar el apellido si se ingresa el nombre.");
+				        }
+				        cargarEmpleados(nombre, apellido);
+				    }
+				    // Asegurarse que si apellido tiene algo, entonces nombre debe tener algo, pero NO dni
+				    else if (!apellido.isEmpty() && dni.isEmpty()) {
+				        if (nombre.isEmpty()) {
+				            throw new Exception("Debe ingresar el nombre si se ingresa el apellido.");
+				        }
+				        cargarEmpleados(nombre, apellido);
+				    }
+				    // Si los campos nombre y apellido están completos, buscar por nombre y apellido
+				    else if (!nombre.isEmpty() && !apellido.isEmpty() && dni.isEmpty()) {
+				        cargarEmpleados(nombre, apellido);
+				    }
+				    // Si el campo dni está completo, buscar por dni
+				    else if (!dni.isEmpty() && nombre.isEmpty() && apellido.isEmpty()) {
+				        int dniBuscado = Integer.parseInt(dni);
+				        cargarEmpleado(dniBuscado);
+				    }
+				    // Asegurarse que si dni tiene algo, entonces nombre y apellido deben estar vacíos
+				    else if (!dni.isEmpty() && nombre.isEmpty() && apellido.isEmpty()) {
+				        int dniBuscado = Integer.parseInt(dni);
+				        cargarEmpleado(dniBuscado);
+				    }
+				    // Si no se ingresó ningún campo, cargar todos los empleados
+				    else if (dni.isEmpty() && nombre.isEmpty() && apellido.isEmpty()) {
+				    	actualizarTabla();
+				    }
+				    // Si se ingresó más de un campo, mostrar mensaje de error
+				    else {
+				        throw new Exception("Debe ingresar solamente un criterio de búsqueda.");
+				    }
+
+				} catch (NumberFormatException ex) {
+				    // Si el dni ingresado no es un número válido, mostrar mensaje de error
+				    optionPane.showMessageDialog(null, "El DNI ingresado no es válido.");
+				} catch (Exception ex) {
+				    optionPane.showMessageDialog(null, ex.getMessage());
+				}
+
 			}
 		});
 		buscarBtn.setBounds(1201, 26, 85, 19);
@@ -193,6 +242,7 @@ public class EmpleadoDialog extends JDialog {
 	
 	public void cargarEmpleados(){
 		DefaultTableModel modeloTablaEmpleado = (DefaultTableModel) table.getModel();
+		modeloTablaEmpleado.setRowCount(0);
 		List<Empleado> filasTablaEmpleado = controladorEmpleado.listarEmpleados();
 		Iterator<Empleado> iterador = filasTablaEmpleado.iterator();
 		while (iterador.hasNext()) {
@@ -206,7 +256,41 @@ public class EmpleadoDialog extends JDialog {
 		
 	}
 	
-	public void refrescar() {
-		table.repaint();;
+	public void cargarEmpleados(String pnombre,String papellido) {
+		DefaultTableModel modeloTablaEmpleado = (DefaultTableModel) table.getModel();
+		modeloTablaEmpleado.setRowCount(0);
+		List<Empleado> filasTablaEmpleado = controladorEmpleado.buscarApellidoyNombre(pnombre, papellido);
+		Iterator<Empleado> iterador = filasTablaEmpleado.iterator();
+		while (iterador.hasNext()) {
+			Empleado empleado = (Empleado) iterador.next();
+			String estado = empleado.getEstado()? "Activo" : "Inactivo";
+			String fila[] = {String.valueOf(empleado.getId()),String.valueOf(empleado.getApellido()),String.valueOf(empleado.getNombre()),
+					String.valueOf(empleado.getDni()),String.valueOf(empleado.getTelefono()),String.valueOf(empleado.getDireccion()),
+					String.valueOf(empleado.getFechaNac()),String.valueOf(estado)};
+			modeloTablaEmpleado.addRow(fila);
+		}
+	}
+	
+	public void cargarEmpleado(int pDni) {
+		DefaultTableModel modeloTablaEmpleado = (DefaultTableModel) table.getModel();
+		modeloTablaEmpleado.setRowCount(0);
+		List<Empleado> empleadosEncontrados = new LinkedList<Empleado>();
+		Empleado empleadoEncontrado = controladorEmpleado.buscarDNI(pDni);
+		if (empleadoEncontrado != null) empleadosEncontrados.add(empleadoEncontrado);
+		List<Empleado> filasTablaEmpleado = empleadosEncontrados;
+		Iterator<Empleado> iterador = filasTablaEmpleado.iterator();
+		while (iterador.hasNext()) {
+			Empleado empleado = (Empleado) iterador.next();
+			String estado = empleado.getEstado()? "Activo" : "Inactivo";
+			String fila[] = {String.valueOf(empleado.getId()),String.valueOf(empleado.getApellido()),String.valueOf(empleado.getNombre()),
+					String.valueOf(empleado.getDni()),String.valueOf(empleado.getTelefono()),String.valueOf(empleado.getDireccion()),
+					String.valueOf(empleado.getFechaNac()),String.valueOf(estado)};
+			modeloTablaEmpleado.addRow(fila);
+			}
+	}
+	public void actualizarTabla() {
+		 DefaultTableModel modelo = (DefaultTableModel) table.getModel();
+		    modelo.setRowCount(0); // Limpia la tabla
+		    cargarEmpleados();
 	}
 }

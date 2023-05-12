@@ -21,6 +21,13 @@
       <version>3.8.1</version>
       <scope>test</scope>
       </dependency>
+      
+     <dependency>
+    <groupId>com.itextpdf</groupId>
+    <artifactId>layout</artifactId>
+    <version>7.2.5</version>
+</dependency>
+
 <dependency>
     <groupId>javax.persistence</groupId>
     <artifactId>javax.persistence-api</artifactId>
@@ -31,6 +38,14 @@
         <artifactId>hibernate-core</artifactId>
         <version>5.6.10.Final</version>
     </dependency>
+    
+
+<dependency>
+    <groupId>com.itextpdf</groupId>
+    <artifactId>itextpdf</artifactId>
+    <version>5.5.13.3</version>
+</dependency>
+
     
 	
 	<dependency>
