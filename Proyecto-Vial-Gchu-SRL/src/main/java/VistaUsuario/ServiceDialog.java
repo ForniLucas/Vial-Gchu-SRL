@@ -18,6 +18,7 @@ import Domain.Service;
 import java.awt.event.ActionListener;
 import java.sql.Date;
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
 import java.util.Iterator;
 import java.awt.event.ActionEvent;
 import javax.swing.JLabel;
@@ -141,11 +142,10 @@ public class ServiceDialog extends JDialog {
 						String fin = fechaFinTxt.getText();
 						String obs = observacionesTxt.getText();
 						SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
-						Date fechainicio = (Date) formatter.parse(inicio);
-						Date fechafin = (Date) formatter.parse(fin);
+						/*
 						Service service = new Service(fechainicio, fechafin, obs);
 						maquinaria.asignarService(service);
-						actualizarTabla();
+						actualizarTabla();*/
 					}
 				});
 				serviceBtn.setActionCommand("OK");
