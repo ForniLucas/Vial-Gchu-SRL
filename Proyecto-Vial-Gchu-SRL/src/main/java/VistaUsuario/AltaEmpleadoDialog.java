@@ -148,8 +148,9 @@ public class AltaEmpleadoDialog extends JDialog {
 						controlador.alta(nombre, apellido, dni, telefono, direccion, fechaDeNacimiento);
 						optionPane.showMessageDialog(null,"Datos almacenados con éxito");
 						//controlador.asignarElementoDeSeguridad(controlador.buscarDNI(dni), especializacion);
-						
-						
+						setVisible(false);
+						EmpleadoDialog empleados = new EmpleadoDialog();
+						empleados.setVisible(true);
 						
 					}
 				});

@@ -65,8 +65,9 @@ public class ElementoDeSeguridadDialog extends JDialog {
 		}
 		{
 			
-			tipoBox.setBounds(218, 176, 113, 21);
+			tipoBox.setBounds(218, 176, 153, 21);
 			contentPanel.add(tipoBox);
+	
 		}
 		
 		textField = new JTextField();

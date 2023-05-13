@@ -64,7 +64,7 @@ public class ServiceDialog extends JDialog {
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
 		getContentPane().add(contentPanel, BorderLayout.CENTER);
 		contentPanel.setLayout(null);
-		legajoTxt.setText(codigo);
+		
 		//Formato de tabla
 		mt.setColumnIdentifiers(ids);
 		table.setBounds(26, 71, 532, 112);
@@ -82,6 +82,7 @@ public class ServiceDialog extends JDialog {
 			contentPanel.add(legajoTxt);
 			legajoTxt.setColumns(255);
 			legajoTxt.setText(codigo);
+			
 		}
 		{
 			JButton buscarBtn = new JButton("Buscar");

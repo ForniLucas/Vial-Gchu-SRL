@@ -46,7 +46,7 @@ public class EspecializacionDialog extends JDialog {
 		this.dni = dniid;
 		setBounds(50, 50, 450, 360);
 		this.setResizable(false);
-		this.setTitle("ROPA DE TRABAJO");
+		this.setTitle("ESPECIALIZACIÓN");
 		
 		getContentPane().setLayout(new BorderLayout());
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));

@@ -202,7 +202,9 @@ public class AltaProyectoDialog extends JDialog {
 						
 						controlador.alta(proyecto);
 						optionPane.showMessageDialog(null,"Datos modificados con éxito");
-						
+						setVisible(false);
+						ProyectoDialog proyectoDialog = new ProyectoDialog();
+						proyectoDialog.setVisible(true);
 						
 					}
 				});
