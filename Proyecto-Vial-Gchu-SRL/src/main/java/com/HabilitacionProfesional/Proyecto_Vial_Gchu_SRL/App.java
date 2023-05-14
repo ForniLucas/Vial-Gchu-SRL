@@ -11,7 +11,7 @@ import Domain.Empleado;
 import Domain.Maquinaria;
 import Domain.Proyecto;
 import Domain.Trabajo;
-import TemplatesPDF.ControladorPlantillas;
+//import TemplatesPDF.ControladorPlantillas;
 
 /**
  * Hello world!
@@ -22,8 +22,8 @@ public class App
     public static void main( String[] args )
     {
     	//Long id = (long) 1;
-    	ControladorPlantillas plant = new ControladorPlantillas();
-    	plant.crearPlantilla();
+    	//ControladorPlantillas plant = new ControladorPlantillas();
+    	//plant.crearPlantilla();
 
     	
 
