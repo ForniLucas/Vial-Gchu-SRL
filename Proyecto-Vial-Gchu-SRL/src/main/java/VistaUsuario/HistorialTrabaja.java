@@ -93,7 +93,7 @@ public class HistorialTrabaja extends JDialog {
 					}
 				});
 				
-				JButton asignarBtn = new JButton("Asignar Empleado");
+				JButton asignarBtn = new JButton("Asociar Empleado");
 				asignarBtn.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
 						TrabajaDialog trabaja = new TrabajaDialog(HistorialTrabaja.this, id);

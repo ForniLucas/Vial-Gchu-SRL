@@ -77,7 +77,7 @@ public class HistorialRopaDeTrabajoDialog extends JDialog {
 			buttonPane.setLayout(new FlowLayout(FlowLayout.RIGHT));
 			getContentPane().add(buttonPane, BorderLayout.SOUTH);
 			{
-				JButton asginarBtn = new JButton("Asignar Nueva Ropa De Trabajo");
+				JButton asginarBtn = new JButton("Asociar Nueva Ropa De Trabajo");
 				asginarBtn.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
 						setVisible(false);

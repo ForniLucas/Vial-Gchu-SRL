@@ -62,7 +62,7 @@ public class TrabajaDialog extends JDialog {
 		this.idproyecto = idproyectoc;
 		
 		this.setResizable(false);
-		this.setTitle("ASIGNAR EMPLEADOS AL PROYECTO");
+		this.setTitle("ASOCIAR EMPLEADOS AL PROYECTO");
 		setBounds(50,50, 550, 500);
 		getContentPane().setLayout(new BorderLayout());
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -132,7 +132,7 @@ public class TrabajaDialog extends JDialog {
 			buttonPane.setLayout(new FlowLayout(FlowLayout.RIGHT));
 			getContentPane().add(buttonPane, BorderLayout.SOUTH);
 			{
-				JButton okButton = new JButton("Asignar");
+				JButton okButton = new JButton("Guardar");
 				okButton.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
 						if (empleado.getApellido()!= null) {

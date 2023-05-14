@@ -65,7 +65,7 @@ public class UtilizaDialog extends JDialog {
 		proyecto = controladorP.buscarID(Integer.parseInt(idproyecto));
 		
 		this.setResizable(false);
-		this.setTitle("ASIGNAR MAQUINARIA AL PROYECTO");
+		this.setTitle("ASOCIAR MAQUINARIA AL PROYECTO");
 		setBounds(50,50, 550, 500);
 		getContentPane().setLayout(new BorderLayout());
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -133,7 +133,7 @@ public class UtilizaDialog extends JDialog {
 			buttonPane.setLayout(new FlowLayout(FlowLayout.RIGHT));
 			getContentPane().add(buttonPane, BorderLayout.SOUTH);
 			{
-				JButton asignarBtn = new JButton("Asignar");
+				JButton asignarBtn = new JButton("Guardar");
 				asignarBtn.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
 						String fechaInicioString = fechaInicioTxt.getText(); 

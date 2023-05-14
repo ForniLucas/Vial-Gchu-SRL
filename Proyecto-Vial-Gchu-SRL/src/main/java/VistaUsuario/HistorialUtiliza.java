@@ -32,7 +32,7 @@ public class HistorialUtiliza extends JDialog {
 	private DefaultTableModel mt = new DefaultTableModel();
 	private JTable table = new JTable(mt);
 	private JScrollPane scrollPane = new JScrollPane();
-	private final JButton asignarMaquinariaBtn = new JButton("Asignar Maquinaria");
+	private final JButton asignarMaquinariaBtn = new JButton("Asociar Maquinaria");
 	private String codigo = new String();
 	/**
 	 * Launch the application.

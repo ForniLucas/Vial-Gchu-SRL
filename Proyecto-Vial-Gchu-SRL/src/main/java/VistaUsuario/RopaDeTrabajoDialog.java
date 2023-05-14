@@ -127,8 +127,7 @@ public class RopaDeTrabajoDialog extends JDialog {
 						} catch (Exception e1) {
 							optionPane.showMessageDialog(null, "Error al Guardar: " + e1.getMessage());
 						}
-						
-						
+
 					}
 				});
 				guardarBtn.setActionCommand("OK");

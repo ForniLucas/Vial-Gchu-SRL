@@ -80,7 +80,7 @@ public class HistorialElementoDeSeguridadDialog extends JDialog {
 			buttonPane.setLayout(new FlowLayout(FlowLayout.RIGHT));
 			getContentPane().add(buttonPane, BorderLayout.SOUTH);
 			{
-				JButton modificarBtn = new JButton("Asignar Nuevo Elemento de Seguridad");
+				JButton modificarBtn = new JButton("Asociar Nuevo Elemento de Seguridad");
 				modificarBtn.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
 						setVisible(false);
