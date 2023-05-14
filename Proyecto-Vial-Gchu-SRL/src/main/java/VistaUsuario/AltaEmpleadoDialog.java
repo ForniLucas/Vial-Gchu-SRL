@@ -163,12 +163,15 @@ public class AltaEmpleadoDialog extends JDialog {
 						    } catch (DateTimeParseException e2) {
 						        optionPane.showMessageDialog(null, "La fecha de nacimiento debe tener formato dd/MM/yyyy.");
 						        return;
-						        }
-
-						    
-						} catch (Exception e4) {
-						    optionPane.showMessageDialog(null,"Ocurrió un error al procesar los datos: " + e4.getMessage());
-						}
+						        
+						    }catch (RuntimeException ex ){
+						    	optionPane.showMessageDialog(null, ex.getMessage());
+						        return;
+						    }
+							} catch (Exception e4) {
+								optionPane.showMessageDialog(null,"Ocurrió un error al procesar los datos: " + e4.getMessage());
+								return;
+							}
 
   
 					}
@@ -221,6 +224,16 @@ public class AltaEmpleadoDialog extends JDialog {
 		    JOptionPane.showMessageDialog(null, "Ingrese un DNI válido (solo números).");
 		    resultado = false;
 		}
+		
+		// Validar la no existencia del usuario
+		int dni = 0;
+		dni = Integer.parseInt(dniString);
+		Empleado empleado = controlador.buscarDNI(dni);
+		if (!(empleado.getNombre() == null)) {
+			JOptionPane.showMessageDialog(null, "Ya existe un empleado con el mismo dni.");
+			resultado = false;
+		}
+
 
 		// Validar número de teléfono
 		try {
