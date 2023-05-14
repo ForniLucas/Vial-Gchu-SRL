@@ -43,8 +43,6 @@ public class ControladorEmpleado
 	      session = factory.openSession();
 	      transaction = session.beginTransaction();
 	      
-	      
-	      
 	      // Agregar el empleado a la lista y guardar en la base de datos
 	      Empleado empleado = new Empleado(nombre, apellido, dni, telefono, direccion, fechaNac);
 	      empleados.add(empleado);

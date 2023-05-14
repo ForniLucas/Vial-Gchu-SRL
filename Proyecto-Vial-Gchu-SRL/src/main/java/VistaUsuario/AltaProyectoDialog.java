@@ -22,6 +22,7 @@ import javax.swing.JComboBox;
 import java.awt.event.ActionListener;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
 import java.awt.event.ActionEvent;
 
 public class AltaProyectoDialog extends JDialog {
@@ -174,38 +175,54 @@ public class AltaProyectoDialog extends JDialog {
 				guardarBtn.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
 						
-						String fechaInicioString = fechaInicioTxt.getText(); 
-						DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-						LocalDate fechaInicio = LocalDate.parse(fechaInicioString, formatter);
-						
-						String fechaFinString = fechaFinTxt.getText(); 
-						DateTimeFormatter formatter2 = DateTimeFormatter.ofPattern("dd/MM/yyyy"); 
-						LocalDate fechaFin = LocalDate.parse(fechaFinString, formatter2);
-						
-						String nombre = nombreTxt.getText();
-						String desc = descripcionTxt.getText();
-						String actividades = actividadesTxt.getText(); 
-						String insumos = insumosTxt.getText();
-						EstadoProyecto estado = (EstadoProyecto) estadoBox.getSelectedItem();
-						
-						TipoDeProyecto tipo = (TipoDeProyecto) comboBox.getSelectedItem(); 
-						TipoProyecto tipoProyecto = new TipoProyecto(tipo, desc, actividades, insumos);
-								
-						Proyecto proyecto = new Proyecto();
-						
-						proyecto.setFechaInicio(fechaInicio);
-						proyecto.setFechaEstFin(fechaFin);
-						proyecto.setFechaFin(fechaFin);
-						proyecto.setNombre(nombre);
-						proyecto.setEstado(estado);
-						proyecto.asignarTipoProyecto(tipoProyecto);
-						
-						controlador.alta(proyecto);
-						optionPane.showMessageDialog(null,"Datos modificados con éxito");
-						setVisible(false);
-						ProyectoDialog proyectoDialog = new ProyectoDialog();
-						proyectoDialog.setVisible(true);
-						
+						try {
+						    String fechaInicioString = fechaInicioTxt.getText();
+						    String fechaFinString = fechaFinTxt.getText();
+						    String nombre = nombreTxt.getText();
+						    String desc = descripcionTxt.getText();
+						    String actividades = actividadesTxt.getText();
+						    String insumos = insumosTxt.getText();
+						    EstadoProyecto estado = (EstadoProyecto) estadoBox.getSelectedItem();
+						    TipoDeProyecto tipo = (TipoDeProyecto) comboBox.getSelectedItem();
+
+						    if (fechaInicioString.trim().isEmpty() || fechaFinString.trim().isEmpty() || nombre.trim().isEmpty() ||
+						            desc.trim().isEmpty() || actividades.trim().isEmpty() || insumos.trim().isEmpty()) {
+						        optionPane.showMessageDialog(null,"Por favor, complete todos los campos.");
+						        return;
+						    }
+
+						    LocalDate fechaInicio = null;
+						    LocalDate fechaFin = null;
+
+						    try {
+						        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+						        fechaInicio = LocalDate.parse(fechaInicioString, formatter);
+						        fechaFin = LocalDate.parse(fechaFinString, formatter);
+						        boolean control = validarDatos(fechaInicioString, fechaFinString, nombre, desc, actividades, insumos);
+						        if (control) {
+						            TipoProyecto tipoProyecto = new TipoProyecto(tipo, desc, actividades, insumos);
+						            Proyecto proyecto = new Proyecto();
+						            proyecto.setFechaInicio(fechaInicio);
+						            proyecto.setFechaEstFin(fechaFin);
+						            proyecto.setFechaFin(fechaFin);
+						            proyecto.setNombre(nombre);
+						            proyecto.setEstado(estado);
+						            proyecto.asignarTipoProyecto(tipoProyecto);
+						            controlador.alta(proyecto);
+						            optionPane.showMessageDialog(null,"Datos modificados con éxito");
+						        }
+						    } catch (DateTimeParseException e1) {
+						        optionPane.showMessageDialog(null, "La fecha debe tener formato dd/MM/yyyy.");
+						        return;
+						    } catch (RuntimeException ex) {
+						        optionPane.showMessageDialog(null, ex.getMessage());
+						        return;
+						    }
+						} catch (Exception e4) {
+						    optionPane.showMessageDialog(null,"Ocurrió un error al procesar los datos: " + e4.getMessage());
+						    return;
+						}
+
 					}
 				});
 				guardarBtn.setActionCommand("Guardar");
@@ -226,4 +243,51 @@ public class AltaProyectoDialog extends JDialog {
 			}
 		}
 	}
+	
+	public boolean validarDatos(String fechaInicioString, String fechaFinString, String nombre, String desc, String actividades, String insumos) {
+	    boolean resultado = true;
+	    
+	    // Validar fecha de inicio
+	    try {
+	        LocalDate.parse(fechaInicioString, DateTimeFormatter.ofPattern("dd/MM/yyyy"));
+	    } catch (DateTimeParseException e) {
+	        JOptionPane.showMessageDialog(null, "Ingrese una fecha de inicio válida (formato: dd/MM/yyyy).");
+	        resultado = false;
+	    }
+	    
+	    // Validar fecha de fin
+	    try {
+	        LocalDate.parse(fechaFinString, DateTimeFormatter.ofPattern("dd/MM/yyyy"));
+	    } catch (DateTimeParseException e) {
+	        JOptionPane.showMessageDialog(null, "Ingrese una fecha de fin válida (formato: dd/MM/yyyy).");
+	        resultado = false;
+	    }
+	    
+	    // Validar nombre
+	    if (nombre.trim().isEmpty()) {
+	        JOptionPane.showMessageDialog(null, "Ingrese un nombre para el proyecto.");
+	        resultado = false;
+	    }
+	    
+	    // Validar descripción
+	    if (!desc.matches("[a-zA-Z0-9 ]{1,50}")) {
+	        JOptionPane.showMessageDialog(null, "Ingrese una descripción válida (solo letras, números y espacios, hasta 50 caracteres).");
+	        resultado = false;
+	    }
+	    
+	    // Validar actividades
+	    if (!actividades.matches("[a-zA-Z0-9 ]{1,50}")) {
+	        JOptionPane.showMessageDialog(null, "Ingrese actividades válidas (solo letras, números y espacios, hasta 50 caracteres).");
+	        resultado = false;
+	    }
+	    
+	    // Validar insumos
+	    if (!insumos.matches("[a-zA-Z0-9 ]{1,50}")) {
+	        JOptionPane.showMessageDialog(null, "Ingrese insumos válidos (solo letras, números y espacios, hasta 50 caracteres).");
+	        resultado = false;
+	    }
+	    
+	    return resultado;
+	}
+
 }

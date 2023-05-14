@@ -1,6 +1,5 @@
 package com.HabilitacionProfesional.Proyecto_Vial_Gchu_SRL;
 
-import java.awt.EventQueue;
 import java.time.LocalDate;
 import java.time.Month;
 import java.util.LinkedList;
@@ -12,7 +11,7 @@ import Domain.Empleado;
 import Domain.Maquinaria;
 import Domain.Proyecto;
 import Domain.Trabajo;
-import VistaUsuario.Principal;
+//import TemplatesPDF.ControladorPlantillas;
 
 /**
  * Hello world!
@@ -22,15 +21,11 @@ public class App
 {
     public static void main( String[] args )
     {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					Principal window = new Principal();
-					window.frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
+    	//Long id = (long) 1;
+    	//ControladorPlantillas plant = new ControladorPlantillas();
+    	//plant.crearPlantilla();
+
+    	
+
     }
 }

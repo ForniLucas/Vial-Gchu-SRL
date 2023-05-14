@@ -3,6 +3,7 @@ package VistaUsuario;
 import java.awt.BorderLayout;
 import java.awt.FlowLayout;
 
+import javax.persistence.PersistenceException;
 import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JPanel;
@@ -16,6 +17,7 @@ import Enumeraciones.RolEmpleado;
 import java.awt.event.ActionListener;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
 import java.awt.event.ActionEvent;
 import javax.swing.JTextField;
 import javax.swing.JLabel;
@@ -127,32 +129,53 @@ public class AltaEmpleadoDialog extends JDialog {
 				JButton guardarBtn = new JButton("Guardar");
 				guardarBtn.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
-						
-						
-						String nombre = nombreTxt.getText();
-						String apellido = apellidoTxt.getText();
+						try {
+						    String nombre = nombreTxt.getText();
+						    String apellido = apellidoTxt.getText();
+						    String dniString = dniTxt.getText();
+						    String telefonoString = telefonoTxt.getText();
+						    String direccion = direccionTxt.getText();
+						    String fechaDeNacimientoString = fechaDeNacimientoTxt.getText();
+						    
+						    if (nombre.trim().isEmpty() || apellido.trim().isEmpty() || dniString.trim().isEmpty() ||
+						            telefonoString.trim().isEmpty() || direccion.trim().isEmpty() || fechaDeNacimientoString.trim().isEmpty()) {
+						        optionPane.showMessageDialog(null,"Por favor, complete todos los campos.");
+						        return;
+						    }
 
-						String dniString = dniTxt.getText(); // Get the value of the JTextField as a String
-						int dni = Integer.parseInt(dniString); // Convert the String to an int
-						String telefonoString = telefonoTxt.getText(); 
-						int telefono = Integer.parseInt(telefonoString); 
-						String direccion = direccionTxt.getText(); 
-						
-						String fechaDeNacimientoString = fechaDeNacimientoTxt.getText(); // Get the value of the JTextField as a String
-						DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy"); // Specify the input format
-						LocalDate fechaDeNacimiento = LocalDate.parse(fechaDeNacimientoString, formatter); // Convert the String to a LocalDate object using the formatter
+						    int dni = 0;
+						    int telefono = 0;
+						    LocalDate fechaDeNacimiento = null;
 
-						
-						
-						
-						controlador.alta(nombre, apellido, dni, telefono, direccion, fechaDeNacimiento);
-						optionPane.showMessageDialog(null,"Datos almacenados con éxito");
-						//controlador.asignarElementoDeSeguridad(controlador.buscarDNI(dni), especializacion);
-						setVisible(false);
-						EmpleadoDialog empleados = new EmpleadoDialog();
-						empleados.setVisible(true);
-						
+						    try {
+						        dni = Integer.parseInt(dniString);
+						        telefono = Integer.parseInt(telefonoString);
+						        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+						        fechaDeNacimiento = LocalDate.parse(fechaDeNacimientoString, formatter);
+						        boolean control = validarDatos(nombre, apellido, dniString, telefonoString, direccion, fechaDeNacimiento);
+						        	if (control) {	
+						        		controlador.alta(nombre, apellido, dni, telefono, direccion, fechaDeNacimiento);
+						        		optionPane.showMessageDialog(null,"Datos almacenados con éxito");
+						        	}
+						    } catch (NumberFormatException e1) {
+						        optionPane.showMessageDialog(null, "El valor del DNI o teléfono debe ser un número entero.");
+						        return;
+						    } catch (DateTimeParseException e2) {
+						        optionPane.showMessageDialog(null, "La fecha de nacimiento debe tener formato dd/MM/yyyy.");
+						        return;
+						        
+						    }catch (RuntimeException ex ){
+						    	optionPane.showMessageDialog(null, ex.getMessage());
+						        return;
+						    }
+							} catch (Exception e4) {
+								optionPane.showMessageDialog(null,"Ocurrió un error al procesar los datos: " + e4.getMessage());
+								return;
+							}
+
+  
 					}
+
 				});
 				guardarBtn.setActionCommand("OK");
 				buttonPane.add(guardarBtn);
@@ -172,4 +195,86 @@ public class AltaEmpleadoDialog extends JDialog {
 			}
 		}
 	}
+
+	public boolean validarDatos(String nombre, String apellido, String dniString, String telefonoString, String direccion, LocalDate fechaDeNacimiento) {
+		
+		boolean resultado = true;
+		
+		// Validar nombre y apellido
+		if (!nombre.matches("[a-zA-Z]{1,30}")) {
+		    // Mensaje de error si el nombre no contiene solo letras o excede los 30 caracteres
+		    JOptionPane.showMessageDialog(null, "Ingrese un nombre válido (solo letras y hasta 30 caracteres).");
+		    resultado = false;
+		}
+		if (!apellido.matches("[a-zA-Z]{1,30}")) {
+		    // Mensaje de error si el apellido no contiene solo letras o excede los 30 caracteres
+		    JOptionPane.showMessageDialog(null, "Ingrese un apellido válido (solo letras y hasta 30 caracteres).");
+		    resultado = false;
+		}
+
+		// Validar DNI
+		try {
+		    if (dniString.length() != 8) {
+		        // Mensaje de error si el DNI no tiene 8 dígitos
+		        JOptionPane.showMessageDialog(null, "Ingrese un DNI válido (8 dígitos).");
+		        resultado = false;
+		    }
+		} catch (NumberFormatException e) {
+		    // Mensaje de error si el DNI no es un número válido
+		    JOptionPane.showMessageDialog(null, "Ingrese un DNI válido (solo números).");
+		    resultado = false;
+		}
+		
+		// Validar la no existencia del usuario
+		int dni = 0;
+		dni = Integer.parseInt(dniString);
+		Empleado empleado = controlador.buscarDNI(dni);
+		if (!(empleado.getNombre() == null)) {
+			JOptionPane.showMessageDialog(null, "Ya existe un empleado con el mismo dni.");
+			resultado = false;
+		}
+
+
+		// Validar número de teléfono
+		try {
+		    
+		    if (telefonoString.length() >= 10) {
+		        // Mensaje de error si el número de teléfono no tiene 10 dígitos
+		        JOptionPane.showMessageDialog(null, "Ingrese un número de teléfono válido (Hatsa 10 dígitos).");
+		        resultado = false;
+		    }
+		} catch (NumberFormatException e) {
+		    // Mensaje de error si el número de teléfono no es un número válido
+		    JOptionPane.showMessageDialog(null, "Ingrese un número de teléfono válido (solo números).");
+		    resultado = false;
+		}
+
+
+		// Validar dirección
+		if (!direccion.matches("[a-zA-Z0-9 ]{1,50}")) {
+		    // Mensaje de error si la dirección contiene caracteres no permitidos o excede los 50 caracteres
+		    JOptionPane.showMessageDialog(null, "Ingrese una dirección válida (solo letras, números y espacios, hasta 50 caracteres).");
+		    resultado = false;
+		}
+
+		// Validar fecha de nacimiento
+		try {
+		    if (fechaDeNacimiento.isAfter(LocalDate.now())) {
+		        // Mensaje de error si la fecha de nacimiento es posterior a la fecha actual
+		        JOptionPane.showMessageDialog(null, "Ingrese una fecha de nacimiento válida (dd/MM/yyyy).");
+		        resultado = false;
+		    }
+		} catch (DateTimeParseException e) {
+		    // Mensaje de error si la fecha de nacimiento no es una cadena válida en el formato especificado
+		    JOptionPane.showMessageDialog(null, "Ingrese una fecha de nacimiento válida (dd/MM/yyyy).");
+		    resultado = false;
+		}
+
+		return resultado;
+
+	   
+	    
+	}
+
 }
+

@@ -9,6 +9,7 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
 import Controladoras.ControladorMaquinaria;
+import Domain.Maquinaria;
 
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -19,6 +20,7 @@ import java.awt.event.ActionEvent;
 
 public class AltaMaquinariaDialog extends JDialog {
 
+	ControladorMaquinaria controlador = new ControladorMaquinaria();
 	private final JPanel contentPanel = new JPanel();
 	private JTextField codigoTxt;
 	private JTextField descripcionTxt;
@@ -104,19 +106,30 @@ public class AltaMaquinariaDialog extends JDialog {
 				JButton guardarBtn = new JButton("Guardar");
 				guardarBtn.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
-						
-						ControladorMaquinaria controlador = new ControladorMaquinaria();
-						
-						String codigo = codigoTxt.getText();
-						String desc = descripcionTxt.getText();
-						String fabr = fabricanteTxt.getText();
-						String ubic = ubicacionTxt.getText();
-						
-						controlador.alta(codigo, desc, fabr, ubic);
-						optionPane.showMessageDialog(null,"Datos almacenados con éxito");
-						setVisible(false);
-						MaquinariaDialog maquinariaDialog = new MaquinariaDialog();
-						maquinariaDialog.setVisible(true);
+						try {
+						    String codigo = codigoTxt.getText();
+						    String desc = descripcionTxt.getText();
+						    String fabr = fabricanteTxt.getText();
+						    String ubic = ubicacionTxt.getText();
+						    
+						    if (codigo.trim().isEmpty() || desc.trim().isEmpty() || fabr.trim().isEmpty() || ubic.trim().isEmpty()) {
+						        JOptionPane.showMessageDialog(null, "Por favor, complete todos los campos.");
+						        return;
+						    }
+						    
+						    if (!codigo.matches("[A-Z0-9]+") || codigo.length() > 10) {
+						        JOptionPane.showMessageDialog(null, "Ingrese un código válido (solo letras mayúsculas y números, hasta 10 caracteres).");
+						        return;
+						    }
+						    
+						    controlador.alta(codigo, desc, fabr, ubic);
+						    JOptionPane.showMessageDialog(null, "Datos almacenados con éxito");
+						    
+						} catch (Exception e1) {
+						    JOptionPane.showMessageDialog(null, "Ocurrió un error al procesar los datos: " + e1.getMessage());
+						    return;
+						}
+
 					}
 				});
 				guardarBtn.setActionCommand("OK");
@@ -137,5 +150,50 @@ public class AltaMaquinariaDialog extends JDialog {
 			}
 		}
 	}
+	
+public boolean validarDatos(String codigo, String desc, String fabr, String ubic) {
+		
+		boolean resultado = true;
+		
+		// Validar código
+		if (!codigo.matches("^[A-Z0-9]{1,10}$")) {
+		    // Mensaje de error si el código contiene caracteres no permitidos o excede los 10 caracteres
+		    JOptionPane.showMessageDialog(null, "Ingrese un código válido (solo letras mayúsculas y números, hasta 10 caracteres).");
+		    resultado = false;
+		}
+
+		// Validar descripción
+		if (!desc.matches("[a-zA-Z0-9 ]{1,50}")) {
+		    // Mensaje de error si la descripción contiene caracteres no permitidos o excede los 50 caracteres
+		    JOptionPane.showMessageDialog(null, "Ingrese una descripción válida (solo letras, números y espacios, hasta 50 caracteres).");
+		    resultado = false;
+		}
+		
+		//Validar la no existencia de un Codigo similar
+
+		Maquinaria maquina = controlador.buscar(codigo);
+		if (!(maquina.getCodigo() == null)) {
+			JOptionPane.showMessageDialog(null, "Ya existe una maquina con el mismo codigo.");
+			resultado = false;
+		}
+		
+		// Validar fabricante
+		if (!fabr.matches("[a-zA-Z]{1,30}")) {
+		    // Mensaje de error si el fabricante no contiene solo letras o excede los 30 caracteres
+		    JOptionPane.showMessageDialog(null, "Ingrese un fabricante válido (solo letras y hasta 30 caracteres).");
+		    resultado = false;
+		}
+		
+		// Validar ubicación
+		if (!ubic.matches("[a-zA-Z0-9 ]{1,30}")) {
+		    // Mensaje de error si la ubicación contiene caracteres no permitidos o excede los 30 caracteres
+		    JOptionPane.showMessageDialog(null, "Ingrese una ubicación válida (solo letras, números y espacios, hasta 30 caracteres).");
+		    resultado = false;
+		}
+
+		return resultado;
+
+	}
+
 
 }
