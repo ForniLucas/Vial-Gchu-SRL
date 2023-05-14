@@ -178,6 +178,7 @@ public class ModificarMaquinariaDialog extends JDialog {
 							}
 							*/
 							controlador.modificar(maquina);
+							optionPane.showMessageDialog(null,"Datos modificados con éxito");
 						} catch (Exception e1) {
 							optionPane.showMessageDialog(null, "Error al modificar Maquinaria: " + e1.getMessage());
 						}

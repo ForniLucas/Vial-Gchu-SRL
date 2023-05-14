@@ -16,6 +16,7 @@ import Domain.Proyecto;
 import Domain.TipoProyecto;
 
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import javax.swing.JComboBox;
 import java.awt.event.ActionListener;
@@ -26,6 +27,7 @@ import java.awt.event.ActionEvent;
 public class AltaProyectoDialog extends JDialog {
 	
 	private final JPanel contentPanel = new JPanel();
+	JOptionPane optionPane = new JOptionPane();
 	private JTextField fechaInicioTxt;
 	private JTextField fechaFinTxt;
 	private JComboBox<EstadoProyecto> estadoBox= new JComboBox<EstadoProyecto>(EstadoProyecto.values());
@@ -199,7 +201,7 @@ public class AltaProyectoDialog extends JDialog {
 						proyecto.asignarTipoProyecto(tipoProyecto);
 						
 						controlador.alta(proyecto);
-						
+						optionPane.showMessageDialog(null,"Datos modificados con éxito");
 						
 						
 					}

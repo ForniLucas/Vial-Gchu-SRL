@@ -138,7 +138,7 @@ public class BajaMaquinariaDialog extends JDialog {
 							if (maquina.getCodigo() != null) {
 								if (controlador.buscar(maquina.getCodigo()).getEstado()) {
 									controlador.bajaLogica(maquina);
-									optionPane.showMessageDialog(null, "Baja Exitosa");
+									optionPane.showMessageDialog(null, "Datos dados de baja con éxito");
 								}else {
 									optionPane.showMessageDialog(null, "La Maquina ya esta dado de baja");
 								}

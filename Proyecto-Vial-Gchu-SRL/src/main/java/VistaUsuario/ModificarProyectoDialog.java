@@ -239,6 +239,7 @@ public class ModificarProyectoDialog extends JDialog {
 							proyecto.asignarTipoProyecto(tipoProyecto);
 							
 							controladorProyecto.modificar(proyecto);
+							optionPane.showMessageDialog(null,"Datos modificados con éxito");
 						} catch (Exception e1) {
 							optionPane.showMessageDialog(null, "Error al Realizar la operación: " + e1.getMessage());
 						}

@@ -11,6 +11,7 @@ import javax.swing.border.EmptyBorder;
 import Controladoras.ControladorMaquinaria;
 
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import javax.swing.JComboBox;
 import java.awt.event.ActionListener;
@@ -23,6 +24,7 @@ public class AltaMaquinariaDialog extends JDialog {
 	private JTextField descripcionTxt;
 	private JTextField fabricanteTxt;
 	private JTextField ubicacionTxt;
+	JOptionPane optionPane = new JOptionPane();
 
 	/**
 	 * Launch the application.
@@ -111,7 +113,7 @@ public class AltaMaquinariaDialog extends JDialog {
 						String ubic = ubicacionTxt.getText();
 						
 						controlador.alta(codigo, desc, fabr, ubic);
-						
+						optionPane.showMessageDialog(null,"Datos almacenados con éxito");
 					}
 				});
 				guardarBtn.setActionCommand("OK");
