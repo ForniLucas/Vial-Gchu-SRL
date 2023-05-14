@@ -42,7 +42,11 @@ public class ControladorEmpleado
 	      factory = new MetadataSources(registry).buildMetadata().buildSessionFactory();
 	      session = factory.openSession();
 	      transaction = session.beginTransaction();
+	      //Verificar que no exista empleado
 	      
+	      if (!((this.buscarDNI(dni))==null)) {
+	          throw new RuntimeException("Ya existe un empleado con el mismo dni.");
+	      } 
 	      
 	      
 	      // Agregar el empleado a la lista y guardar en la base de datos
