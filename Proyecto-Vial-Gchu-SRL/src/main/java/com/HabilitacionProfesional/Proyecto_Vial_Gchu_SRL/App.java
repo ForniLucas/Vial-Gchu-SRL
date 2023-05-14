@@ -11,6 +11,7 @@ import Domain.Empleado;
 import Domain.Maquinaria;
 import Domain.Proyecto;
 import Domain.Trabajo;
+import TemplatesPDF.ControladorPlantillas;
 
 /**
  * Hello world!
@@ -21,16 +22,9 @@ public class App
     public static void main( String[] args )
     {
     	//Long id = (long) 1;
-    	ControladorProyecto controladorP = new ControladorProyecto();
-    	
+    	ControladorPlantillas plant = new ControladorPlantillas();
+    	plant.crearPlantilla();
 
-    	LinkedList<Proyecto> proyectos = controladorP.listarProyectos();
-    	
-    	for (Proyecto proyecto : proyectos) {
-    		System.out.println(proyecto.getNombre() + " Estado: " + proyecto.getEstado());
-    	}
-    	
-    	
     	
 
     }
