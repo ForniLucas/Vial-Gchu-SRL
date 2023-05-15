@@ -71,7 +71,7 @@ public class Maquinaria implements java.io.Serializable{
     private Set<Utiliza> Trabajos = new HashSet<Utiliza>(0);
     
 
-    @OneToMany(fetch=FetchType.LAZY, mappedBy="Maquinaria",cascade = CascadeType.ALL,orphanRemoval = true)
+    @OneToMany(fetch=FetchType.EAGER, mappedBy="Maquinaria",cascade = CascadeType.ALL,orphanRemoval = true)
 	private Set<Service> Services = new HashSet<Service>(0);
     
     @PrePersist

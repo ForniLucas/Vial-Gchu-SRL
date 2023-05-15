@@ -19,6 +19,7 @@ import java.awt.event.ActionListener;
 import java.sql.Date;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.Iterator;
 import java.awt.event.ActionEvent;
 import javax.swing.JLabel;
@@ -88,7 +89,7 @@ public class ServiceDialog extends JDialog {
 			JButton buscarBtn = new JButton("Buscar");
 			buscarBtn.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
-					//maquinaria = controladorMaquinaria.buscar(codigo);
+					maquinaria = controladorMaquinaria.buscar(codigo);
 					cargarService();
 				}
 			});
@@ -142,11 +143,16 @@ public class ServiceDialog extends JDialog {
 						String inicio = fechaInicioTxt.getText();
 						String fin = fechaFinTxt.getText();
 						String obs = observacionesTxt.getText();
-						SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
-						/*
-						Service service = new Service(fechainicio, fechafin, obs);
-						maquinaria.asignarService(service);
-						actualizarTabla();*/
+						DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+						LocalDate fechaIni = LocalDate.parse(inicio, formatter);
+						LocalDate fechaFin = LocalDate.parse(fin, formatter);
+						
+						
+						
+						Service service = new Service(fechaIni,fechaFin, obs);
+						
+						controladorMaquinaria.asignarService(maquinaria, service);
+						actualizarTabla();
 					}
 				});
 				serviceBtn.setActionCommand("OK");
@@ -170,7 +176,7 @@ public class ServiceDialog extends JDialog {
 	
 	public void cargarService() {
 		DefaultTableModel modeloTablaService = (DefaultTableModel) table.getModel();
-		//Maquinaria maquinaria = new Maquinaria();
+		Maquinaria maquinaria = new Maquinaria();
 		maquinaria = controladorMaquinaria.buscar(codigo);
 		Iterator <Service>iterador = maquinaria.getServices().iterator();
 			while (iterador.hasNext()) {
