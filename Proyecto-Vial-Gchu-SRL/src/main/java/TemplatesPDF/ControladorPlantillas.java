@@ -34,7 +34,7 @@ import javax.swing.JOptionPane;
  *
  */
 public class ControladorPlantillas {
-	String rutaImagen = "C:\\Users\\lucas\\eclipse-workspace\\Vial-Gchu-SRL\\Vial-Gchu-SRL\\Proyecto-Vial-Gchu-SRL\\src\\main\\java\\Vista\\img\\3.2 400x400.png";
+	String rutaImagen = "src/main/java/Vista/img/3.2 400x400.png";
 
 
 	Font fuente = FontFactory.getFont("Times New Roman");
