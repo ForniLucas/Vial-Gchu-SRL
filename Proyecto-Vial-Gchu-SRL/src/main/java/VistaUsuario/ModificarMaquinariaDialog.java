@@ -12,6 +12,7 @@ import Controladoras.ControladorMaquinaria;
 import Domain.Maquinaria;
 
 import java.awt.event.ActionListener;
+import java.time.LocalDate;
 import java.awt.event.ActionEvent;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -165,22 +166,27 @@ public class ModificarMaquinariaDialog extends JDialog {
 							String descripcion = descripcionTxt.getText();
 							String fabricante = fabricanteTxt.getText();
 							String ubicacion = ubicacionTxt.getText();
-							String estado = (String) estadoBox.getSelectedItem();
-							maquina.setCodigo(codigo);
-							maquina.setDescripcion(descripcion);
-							maquina.setFabricante(fabricante);
-							maquina.setUbicacionAlmacenamiento(ubicacion);
-
-							/*if (estado.equals("En servicio")) {
-								maquina.setEstadoAlta();
-							}else {
-								maquina.setEstadoBaja();
-							}
-							*/
-							controlador.modificar(maquina);
-							optionPane.showMessageDialog(null,"Datos modificados con éxito");
+							
+							if (codigo.trim().isEmpty() || descripcion.trim().isEmpty() || fabricante.trim().isEmpty() || ubicacion.trim().isEmpty()) {
+						        JOptionPane.showMessageDialog(null, "Por favor, complete todos los campos.");
+						        return;
+						    }
+							
+							boolean control = validarDatos( codigo,  descripcion,  fabricante,  ubicacion);
+						    
+							if (control) { 
+						    	maquina.setCodigo(codigo);
+								maquina.setDescripcion(descripcion);
+								maquina.setFabricante(fabricante);
+								maquina.setUbicacionAlmacenamiento(ubicacion);
+								controlador.modificar(maquina);
+								optionPane.showMessageDialog(null,"Datos modificados con éxito");
+						    }
+							
+							
 						} catch (Exception e1) {
-							optionPane.showMessageDialog(null, "Error al modificar Maquinaria: " + e1.getMessage());
+						    JOptionPane.showMessageDialog(null, "Ocurrió un error al procesar los datos: " + e1.getMessage());
+						    return;
 						}
 					}
 				});
@@ -201,6 +207,51 @@ public class ModificarMaquinariaDialog extends JDialog {
 				buttonPane.add(cancelarBtn);
 			}
 		}
+	}
+	
+
+public boolean validarDatos(String codigo, String desc, String fabr, String ubic) {
+		
+		boolean resultado = true;
+		
+		// Validar código
+		if (!codigo.matches("^[A-Z0-9]{1,10}$")) {
+		    // Mensaje de error si el código contiene caracteres no permitidos o excede los 10 caracteres
+		    JOptionPane.showMessageDialog(null, "Ingrese un código válido (solo letras mayúsculas y números, hasta 10 caracteres).");
+		    resultado = false;
+		}
+
+		// Validar descripción
+		if (!desc.matches("[a-zA-Z0-9 ]{1,50}")) {
+		    // Mensaje de error si la descripción contiene caracteres no permitidos o excede los 50 caracteres
+		    JOptionPane.showMessageDialog(null, "Ingrese una descripción válida (solo letras, números y espacios, hasta 50 caracteres).");
+		    resultado = false;
+		}
+		
+		//Validar la no existencia de un Codigo similar
+
+		Maquinaria maquina = controlador.buscar(codigo);
+		if (!(maquina.getCodigo() == null)) {
+			JOptionPane.showMessageDialog(null, "Ya existe una maquina con el mismo codigo.");
+			resultado = false;
+		}
+		
+		// Validar fabricante
+		if (!fabr.matches("[a-zA-Z]{1,30}")) {
+		    // Mensaje de error si el fabricante no contiene solo letras o excede los 30 caracteres
+		    JOptionPane.showMessageDialog(null, "Ingrese un fabricante válido (solo letras y hasta 30 caracteres).");
+		    resultado = false;
+		}
+		
+		// Validar ubicación
+		if (!ubic.matches("[a-zA-Z0-9 ]{1,30}")) {
+		    // Mensaje de error si la ubicación contiene caracteres no permitidos o excede los 30 caracteres
+		    JOptionPane.showMessageDialog(null, "Ingrese una ubicación válida (solo letras, números y espacios, hasta 30 caracteres).");
+		    resultado = false;
+		}
+
+		return resultado;
+
 	}
 
 }

@@ -116,14 +116,11 @@ public class AltaMaquinariaDialog extends JDialog {
 						        JOptionPane.showMessageDialog(null, "Por favor, complete todos los campos.");
 						        return;
 						    }
-						    
-						    if (!codigo.matches("[A-Z0-9]+") || codigo.length() > 10) {
-						        JOptionPane.showMessageDialog(null, "Ingrese un código válido (solo letras mayúsculas y números, hasta 10 caracteres).");
-						        return;
+						    boolean control = validarDatos( codigo,  desc,  fabr,  ubic);
+						    if (control) {
+						    	controlador.alta(codigo, desc, fabr, ubic);
+							    JOptionPane.showMessageDialog(null, "Datos almacenados con éxito");
 						    }
-						    
-						    controlador.alta(codigo, desc, fabr, ubic);
-						    JOptionPane.showMessageDialog(null, "Datos almacenados con éxito");
 						    
 						} catch (Exception e1) {
 						    JOptionPane.showMessageDialog(null, "Ocurrió un error al procesar los datos: " + e1.getMessage());
