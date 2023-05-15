@@ -78,12 +78,12 @@ public class Proyecto implements java.io.Serializable{
     @JoinColumn(name = "tipoproyecto_id")
         private TipoProyecto TipoProyecto;
        
-    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL,
+    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL,
     	    orphanRemoval = true
         , mappedBy = "Proyecto")
     private Set<Trabajo> Trabajadores = new HashSet<Trabajo>(0);
     
-    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL,
+    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL,
     	    orphanRemoval = true
         , mappedBy = "Proyecto")
     private Set<Utiliza> Maquinas = new HashSet<Utiliza>(0);

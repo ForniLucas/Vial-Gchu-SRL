@@ -80,7 +80,7 @@ public class Empleado implements java.io.Serializable {
 	 
 	 
 	 
-@OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL,
+@OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL,
 	    	    orphanRemoval = true
         , mappedBy = "Empleado")
     private Set<Trabajo> Trabajos = new HashSet<Trabajo>(0);

@@ -65,7 +65,7 @@ public class Maquinaria implements java.io.Serializable{
     @Column(name = "estado",nullable=true)
     private boolean estado;
     
-    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL,
+    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL,
     	    orphanRemoval = true
     , mappedBy = "Maquinaria")
     private Set<Utiliza> Trabajos = new HashSet<Utiliza>(0);
