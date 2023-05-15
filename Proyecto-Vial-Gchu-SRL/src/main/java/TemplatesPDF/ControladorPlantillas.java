@@ -17,6 +17,10 @@ import com.itextpdf.text.Phrase;
 import com.itextpdf.text.pdf.PdfPCell;
 import com.itextpdf.text.pdf.PdfPTable;
 import com.itextpdf.text.pdf.PdfWriter;
+
+import VistaUsuario.Principal;
+
+import java.awt.EventQueue;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.nio.file.Files;
@@ -135,30 +139,107 @@ public class ControladorPlantillas {
 	    	 archivo = new FileOutputStream("inicial" + ".pdf");
 	            PdfWriter.getInstance(documento, archivo);
 	            documento.open();
-	            Font font = new Font(FontFamily.TIMES_ROMAN, 12, Font.NORMAL);
-
-	            titulo.setAlignment(1);
+	            Font font = new Font(FontFamily.TIMES_ROMAN, 18, Font.NORMAL);
+	            Font fonTable = new Font(FontFamily.TIMES_ROMAN, 14, Font.NORMAL);
+	            
+	            
 
 	            Image image = null;
 	            try {
 	                image =  Image.getInstance(rutaImagen);//carga imagen
-	                image.scaleAbsolute(50, 50);//cambia tamaño
-	                //image.setAbsolutePosition(415, 750);//coloca imagen en la posicion
+	                image.scaleAbsolute(100, 100);//cambia tamaño
+	                image.setAbsolutePosition(475, 735);//coloca imagen en la posicion
 	                
 	            } catch (Exception e) {
 	            }
 	            
-	            //documento.add(image);//agrega la imagen al documento
+	            documento.add(image);//agrega la imagen al documento
+	            Paragraph texto  = new Paragraph("PLANILLA DE MANTENIMIENTO DE MAQUINARIA",font);      
+	            texto.setAlignment(0);
+	            documento.add(texto);
 	            
-	            documento.add(titulo);
 	            
 
 
 	            documento.add(Chunk.NEWLINE);
+	            documento.add(Chunk.NEWLINE);
+	            documento.add(Chunk.NEWLINE);
+	            documento.add(Chunk.NEWLINE);
+	            documento.add(Chunk.NEWLINE);
+
 	            
-	            Paragraph texto = new Paragraph("PLANILLA DE MANTENIBevelBorder DE MAQUINARIA",font);
+	            //MAQUINA
 	            
-	            documento.add(new Paragraph("Fecha: " + "hoy"));
+	            PdfPTable tabla = new PdfPTable(1);
+	            tabla.setWidthPercentage(100);
+	            PdfPCell f1 = new PdfPCell(new Phrase("FICHA TÉCNICA DE LA MÁQUINA/EQUIPO",fonTable));
+	            f1.setBackgroundColor(BaseColor.ORANGE);
+	            tabla.addCell(f1);
+	            documento.add(tabla);
+	            
+	            PdfPTable tabla2= new PdfPTable(2);
+	            tabla2.setWidthPercentage(100);
+	            PdfPCell f21 = new PdfPCell(new Phrase("CODIGO",fonTable));
+	            PdfPCell f22 = new PdfPCell(new Phrase("Edad",fonTable));
+	            tabla2.addCell(f21);
+	            tabla2.addCell(f22);
+	            
+	            documento.add(tabla2);
+	            
+	            PdfPTable tabla3= new PdfPTable(2);
+	            tabla3.setWidthPercentage(100);
+	            PdfPCell f31 = new PdfPCell(new Phrase("DESCRIPCION",fonTable));
+	            PdfPCell f32 = new PdfPCell(new Phrase("Edad",fonTable));
+	            tabla3.addCell(f31);
+	            tabla3.addCell(f32);
+	            
+	            documento.add(tabla3);
+	            
+	            PdfPTable tabla4= new PdfPTable(2);
+	            tabla4.setWidthPercentage(100);
+	            PdfPCell f41 = new PdfPCell(new Phrase("FABRICANTE",fonTable));
+	            PdfPCell f42 = new PdfPCell(new Phrase("Edad",fonTable));
+	            tabla4.addCell(f41);
+	            tabla4.addCell(f42);
+	            
+	            documento.add(tabla4);
+	            
+	            //SERVICE
+	            
+	            tabla = new PdfPTable(1);
+	            tabla.setWidthPercentage(100);
+	            f1 = new PdfPCell(new Phrase("SERVICE",fonTable));
+	            f1.setBackgroundColor(BaseColor.ORANGE);
+	            tabla.addCell(f1);
+	            documento.add(tabla);
+	            
+	            tabla2= new PdfPTable(2);
+	            tabla2.setWidthPercentage(100);
+	            f21 = new PdfPCell(new Phrase("FECHA DE ENTRADA",fonTable));
+	            f22 = new PdfPCell(new Phrase("Edad",fonTable));
+	            tabla2.addCell(f21);
+	            tabla2.addCell(f22);
+	            
+	            documento.add(tabla2);
+	            
+	            tabla3= new PdfPTable(2);
+	            tabla3.setWidthPercentage(100);
+	            f31 = new PdfPCell(new Phrase("FECHA DE SALIDA",fonTable));
+	            f32 = new PdfPCell(new Phrase("Edad",fonTable));
+	            tabla3.addCell(f31);
+	            tabla3.addCell(f32);
+	            
+	            documento.add(tabla3);
+	            
+	            tabla4= new PdfPTable(2);
+	            tabla4.setWidthPercentage(100);
+	            f41 = new PdfPCell(new Phrase("TAREAS/OBSERVACIONES",fonTable));
+	            f42 = new PdfPCell(new Phrase("Edad",fonTable));
+	            f42.setBottom(5);
+	            tabla4.addCell(f41);
+	            tabla4.addCell(f42);
+	            
+	            documento.add(tabla4);
 	            
 	            
 	            documento.close();
@@ -169,6 +250,8 @@ public class ControladorPlantillas {
 	            System.err.println(e.getMessage());
 	        }
 	    }
+	    
+	    
 }
 	    
 	
