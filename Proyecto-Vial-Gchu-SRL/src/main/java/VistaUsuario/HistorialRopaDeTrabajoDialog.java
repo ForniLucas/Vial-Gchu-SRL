@@ -140,7 +140,8 @@ public class HistorialRopaDeTrabajoDialog extends JDialog {
 				desasociarButton.addMouseListener(new MouseAdapter() {
 					@Override
 					public void mouseClicked(MouseEvent e) {
-						Ropa ropa = Ropa.valueOf(tipo);
+						String r = tipo.toUpperCase();
+						Ropa ropa = Ropa.valueOf(r);
 						DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy"); 
 						LocalDate fechaE = LocalDate.parse(fechaEntrega, formatter);
 						RopaDeTrabajo rt = new RopaDeTrabajo(ropa, talle, fechaE);

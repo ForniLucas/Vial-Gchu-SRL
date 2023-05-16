@@ -142,7 +142,8 @@ public class HistorialElementoDeSeguridadDialog extends JDialog {
 						DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy"); 
 						LocalDate fechaE = LocalDate.parse(fechaEntrega, formatter);
 						empleado = controladorEmpleado.buscarDNI(Integer.parseInt(dni));
-						 Elemento elemento = Elemento.valueOf(tipo);
+						String t = tipo.toUpperCase();
+						Elemento elemento = Elemento.valueOf(t);
 						ElementoDeSeguridad es = new ElementoDeSeguridad(elemento, fechaE, empleado);
 						controladorEmpleado.desasociarElementoDeSeguridad(es);
 					}
