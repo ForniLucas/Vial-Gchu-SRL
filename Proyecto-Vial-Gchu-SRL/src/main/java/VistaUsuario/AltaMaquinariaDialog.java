@@ -169,7 +169,7 @@ public boolean validarDatos(String codigo, String desc, String fabr, String ubic
 		//Validar la no existencia de un Codigo similar
 
 		Maquinaria maquina = controlador.buscar(codigo);
-		if (!(maquina.getCodigo() == null)) {
+		if (!(maquina == null)) {
 			JOptionPane.showMessageDialog(null, "Ya existe una maquina con el mismo codigo.");
 			resultado = false;
 		}

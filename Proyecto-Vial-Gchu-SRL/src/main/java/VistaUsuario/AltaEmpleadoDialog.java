@@ -229,7 +229,7 @@ public class AltaEmpleadoDialog extends JDialog {
 		int dni = 0;
 		dni = Integer.parseInt(dniString);
 		Empleado empleado = controlador.buscarDNI(dni);
-		if (!(empleado.getNombre() == null)) {
+		if (!(empleado== null)) {
 			JOptionPane.showMessageDialog(null, "Ya existe un empleado con el mismo dni.");
 			resultado = false;
 		}

@@ -31,14 +31,14 @@ public class Utiliza implements java.io.Serializable{
 	           CascadeType.PERSIST, 
 	           CascadeType.MERGE
 	       })
-	@JoinColumn(name="maquinaria_id")
+	@JoinColumn(name="maquinariaid")
 	private Maquinaria Maquinaria;
 	
 	@ManyToOne(fetch = FetchType.LAZY, cascade = {
 	           CascadeType.PERSIST, 
 	           CascadeType.MERGE
 	        })
-	@JoinColumn(name="proyecto_id")
+	@JoinColumn(name="proyectoid")
 	private Proyecto Proyecto;
 	
 	@Column(name="inicio",nullable=false)
@@ -47,7 +47,7 @@ public class Utiliza implements java.io.Serializable{
 	@Column(name="finEstimado",nullable=false)
     private LocalDate fechaEstFin;
 	
-	@Column(name="fin",nullable=false)
+	@Column(name="fin",nullable=true)
     private LocalDate fechaFin;
 
 
