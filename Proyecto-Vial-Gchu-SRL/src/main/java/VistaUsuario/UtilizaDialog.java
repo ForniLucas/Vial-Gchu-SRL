@@ -145,7 +145,6 @@ public class UtilizaDialog extends JDialog {
 						System.out.println(idproyecto);
 						if (maquinaria.getCodigo() !=  null)
 						{
-							
 							controladorP.asignarUtiliza(maquinaria, proyecto, fechaInicio, fechaEstimada);
 						
 						//donde se le pasan los datos que cargamos?

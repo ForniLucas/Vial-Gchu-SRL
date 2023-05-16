@@ -136,7 +136,7 @@ public class TrabajaDialog extends JDialog {
 				okButton.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
 						if (empleado.getApellido()!= null) {
-							controladorP.buscarID(Integer.parseInt(idproyecto));
+							proyecto = controladorP.buscarID(Integer.parseInt(idproyecto));
 							String fechaInicioString = fechaInicioTxt.getText(); // Get the value of the JTextField as a String
 							DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy"); // Specify the input format
 							LocalDate fechaInicio = LocalDate.parse(fechaInicioString, formatter); // Convert the String to a LocalDate object using the formatter
@@ -144,6 +144,7 @@ public class TrabajaDialog extends JDialog {
 							LocalDate fechaEstimadaFin = LocalDate.parse(fechaEstimadaString, formatter);
 							String horasTrabajadasString = horasTrabajadasTxt.getText();
 							int horasTrabajadas = Integer.parseInt(horasTrabajadasString);
+							System.out.println("proyecto "+ proyecto.getId() + proyecto.getNombre()+ " Empleado: "+ empleado.getDni());
 							controladorP.asignarTrabajo(empleado, proyecto,horasTrabajadas,fechaInicio,fechaEstimadaFin); //
 							optionPane.showMessageDialog(null, "Empleado asignado exitosamente.");
 						}

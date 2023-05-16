@@ -102,7 +102,7 @@ public class ServiceDialog extends JDialog {
 		scrollPane.setViewportView(table);
 		contentPanel.add(scrollPane);
 		{
-			JLabel lblNewLabel = new JLabel("Ingrese el Legajo de la Maquinaria");
+			JLabel lblNewLabel = new JLabel("Ingrese el Código de la Maquinaria");
 			lblNewLabel.setBounds(26, 22, 173, 13);
 			contentPanel.add(lblNewLabel);
 		}
@@ -128,15 +128,12 @@ public class ServiceDialog extends JDialog {
 					    }
 						
 						if (!codigo.isEmpty()) {
-							cargarService(codigo.toUpperCase());
+							cargarService();
 						}
 						
 					} catch (Exception ex) {
 					    optionPane.showMessageDialog(null, ex.getMessage());
-					}
-					
-					
-					
+					}		
 				}
 			});
 			buscarBtn.setBounds(416, 18, 85, 21);
@@ -186,26 +183,21 @@ public class ServiceDialog extends JDialog {
 				serviceBtn.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
 						try {
-						    String codigo = legajoTxt.getText();
-						    maquinaria = controladorMaquinaria.buscar(codigo);
-						    
+						    maquinaria = controladorMaquinaria.buscar(codigo); 
 						    String inicio = fechaInicioTxt.getText();
 						    String fin = fechaFinTxt.getText();
-						    String obs = observacionesTxt.getText();
-						    
+						    String obs = observacionesTxt.getText();    
 						    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
 						    LocalDate fechaI;
-						    LocalDate fechaF;
-						    
-						    
+						    LocalDate fechaF;    
 						    try {
 						        fechaI = LocalDate.parse(inicio, formatter);
 						        fechaF = LocalDate.parse(fin, formatter);
 						        Service service = new Service(fechaI, fechaF, obs);
 						        controladorMaquinaria.asignarService(maquinaria, service);
-						        
 							    actualizarTabla();
-							    cargarService(codigo.toUpperCase());
+							    cargarService();
+							    System.out.println("Codigo de maquinaria heredado: "+ codigo+ "Maquinaria: "+ maquinaria.getCodigo());
 						    } catch (DateTimeParseException e2) {
 						        optionPane.showMessageDialog(null, "La fecha debe tener el formato dd/MM/yyyy.");
 						        return;
@@ -251,9 +243,9 @@ public class ServiceDialog extends JDialog {
 		}
 	}
 	
-	public void cargarService(String codigo) {
+	public void cargarService() {
 		DefaultTableModel modeloTablaService = (DefaultTableModel) table.getModel();
-		//maquinaria = controladorMaquinaria.buscar(codigo);
+		
 		Set<Service> serviciosSet = controladorMaquinaria.listarServices(codigo);
 		List<Service> filasTablaService = new ArrayList<Service>();
 
@@ -269,9 +261,7 @@ public class ServiceDialog extends JDialog {
 				modeloTablaService.addRow(fila);
 			}
 	}
-	
 
-	
 	public void actualizarTabla() {
 		 DefaultTableModel modelo = (DefaultTableModel) table.getModel();
 		    modelo.setRowCount(0); // Limpia la tabla
