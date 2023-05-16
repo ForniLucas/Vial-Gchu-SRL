@@ -21,6 +21,8 @@ import Controladoras.ControladorProyecto;
 import Domain.Utiliza;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 
 public class HistorialUtiliza extends JDialog {
 
@@ -28,14 +30,16 @@ public class HistorialUtiliza extends JDialog {
 	private String id = new String();
 	private ControladorProyecto controladorP = new ControladorProyecto();
 	//Tabla Principal
-	private String ids[] = {"Fecha de Inicio", "Fecha Estimada de Fin","Fecha de Fin", "Código","Descripcion"}; 
+	private String ids[] = {"Fecha de Inicio", "Fecha Estimada de Fin","Fecha de Fin", "Código"}; 
 	private DefaultTableModel mt = new DefaultTableModel();
 	private JTable table = new JTable(mt);
 	private JScrollPane scrollPane = new JScrollPane();
 	private final JButton asignarMaquinariaBtn = new JButton("Asociar Nueva");
 	private String codigo = new String();
+	private String fechaInicio = new String();
+	private String fechaEstimada = new String();
+	private String fechaFin = new String();
 	private final JButton desasociarBtn = new JButton("Desasociar");
-	private final JButton btnImprimir = new JButton("Imprimir Planilla");
 	/**
 	 * Launch the application.
 	 */
@@ -72,6 +76,8 @@ public class HistorialUtiliza extends JDialog {
 			public void mouseClicked(MouseEvent e) {
 				int filaSeleccionada = table.getSelectedRow();
 		        DefaultTableModel mt = (DefaultTableModel)table.getModel();
+		        fechaInicio = mt.getValueAt(filaSeleccionada, 0).toString();
+		        fechaEstimada = mt.getValueAt(filaSeleccionada, 1).toString();
 		        codigo = mt.getValueAt(filaSeleccionada, 3).toString();
 			}
 		});
@@ -101,18 +107,17 @@ public class HistorialUtiliza extends JDialog {
 						utiliza.setVisible(true);
 					}
 				});
-				btnImprimir.addMouseListener(new MouseAdapter() {
-					@Override
-					public void mouseClicked(MouseEvent e) {
-					}
-				});
-				
-				buttonPane.add(btnImprimir);
 				
 				buttonPane.add(asignarMaquinariaBtn);
 				desasociarBtn.addMouseListener(new MouseAdapter() {
 					@Override
 					public void mouseClicked(MouseEvent e) {
+						DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy"); 
+						LocalDate fechaI = LocalDate.parse(fechaInicio, formatter);
+						LocalDate fechaE = LocalDate.parse(fechaEstimada, formatter);
+						LocalDate fechaF = LocalDate.parse(fechaFin, formatter);
+						Utiliza utiliza = new Utiliza(fechaI, fechaE, fechaF);
+						controladorP.desasociarUtiliza(utiliza);
 					}
 				});
 				

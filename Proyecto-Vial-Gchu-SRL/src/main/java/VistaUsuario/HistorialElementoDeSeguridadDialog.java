@@ -21,8 +21,12 @@ import javax.swing.table.DefaultTableModel;
 import Controladoras.ControladorEmpleado;
 import Domain.ElementoDeSeguridad;
 import Domain.Empleado;
+import Enumeraciones.Elemento;
+
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 
 public class HistorialElementoDeSeguridadDialog extends JDialog {
 
@@ -107,6 +111,13 @@ public class HistorialElementoDeSeguridadDialog extends JDialog {
 				btnImprimir.addMouseListener(new MouseAdapter() {
 					@Override
 					public void mouseClicked(MouseEvent e) {
+						empleado = controladorEmpleado.buscarDNI(Integer.parseInt(dni));
+						DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy"); 
+						LocalDate fechaE = LocalDate.parse(fechaEntrega, formatter);
+						empleado = controladorEmpleado.buscarDNI(Integer.parseInt(dni));
+						Elemento elemento = Elemento.valueOf(tipo);
+						ElementoDeSeguridad es = new ElementoDeSeguridad(elemento, fechaE, empleado);
+						controladorEmpleado.crearPlantillaDeEntregaDeElementoDeSeguridad(empleado, es);
 					}
 				});
 				buttonPane.add(btnImprimir);
@@ -128,7 +139,12 @@ public class HistorialElementoDeSeguridadDialog extends JDialog {
 				desasociarButton.addMouseListener(new MouseAdapter() {
 					@Override
 					public void mouseClicked(MouseEvent e) {
-						//controladorEmpleado.
+						DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy"); 
+						LocalDate fechaE = LocalDate.parse(fechaEntrega, formatter);
+						empleado = controladorEmpleado.buscarDNI(Integer.parseInt(dni));
+						 Elemento elemento = Elemento.valueOf(tipo);
+						ElementoDeSeguridad es = new ElementoDeSeguridad(elemento, fechaE, empleado);
+						controladorEmpleado.desasociarElementoDeSeguridad(es);
 					}
 				});
 				buttonPane.add(desasociarButton);

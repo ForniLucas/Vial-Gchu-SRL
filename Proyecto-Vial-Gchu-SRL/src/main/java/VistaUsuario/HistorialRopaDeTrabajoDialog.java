@@ -14,6 +14,8 @@ import javax.swing.table.DefaultTableModel;
 import Controladoras.ControladorEmpleado;
 import Domain.Empleado;
 import Domain.RopaDeTrabajo;
+import Enumeraciones.Elemento;
+import Enumeraciones.Ropa;
 
 import javax.swing.SwingConstants;
 import java.awt.event.ActionListener;
@@ -24,6 +26,8 @@ import java.awt.event.ActionEvent;
 import javax.swing.JLabel;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 
 public class HistorialRopaDeTrabajoDialog extends JDialog {
 
@@ -34,6 +38,7 @@ public class HistorialRopaDeTrabajoDialog extends JDialog {
 	String tipo = new String();
 	String talle = new String();
 	String fechaEntrega = new String();
+	Empleado empleado = new Empleado();
 	//Tabla Principal
 	String ids[] = {"Legajo","Tipo", "Talle","Fecha de Entrega"}; 
 	DefaultTableModel mt = new DefaultTableModel();
@@ -108,6 +113,12 @@ public class HistorialRopaDeTrabajoDialog extends JDialog {
 				btnImprimir.addMouseListener(new MouseAdapter() {
 					@Override
 					public void mouseClicked(MouseEvent e) {
+						empleado = controladorEmpleado.buscarDNI(Integer.parseInt(dni));
+						Ropa ropa = Ropa.valueOf(tipo);
+						DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy"); 
+						LocalDate fechaE = LocalDate.parse(fechaEntrega, formatter);
+						RopaDeTrabajo rt = new RopaDeTrabajo(ropa, talle, fechaE);
+						controladorEmpleado.crearPlantillaDeEntregaDeRopaDeTrabajo(empleado, rt);
 					}
 				});
 				buttonPane.add(btnImprimir);
@@ -129,7 +140,11 @@ public class HistorialRopaDeTrabajoDialog extends JDialog {
 				desasociarButton.addMouseListener(new MouseAdapter() {
 					@Override
 					public void mouseClicked(MouseEvent e) {
-						//controladorEmpleado
+						Ropa ropa = Ropa.valueOf(tipo);
+						DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy"); 
+						LocalDate fechaE = LocalDate.parse(fechaEntrega, formatter);
+						RopaDeTrabajo rt = new RopaDeTrabajo(ropa, talle, fechaE);
+						controladorEmpleado.desasociarRopaDeTrabajo(rt);
 					}
 				});
 				buttonPane.add(desasociarButton);
