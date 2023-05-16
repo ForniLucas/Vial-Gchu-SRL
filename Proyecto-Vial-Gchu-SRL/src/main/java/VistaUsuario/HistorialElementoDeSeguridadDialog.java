@@ -21,6 +21,8 @@ import javax.swing.table.DefaultTableModel;
 import Controladoras.ControladorEmpleado;
 import Domain.ElementoDeSeguridad;
 import Domain.Empleado;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 public class HistorialElementoDeSeguridadDialog extends JDialog {
 
@@ -30,6 +32,8 @@ public class HistorialElementoDeSeguridadDialog extends JDialog {
 	String id = new String();
 	String nombre = new String();
 	String dni = new String();
+	String tipo = new String();
+	String fechaEntrega = new String();
 	//Tabla Principal
 	String ids[] = {"Legajo","Tipo", "Fecha de Entrega"}; 
 	DefaultTableModel mt = new DefaultTableModel();
@@ -64,6 +68,16 @@ public class HistorialElementoDeSeguridadDialog extends JDialog {
 		//Formato de tabla
 		mt.setColumnIdentifiers(ids);
 		contentPanel.setLayout(null);
+		table.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				int filaSeleccionada = table.getSelectedRow();
+		        DefaultTableModel mt = (DefaultTableModel)table.getModel();
+		        id = mt.getValueAt(filaSeleccionada, 0).toString();
+		        tipo = mt.getValueAt(filaSeleccionada, 1).toString();
+		        fechaEntrega = mt.getValueAt(filaSeleccionada, 2).toString(); 
+			}
+		});
 		table.setBounds(89, 39, 500, 500);
 		scrollPane.setBounds(42, 55, 500, 455);
 		scrollPane.setViewportView(table);
@@ -101,6 +115,15 @@ public class HistorialElementoDeSeguridadDialog extends JDialog {
 						setVisible(false);
 					}
 				});
+				
+				JButton desasociarButton = new JButton("Desasociar Elemento de Seguridad");
+				desasociarButton.addMouseListener(new MouseAdapter() {
+					@Override
+					public void mouseClicked(MouseEvent e) {
+						//controladorEmpleado.
+					}
+				});
+				buttonPane.add(desasociarButton);
 				cancelarBtn.setHorizontalAlignment(SwingConstants.RIGHT);
 				cancelarBtn.setActionCommand("Cancel");
 				buttonPane.add(cancelarBtn);
