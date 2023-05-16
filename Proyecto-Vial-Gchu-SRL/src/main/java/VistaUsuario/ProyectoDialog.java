@@ -123,6 +123,7 @@ public class ProyectoDialog extends JDialog {
 					    String fechaDesdeString = buscarFechaDesde.getText();
 					    String fechaHastaString = buscarFechaHasta.getText();
 					    String idString = buscarIdTxt.getText();
+					    String nombre = buscarNombre.getText();
 
 					    LocalDate fechaDesde = null;
 					    LocalDate fechaHasta = null;
@@ -130,16 +131,19 @@ public class ProyectoDialog extends JDialog {
 
 					    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
 
-					    if (fechaDesdeString.isEmpty() && fechaHastaString.isEmpty() && idString.isEmpty()) {
+					    if (fechaDesdeString.isEmpty() && fechaHastaString.isEmpty() && idString.isEmpty() && nombre.isEmpty() ) {
 					    	actualizarTabla();
 					    }
 					    else {
-					    	boolean control = validarDatos(fechaDesdeString, fechaHastaString, idString);
+					    	boolean control = validarDatos(fechaDesdeString, fechaHastaString, idString, nombre);
 					    	
 					    	if (control) {
 					    		if (!idString.isEmpty()) {
 					    			id = Integer.parseInt(idString);
 					    			cargarProyecto(id);
+					    		} 
+					    		else if (!nombre.isEmpty()){
+					    			cargarProyectos(nombre);
 					    		}
 					    		else {
 					    			fechaDesde = LocalDate.parse(fechaDesdeString, formatter);
@@ -266,6 +270,20 @@ public class ProyectoDialog extends JDialog {
 		}
 	}
 	
+	public void cargarProyectos(String pNombre) {
+		DefaultTableModel modeloTablaProyecto = (DefaultTableModel) table.getModel();
+		modeloTablaProyecto.setRowCount(0);
+		List<Proyecto> filasTablaProyecto = controladorProyecto.buscarNombre(pNombre);
+		Iterator<Proyecto> iterador = filasTablaProyecto.iterator();
+		while (iterador.hasNext()) {
+			Proyecto proyecto = (Proyecto) iterador.next();
+			String estado = proyecto.getEstado().toString();
+			String fila[] = {String.valueOf(proyecto.getId()),String.valueOf(proyecto.getNombre()),String.valueOf(convertirFecha(proyecto.getFechaInicio())),
+					String.valueOf(convertirFecha(proyecto.getFechaEstFin())),String.valueOf(estado),String.valueOf(convertirFecha(proyecto.getFechaFin()))};
+			modeloTablaProyecto.addRow(fila);
+		}
+	}
+	
 	public void cargarProyecto(int id) {
 		DefaultTableModel modeloTablaProyecto = (DefaultTableModel) table.getModel();
 		modeloTablaProyecto.setRowCount(0);
@@ -283,10 +301,22 @@ public class ProyectoDialog extends JDialog {
 		}
 	}
 	
-	public boolean validarDatos(String fechaDesde, String fechaHasta, String id) {
+	public boolean validarDatos(String fechaDesde, String fechaHasta, String id, String nombre) {
 	    boolean resultado = true;
 
 	    if ((!fechaDesde.isEmpty() && !id.isEmpty()) || (!fechaHasta.isEmpty() && !id.isEmpty())) {
+	    	JOptionPane.showMessageDialog(null, "Debe elejir solo un criterio de busqueda");
+            resultado = false;
+            return resultado;
+	    }
+	    
+	    if ((!fechaDesde.isEmpty() && !nombre.isEmpty()) || (!fechaHasta.isEmpty() && !nombre.isEmpty())) {
+	    	JOptionPane.showMessageDialog(null, "Debe elejir solo un criterio de busqueda");
+            resultado = false;
+            return resultado;
+	    }
+	    
+	    if ((!nombre.isEmpty() && !id.isEmpty()) ) {
 	    	JOptionPane.showMessageDialog(null, "Debe elejir solo un criterio de busqueda");
             resultado = false;
             return resultado;
