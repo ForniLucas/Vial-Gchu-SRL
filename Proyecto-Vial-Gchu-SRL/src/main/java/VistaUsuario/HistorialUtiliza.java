@@ -17,6 +17,8 @@ import javax.swing.JTable;
 import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
 import javax.swing.table.DefaultTableModel;
+
+import Controladoras.ControladorMaquinaria;
 import Controladoras.ControladorProyecto;
 import Domain.Utiliza;
 import java.awt.event.MouseAdapter;
@@ -40,6 +42,7 @@ public class HistorialUtiliza extends JDialog {
 	private String fechaEstimada = new String();
 	private String fechaFin = new String();
 	private final JButton desasociarBtn = new JButton("Desasociar");
+	private ControladorMaquinaria controaldorMaquinaria = new ControladorMaquinaria();
 	/**
 	 * Launch the application.
 	 */
@@ -78,6 +81,7 @@ public class HistorialUtiliza extends JDialog {
 		        DefaultTableModel mt = (DefaultTableModel)table.getModel();
 		        fechaInicio = mt.getValueAt(filaSeleccionada, 0).toString();
 		        fechaEstimada = mt.getValueAt(filaSeleccionada, 1).toString();
+		        fechaFin = mt.getValueAt(filaSeleccionada, 2).toString();
 		        codigo = mt.getValueAt(filaSeleccionada, 3).toString();
 			}
 		});
