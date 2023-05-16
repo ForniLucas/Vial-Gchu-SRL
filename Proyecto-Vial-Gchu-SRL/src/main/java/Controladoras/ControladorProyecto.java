@@ -1,6 +1,9 @@
 package Controladoras;
 
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.List;
@@ -10,6 +13,7 @@ import javax.persistence.TypedQuery;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
+import javax.swing.JOptionPane;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -18,11 +22,25 @@ import org.hibernate.boot.MetadataSources;
 import org.hibernate.boot.registry.StandardServiceRegistry;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 
+import com.itextpdf.text.BaseColor;
+import com.itextpdf.text.Chunk;
+import com.itextpdf.text.Document;
+import com.itextpdf.text.DocumentException;
+import com.itextpdf.text.Font;
+import com.itextpdf.text.Image;
+import com.itextpdf.text.Paragraph;
+import com.itextpdf.text.Phrase;
+import com.itextpdf.text.Font.FontFamily;
+import com.itextpdf.text.pdf.PdfPCell;
+import com.itextpdf.text.pdf.PdfPTable;
+import com.itextpdf.text.pdf.PdfWriter;
+
 import Domain.ElementoDeSeguridad;
 import Domain.Empleado;
 import Domain.Especializacion;
 import Domain.Maquinaria;
 import Domain.Proyecto;
+import Domain.RopaDeTrabajo;
 import Domain.TipoProyecto;
 import Domain.Trabajo;
 import Domain.Utiliza;
@@ -678,4 +696,219 @@ public LinkedList<Proyecto> buscarNombre (String nombreProyecto) {
 	    return resultados;
 	  }
 	
+	public void crearPlantillaDeTrabajo(Trabajo unTrabajo){
+    	try {
+    		String rutaImagen = "src/main/java/Vista/img/3.2 400x400.png";
+    		Document documento;
+    	    FileOutputStream archivo;
+    	    documento = new Document();
+    	    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+
+    	    archivo = new FileOutputStream(unTrabajo.getEmpleado().getApellido()+String.valueOf(unTrabajo.getEmpleado().getDni())+"Proyecto"+unTrabajo.getProyecto().getNombre() + ".pdf");
+            PdfWriter.getInstance(documento, archivo);
+            documento.open();
+            Font font = new Font(FontFamily.TIMES_ROMAN, 18, Font.NORMAL);
+            Font fonTable = new Font(FontFamily.TIMES_ROMAN, 14, Font.NORMAL);
+          
+            
+
+            Image image = null;
+            try {
+                image =  Image.getInstance(rutaImagen);//carga imagen
+                image.scaleAbsolute(100, 100);//cambia tamaño
+                image.setAbsolutePosition(475, 735);//coloca imagen en la posicion
+                
+            } catch (Exception e) {
+            }
+            
+            documento.add(image);//agrega la imagen al documento
+            Paragraph texto  = new Paragraph("PLANILLA DE TRABAJO DE UN",font);      
+            texto.setAlignment(0);
+            documento.add(texto);
+            texto  = new Paragraph("EMPLEADO PARA UN PROYECTO",font);      
+            texto.setAlignment(0);
+            documento.add(texto);
+            
+            
+
+
+            documento.add(Chunk.NEWLINE);
+            
+            
+
+            
+            //EMPLEADO
+            
+            PdfPTable tabla = new PdfPTable(1);
+            tabla.setWidthPercentage(100);
+            PdfPCell f1 = new PdfPCell(new Phrase("EMPLEADO",fonTable));
+            f1.setBackgroundColor(BaseColor.ORANGE);
+            tabla.addCell(f1);
+            documento.add(tabla);
+            
+            PdfPTable tabla2= new PdfPTable(2);
+            tabla2.setWidthPercentage(100);
+            PdfPCell f21 = new PdfPCell(new Phrase("APELLIDO",fonTable));
+            PdfPCell f22 = new PdfPCell(new Phrase(unTrabajo.getEmpleado().getApellido(),fonTable));
+            tabla2.addCell(f21);
+            tabla2.addCell(f22);
+            
+            documento.add(tabla2);
+            
+            PdfPTable tabla3= new PdfPTable(2);
+            tabla3.setWidthPercentage(100);
+            PdfPCell f31 = new PdfPCell(new Phrase("NOMBRE",fonTable));
+            PdfPCell f32 = new PdfPCell(new Phrase(unTrabajo.getEmpleado().getNombre(),fonTable));
+            tabla3.addCell(f31);
+            tabla3.addCell(f32);
+            
+            documento.add(tabla3);
+            
+            PdfPTable tabla4= new PdfPTable(2);
+            tabla4.setWidthPercentage(100);
+            PdfPCell f41 = new PdfPCell(new Phrase("DNI",fonTable));
+            PdfPCell f42 = new PdfPCell(new Phrase(String.valueOf(unTrabajo.getEmpleado().getDni()) ,fonTable));
+            tabla4.addCell(f41);
+            tabla4.addCell(f42);
+            
+            documento.add(tabla4);
+            
+            PdfPTable tabla5= new PdfPTable(2);
+            tabla5.setWidthPercentage(100);
+            PdfPCell f51 = new PdfPCell(new Phrase("TELEFONO",fonTable));
+            PdfPCell f52 = new PdfPCell(new Phrase(String.valueOf(unTrabajo.getEmpleado().getTelefono()),fonTable));
+            tabla5.addCell(f51);
+            tabla5.addCell(f52);
+            
+            documento.add(tabla5);
+            
+            PdfPTable tabla6= new PdfPTable(2);
+            tabla6.setWidthPercentage(100);
+            PdfPCell f61 = new PdfPCell(new Phrase("DIRECCION",fonTable));
+            PdfPCell f62 = new PdfPCell(new Phrase(unTrabajo.getEmpleado().getDireccion(),fonTable));
+            tabla6.addCell(f61);
+            tabla6.addCell(f62);
+            
+            documento.add(tabla6);
+            
+            PdfPTable tabla7= new PdfPTable(2);
+            tabla7.setWidthPercentage(100);
+            PdfPCell f71 = new PdfPCell(new Phrase("FECHA DE NACIMIENTO",fonTable));
+            PdfPCell f72 = new PdfPCell(new Phrase(unTrabajo.getEmpleado().getFechaNac().format(formatter),fonTable));
+            tabla6.addCell(f71);
+            tabla6.addCell(f72);
+            
+            documento.add(tabla7);
+            
+            //PROYECTO
+            
+            tabla = new PdfPTable(1);
+            tabla.setWidthPercentage(100);
+            f1 = new PdfPCell(new Phrase("PROYECTO",fonTable));
+            f1.setBackgroundColor(BaseColor.ORANGE);
+            tabla.addCell(f1);
+            documento.add(tabla);
+            
+            tabla2= new PdfPTable(2);
+            tabla2.setWidthPercentage(100);
+            f21 = new PdfPCell(new Phrase("LEGAJO",fonTable));
+            f22 = new PdfPCell(new Phrase(String.valueOf(unTrabajo.getProyecto().getId()),fonTable));
+            
+            tabla2.addCell(f21);
+            tabla2.addCell(f22);
+            
+            documento.add(tabla2);
+            
+            tabla3= new PdfPTable(2);
+            tabla3.setWidthPercentage(100);
+            f31 = new PdfPCell(new Phrase("NOMBRE",fonTable));
+            f32 = new PdfPCell(new Phrase(unTrabajo.getProyecto().getNombre(),fonTable));
+            tabla3.addCell(f31);
+            tabla3.addCell(f32);
+            
+            documento.add(tabla3);
+            
+            tabla4= new PdfPTable(2);
+            tabla4.setWidthPercentage(100);
+            f41 = new PdfPCell(new Phrase("TIPO",fonTable));
+            f42 = new PdfPCell(new Phrase(unTrabajo.getProyecto().getTipoProyecto().getTipo().toString(),fonTable));
+            f42.setBottom(5);
+            tabla4.addCell(f41);
+            tabla4.addCell(f42);
+            
+            documento.add(tabla4);
+            
+            tabla5= new PdfPTable(2);
+            tabla5.setWidthPercentage(100);
+            f51 = new PdfPCell(new Phrase("FECHA DE INICIO",fonTable));
+            f52 = new PdfPCell(new Phrase(unTrabajo.getProyecto().getFechaInicio().format(formatter),fonTable));
+            f52.setBottom(5);
+            tabla5.addCell(f51);
+            tabla5.addCell(f52);
+            
+            documento.add(tabla5);
+            
+            //TRABAJO
+            documento.add(Chunk.NEWLINE);
+
+            tabla = new PdfPTable(1);
+            tabla.setWidthPercentage(100);
+            f1 = new PdfPCell(new Phrase("ACTIVIDADES",fonTable));
+            f1.setBackgroundColor(BaseColor.ORANGE);
+            tabla.addCell(f1);
+            documento.add(tabla);
+            
+            tabla2= new PdfPTable(2);
+            tabla2.setWidthPercentage(100);
+            f21 = new PdfPCell(new Phrase("FECHA DE INICIO",fonTable));
+            f22 = new PdfPCell(new Phrase(unTrabajo.getFechaInicio().format(formatter),fonTable));
+            
+            tabla2.addCell(f21);
+            tabla2.addCell(f22);
+            
+            documento.add(tabla2);
+            
+            tabla3= new PdfPTable(2);
+            tabla3.setWidthPercentage(100);
+            f31 = new PdfPCell(new Phrase("FECHA ESTIMADA DE FIN",fonTable));
+            f32 = new PdfPCell(new Phrase(unTrabajo.getFechaEstFin().format(formatter),fonTable));
+            tabla3.addCell(f31);
+            tabla3.addCell(f32);
+            
+            documento.add(tabla3);
+            
+	            
+            tabla4= new PdfPTable(2);
+            tabla4.setWidthPercentage(100);
+            f41 = new PdfPCell(new Phrase("HORAS TRABAJADAS",fonTable));
+            f42 = new PdfPCell(new Phrase(String.valueOf(unTrabajo.getHorasDeTrabajo()),fonTable));
+            f42.setBottom(5);
+            tabla4.addCell(f41);
+            tabla4.addCell(f42);
+            
+            documento.add(tabla4);
+            
+            documento.add(Chunk.NEWLINE);
+            fonTable.setStyle(Font.BOLD);
+            fonTable.setSize(12);
+            texto  = new Paragraph("FIRMA  EMPLEADOR:_____________________________________________________ ",fonTable);
+            texto.setAlignment(0);
+            texto.setIndentationLeft(0);
+            documento.add(texto);
+            documento.add(Chunk.NEWLINE);
+            texto  = new Paragraph("FIRMA EMPLEADO:_______________________________________________________",fonTable);
+            texto.setAlignment(0);
+            texto.setIndentationLeft(0);
+            documento.add(texto);
+            
+            
+            
+            documento.close();
+            JOptionPane.showMessageDialog(null, "El archivo PDF se a creado correctamente!");
+        } catch (FileNotFoundException e) {
+            System.err.println(e.getMessage());
+        } catch(DocumentException e){
+            System.err.println(e.getMessage());
+        }
+    }
 }
