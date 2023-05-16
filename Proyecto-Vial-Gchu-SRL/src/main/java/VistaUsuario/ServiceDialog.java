@@ -26,6 +26,7 @@ import javax.swing.JLabel;
 import javax.swing.JTextField;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.io.Console;
 
 
 public class ServiceDialog extends JDialog {
@@ -159,19 +160,21 @@ public class ServiceDialog extends JDialog {
 				serviceBtn.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
 						//control TRY CATCH, si hay algo en los TxtField debería pasar lo de abajo, si no hay nada, error y no se añade nada
+						maquinaria = controladorMaquinaria.buscar(codigo);
+						System.out.println("busco maquinaria"+ maquinaria.getCodigo()+ maquinaria.getFabricante());
 						String inicio = fechaInicioTxt.getText();
 						String fin = fechaFinTxt.getText();
 						String obs = observacionesTxt.getText();
 						DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-						LocalDate fechaIni = LocalDate.parse(inicio, formatter);
-						LocalDate fechaFin = LocalDate.parse(fin, formatter);
-						
-						
-						
-						Service service = new Service(fechaIni,fechaFin, obs);
-						
+						LocalDate fechaI = LocalDate.parse(inicio, formatter);
+						LocalDate fechaF = LocalDate.parse(fin, formatter);
+						Service service = new Service(fechaI,fechaF, obs);
 						controladorMaquinaria.asignarService(maquinaria, service);
+						System.out.println("asigno service"+" "+ "fecha inicio"+ service.getFechaInicio()+ "fecha fin"+service.getFechaFin()+"observaciones"+service.getObservaciones());
 						actualizarTabla();
+						System.out.println("borro las cosas de la tabla");
+						cargarService();
+						System.out.println("cargo todo de nuevo");
 					}
 				});
 				
@@ -209,7 +212,6 @@ public class ServiceDialog extends JDialog {
 	
 	public void cargarService() {
 		DefaultTableModel modeloTablaService = (DefaultTableModel) table.getModel();
-		Maquinaria maquinaria = new Maquinaria();
 		maquinaria = controladorMaquinaria.buscar(codigo);
 		Iterator <Service>iterador = maquinaria.getServices().iterator();
 			while (iterador.hasNext()) {
@@ -222,7 +224,6 @@ public class ServiceDialog extends JDialog {
 	public void actualizarTabla() {
 		 DefaultTableModel modelo = (DefaultTableModel) table.getModel();
 		    modelo.setRowCount(0); // Limpia la tabla
-		    cargarService();
 	}
 }
 
