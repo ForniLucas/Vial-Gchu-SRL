@@ -65,6 +65,7 @@ public class HistorialRopaDeTrabajoDialog extends JDialog {
 		getContentPane().setLayout(new BorderLayout());
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
 		getContentPane().add(contentPanel, BorderLayout.CENTER);
+		
 		//Formato de tabla
 		mt.setColumnIdentifiers(ids);
 		contentPanel.setLayout(null);
@@ -94,7 +95,7 @@ public class HistorialRopaDeTrabajoDialog extends JDialog {
 			buttonPane.setLayout(new FlowLayout(FlowLayout.RIGHT));
 			getContentPane().add(buttonPane, BorderLayout.SOUTH);
 			{
-				JButton asginarBtn = new JButton("Asociar Nueva Ropa De Trabajo");
+				JButton asginarBtn = new JButton("Asociar Nueva");
 				asginarBtn.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
 						setVisible(false);
@@ -102,6 +103,14 @@ public class HistorialRopaDeTrabajoDialog extends JDialog {
 						ropaDeTrabajoDialog.setVisible(true);					
 						}
 				});
+				
+				JButton btnImprimir = new JButton("Imprimir Planilla");
+				btnImprimir.addMouseListener(new MouseAdapter() {
+					@Override
+					public void mouseClicked(MouseEvent e) {
+					}
+				});
+				buttonPane.add(btnImprimir);
 				asginarBtn.setActionCommand("OK");
 				buttonPane.add(asginarBtn);
 				getRootPane().setDefaultButton(asginarBtn);
@@ -116,7 +125,7 @@ public class HistorialRopaDeTrabajoDialog extends JDialog {
 					}
 				});
 				
-				JButton desasociarButton = new JButton("Desasociar Ropa de Trabajo");
+				JButton desasociarButton = new JButton("Desasociar");
 				desasociarButton.addMouseListener(new MouseAdapter() {
 					@Override
 					public void mouseClicked(MouseEvent e) {

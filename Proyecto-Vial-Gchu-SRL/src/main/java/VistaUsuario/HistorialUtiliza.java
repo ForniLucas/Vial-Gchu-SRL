@@ -32,8 +32,10 @@ public class HistorialUtiliza extends JDialog {
 	private DefaultTableModel mt = new DefaultTableModel();
 	private JTable table = new JTable(mt);
 	private JScrollPane scrollPane = new JScrollPane();
-	private final JButton asignarMaquinariaBtn = new JButton("Asociar Maquinaria");
+	private final JButton asignarMaquinariaBtn = new JButton("Asociar Nueva");
 	private String codigo = new String();
+	private final JButton desasociarBtn = new JButton("Desasociar");
+	private final JButton btnImprimir = new JButton("Imprimir Planilla");
 	/**
 	 * Launch the application.
 	 */
@@ -99,8 +101,22 @@ public class HistorialUtiliza extends JDialog {
 						utiliza.setVisible(true);
 					}
 				});
+				btnImprimir.addMouseListener(new MouseAdapter() {
+					@Override
+					public void mouseClicked(MouseEvent e) {
+					}
+				});
+				
+				buttonPane.add(btnImprimir);
 				
 				buttonPane.add(asignarMaquinariaBtn);
+				desasociarBtn.addMouseListener(new MouseAdapter() {
+					@Override
+					public void mouseClicked(MouseEvent e) {
+					}
+				});
+				
+				buttonPane.add(desasociarBtn);
 				cancelarBtn.setHorizontalAlignment(SwingConstants.RIGHT);
 				cancelarBtn.setActionCommand("Cancel");
 				buttonPane.add(cancelarBtn);

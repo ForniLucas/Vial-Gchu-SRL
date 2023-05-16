@@ -94,7 +94,7 @@ public class HistorialElementoDeSeguridadDialog extends JDialog {
 			buttonPane.setLayout(new FlowLayout(FlowLayout.RIGHT));
 			getContentPane().add(buttonPane, BorderLayout.SOUTH);
 			{
-				JButton modificarBtn = new JButton("Asociar Nuevo Elemento de Seguridad");
+				JButton modificarBtn = new JButton("Asociar Nueva");
 				modificarBtn.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
 						setVisible(false);
@@ -102,6 +102,14 @@ public class HistorialElementoDeSeguridadDialog extends JDialog {
 						elementoDialog.setVisible(true);
 						}
 				});
+				
+				JButton btnImprimir = new JButton("Imprimir Planilla");
+				btnImprimir.addMouseListener(new MouseAdapter() {
+					@Override
+					public void mouseClicked(MouseEvent e) {
+					}
+				});
+				buttonPane.add(btnImprimir);
 				modificarBtn.setActionCommand("OK");
 				buttonPane.add(modificarBtn);
 				getRootPane().setDefaultButton(modificarBtn);
@@ -116,7 +124,7 @@ public class HistorialElementoDeSeguridadDialog extends JDialog {
 					}
 				});
 				
-				JButton desasociarButton = new JButton("Desasociar Elemento de Seguridad");
+				JButton desasociarButton = new JButton("Desasociar ");
 				desasociarButton.addMouseListener(new MouseAdapter() {
 					@Override
 					public void mouseClicked(MouseEvent e) {
@@ -142,5 +150,4 @@ public class HistorialElementoDeSeguridadDialog extends JDialog {
 			modeloTablaElemento.addRow(fila);
 		}
 	}
-
 }

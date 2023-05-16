@@ -93,7 +93,7 @@ public class HistorialTrabaja extends JDialog {
 					}
 				});
 				
-				JButton asignarBtn = new JButton("Asociar Empleado");
+				JButton asignarBtn = new JButton("Asociar Nuevo");
 				asignarBtn.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
 						TrabajaDialog trabaja = new TrabajaDialog(HistorialTrabaja.this, id);
@@ -101,7 +101,18 @@ public class HistorialTrabaja extends JDialog {
 						trabaja.setVisible(true);
 					}
 				});
+				
+				JButton btnImprimir = new JButton("Imprimir Plantilla");
+				btnImprimir.addMouseListener(new MouseAdapter() {
+					@Override
+					public void mouseClicked(MouseEvent e) {
+					}
+				});
+				buttonPane.add(btnImprimir);
 				buttonPane.add(asignarBtn);
+				
+				JButton btnDesasociar = new JButton("Desasociar");
+				buttonPane.add(btnDesasociar);
 				cancelarBtn.setHorizontalAlignment(SwingConstants.RIGHT);
 				cancelarBtn.setActionCommand("Cancel");
 				buttonPane.add(cancelarBtn);
