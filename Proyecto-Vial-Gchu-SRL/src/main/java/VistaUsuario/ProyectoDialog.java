@@ -245,8 +245,8 @@ public class ProyectoDialog extends JDialog {
 		while (iterador.hasNext()) {
 			Proyecto proyecto = (Proyecto) iterador.next();
 			String estado = proyecto.getEstado().toString();
-			String fila[] = {String.valueOf(proyecto.getId()),String.valueOf(proyecto.getNombre()),String.valueOf(proyecto.getFechaInicio()),
-					String.valueOf(proyecto.getFechaEstFin()),String.valueOf(estado),String.valueOf(proyecto.getFechaFin())};
+			String fila[] = {String.valueOf(proyecto.getId()),String.valueOf(proyecto.getNombre()),String.valueOf(convertirFecha(proyecto.getFechaInicio())),
+					String.valueOf(convertirFecha(proyecto.getFechaEstFin())),String.valueOf(estado),String.valueOf(convertirFecha(proyecto.getFechaFin()))};
 			modeloTablaProyecto.addRow(fila);
 		}
 		
@@ -260,8 +260,8 @@ public class ProyectoDialog extends JDialog {
 		while (iterador.hasNext()) {
 			Proyecto proyecto = (Proyecto) iterador.next();
 			String estado = proyecto.getEstado().toString();
-			String fila[] = {String.valueOf(proyecto.getId()),String.valueOf(proyecto.getNombre()),String.valueOf(proyecto.getFechaInicio()),
-					String.valueOf(proyecto.getFechaEstFin()),String.valueOf(estado),String.valueOf(proyecto.getFechaFin())};
+			String fila[] = {String.valueOf(proyecto.getId()),String.valueOf(proyecto.getNombre()),String.valueOf(convertirFecha(proyecto.getFechaInicio())),
+					String.valueOf(convertirFecha(proyecto.getFechaEstFin())),String.valueOf(estado),String.valueOf(convertirFecha(proyecto.getFechaFin()))};
 			modeloTablaProyecto.addRow(fila);
 		}
 	}
@@ -277,8 +277,8 @@ public class ProyectoDialog extends JDialog {
 		while (iterador.hasNext()) {
 			Proyecto proyecto = (Proyecto) iterador.next();
 			String estado = proyecto.getEstado().toString();
-			String fila[] = {String.valueOf(proyecto.getId()),String.valueOf(proyecto.getNombre()),String.valueOf(proyecto.getFechaInicio()),
-					String.valueOf(proyecto.getFechaEstFin()),String.valueOf(estado),String.valueOf(proyecto.getFechaFin())};
+			String fila[] = {String.valueOf(proyecto.getId()),String.valueOf(proyecto.getNombre()),String.valueOf(convertirFecha(proyecto.getFechaInicio())),
+					String.valueOf(convertirFecha(proyecto.getFechaEstFin())),String.valueOf(estado),String.valueOf(convertirFecha(proyecto.getFechaFin()))};
 			modeloTablaProyecto.addRow(fila);
 		}
 	}
@@ -348,5 +348,16 @@ public class ProyectoDialog extends JDialog {
 		 DefaultTableModel modelo = (DefaultTableModel) table.getModel();
 		    modelo.setRowCount(0); // Limpia la tabla
 		    cargarProyectos(); 
+	}
+	
+	public String convertirFecha(LocalDate fecha) {
+	    // Crear el formateador para el formato de salida
+	    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+
+	    // Formatear la fecha en el formato deseado "dd/MM/yyyy"
+	    String fechaFormateada = fecha.format(formatter);
+
+	    // Devolver la fecha formateada
+	    return fechaFormateada;
 	}
 }
