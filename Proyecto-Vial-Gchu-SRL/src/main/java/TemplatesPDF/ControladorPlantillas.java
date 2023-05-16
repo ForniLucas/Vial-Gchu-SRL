@@ -139,9 +139,13 @@ public class ControladorPlantillas {
 	    	 archivo = new FileOutputStream("inicial" + ".pdf");
 	            PdfWriter.getInstance(documento, archivo);
 	            documento.open();
+	            
+	            
+	            
+
 	            Font font = new Font(FontFamily.TIMES_ROMAN, 18, Font.NORMAL);
 	            Font fonTable = new Font(FontFamily.TIMES_ROMAN, 14, Font.NORMAL);
-	            
+	            Font fonText = new Font(FontFamily.TIMES_ROMAN, 11, Font.NORMAL);
 	            
 
 	            Image image = null;
@@ -154,17 +158,34 @@ public class ControladorPlantillas {
 	            }
 	            
 	            documento.add(image);//agrega la imagen al documento
-	            Paragraph texto  = new Paragraph("PLANILLA DE MANTENIMIENTO DE MAQUINARIA",font);      
+	            Paragraph texto  = new Paragraph("CONSTANCIA DE ENTREGA DE",font);      
+	            texto.setAlignment(0);
+	            documento.add(texto);
+	            texto  = new Paragraph("PROTECCION PERSONAL",font);      
 	            texto.setAlignment(0);
 	            documento.add(texto);
 	            
+
+
+	            documento.add(Chunk.NEWLINE);
 	            
-
-
-	            documento.add(Chunk.NEWLINE);
-	            documento.add(Chunk.NEWLINE);
-	            documento.add(Chunk.NEWLINE);
-	            documento.add(Chunk.NEWLINE);
+	            texto  = new Paragraph("De acuerdo a lo estipulado en la Ley 16.744, Art. 68 inciso tres:",fonText);
+	            texto.setAlignment(0);
+	            texto.setIndentationLeft(0);
+	            documento.add(texto);
+	            
+	            
+	            texto  = new Paragraph("“Las empresas deberán proporcionar a sus trabajadores, los equipos e implementos de ",fonText);
+	            texto.setAlignment(0);
+	            texto.setIndentationLeft(0);
+	            documento.add(texto);
+	            
+	            
+	            texto  = new Paragraph("protección necesarios, no pudiendo en caso alguno cobrarles su valor”. ",fonText);
+	            texto.setAlignment(0);
+	            texto.setIndentationLeft(0);
+	            documento.add(texto);
+	            
 	            documento.add(Chunk.NEWLINE);
 
 	            
@@ -240,6 +261,24 @@ public class ControladorPlantillas {
 	            tabla4.addCell(f42);
 	            
 	            documento.add(tabla4);
+	            documento.add(Chunk.NEWLINE);
+	            fonTable.setStyle(Font.BOLD);
+	            fonTable.setSize(12);
+	            texto  = new Paragraph("FIRMA  EMPLEADOR:_____________________________________________________ ",fonTable);
+	            texto.setAlignment(0);
+	            texto.setIndentationLeft(0);
+	            documento.add(texto);
+	            documento.add(Chunk.NEWLINE);
+	            texto  = new Paragraph("FIRMA EMPLEADO:_______________________________________________________",fonTable);
+	            texto.setAlignment(0);
+	            texto.setIndentationLeft(0);
+	            documento.add(texto);
+	            fonText.setStyle(Font.BOLD);
+	            fonText.setSize(9);
+	            texto  = new Paragraph("El trabajador se compromete a mantener los elementos de protección personal en buen estado, y además de solicitar el cambio de este cuando se encuentre en mal estado. ",fonText);
+	            texto.setAlignment(0);
+	            texto.setIndentationLeft(0);
+	            documento.add(texto);
 	            
 	            
 	            documento.close();

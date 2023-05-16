@@ -385,8 +385,7 @@ public class ControladorMaquinaria {
 	            
 
 
-	            documento.add(Chunk.NEWLINE);
-	            documento.add(Chunk.NEWLINE);
+
 	            documento.add(Chunk.NEWLINE);
 	            documento.add(Chunk.NEWLINE);
 	            documento.add(Chunk.NEWLINE);
