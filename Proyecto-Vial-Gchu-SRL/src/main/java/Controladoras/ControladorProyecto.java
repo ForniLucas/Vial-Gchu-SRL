@@ -18,6 +18,7 @@ import org.hibernate.boot.MetadataSources;
 import org.hibernate.boot.registry.StandardServiceRegistry;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 
+import Domain.ElementoDeSeguridad;
 import Domain.Empleado;
 import Domain.Especializacion;
 import Domain.Maquinaria;
@@ -197,7 +198,7 @@ public void finalizarProyecto(Proyecto unProyecto, LocalDate unaFechaFin) {
 	      session = factory.openSession();
 	      transaction = session.beginTransaction();
 	      unProyecto.setFechaFin(unaFechaFin);
-	      unProyecto.setEstado(EstadoProyecto.CANCELADO);
+	      unProyecto.setEstado(EstadoProyecto.FINALIZADO);
 	      //Actualiza el proyecto
 	      session.update(unProyecto);
 	      transaction.commit();
@@ -480,6 +481,42 @@ public LinkedList<Proyecto> buscarNombre (String nombreProyecto) {
 	    }
 	}
 	
+	
+	public void desasociarTrabajo(Trabajo unTrabajo) {
+	    // Start Hibernate session
+	    StandardServiceRegistry registry = new StandardServiceRegistryBuilder().configure().build();
+	    SessionFactory factory = null;
+	    Session session = null;
+	    Transaction transaction = null;
+	    try {
+	      factory = new MetadataSources(registry).buildMetadata().buildSessionFactory();
+	      session = factory.openSession();
+	      transaction = session.beginTransaction();
+	      
+	      // Eliminar el empleado de la base de datos
+	      session.delete(unTrabajo);
+	      transaction.commit();
+	      
+	      
+	      
+	    } catch (Exception ex) {
+	      if (transaction != null) {
+	        // Realizar un rollback en caso de una excepción
+	        transaction.rollback();
+	      }
+	      System.out.println(ex.getMessage());
+	      ex.printStackTrace();
+	    } finally {
+	      if (session != null) {
+	        session.close();
+	      }
+	      if (factory != null) {
+	        factory.close();
+	      }
+	      StandardServiceRegistryBuilder.destroy(registry);
+	    }
+	  }
+	
 	public void asignarUtiliza(Maquinaria unaMaquinaria, Proyecto unProyecto, LocalDate fechaInicio, LocalDate fechaEstFin) {
 		// Iniciar sesión de Hibernate
 	    StandardServiceRegistry registry = new StandardServiceRegistryBuilder().configure().build();
@@ -525,6 +562,41 @@ public LinkedList<Proyecto> buscarNombre (String nombreProyecto) {
 	    	  StandardServiceRegistryBuilder.destroy(registry);
 	    }
 	}
+	
+	public void desasociarUtiliza(Utiliza unaUtiliza) {
+	    // Start Hibernate session
+	    StandardServiceRegistry registry = new StandardServiceRegistryBuilder().configure().build();
+	    SessionFactory factory = null;
+	    Session session = null;
+	    Transaction transaction = null;
+	    try {
+	      factory = new MetadataSources(registry).buildMetadata().buildSessionFactory();
+	      session = factory.openSession();
+	      transaction = session.beginTransaction();
+	      
+	      // Eliminar el empleado de la base de datos
+	      session.delete(unaUtiliza);
+	      transaction.commit();
+	      
+	      
+	      
+	    } catch (Exception ex) {
+	      if (transaction != null) {
+	        // Realizar un rollback en caso de una excepción
+	        transaction.rollback();
+	      }
+	      System.out.println(ex.getMessage());
+	      ex.printStackTrace();
+	    } finally {
+	      if (session != null) {
+	        session.close();
+	      }
+	      if (factory != null) {
+	        factory.close();
+	      }
+	      StandardServiceRegistryBuilder.destroy(registry);
+	    }
+	  }
 	
 	public Set<Utiliza> listarUtiliza(Long unId) {
 	    // Iniciar la sesión de Hibernate

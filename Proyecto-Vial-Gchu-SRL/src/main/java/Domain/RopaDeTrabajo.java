@@ -4,6 +4,8 @@
 package Domain;
 
 import java.time.LocalDate;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
@@ -32,7 +34,7 @@ public class RopaDeTrabajo implements java.io.Serializable{
     @GeneratedValue(strategy = GenerationType.IDENTITY)
      private Long id;
 	
-	@ManyToOne(fetch=FetchType.LAZY)
+	@ManyToOne(fetch=FetchType.EAGER,cascade = CascadeType.ALL)
 	@JoinColumn(name="empleado_id", nullable=false)
 	private Empleado Empleado;
     

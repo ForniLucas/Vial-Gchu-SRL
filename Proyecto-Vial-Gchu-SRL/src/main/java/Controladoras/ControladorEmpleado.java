@@ -103,6 +103,41 @@ public class ControladorEmpleado
 	    }
 	}
 	
+	public void desasociarElementoDeSeguridad(ElementoDeSeguridad unElemento) {
+	    // Start Hibernate session
+	    StandardServiceRegistry registry = new StandardServiceRegistryBuilder().configure().build();
+	    SessionFactory factory = null;
+	    Session session = null;
+	    Transaction transaction = null;
+	    try {
+	      factory = new MetadataSources(registry).buildMetadata().buildSessionFactory();
+	      session = factory.openSession();
+	      transaction = session.beginTransaction();
+	      
+	      // Eliminar el empleado de la base de datos
+	      session.delete(unElemento);
+	      transaction.commit();
+	      
+	      
+	      
+	    } catch (Exception ex) {
+	      if (transaction != null) {
+	        // Realizar un rollback en caso de una excepción
+	        transaction.rollback();
+	      }
+	      System.out.println(ex.getMessage());
+	      ex.printStackTrace();
+	    } finally {
+	      if (session != null) {
+	        session.close();
+	      }
+	      if (factory != null) {
+	        factory.close();
+	      }
+	      StandardServiceRegistryBuilder.destroy(registry);
+	    }
+	  }
+	
 	public void asignarRopaDeTrabajo(Empleado unEmpleado,RopaDeTrabajo unaRopa) {
 		// Iniciar sesión de Hibernate
 	    StandardServiceRegistry registry = new StandardServiceRegistryBuilder().configure().build();
@@ -139,6 +174,43 @@ public class ControladorEmpleado
 	    }
 	}
 	
+	public void desasociarRopaDeTrabajo(RopaDeTrabajo unaRopa) {
+	    // Start Hibernate session
+	    StandardServiceRegistry registry = new StandardServiceRegistryBuilder().configure().build();
+	    SessionFactory factory = null;
+	    Session session = null;
+	    Transaction transaction = null;
+	    try {
+	      factory = new MetadataSources(registry).buildMetadata().buildSessionFactory();
+	      session = factory.openSession();
+	      transaction = session.beginTransaction();
+	      
+	      // Eliminar el empleado de la base de datos
+	      session.delete(unaRopa);
+	      transaction.commit();
+	      
+	      
+	      
+	    } catch (Exception ex) {
+	      if (transaction != null) {
+	        // Realizar un rollback en caso de una excepción
+	        transaction.rollback();
+	      }
+	      System.out.println(ex.getMessage());
+	      ex.printStackTrace();
+	    } finally {
+	      if (session != null) {
+	        session.close();
+	      }
+	      if (factory != null) {
+	        factory.close();
+	      }
+	      StandardServiceRegistryBuilder.destroy(registry);
+	    }
+	  }
+
+	
+
 	public void asignarEspecializacion(Empleado unEmpleado,Especializacion unaEspecializacion) {
 		// Iniciar sesión de Hibernate
 	    StandardServiceRegistry registry = new StandardServiceRegistryBuilder().configure().build();
