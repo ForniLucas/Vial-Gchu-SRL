@@ -12,16 +12,19 @@ import javax.swing.JTable;
 import javax.swing.border.EmptyBorder;
 import javax.swing.table.DefaultTableModel;
 
+import Domain.Empleado;
 import Domain.Maquinaria;
 import Controladoras.ControladorMaquinaria;
 
 import java.awt.event.ActionListener;
 import java.util.Iterator;
+import java.util.LinkedList;
 import java.util.List;
 import java.awt.event.ActionEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 
 public class MaquinariaDialog extends JDialog {
@@ -30,6 +33,7 @@ public class MaquinariaDialog extends JDialog {
 	//Tabla Principal
 	String ids[] = {"Legajo","codigo","Descripción","Fabricante","Ubicación de Almacenamiento","Estado"}; 
 	DefaultTableModel mt = new DefaultTableModel();
+	JOptionPane optionPane = new JOptionPane();
 	JTable table = new JTable(mt);
 	JScrollPane scrollPane = new JScrollPane(); 
 	ControladorMaquinaria controladorMaquinaria = new ControladorMaquinaria();
@@ -96,6 +100,30 @@ public class MaquinariaDialog extends JDialog {
 		JButton buscarBtn = new JButton("Buscar");
 		buscarBtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				try {
+					String buscar = "";
+				    String inputText = buscarcodigoTxt.getText();
+				    
+				    // Verificar si el texto contiene caracteres no válidos
+				    if (!inputText.matches("^[a-zA-Z0-9]*$")) {
+				        optionPane.showMessageDialog(null, "El texto ingresado contiene caracteres no válidos. Solo se permiten letras y números.");
+				        return; // Salir del método sin continuar
+				    }
+				    
+				    buscar = inputText.toUpperCase();
+					
+					if (buscar.isEmpty()) {
+						actualizarTabla();
+					}
+					else {
+						cargarMaquinaria(buscar);
+					}
+					
+					
+				} catch (Exception ex) {
+				    optionPane.showMessageDialog(null, ex.getMessage());
+				}
+				
 			}
 		});
 		buscarBtn.setBounds(460, 29, 85, 19);
@@ -159,6 +187,7 @@ public class MaquinariaDialog extends JDialog {
 	}
 	public void cargarMaquinaria(){
 		DefaultTableModel modeloTablaMaquinaria = (DefaultTableModel) table.getModel();
+		modeloTablaMaquinaria.setRowCount(0);
 		List<Maquinaria> filasTablaEmpleado = controladorMaquinaria.listarMaquinaria();
 		Iterator<Maquinaria> iterador = filasTablaEmpleado.iterator();
 		while (iterador.hasNext()) {
@@ -171,7 +200,29 @@ public class MaquinariaDialog extends JDialog {
 		}
 		
 	}
-	public void refrescar() {
-		table.repaint();;
+	
+	public void cargarMaquinaria(String codigo){
+		DefaultTableModel modeloTablaMaquinaria = (DefaultTableModel) table.getModel();
+		modeloTablaMaquinaria.setRowCount(0);
+		List<Maquinaria> maquinariaEncontrados = new LinkedList<Maquinaria>();
+		Maquinaria maquinariaEncontrado = controladorMaquinaria.buscar(codigo);
+		if (maquinariaEncontrado != null) maquinariaEncontrados.add(maquinariaEncontrado);
+		List<Maquinaria> filasTablaEmpleado = maquinariaEncontrados;
+		Iterator<Maquinaria> iterador = filasTablaEmpleado.iterator();
+		while (iterador.hasNext()) {
+			Maquinaria maquinaria = (Maquinaria) iterador.next();
+			String estado = maquinaria.getEstado() ? "En Servicio" : "Fuera De Servicio";
+			String fila[] = {String.valueOf(maquinaria.getId()),String.valueOf(maquinaria.getCodigo()),String.valueOf(maquinaria.getDescripcion()),
+					String.valueOf(maquinaria.getFabricante()),String.valueOf(maquinaria.getUbicacionAlmacenamiento()),String.valueOf(estado),
+		};
+			modeloTablaMaquinaria.addRow(fila);
+		}
+		
+	}
+	
+	public void actualizarTabla() {
+		 DefaultTableModel modelo = (DefaultTableModel) table.getModel();
+		    modelo.setRowCount(0); // Limpia la tabla
+		    cargarMaquinaria();
 	}
 }
