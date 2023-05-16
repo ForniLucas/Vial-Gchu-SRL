@@ -4,6 +4,8 @@
 package Domain;
 
 import java.time.LocalDate;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -39,7 +41,7 @@ public class ElementoDeSeguridad implements java.io.Serializable {
     @UpdateTimestamp
     private LocalDate fechaEntrega;
     
-    @ManyToOne(fetch=FetchType.LAZY)
+    @ManyToOne(fetch=FetchType.EAGER,cascade = CascadeType.ALL)
 	@JoinColumn(name="empleado_id", nullable=false)
 	private Empleado Empleado;
     

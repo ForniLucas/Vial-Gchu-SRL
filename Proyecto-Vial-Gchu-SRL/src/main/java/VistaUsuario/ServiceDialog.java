@@ -24,6 +24,9 @@ import java.util.Iterator;
 import java.awt.event.ActionEvent;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+
 
 public class ServiceDialog extends JDialog {
 
@@ -39,6 +42,11 @@ public class ServiceDialog extends JDialog {
 	ControladorMaquinaria controladorMaquinaria = new ControladorMaquinaria();
 	private String codigo = new String();
 	private Maquinaria maquinaria = new Maquinaria(); 
+	private String id = new String();
+	private String fechaInicio = new String();
+	private String fechaFin = new String();
+	private String observaciones = new String();
+	private Service service = new Service();
 	/**
 	 * Launch the application.
 	 */
@@ -68,6 +76,17 @@ public class ServiceDialog extends JDialog {
 		
 		//Formato de tabla
 		mt.setColumnIdentifiers(ids);
+		table.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				int filaSeleccionada = table.getSelectedRow();
+		        DefaultTableModel mt = (DefaultTableModel)table.getModel();
+		        id = mt.getValueAt(filaSeleccionada, 0).toString();
+		        fechaInicio = mt.getValueAt(filaSeleccionada, 1).toString();
+		        fechaFin = mt.getValueAt(filaSeleccionada, 2).toString();
+		        observaciones = mt.getValueAt(filaSeleccionada, 3).toString();
+			}
+		});
 		table.setBounds(26, 71, 532, 112);
 		scrollPane.setBounds(26, 71, 532, 112);
 		scrollPane.setViewportView(table);
@@ -155,6 +174,20 @@ public class ServiceDialog extends JDialog {
 						actualizarTabla();
 					}
 				});
+				
+				JButton imprimirButton = new JButton("Imprimir Planilla de Mantenimiento");
+				imprimirButton.addMouseListener(new MouseAdapter() {
+					@Override
+					public void mouseClicked(MouseEvent e) {
+						maquinaria = controladorMaquinaria.buscar(codigo);
+						DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+						LocalDate fechaI = LocalDate.parse(fechaInicio, formatter);
+						LocalDate fechaF = LocalDate.parse(fechaFin, formatter);
+						Service service = new Service(fechaI, fechaF, observaciones);
+						controladorMaquinaria.crearPlantillaDeMantenimiento(maquinaria, service);
+					}
+				});
+				buttonPane.add(imprimirButton);
 				serviceBtn.setActionCommand("OK");
 				buttonPane.add(serviceBtn);
 				getRootPane().setDefaultButton(serviceBtn);

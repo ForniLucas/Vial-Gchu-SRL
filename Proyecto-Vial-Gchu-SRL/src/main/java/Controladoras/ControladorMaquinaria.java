@@ -1,5 +1,9 @@
 package Controladoras;
 
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.List;
@@ -9,6 +13,7 @@ import javax.persistence.TypedQuery;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
+import javax.swing.JOptionPane;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -16,6 +21,19 @@ import org.hibernate.Transaction;
 import org.hibernate.boot.MetadataSources;
 import org.hibernate.boot.registry.StandardServiceRegistry;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
+
+import com.itextpdf.text.BaseColor;
+import com.itextpdf.text.Chunk;
+import com.itextpdf.text.Document;
+import com.itextpdf.text.DocumentException;
+import com.itextpdf.text.Font;
+import com.itextpdf.text.Image;
+import com.itextpdf.text.Paragraph;
+import com.itextpdf.text.Phrase;
+import com.itextpdf.text.Font.FontFamily;
+import com.itextpdf.text.pdf.PdfPCell;
+import com.itextpdf.text.pdf.PdfPTable;
+import com.itextpdf.text.pdf.PdfWriter;
 
 import Domain.Empleado;
 import Domain.Especializacion;
@@ -333,5 +351,128 @@ public class ControladorMaquinaria {
 	    }
 	    return resultados;
 	  }
+	
+	 public void crearPlantillaDeMantenimiento(Maquinaria unaMaquina, Service unService){
+	    	try {
+	    		String rutaImagen = "src/main/java/Vista/img/3.2 400x400.png";
+	    		Document documento;
+	    	    FileOutputStream archivo;
+	    	    documento = new Document();
+	    	    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+
+	    	    archivo = new FileOutputStream("Service"+unaMaquina.getCodigo() + ".pdf");
+	            PdfWriter.getInstance(documento, archivo);
+	            documento.open();
+	            Font font = new Font(FontFamily.TIMES_ROMAN, 18, Font.NORMAL);
+	            Font fonTable = new Font(FontFamily.TIMES_ROMAN, 14, Font.NORMAL);
+	            
+	            
+
+	            Image image = null;
+	            try {
+	                image =  Image.getInstance(rutaImagen);//carga imagen
+	                image.scaleAbsolute(100, 100);//cambia tamaño
+	                image.setAbsolutePosition(475, 735);//coloca imagen en la posicion
+	                
+	            } catch (Exception e) {
+	            }
+	            
+	            documento.add(image);//agrega la imagen al documento
+	            Paragraph texto  = new Paragraph("PLANILLA DE MANTENIMIENTO DE MAQUINARIA",font);      
+	            texto.setAlignment(0);
+	            documento.add(texto);
+	            
+	            
+
+
+
+	            documento.add(Chunk.NEWLINE);
+	            documento.add(Chunk.NEWLINE);
+	            documento.add(Chunk.NEWLINE);
+
+	            
+	            //MAQUINA
+	            
+	            PdfPTable tabla = new PdfPTable(1);
+	            tabla.setWidthPercentage(100);
+	            PdfPCell f1 = new PdfPCell(new Phrase("FICHA TÉCNICA DE LA MÁQUINA/EQUIPO",fonTable));
+	            f1.setBackgroundColor(BaseColor.ORANGE);
+	            tabla.addCell(f1);
+	            documento.add(tabla);
+	            
+	            PdfPTable tabla2= new PdfPTable(2);
+	            tabla2.setWidthPercentage(100);
+	            PdfPCell f21 = new PdfPCell(new Phrase("CODIGO",fonTable));
+	            PdfPCell f22 = new PdfPCell(new Phrase(unaMaquina.getCodigo(),fonTable));
+	            tabla2.addCell(f21);
+	            tabla2.addCell(f22);
+	            
+	            documento.add(tabla2);
+	            
+	            PdfPTable tabla3= new PdfPTable(2);
+	            tabla3.setWidthPercentage(100);
+	            PdfPCell f31 = new PdfPCell(new Phrase("DESCRIPCION",fonTable));
+	            PdfPCell f32 = new PdfPCell(new Phrase(unaMaquina.getDescripcion(),fonTable));
+	            tabla3.addCell(f31);
+	            tabla3.addCell(f32);
+	            
+	            documento.add(tabla3);
+	            
+	            PdfPTable tabla4= new PdfPTable(2);
+	            tabla4.setWidthPercentage(100);
+	            PdfPCell f41 = new PdfPCell(new Phrase("FABRICANTE",fonTable));
+	            PdfPCell f42 = new PdfPCell(new Phrase(unaMaquina.getFabricante(),fonTable));
+	            tabla4.addCell(f41);
+	            tabla4.addCell(f42);
+	            
+	            documento.add(tabla4);
+	            
+	            //SERVICE
+	            
+	            tabla = new PdfPTable(1);
+	            tabla.setWidthPercentage(100);
+	            f1 = new PdfPCell(new Phrase("SERVICE",fonTable));
+	            f1.setBackgroundColor(BaseColor.ORANGE);
+	            tabla.addCell(f1);
+	            documento.add(tabla);
+	            
+	            tabla2= new PdfPTable(2);
+	            tabla2.setWidthPercentage(100);
+	            f21 = new PdfPCell(new Phrase("FECHA DE ENTRADA",fonTable));
+	            f22 = new PdfPCell(new Phrase(unService.getFechaInicio().format(formatter),fonTable));
+	            
+	            tabla2.addCell(f21);
+	            tabla2.addCell(f22);
+	            
+	            documento.add(tabla2);
+	            
+	            tabla3= new PdfPTable(2);
+	            tabla3.setWidthPercentage(100);
+	            f31 = new PdfPCell(new Phrase("FECHA DE SALIDA",fonTable));
+	            f32 = new PdfPCell(new Phrase(unService.getFechaFin().format(formatter),fonTable));
+	            tabla3.addCell(f31);
+	            tabla3.addCell(f32);
+	            
+	            documento.add(tabla3);
+	            
+	            tabla4= new PdfPTable(2);
+	            tabla4.setWidthPercentage(100);
+	            f41 = new PdfPCell(new Phrase("TAREAS/OBSERVACIONES",fonTable));
+	            f42 = new PdfPCell(new Phrase(unService.getObservaciones(),fonTable));
+	            f42.setBottom(5);
+	            tabla4.addCell(f41);
+	            tabla4.addCell(f42);
+	            
+	            documento.add(tabla4);
+	            
+	            
+	            documento.close();
+	            JOptionPane.showMessageDialog(null, "El archivo PDF se a creado correctamente!");
+	        } catch (FileNotFoundException e) {
+	            System.err.println(e.getMessage());
+	        } catch(DocumentException e){
+	            System.err.println(e.getMessage());
+	        }
+	    }
 
 }

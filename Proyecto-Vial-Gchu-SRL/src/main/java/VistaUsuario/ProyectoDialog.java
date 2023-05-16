@@ -47,6 +47,7 @@ public class ProyectoDialog extends JDialog {
 	private JTextField buscarFechaDesde;
 	private JTextField buscarIdTxt;
 	private JTextField buscarFechaHasta;
+	private JTextField buscarNombre;
 	/**
 	 * Launch the application.
 	 */
@@ -92,25 +93,25 @@ public class ProyectoDialog extends JDialog {
 		scrollPane.setViewportView(table);
 		contentPanel.add(scrollPane);
 		{
-			JLabel nombreLbl = new JLabel("Ingrese fecha desde:");
-			nombreLbl.setBounds(102, 28, 161, 13);
-			contentPanel.add(nombreLbl);
+			JLabel fechaDesdeLbl = new JLabel("Ingrese fecha desde:");
+			fechaDesdeLbl.setBounds(26, 28, 161, 13);
+			contentPanel.add(fechaDesdeLbl);
 		}
 		{
 			buscarFechaDesde = new JTextField();
 			buscarFechaDesde.setColumns(10);
-			buscarFechaDesde.setBounds(223, 25, 121, 19);
+			buscarFechaDesde.setBounds(140, 25, 121, 19);
 			contentPanel.add(buscarFechaDesde);
 		}
 		{
 			JLabel idLbl = new JLabel("O ingrese un ID:");
-			idLbl.setBounds(638, 28, 127, 13);
+			idLbl.setBounds(488, 28, 127, 13);
 			contentPanel.add(idLbl);
 		}
 		{
 			buscarIdTxt = new JTextField();
 			buscarIdTxt.setColumns(10);
-			buscarIdTxt.setBounds(760, 25, 205, 19);
+			buscarIdTxt.setBounds(587, 25, 85, 19);
 			contentPanel.add(buscarIdTxt);
 		}
 		{
@@ -157,13 +158,22 @@ public class ProyectoDialog extends JDialog {
 		}
 		
 		JLabel lblHasta = new JLabel("Hasta:");
-		lblHasta.setBounds(382, 28, 102, 13);
+		lblHasta.setBounds(275, 28, 102, 13);
 		contentPanel.add(lblHasta);
 		
 		buscarFechaHasta = new JTextField();
 		buscarFechaHasta.setColumns(10);
-		buscarFechaHasta.setBounds(446, 25, 121, 19);
+		buscarFechaHasta.setBounds(324, 25, 121, 19);
 		contentPanel.add(buscarFechaHasta);
+		
+		JLabel nombreLbl = new JLabel("O ingrese un nombre:");
+		nombreLbl.setBounds(711, 28, 127, 13);
+		contentPanel.add(nombreLbl);
+		
+		buscarNombre = new JTextField();
+		buscarNombre.setColumns(10);
+		buscarNombre.setBounds(835, 25, 121, 19);
+		contentPanel.add(buscarNombre);
 		
 		cargarProyectos();
 	

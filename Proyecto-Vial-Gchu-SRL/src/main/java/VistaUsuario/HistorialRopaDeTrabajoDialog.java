@@ -22,12 +22,18 @@ import java.util.List;
 import java.util.Set;
 import java.awt.event.ActionEvent;
 import javax.swing.JLabel;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 public class HistorialRopaDeTrabajoDialog extends JDialog {
 
 	private final JPanel contentPanel = new JPanel();
 	ControladorEmpleado controladorEmpleado = new ControladorEmpleado();
 	String dni = new String();
+	String id = new String();
+	String tipo = new String();
+	String talle = new String();
+	String fechaEntrega = new String();
 	//Tabla Principal
 	String ids[] = {"Legajo","Tipo", "Talle","Fecha de Entrega"}; 
 	DefaultTableModel mt = new DefaultTableModel();
@@ -59,9 +65,21 @@ public class HistorialRopaDeTrabajoDialog extends JDialog {
 		getContentPane().setLayout(new BorderLayout());
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
 		getContentPane().add(contentPanel, BorderLayout.CENTER);
+		
 		//Formato de tabla
 		mt.setColumnIdentifiers(ids);
 		contentPanel.setLayout(null);
+		table.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				int filaSeleccionada = table.getSelectedRow();
+		        DefaultTableModel mt = (DefaultTableModel)table.getModel();
+		        id = mt.getValueAt(filaSeleccionada, 0).toString();
+		        tipo = mt.getValueAt(filaSeleccionada, 1).toString();
+		        talle = mt.getValueAt(filaSeleccionada, 2).toString();
+		        fechaEntrega = mt.getValueAt(filaSeleccionada, 3).toString();
+			}
+		});
 		table.setBounds(89, 39, 500, 500);
 		scrollPane.setBounds(42, 55, 500, 455);
 		scrollPane.setViewportView(table);
@@ -77,7 +95,7 @@ public class HistorialRopaDeTrabajoDialog extends JDialog {
 			buttonPane.setLayout(new FlowLayout(FlowLayout.RIGHT));
 			getContentPane().add(buttonPane, BorderLayout.SOUTH);
 			{
-				JButton asginarBtn = new JButton("Asociar Nueva Ropa De Trabajo");
+				JButton asginarBtn = new JButton("Asociar Nueva");
 				asginarBtn.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
 						setVisible(false);
@@ -85,6 +103,14 @@ public class HistorialRopaDeTrabajoDialog extends JDialog {
 						ropaDeTrabajoDialog.setVisible(true);					
 						}
 				});
+				
+				JButton btnImprimir = new JButton("Imprimir Planilla");
+				btnImprimir.addMouseListener(new MouseAdapter() {
+					@Override
+					public void mouseClicked(MouseEvent e) {
+					}
+				});
+				buttonPane.add(btnImprimir);
 				asginarBtn.setActionCommand("OK");
 				buttonPane.add(asginarBtn);
 				getRootPane().setDefaultButton(asginarBtn);
@@ -98,6 +124,15 @@ public class HistorialRopaDeTrabajoDialog extends JDialog {
 						setVisible(false);
 					}
 				});
+				
+				JButton desasociarButton = new JButton("Desasociar");
+				desasociarButton.addMouseListener(new MouseAdapter() {
+					@Override
+					public void mouseClicked(MouseEvent e) {
+						//controladorEmpleado
+					}
+				});
+				buttonPane.add(desasociarButton);
 				cancelarBtn.setHorizontalAlignment(SwingConstants.RIGHT);
 				cancelarBtn.setActionCommand("Cancel");
 				buttonPane.add(cancelarBtn);

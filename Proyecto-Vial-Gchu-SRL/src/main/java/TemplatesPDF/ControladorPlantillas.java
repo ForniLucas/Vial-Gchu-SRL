@@ -17,6 +17,10 @@ import com.itextpdf.text.Phrase;
 import com.itextpdf.text.pdf.PdfPCell;
 import com.itextpdf.text.pdf.PdfPTable;
 import com.itextpdf.text.pdf.PdfWriter;
+
+import VistaUsuario.Principal;
+
+import java.awt.EventQueue;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.nio.file.Files;
@@ -30,7 +34,7 @@ import javax.swing.JOptionPane;
  *
  */
 public class ControladorPlantillas {
-	String rutaImagen = "C:\\Users\\lucas\\eclipse-workspace\\Vial-Gchu-SRL\\Vial-Gchu-SRL\\Proyecto-Vial-Gchu-SRL\\src\\main\\java\\Vista\\img\\3.2 400x400.png";
+	String rutaImagen = "src/main/java/Vista/img/3.2 400x400.png";
 
 
 	Font fuente = FontFactory.getFont("Times New Roman");
@@ -135,30 +139,146 @@ public class ControladorPlantillas {
 	    	 archivo = new FileOutputStream("inicial" + ".pdf");
 	            PdfWriter.getInstance(documento, archivo);
 	            documento.open();
-	            Font font = new Font(FontFamily.TIMES_ROMAN, 12, Font.NORMAL);
+	            
+	            
+	            
 
-	            titulo.setAlignment(1);
+	            Font font = new Font(FontFamily.TIMES_ROMAN, 18, Font.NORMAL);
+	            Font fonTable = new Font(FontFamily.TIMES_ROMAN, 14, Font.NORMAL);
+	            Font fonText = new Font(FontFamily.TIMES_ROMAN, 11, Font.NORMAL);
+	            
 
 	            Image image = null;
 	            try {
 	                image =  Image.getInstance(rutaImagen);//carga imagen
-	                image.scaleAbsolute(50, 50);//cambia tamaño
-	                //image.setAbsolutePosition(415, 750);//coloca imagen en la posicion
+	                image.scaleAbsolute(100, 100);//cambia tamaño
+	                image.setAbsolutePosition(475, 735);//coloca imagen en la posicion
 	                
 	            } catch (Exception e) {
 	            }
 	            
-	            //documento.add(image);//agrega la imagen al documento
-	            
-	            documento.add(titulo);
+	            documento.add(image);//agrega la imagen al documento
+	            Paragraph texto  = new Paragraph("CONSTANCIA DE ENTREGA DE",font);      
+	            texto.setAlignment(0);
+	            documento.add(texto);
+	            texto  = new Paragraph("PROTECCION PERSONAL",font);      
+	            texto.setAlignment(0);
+	            documento.add(texto);
 	            
 
 
 	            documento.add(Chunk.NEWLINE);
 	            
-	            Paragraph texto = new Paragraph("PLANILLA DE MANTENIBevelBorder DE MAQUINARIA",font);
+	            texto  = new Paragraph("De acuerdo a lo estipulado en la Ley 16.744, Art. 68 inciso tres:",fonText);
+	            texto.setAlignment(0);
+	            texto.setIndentationLeft(0);
+	            documento.add(texto);
 	            
-	            documento.add(new Paragraph("Fecha: " + "hoy"));
+	            
+	            texto  = new Paragraph("“Las empresas deberán proporcionar a sus trabajadores, los equipos e implementos de ",fonText);
+	            texto.setAlignment(0);
+	            texto.setIndentationLeft(0);
+	            documento.add(texto);
+	            
+	            
+	            texto  = new Paragraph("protección necesarios, no pudiendo en caso alguno cobrarles su valor”. ",fonText);
+	            texto.setAlignment(0);
+	            texto.setIndentationLeft(0);
+	            documento.add(texto);
+	            
+	            documento.add(Chunk.NEWLINE);
+
+	            
+	            //MAQUINA
+	            
+	            PdfPTable tabla = new PdfPTable(1);
+	            tabla.setWidthPercentage(100);
+	            PdfPCell f1 = new PdfPCell(new Phrase("FICHA TÉCNICA DE LA MÁQUINA/EQUIPO",fonTable));
+	            f1.setBackgroundColor(BaseColor.ORANGE);
+	            tabla.addCell(f1);
+	            documento.add(tabla);
+	            
+	            PdfPTable tabla2= new PdfPTable(2);
+	            tabla2.setWidthPercentage(100);
+	            PdfPCell f21 = new PdfPCell(new Phrase("CODIGO",fonTable));
+	            PdfPCell f22 = new PdfPCell(new Phrase("Edad",fonTable));
+	            tabla2.addCell(f21);
+	            tabla2.addCell(f22);
+	            
+	            documento.add(tabla2);
+	            
+	            PdfPTable tabla3= new PdfPTable(2);
+	            tabla3.setWidthPercentage(100);
+	            PdfPCell f31 = new PdfPCell(new Phrase("DESCRIPCION",fonTable));
+	            PdfPCell f32 = new PdfPCell(new Phrase("Edad",fonTable));
+	            tabla3.addCell(f31);
+	            tabla3.addCell(f32);
+	            
+	            documento.add(tabla3);
+	            
+	            PdfPTable tabla4= new PdfPTable(2);
+	            tabla4.setWidthPercentage(100);
+	            PdfPCell f41 = new PdfPCell(new Phrase("FABRICANTE",fonTable));
+	            PdfPCell f42 = new PdfPCell(new Phrase("Edad",fonTable));
+	            tabla4.addCell(f41);
+	            tabla4.addCell(f42);
+	            
+	            documento.add(tabla4);
+	            
+	            //SERVICE
+	            
+	            tabla = new PdfPTable(1);
+	            tabla.setWidthPercentage(100);
+	            f1 = new PdfPCell(new Phrase("SERVICE",fonTable));
+	            f1.setBackgroundColor(BaseColor.ORANGE);
+	            tabla.addCell(f1);
+	            documento.add(tabla);
+	            
+	            tabla2= new PdfPTable(2);
+	            tabla2.setWidthPercentage(100);
+	            f21 = new PdfPCell(new Phrase("FECHA DE ENTRADA",fonTable));
+	            f22 = new PdfPCell(new Phrase("Edad",fonTable));
+	            tabla2.addCell(f21);
+	            tabla2.addCell(f22);
+	            
+	            documento.add(tabla2);
+	            
+	            tabla3= new PdfPTable(2);
+	            tabla3.setWidthPercentage(100);
+	            f31 = new PdfPCell(new Phrase("FECHA DE SALIDA",fonTable));
+	            f32 = new PdfPCell(new Phrase("Edad",fonTable));
+	            tabla3.addCell(f31);
+	            tabla3.addCell(f32);
+	            
+	            documento.add(tabla3);
+	            
+	            tabla4= new PdfPTable(2);
+	            tabla4.setWidthPercentage(100);
+	            f41 = new PdfPCell(new Phrase("TAREAS/OBSERVACIONES",fonTable));
+	            f42 = new PdfPCell(new Phrase("Edad",fonTable));
+	            f42.setBottom(5);
+	            tabla4.addCell(f41);
+	            tabla4.addCell(f42);
+	            
+	            documento.add(tabla4);
+	            documento.add(Chunk.NEWLINE);
+	            fonTable.setStyle(Font.BOLD);
+	            fonTable.setSize(12);
+	            texto  = new Paragraph("FIRMA  EMPLEADOR:_____________________________________________________ ",fonTable);
+	            texto.setAlignment(0);
+	            texto.setIndentationLeft(0);
+	            documento.add(texto);
+	            documento.add(Chunk.NEWLINE);
+	            texto  = new Paragraph("FIRMA EMPLEADO:_______________________________________________________",fonTable);
+	            texto.setAlignment(0);
+	            texto.setIndentationLeft(0);
+	            documento.add(texto);
+	            fonText.setStyle(Font.BOLD);
+	            fonText.setSize(9);
+	            texto  = new Paragraph("El trabajador se compromete a mantener los elementos de protección personal en buen estado, y además de solicitar el cambio de este cuando se encuentre en mal estado. ",fonText);
+	            texto.setAlignment(0);
+	            texto.setIndentationLeft(0);
+	            documento.add(texto);
 	            
 	            
 	            documento.close();
@@ -169,6 +289,8 @@ public class ControladorPlantillas {
 	            System.err.println(e.getMessage());
 	        }
 	    }
+	    
+	    
 }
 	    
 	
