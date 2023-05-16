@@ -11,7 +11,10 @@ import javax.swing.JTable;
 import javax.swing.border.EmptyBorder;
 import javax.swing.table.DefaultTableModel;
 
+import java.util.Set;
+
 import Controladoras.ControladorMaquinaria;
+import Domain.Empleado;
 import Domain.Maquinaria;
 import Domain.Service;
 
@@ -20,9 +23,14 @@ import java.sql.Date;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
+import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.LinkedList;
+import java.util.List;
 import java.awt.event.ActionEvent;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
@@ -32,6 +40,7 @@ import java.io.Console;
 public class ServiceDialog extends JDialog {
 
 	private final JPanel contentPanel = new JPanel();
+	JOptionPane optionPane = new JOptionPane();
 	private JTextField legajoTxt;
 	private JTextField fechaInicioTxt;
 	private JTextField fechaFinTxt;
@@ -109,8 +118,25 @@ public class ServiceDialog extends JDialog {
 			JButton buscarBtn = new JButton("Buscar");
 			buscarBtn.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
-					maquinaria = controladorMaquinaria.buscar(codigo);
-					cargarService();
+					
+					try {
+						String codigo = legajoTxt.getText();
+						// Verificar si el texto contiene caracteres no válidos
+					    if (!codigo.matches("^[a-zA-Z0-9]*$")) {
+					        optionPane.showMessageDialog(null, "El codigo ingresado contiene caracteres no válidos. Solo se permiten letras y números.");
+					        return; // Salir del método sin continuar
+					    }
+						
+						if (!codigo.isEmpty()) {
+							cargarService(codigo.toUpperCase());
+						}
+						
+					} catch (Exception ex) {
+					    optionPane.showMessageDialog(null, ex.getMessage());
+					}
+					
+					
+					
 				}
 			});
 			buscarBtn.setBounds(416, 18, 85, 21);
@@ -159,22 +185,37 @@ public class ServiceDialog extends JDialog {
 				JButton serviceBtn = new JButton("Añadir Service");
 				serviceBtn.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
-						//control TRY CATCH, si hay algo en los TxtField debería pasar lo de abajo, si no hay nada, error y no se añade nada
-						maquinaria = controladorMaquinaria.buscar(codigo);
-						System.out.println("busco maquinaria"+ maquinaria.getCodigo()+ maquinaria.getFabricante());
-						String inicio = fechaInicioTxt.getText();
-						String fin = fechaFinTxt.getText();
-						String obs = observacionesTxt.getText();
-						DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-						LocalDate fechaI = LocalDate.parse(inicio, formatter);
-						LocalDate fechaF = LocalDate.parse(fin, formatter);
-						Service service = new Service(fechaI,fechaF, obs);
-						controladorMaquinaria.asignarService(maquinaria, service);
-						System.out.println("asigno service"+" "+ "fecha inicio"+ service.getFechaInicio()+ "fecha fin"+service.getFechaFin()+"observaciones"+service.getObservaciones());
-						actualizarTabla();
-						System.out.println("borro las cosas de la tabla");
-						cargarService();
-						System.out.println("cargo todo de nuevo");
+						try {
+						    String codigo = legajoTxt.getText();
+						    maquinaria = controladorMaquinaria.buscar(codigo);
+						    
+						    String inicio = fechaInicioTxt.getText();
+						    String fin = fechaFinTxt.getText();
+						    String obs = observacionesTxt.getText();
+						    
+						    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+						    LocalDate fechaI;
+						    LocalDate fechaF;
+						    
+						    
+						    try {
+						        fechaI = LocalDate.parse(inicio, formatter);
+						        fechaF = LocalDate.parse(fin, formatter);
+						        Service service = new Service(fechaI, fechaF, obs);
+						        controladorMaquinaria.asignarService(maquinaria, service);
+						        
+							    actualizarTabla();
+							    cargarService(codigo.toUpperCase());
+						    } catch (DateTimeParseException e2) {
+						        optionPane.showMessageDialog(null, "La fecha debe tener el formato dd/MM/yyyy.");
+						        return;
+						    }
+						} catch (Exception ex) {
+						    optionPane.showMessageDialog(null, "Ocurrió un error al procesar los datos: " + ex.getMessage());
+						    return;
+						}
+
+						
 					}
 				});
 				
@@ -210,10 +251,17 @@ public class ServiceDialog extends JDialog {
 		}
 	}
 	
-	public void cargarService() {
+	public void cargarService(String codigo) {
 		DefaultTableModel modeloTablaService = (DefaultTableModel) table.getModel();
-		maquinaria = controladorMaquinaria.buscar(codigo);
-		Iterator <Service>iterador = maquinaria.getServices().iterator();
+		//maquinaria = controladorMaquinaria.buscar(codigo);
+		Set<Service> serviciosSet = controladorMaquinaria.listarServices(codigo);
+		List<Service> filasTablaService = new ArrayList<Service>();
+
+		for (Service service : serviciosSet) {
+		    filasTablaService.add(service);
+		}
+
+		Iterator <Service>iterador = filasTablaService.iterator();
 			while (iterador.hasNext()) {
 				Service service = (Service) iterador.next();
 				String fila [] = {String.valueOf(service.getId()), String.valueOf(service.getFechaInicio()),String.valueOf(service.getFechaFin()), 
@@ -221,6 +269,9 @@ public class ServiceDialog extends JDialog {
 				modeloTablaService.addRow(fila);
 			}
 	}
+	
+
+	
 	public void actualizarTabla() {
 		 DefaultTableModel modelo = (DefaultTableModel) table.getModel();
 		    modelo.setRowCount(0); // Limpia la tabla
