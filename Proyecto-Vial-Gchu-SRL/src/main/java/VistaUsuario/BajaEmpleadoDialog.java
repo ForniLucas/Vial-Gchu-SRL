@@ -137,6 +137,9 @@ public class BajaEmpleadoDialog extends JDialog {
 								if (controlador.buscarDNI(empleado.getDni()).getEstado()) {
 									controlador.bajaLogica(empleado);
 									optionPane.showMessageDialog(null, "Datos dados de baja con éxito");
+									setVisible(false);
+									EmpleadoDialog empleados = new EmpleadoDialog();
+									empleados.setVisible(true);
 								}
 								else {
 									optionPane.showMessageDialog(null, "El Empleado ya esta dado de baja");

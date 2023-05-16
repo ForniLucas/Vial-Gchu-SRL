@@ -249,6 +249,9 @@ public class ModificarProyectoDialog extends JDialog {
 
 						        controladorProyecto.modificar(proyecto);
 						        optionPane.showMessageDialog(null, "Datos modificados con éxito");
+						        setVisible(false);
+								ProyectoDialog proyectoDialog = new ProyectoDialog();
+								proyectoDialog.setVisible(true);
 						    } catch (DateTimeParseException e1) {
 						        optionPane.showMessageDialog(null, "La fecha debe tener formato dd/MM/yyyy.");
 						    } catch (Exception e2) {

@@ -210,6 +210,9 @@ public class AltaProyectoDialog extends JDialog {
 						            proyecto.asignarTipoProyecto(tipoProyecto);
 						            controlador.alta(proyecto);
 						            optionPane.showMessageDialog(null,"Datos guardados con éxito");
+						            setVisible(false);
+									ProyectoDialog proyectoDialog = new ProyectoDialog();
+									proyectoDialog.setVisible(true);
 						        }
 						    } catch (DateTimeParseException e1) {
 						        optionPane.showMessageDialog(null, "La fecha debe tener formato dd/MM/yyyy.");

@@ -219,6 +219,9 @@ public class ModificarEmpleadoDialog extends JDialog {
 									empleado.setFechaNac(fechaDeNacimiento);
 									controlador.modificar(empleado);
 									optionPane.showMessageDialog(null, "Datos modificados con éxito");
+									setVisible(false);
+									EmpleadoDialog empleados = new EmpleadoDialog();
+									empleados.setVisible(true);
 								}
 								
 							}catch (NumberFormatException e1) {

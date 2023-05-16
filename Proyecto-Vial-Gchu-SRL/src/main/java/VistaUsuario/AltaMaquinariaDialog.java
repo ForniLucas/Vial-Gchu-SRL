@@ -120,6 +120,9 @@ public class AltaMaquinariaDialog extends JDialog {
 						    if (control) {
 						    	controlador.alta(codigo, desc, fabr, ubic);
 							    JOptionPane.showMessageDialog(null, "Datos almacenados con éxito");
+							    setVisible(false);
+								MaquinariaDialog maquinariaDialog = new MaquinariaDialog();
+								maquinariaDialog.setVisible(true);
 						    }
 						    
 						} catch (Exception e1) {

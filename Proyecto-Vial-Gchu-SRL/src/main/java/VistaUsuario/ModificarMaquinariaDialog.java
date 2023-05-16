@@ -181,6 +181,9 @@ public class ModificarMaquinariaDialog extends JDialog {
 								maquina.setUbicacionAlmacenamiento(ubicacion);
 								controlador.modificar(maquina);
 								optionPane.showMessageDialog(null,"Datos modificados con éxito");
+								setVisible(false);
+								MaquinariaDialog maquinariaDialog = new MaquinariaDialog();
+								maquinariaDialog.setVisible(true);
 						    }
 							
 							

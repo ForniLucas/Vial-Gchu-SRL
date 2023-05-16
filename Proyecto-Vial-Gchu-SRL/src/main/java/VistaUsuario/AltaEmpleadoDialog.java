@@ -156,6 +156,9 @@ public class AltaEmpleadoDialog extends JDialog {
 						        	if (control) {	
 						        		controlador.alta(nombre, apellido, dni, telefono, direccion, fechaDeNacimiento);
 						        		optionPane.showMessageDialog(null,"Datos almacenados con éxito");
+						        		setVisible(false);
+						        		EmpleadoDialog empleados = new EmpleadoDialog();
+										empleados.setVisible(true);
 						        	}
 						    } catch (NumberFormatException e1) {
 						        optionPane.showMessageDialog(null, "El valor del DNI o teléfono debe ser un número entero.");
