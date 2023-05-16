@@ -30,13 +30,15 @@ public class AltaProyectoDialog extends JDialog {
 	private final JPanel contentPanel = new JPanel();
 	JOptionPane optionPane = new JOptionPane();
 	private JTextField fechaInicioTxt;
-	private JTextField fechaFinTxt;
+	private JTextField fechaEstimadaFinTxt;
 	private JComboBox<EstadoProyecto> estadoBox= new JComboBox<EstadoProyecto>(EstadoProyecto.values());
 	private JTextField nombreTxt;
 	private JTextField descripcionTxt;
 	private JTextField actividadesTxt;
 	private JTextField insumosTxt;
 	private ControladorProyecto controlador = new ControladorProyecto();
+	private JTextField fechaEstimadaFin;
+	private JTextField fechaFinTxt;
 	private JComboBox<TipoDeProyecto> comboBox = new JComboBox<TipoDeProyecto>(TipoDeProyecto.values()){
 	
 		@Override
@@ -81,88 +83,102 @@ public class AltaProyectoDialog extends JDialog {
 		contentPanel.setLayout(null);
 		{
 			JLabel lblNewLabel = new JLabel("Fecha de Inicio");
-			lblNewLabel.setBounds(121, 42, 120, 13);
+			lblNewLabel.setBounds(81, 34, 145, 13);
 			contentPanel.add(lblNewLabel);
 		}
 		{
 			JLabel lblNewLabel_1 = new JLabel("Fecha Estimada de Fin");
-			lblNewLabel_1.setBounds(82, 97, 174, 13);
+			lblNewLabel_1.setBounds(52, 83, 174, 13);
 			contentPanel.add(lblNewLabel_1);
 		}
 		{
 			JLabel lblNewLabel_2 = new JLabel("Estado");
-			lblNewLabel_2.setBounds(152, 152, 120, 13);
+			lblNewLabel_2.setBounds(117, 181, 95, 13);
 			contentPanel.add(lblNewLabel_2);
 		}
 		{
 			JLabel lblNewLabel_3 = new JLabel("Nombre de Proyecto");
-			lblNewLabel_3.setBounds(89, 207, 124, 13);
+			lblNewLabel_3.setBounds(52, 230, 160, 13);
 			contentPanel.add(lblNewLabel_3);
 		}
 		{
 			JLabel lblNewLabel_4 = new JLabel("Tipo de Proyecto");
-			lblNewLabel_4.setBounds(105, 262, 120, 13);
+			lblNewLabel_4.setBounds(70, 279, 156, 13);
 			contentPanel.add(lblNewLabel_4);
 		}
 		{
 			JLabel lblNewLabel_5 = new JLabel("Descripción");
-			lblNewLabel_5.setBounds(129, 427, 120, 13);
+			lblNewLabel_5.setBounds(99, 426, 95, 13);
 			contentPanel.add(lblNewLabel_5);
 		}
 
 		{
-				
-			fechaInicioTxt.setBounds(226, 43, 96, 19);
+			//	81, 34, 145, 13
+			fechaInicioTxt.setBounds(236, 31, 96, 19);
 			contentPanel.add(fechaInicioTxt);
 			fechaInicioTxt.setColumns(10);
 		}
 		{
-		//82, 97, 134, 13
-			fechaFinTxt.setText("dd/mm/aaaa");
-			fechaFinTxt.setBounds(226, 94, 96, 19);
-			contentPanel.add(fechaFinTxt);
-			fechaFinTxt.setColumns(10);
+		//52, 83, 174, 13
+			fechaEstimadaFin = new JTextField();
+			fechaEstimadaFin.setText("dd/mm/aaaa");
+			fechaEstimadaFin.setBounds(236, 83, 96, 19);
+			contentPanel.add(fechaEstimadaFin);
+			fechaEstimadaFin.setColumns(10);
 		}
 		{
-		//152, 152, 64, 13
-			estadoBox.setBounds(226, 149, 96, 19);
+		//117, 181, 95, 13
+			estadoBox.setBounds(236, 181, 96, 19);
 			contentPanel.add(estadoBox);
 		}
 		{
 			
-			nombreTxt.setBounds(226, 204, 196, 19);
+			nombreTxt.setBounds(236, 227, 196, 19);
 			contentPanel.add(nombreTxt);
 			nombreTxt.setColumns(255);
 		}
 		{
 			
-			descripcionTxt.setBounds(226, 413, 223, 42);
+			descripcionTxt.setBounds(236, 412, 223, 42);
 			contentPanel.add(descripcionTxt);
 			descripcionTxt.setColumns(255);
 		}
 		{
-			actividadesTxt.setBounds(226, 314, 196, 19);
+			actividadesTxt.setBounds(236, 325, 196, 19);
 			contentPanel.add(actividadesTxt);
 			actividadesTxt.setColumns(225);
 		}
 		{
-			insumosTxt.setBounds(226, 369, 196, 19);
+			insumosTxt.setBounds(236, 374, 196, 19);
 			contentPanel.add(insumosTxt);
 			insumosTxt.setColumns(225);
 		}
 		
 		JLabel actLbl = new JLabel("Actividades");
-		actLbl.setBounds(129, 317, 120, 13);
+		actLbl.setBounds(99, 328, 127, 13);
 		contentPanel.add(actLbl);
 		{
 			JLabel insLb = new JLabel("Insumos");
-			insLb.setBounds(143, 372, 120, 13);
+			insLb.setBounds(112, 377, 100, 13);
 			contentPanel.add(insLb);
+		}
+		
+		JLabel fechaFinLbl = new JLabel("Fecha de Fin");
+		fechaFinLbl.setBounds(93, 132, 143, 13);
+		contentPanel.add(fechaFinLbl);
+		
+		
+		{
+			fechaFinTxt = new JTextField();
+			fechaFinTxt.setText("dd/mm/aaaa");
+			fechaFinTxt.setBounds(236, 129, 96, 19);
+			contentPanel.add(fechaFinTxt);
+			fechaFinTxt.setColumns(10);
 		}
 
 		{
-			//105, 262, 111, 13
-			comboBox.setBounds(226, 259, 150, 21);
+			//70, 279, 156, 13
+			comboBox.setBounds(236, 279, 150, 21);
 			contentPanel.add(comboBox);
 		
 		}
@@ -177,7 +193,8 @@ public class AltaProyectoDialog extends JDialog {
 						
 						try {
 						    String fechaInicioString = fechaInicioTxt.getText();
-						    String fechaFinString = fechaFinTxt.getText();
+						    String fechaEstimadaFinString = fechaEstimadaFin.getText();
+						    String fechaFinString = fechaEstimadaFinTxt.getText();
 						    String nombre = nombreTxt.getText();
 						    String desc = descripcionTxt.getText();
 						    String actividades = actividadesTxt.getText();
@@ -185,25 +202,26 @@ public class AltaProyectoDialog extends JDialog {
 						    EstadoProyecto estado = (EstadoProyecto) estadoBox.getSelectedItem();
 						    TipoDeProyecto tipo = (TipoDeProyecto) comboBox.getSelectedItem();
 
-						    if (fechaInicioString.trim().isEmpty() || fechaFinString.trim().isEmpty() || nombre.trim().isEmpty() ||
+						    if (fechaInicioString.trim().isEmpty() || fechaEstimadaFinString.trim().isEmpty() || nombre.trim().isEmpty() ||
 						            desc.trim().isEmpty() || actividades.trim().isEmpty() || insumos.trim().isEmpty()) {
 						        optionPane.showMessageDialog(null,"Por favor, complete todos los campos.");
 						        return;
 						    }
 
 						    LocalDate fechaInicio = null;
+						    LocalDate fechaEFin = null;
 						    LocalDate fechaFin = null;
-
 						    try {
 						        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
 						        fechaInicio = LocalDate.parse(fechaInicioString, formatter);
-						        fechaFin = LocalDate.parse(fechaFinString, formatter);
-						        boolean control = validarDatos(fechaInicioString, fechaFinString, nombre, desc, actividades, insumos);
+						        fechaEFin = LocalDate.parse(fechaEstimadaFinString, formatter);
+						        fechaEFin = LocalDate.parse(fechaFinString, formatter);
+						        boolean control = validarDatos(fechaInicioString, fechaEstimadaFinString, nombre, desc, actividades, insumos);
 						        if (control) {
 						            TipoProyecto tipoProyecto = new TipoProyecto(tipo, desc, actividades, insumos);
 						            Proyecto proyecto = new Proyecto();
 						            proyecto.setFechaInicio(fechaInicio);
-						            proyecto.setFechaEstFin(fechaFin);
+						            proyecto.setFechaEstFin(fechaEFin);
 						            proyecto.setFechaFin(fechaFin);
 						            proyecto.setNombre(nombre);
 						            proyecto.setEstado(estado);
@@ -292,5 +310,4 @@ public class AltaProyectoDialog extends JDialog {
 	    
 	    return resultado;
 	}
-
 }
