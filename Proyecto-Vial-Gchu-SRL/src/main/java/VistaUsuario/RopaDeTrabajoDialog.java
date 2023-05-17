@@ -105,7 +105,7 @@ public class RopaDeTrabajoDialog extends JDialog {
 					public void actionPerformed(ActionEvent e) {
 						empleado = controlador.buscarDNI(Integer.parseInt(dni));
 						try {
-							if (empleado.getApellido() != null) {
+							if (empleado != null) {
 								String fechaEtnregaString = fechaTxt.getText(); 
 								DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy"); 
 								LocalDate fechaEtnrega = LocalDate.parse(fechaEtnregaString, formatter); 

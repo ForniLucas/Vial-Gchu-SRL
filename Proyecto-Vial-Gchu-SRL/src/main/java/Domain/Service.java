@@ -4,6 +4,8 @@
 package Domain;
 
 import java.time.LocalDate;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -42,7 +44,7 @@ public class Service implements java.io.Serializable{
     @Column(name = "observaciones", nullable=true)
     private String observaciones;
     
-    @ManyToOne(fetch=FetchType.LAZY)
+    @ManyToOne(fetch=FetchType.EAGER,cascade = CascadeType.ALL)
 	@JoinColumn(name="maquinaria_id", nullable=false)
 	private Maquinaria Maquinaria;
 
