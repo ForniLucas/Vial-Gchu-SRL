@@ -111,9 +111,12 @@ public class HistorialElementoDeSeguridadDialog extends JDialog {
 				btnImprimir.addMouseListener(new MouseAdapter() {
 					@Override
 					public void mouseClicked(MouseEvent e) {
+						System.out.println("aca anda");
 						empleado = controladorEmpleado.buscarDNI(Integer.parseInt(dni));
-						DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy"); 
+						DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+						System.out.println("aca anda");
 						LocalDate fechaE = LocalDate.parse(fechaEntrega, formatter);
+						System.out.println("aca anda");
 						empleado = controladorEmpleado.buscarDNI(Integer.parseInt(dni));
 						Elemento elemento = Elemento.valueOf(tipo);
 						ElementoDeSeguridad es = new ElementoDeSeguridad(elemento, fechaE, empleado);
@@ -139,8 +142,11 @@ public class HistorialElementoDeSeguridadDialog extends JDialog {
 				desasociarButton.addMouseListener(new MouseAdapter() {
 					@Override
 					public void mouseClicked(MouseEvent e) {
-						DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy"); 
+						System.out.println("aca anda");
+						DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+						System.out.println("aca anda");
 						LocalDate fechaE = LocalDate.parse(fechaEntrega, formatter);
+						System.out.println("aca anda");
 						empleado = controladorEmpleado.buscarDNI(Integer.parseInt(dni));
 						String t = tipo.toUpperCase();
 						Elemento elemento = Elemento.valueOf(t);

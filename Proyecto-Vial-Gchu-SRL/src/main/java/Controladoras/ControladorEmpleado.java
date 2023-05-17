@@ -643,7 +643,7 @@ public class ControladorEmpleado
 	    		Document documento;
 	    	    FileOutputStream archivo;
 	    	    documento = new Document();
-	    	    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+	    	    //DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
 
 	    	    archivo = new FileOutputStream(unEmpleado.getApellido()+String.valueOf(unEmpleado.getDni())+unElemento.getTipo().toString() + ".pdf");
 	            PdfWriter.getInstance(documento, archivo);
@@ -800,7 +800,7 @@ public class ControladorEmpleado
 	            tabla3= new PdfPTable(2);
 	            tabla3.setWidthPercentage(100);
 	            f31 = new PdfPCell(new Phrase("FECHA DE RECEPCIÓN",fonTable));
-	            f32 = new PdfPCell(new Phrase(unElemento.getFechaEntrega().format(formatter),fonTable));
+	            f32 = new PdfPCell(new Phrase(unElemento.getFechaEntrega().toString()));//format(formatter),fonTable
 	            tabla3.addCell(f31);
 	            tabla3.addCell(f32);
 	            
