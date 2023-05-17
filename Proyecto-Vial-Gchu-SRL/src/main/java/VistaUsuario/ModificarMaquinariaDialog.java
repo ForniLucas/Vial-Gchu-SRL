@@ -18,6 +18,8 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import javax.swing.JComboBox;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class ModificarMaquinariaDialog extends JDialog {
 
@@ -225,7 +227,7 @@ public boolean validarDatos(String codigo, String desc, String fabr, String ubic
 		}
 
 		// Validar descripción
-		if (!desc.matches("[a-zA-Z0-9 ]{1,50}")) {
+		if (!desc.matches("[a-zA-ZáéíóúÁÉÍÓÚüÜñÑ\\s]{1,30}")) {
 		    // Mensaje de error si la descripción contiene caracteres no permitidos o excede los 50 caracteres
 		    JOptionPane.showMessageDialog(null, "Ingrese una descripción válida (solo letras, números y espacios, hasta 50 caracteres).");
 		    resultado = false;
@@ -233,21 +235,21 @@ public boolean validarDatos(String codigo, String desc, String fabr, String ubic
 		
 		//Validar la no existencia de un Codigo similar
 
-		Maquinaria maquina = controlador.buscar(codigo);
-		if (!(maquina.getCodigo() == null)) {
-			JOptionPane.showMessageDialog(null, "Ya existe una maquina con el mismo codigo.");
-			resultado = false;
-		}
+		//Maquinaria maquina = controlador.buscar(codigo);
+		//if (!(maquina.getCodigo() == null)) {
+		//	JOptionPane.showMessageDialog(null, "Ya existe una maquina con el mismo codigo.");
+		//	resultado = false;
+		//}
 		
 		// Validar fabricante
-		if (!fabr.matches("[a-zA-Z]{1,30}")) {
+		if (!fabr.matches("[a-zA-ZáéíóúÁÉÍÓÚüÜñÑ\\s]{1,30}")) {
 		    // Mensaje de error si el fabricante no contiene solo letras o excede los 30 caracteres
 		    JOptionPane.showMessageDialog(null, "Ingrese un fabricante válido (solo letras y hasta 30 caracteres).");
 		    resultado = false;
 		}
 		
 		// Validar ubicación
-		if (!ubic.matches("[a-zA-Z0-9 ]{1,30}")) {
+		if (!ubic.matches("[a-zA-ZáéíóúÁÉÍÓÚüÜñÑ\\d\\s]{1,30}")) {
 		    // Mensaje de error si la ubicación contiene caracteres no permitidos o excede los 30 caracteres
 		    JOptionPane.showMessageDialog(null, "Ingrese una ubicación válida (solo letras, números y espacios, hasta 30 caracteres).");
 		    resultado = false;
