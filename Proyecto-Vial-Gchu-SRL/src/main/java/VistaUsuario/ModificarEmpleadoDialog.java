@@ -45,13 +45,14 @@ public class ModificarEmpleadoDialog extends JDialog {
 	JTextField fechaDeNacimientoTxt = new JTextField();
 	ControladorEmpleado controlador = new ControladorEmpleado();
 	Empleado empleado = new Empleado();
+	String id = new String();
 
 	/**
 	 * Create the dialog.
 	 */
-	public ModificarEmpleadoDialog(EmpleadoDialog dialog, String dniid) {
+	public ModificarEmpleadoDialog(EmpleadoDialog dialog, String dniidD) {
 		super(dialog, "ModificarEmpleadoDialog",true);
-		this.dniid = dniid;
+		this.dniid = dniidD;
 		
 		dniidTxt.setText(dniid);
 		
@@ -253,9 +254,11 @@ public class ModificarEmpleadoDialog extends JDialog {
 					JButton gestionarEspBtn = new JButton("Gestionar Especialización");
 					gestionarEspBtn.addActionListener(new ActionListener() {
 						public void actionPerformed(ActionEvent e) {
+							id = dniidTxt.getText();
+
 							setVisible(false);
 							HistorialEspecializacionDialog historialEspecializacion = new HistorialEspecializacionDialog(ModificarEmpleadoDialog.this,
-									ModificarEmpleadoDialog.this.dniid);
+									id);
 							historialEspecializacion.setVisible(true);
 						}
 					});
@@ -265,9 +268,10 @@ public class ModificarEmpleadoDialog extends JDialog {
 					JButton gestionarElemBtn = new JButton("Gestionar Elementos de Seguridad");
 					gestionarElemBtn.addActionListener(new ActionListener() {
 						public void actionPerformed(ActionEvent e) {
+							id = dniidTxt.getText();
 							setVisible(false);
 							HistorialElementoDeSeguridadDialog historialElemento = new HistorialElementoDeSeguridadDialog(ModificarEmpleadoDialog.this,
-									ModificarEmpleadoDialog.this.dniid);
+									id);
 							historialElemento.setVisible(true);
 						}
 					});
@@ -277,9 +281,10 @@ public class ModificarEmpleadoDialog extends JDialog {
 					JButton gestionarRopaBtn = new JButton("Gestionar Ropa");
 					gestionarRopaBtn.addActionListener(new ActionListener() {
 						public void actionPerformed(ActionEvent e) {
+							id = dniidTxt.getText();
 							setVisible(false);
 							HistorialRopaDeTrabajoDialog historialRopa = new HistorialRopaDeTrabajoDialog(ModificarEmpleadoDialog.this,
-									ModificarEmpleadoDialog.this.dniid);
+									id);
 							historialRopa.setVisible(true);
 						}
 					});
