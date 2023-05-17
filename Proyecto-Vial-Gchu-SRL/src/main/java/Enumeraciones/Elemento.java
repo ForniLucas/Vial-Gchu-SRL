@@ -6,17 +6,17 @@ package Enumeraciones;
 */
 
 public enum Elemento {
-	   CASCO_SEGURIDAD("Casco de Seguridad"),
-	   GORRO_LEGIONARIO("Gorro Legionario"),
+	   CASCODESEGURIDAD("Casco de Seguridad"),
+	   GORROLEGIONARIO("Gorro Legionario"),
 	   BARBIQUEJO("Barbiquejo"),
-	   LENTES("Lentes de Protección"),
-	   CHALECO_REFLECTANTE("Chaleco Reflectante"),
-	   ARNES("Arnes de Seguridad"),
-	   PROTECCION_AUDITIVA("Protección Auditiva"),
-	   PROTECCION_RESPIRATORIA("Protección Respiratoria"),
-	   BLOQUEADOR_SOLAR("Bloqueador Solar"),
-	   TRAJE_INIFUGO("Traje Ignífugo"),
-	   TRAJE_PROPANO("Traje de Propileno");
+	   LENTESDEPROTECCION("Lentes de Proteccion"),
+	   CHALECOREFLECTANTE("Chaleco Reflectante"),
+	   ARNESDESEGURIDAD("Arnes de Seguridad"),
+	   PROTECCIONAUDITIVA("Protección Auditiva"),
+	   PROTECCIONRESPIRATORIA("Proteccion Respiratoria"),
+	   BLOQUEADORSOLAR("Bloqueador Solar"),
+	   TRAJEINIFUGO("Traje Ignifugo"),
+	   TRAJEPROPILENO("Traje de Propileno");
 
 	   private String displayName;
 

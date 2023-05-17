@@ -149,7 +149,8 @@ public class HistorialElementoDeSeguridadDialog extends JDialog {
 						System.out.println("aca anda");
 						empleado = controladorEmpleado.buscarDNI(Integer.parseInt(dni));
 						String t = tipo.toUpperCase();
-						Elemento elemento = Elemento.valueOf(t);
+						String tSinEspacios = t.replaceAll("\\s+", "");
+						Elemento elemento = Elemento.valueOf(tSinEspacios);
 						ElementoDeSeguridad es = new ElementoDeSeguridad(elemento, fechaE, empleado);
 						controladorEmpleado.desasociarElementoDeSeguridad(es);
 					}
