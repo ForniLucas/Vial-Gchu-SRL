@@ -106,7 +106,7 @@ public class MaquinariaDialog extends JDialog {
 				    
 				    // Verificar si el texto contiene caracteres no válidos
 				    if (!inputText.matches("^[a-zA-Z0-9]*$")) {
-				        optionPane.showMessageDialog(null, "El texto ingresado contiene caracteres no válidos. Solo se permiten letras y números.");
+				        optionPane.showMessageDialog(null, "El codigo ingresado contiene caracteres no válidos. Solo se permiten letras y números.");
 				        return; // Salir del método sin continuar
 				    }
 				    

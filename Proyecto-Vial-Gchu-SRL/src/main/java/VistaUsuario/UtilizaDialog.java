@@ -56,9 +56,9 @@ public class UtilizaDialog extends JDialog {
 	/**
 	 * Create the dialog.
 	 */
-	public UtilizaDialog(HistorialUtiliza dialog1, String idproyecto) {
+	public UtilizaDialog(HistorialUtiliza dialog1, String idproyectoi) {
 		super(dialog1, "UtilizaDialog",true);
-		this.idproyecto = idproyecto;
+		this.idproyecto = idproyectoi;
 		
 		
 		codigoTxt.setText(codigo);
@@ -113,7 +113,6 @@ public class UtilizaDialog extends JDialog {
 				maquinaria = controladorM.buscar(codigoTxt.getText());
 				descripcion = maquinaria.getDescripcion();
 				fabricante = maquinaria.getFabricante();
-				
 				descripcionLbl.setText("Descripcion: "+ descripcion);
 				fabricanteLbl.setText("Fabricante: "+ fabricante);
 			}
@@ -136,16 +135,16 @@ public class UtilizaDialog extends JDialog {
 				JButton asignarBtn = new JButton("Guardar");
 				asignarBtn.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
+						proyecto = controladorP.buscarID(Integer.parseInt(idproyecto));
+						maquinaria = controladorM.buscar(codigo);
 						String fechaInicioString = fechaInicioTxt.getText(); 
 						DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy"); 
 						LocalDate fechaInicio = LocalDate.parse(fechaInicioString, formatter);
-						
 						String fechaEstimadaString = fechaEstimadaTxt.getText(); 
 						LocalDate fechaEstimada = LocalDate.parse(fechaEstimadaString, formatter);
-						
+						System.out.println(idproyecto);
 						if (maquinaria.getCodigo() !=  null)
 						{
-							
 							controladorP.asignarUtiliza(maquinaria, proyecto, fechaInicio, fechaEstimada);
 						
 						//donde se le pasan los datos que cargamos?
