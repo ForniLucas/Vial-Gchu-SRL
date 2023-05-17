@@ -194,10 +194,11 @@ public class ServiceDialog extends JDialog {
 						        fechaI = LocalDate.parse(inicio, formatter);
 						        fechaF = LocalDate.parse(fin, formatter);
 						        Service service = new Service(fechaI, fechaF, obs);
+						        service.setMaquinaria(maquinaria);
 						        controladorMaquinaria.asignarService(maquinaria, service);
 							    actualizarTabla();
 							    cargarService();
-							    System.out.println("Codigo de maquinaria heredado: "+ codigo+ "Maquinaria: "+ maquinaria.getCodigo());
+							   
 						    } catch (DateTimeParseException e2) {
 						        optionPane.showMessageDialog(null, "La fecha debe tener el formato dd/MM/yyyy.");
 						        return;
