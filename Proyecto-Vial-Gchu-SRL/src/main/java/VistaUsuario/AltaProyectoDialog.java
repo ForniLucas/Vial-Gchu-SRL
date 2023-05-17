@@ -215,7 +215,7 @@ public class AltaProyectoDialog extends JDialog {
 						        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
 						        fechaInicio = LocalDate.parse(fechaInicioString, formatter);
 						        fechaEFin = LocalDate.parse(fechaEstimadaFinString, formatter);
-						        fechaEFin = LocalDate.parse(fechaFinString, formatter);
+						        fechaEFin = LocalDate.parse(fechaFinString, formatter); //Ta mal no se que va
 						        boolean control = validarDatos(fechaInicioString, fechaEstimadaFinString, nombre, desc, actividades, insumos);
 						        if (control) {
 						            TipoProyecto tipoProyecto = new TipoProyecto(tipo, desc, actividades, insumos);
