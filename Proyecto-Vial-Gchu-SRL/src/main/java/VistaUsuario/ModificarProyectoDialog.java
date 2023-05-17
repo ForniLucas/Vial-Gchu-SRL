@@ -39,7 +39,7 @@ public class ModificarProyectoDialog extends JDialog {
 	private JTextField insumosTxt = new JTextField();
 	
 	private String id = new String();
-	
+	private String proyid = new String();
 	private JComboBox<TipoDeProyecto> tipoBox = new JComboBox<TipoDeProyecto>(TipoDeProyecto.values()){
 	    @Override
 	    public String toString() {
@@ -268,7 +268,8 @@ public class ModificarProyectoDialog extends JDialog {
 				JButton gestionMaqBtn = new JButton("Gestionar Maquinaria");
 				gestionMaqBtn.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
-						HistorialUtiliza historialUtiliza = new HistorialUtiliza(ModificarProyectoDialog.this, ModificarProyectoDialog.this.id);
+						proyid = legajoTxt.getText();
+						HistorialUtiliza historialUtiliza = new HistorialUtiliza(ModificarProyectoDialog.this, proyid);
 						historialUtiliza.setVisible(true);
 					}
 				});
@@ -277,7 +278,8 @@ public class ModificarProyectoDialog extends JDialog {
 				JButton gestionEmplBtn = new JButton("Gestionar Empleados");
 				gestionEmplBtn.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
-						HistorialTrabaja historialTrabaja = new HistorialTrabaja(ModificarProyectoDialog.this, ModificarProyectoDialog.this.id);
+						proyid = legajoTxt.getText();
+						HistorialTrabaja historialTrabaja = new HistorialTrabaja(ModificarProyectoDialog.this, proyid);
 						historialTrabaja.setVisible(true);
 					}
 				});
