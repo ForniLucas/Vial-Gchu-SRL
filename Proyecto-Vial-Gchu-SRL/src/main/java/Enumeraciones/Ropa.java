@@ -6,12 +6,12 @@ package Enumeraciones;
  */
 
 public enum Ropa {
-    PANTALON("Pantalón"),
+    PANTALON("Pantalon"),
     CAMISA("Camisa"),
     BORCEGO("Borcego"),
     ABRIGO("Abrigo"),
-    GUANTES_DE_CUERO("Guantes de cuero"),
-    GUANTES_DE_CABRITILLA("Guantes de cabritilla");
+    GUANTESDECUERO("Guantes de cuero"),
+    GUANTESDECABRITILLA("Guantes de cabritilla");
 
     private String displayName;
 

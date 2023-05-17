@@ -141,8 +141,9 @@ public class HistorialRopaDeTrabajoDialog extends JDialog {
 					@Override
 					public void mouseClicked(MouseEvent e) {
 						String r = tipo.toUpperCase();
-						Ropa ropa = Ropa.valueOf(r);
-						DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy"); 
+						String rSinEspacios = r.replaceAll("\\s+", "");
+						Ropa ropa = Ropa.valueOf(rSinEspacios);
+						DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd"); 
 						LocalDate fechaE = LocalDate.parse(fechaEntrega, formatter);
 						RopaDeTrabajo rt = new RopaDeTrabajo(ropa, talle, fechaE);
 						controladorEmpleado.desasociarRopaDeTrabajo(rt);
