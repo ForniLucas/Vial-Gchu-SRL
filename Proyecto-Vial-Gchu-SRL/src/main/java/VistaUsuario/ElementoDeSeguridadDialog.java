@@ -7,6 +7,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
 
 import javax.swing.JButton;
 import javax.swing.JDialog;
@@ -91,19 +92,24 @@ public class ElementoDeSeguridadDialog extends JDialog {
 						try {
 							empleado = controlador.buscarDNI(Integer.parseInt(dni));
 							String fechaEtnregaString = textField.getText(); 
-							DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy"); 
-							LocalDate fechaEtnrega = LocalDate.parse(fechaEtnregaString, formatter);
-						
-							Elemento elemento = (Elemento) tipoBox.getSelectedItem();
-						
-							ElementoDeSeguridad elementoSeguridad = new ElementoDeSeguridad();
-						
-							elementoSeguridad.setEmpleado(empleado);
-							elementoSeguridad.setTipo(elemento);
-							elementoSeguridad.setFechaEntrega(fechaEtnrega);
+							
+							boolean control = validarDatos(fechaEtnregaString);
+							if (control) {
+								DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy"); 
+								LocalDate fechaEtnrega = LocalDate.parse(fechaEtnregaString, formatter);
+							
+								Elemento elemento = (Elemento) tipoBox.getSelectedItem();
+							
+								ElementoDeSeguridad elementoSeguridad = new ElementoDeSeguridad();
+							
+								elementoSeguridad.setEmpleado(empleado);
+								elementoSeguridad.setTipo(elemento);
+								elementoSeguridad.setFechaEntrega(fechaEtnrega);
 
-							controlador.asignarElementoDeSeguridad(empleado, elementoSeguridad);
-							optionPane.showMessageDialog(null,"Operación exitosa");
+								controlador.asignarElementoDeSeguridad(empleado, elementoSeguridad);
+								optionPane.showMessageDialog(null,"Operación exitosa");
+							}
+							
 						}catch (Exception e4) {
 								optionPane.showMessageDialog(null,"Ocurrió un error al procesar los datos: " + e4.getMessage());
 								return;
@@ -127,5 +133,27 @@ public class ElementoDeSeguridadDialog extends JDialog {
 				buttonPane.add(cancelBtn);
 			}
 		}
+	}
+	
+	
+	public boolean validarDatos(String fechaEntre) {
+	    boolean resultado = true;
+	    
+	    // Validar formato de fecha de entrega
+	    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+	    try {
+	        LocalDate fechaEntrega = LocalDate.parse(fechaEntre, formatter);
+	        
+	        // Validar fecha de entrega en relación a la fecha actual
+	        if (fechaEntrega.isBefore(LocalDate.now())) {
+	            JOptionPane.showMessageDialog(null, "La fecha de entrega debe ser posterior a la fecha actual.");
+	            resultado = false;
+	        }
+	    } catch (DateTimeParseException e) {
+	        JOptionPane.showMessageDialog(null, "Ingrese una fecha de entrega válida en formato dd/MM/yyyy.");
+	        resultado = false;
+	    }
+	    
+	    return resultado;
 	}
 }
