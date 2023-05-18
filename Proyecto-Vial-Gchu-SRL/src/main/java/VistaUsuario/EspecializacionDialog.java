@@ -17,6 +17,7 @@ import Enumeraciones.RolEmpleado;
 import Enumeraciones.TipoDeProyecto;
 
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import javax.swing.JComboBox;
 import java.awt.event.ActionListener;
@@ -29,6 +30,7 @@ public class EspecializacionDialog extends JDialog {
 
 	private final JPanel contentPanel = new JPanel();
 	private JTextField dniTxt;
+	JOptionPane optionPane = new JOptionPane();
 	private String dni;
 	private JComboBox<Profesion> espComboBox= new JComboBox<Profesion>(Profesion.values());
 	private JComboBox<RolEmpleado> rolComboBox = new JComboBox<RolEmpleado>(RolEmpleado.values());
@@ -92,13 +94,20 @@ public class EspecializacionDialog extends JDialog {
 				JButton guardarBtn = new JButton("Guardar");
 				guardarBtn.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
-						empleado = controlador.buscarDNI(Integer.parseInt(dni));
-						LocalDate currentDate = LocalDate.now();
-				        Profesion prof = (Profesion)espComboBox.getSelectedItem();
-				        RolEmpleado rol =(RolEmpleado)rolComboBox.getSelectedItem();
-				        Especializacion especializacion = new Especializacion(empleado,prof, currentDate, rol);
-				       
-				        controlador.asignarEspecializacion(empleado, especializacion);
+						try {
+							empleado = controlador.buscarDNI(Integer.parseInt(dni));
+							LocalDate currentDate = LocalDate.now();
+					        Profesion prof = (Profesion)espComboBox.getSelectedItem();
+					        RolEmpleado rol =(RolEmpleado)rolComboBox.getSelectedItem();
+					        Especializacion especializacion = new Especializacion(empleado,prof, currentDate, rol);
+					       
+					        controlador.asignarEspecializacion(empleado, especializacion);
+					        optionPane.showMessageDialog(null,"Operación exitosa");
+						}catch (Exception e4) {
+								optionPane.showMessageDialog(null,"Ocurrió un error al procesar los datos: " + e4.getMessage());
+								return;
+						}
+						
 					}
 				});
 				guardarBtn.setActionCommand("OK");
