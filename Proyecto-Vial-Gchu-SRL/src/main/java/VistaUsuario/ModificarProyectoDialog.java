@@ -180,8 +180,8 @@ public class ModificarProyectoDialog extends JDialog {
 						int id = Integer.parseInt(codigo);
 						proyecto = controladorProyecto.buscarID(id);
 						nombreTxt.setText(proyecto.getNombre());
-						fechaDeInicioTxt.setText(proyecto.getFechaInicio().toString());
-						fechaFinTxt.setText(proyecto.getFechaEstFin().toString());
+						fechaDeInicioTxt.setText(convertirFecha(proyecto.getFechaInicio()).toString());
+						fechaFinTxt.setText(convertirFecha(proyecto.getFechaEstFin()).toString());
 						estadoBox.setSelectedItem(proyecto.getEstado());
 						TipoProyecto tipo = (TipoProyecto)(proyecto.getTipoProyecto());
 						tipoBox.setSelectedItem(tipo.getTipo());
@@ -349,4 +349,14 @@ public class ModificarProyectoDialog extends JDialog {
 	    return resultado;
 	}
 
+	public String convertirFecha(LocalDate fecha) {
+	    // Crear el formateador para el formato de salida
+	    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+
+	    // Formatear la fecha en el formato deseado "dd/MM/yyyy"
+	    String fechaFormateada = fecha.format(formatter);
+
+	    // Devolver la fecha formateada
+	    return fechaFormateada;
+	}
 }
