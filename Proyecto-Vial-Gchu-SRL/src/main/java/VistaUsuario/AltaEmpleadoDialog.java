@@ -149,7 +149,9 @@ public class AltaEmpleadoDialog extends JDialog {
 
 						    try {
 						        dni = Integer.parseInt(dniString);
+						        
 						        telefono = Integer.parseInt(telefonoString);
+						        
 						        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
 						        fechaDeNacimiento = LocalDate.parse(fechaDeNacimientoString, formatter);
 						        boolean control = validarDatos(nombre, apellido, dniString, telefonoString, direccion, fechaDeNacimiento);
@@ -239,18 +241,16 @@ public class AltaEmpleadoDialog extends JDialog {
 
 
 		// Validar número de teléfono
-		try {
+		
 		    
-		    if (telefonoString.length() >= 10) {
-		        // Mensaje de error si el número de teléfono no tiene 10 dígitos
-		        JOptionPane.showMessageDialog(null, "Ingrese un número de teléfono válido (Hatsa 10 dígitos).");
+			if (!telefonoString.matches("[0-9 ]{1,8}")) {
+		        // Mensaje de error si el número de teléfono no tiene 8 dígitos
+		        JOptionPane.showMessageDialog(null, "Ingrese un número de teléfono válido (Hatsa 8 dígitos).");
 		        resultado = false;
 		    }
-		} catch (NumberFormatException e) {
-		    // Mensaje de error si el número de teléfono no es un número válido
-		    JOptionPane.showMessageDialog(null, "Ingrese un número de teléfono válido (solo números).");
-		    resultado = false;
-		}
+		
+		
+	
 
 
 		// Validar dirección
