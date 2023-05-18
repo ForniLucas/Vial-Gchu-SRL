@@ -389,7 +389,7 @@ public LinkedList<Proyecto> buscarNombre (String nombreProyecto) {
 	    	  // "inicio" debe ser mayor o igual a "unaFecha"
 	    	  builder.greaterThanOrEqualTo(root.<LocalDate>get("fechaInicio"), builder.literal(unaFecha)),
 	    	  // "finEfectivo" debe ser menor o igual a "otraFecha"
-	    	  builder.lessThanOrEqualTo(root.<LocalDate>get("fechaFin"), builder.literal(otraFecha))
+	    	  builder.lessThanOrEqualTo(root.<LocalDate>get("fechaEstFin"), builder.literal(otraFecha))
 	    	);
 
 	    	// Creación de un objeto TypedQuery a partir de la consulta
