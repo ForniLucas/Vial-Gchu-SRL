@@ -11,6 +11,7 @@ import java.util.Set;
 import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
@@ -31,6 +32,7 @@ public class HistorialUtiliza extends JDialog {
 	private final JPanel contentPanel = new JPanel();
 	private String id = new String();
 	String idUtiliza = new String();
+	JOptionPane optionPane = new JOptionPane();
 	private ControladorProyecto controladorP = new ControladorProyecto();
 	//Tabla Principal
 	private String ids[] = {"Legajo","Fecha de Inicio", "Fecha Estimada de Fin","Fecha de Fin", "Código"}; 
@@ -118,9 +120,13 @@ public class HistorialUtiliza extends JDialog {
 				desasociarBtn.addMouseListener(new MouseAdapter() {
 					@Override
 					public void mouseClicked(MouseEvent e) {
-						
+						try {
 						Utiliza utiliza =controladorP.buscarUtiliza(Long.parseLong(idUtiliza));
 						controladorP.desasociarUtiliza(utiliza);
+						}	
+						catch (Exception ex) {
+							optionPane.showMessageDialog(null, "Debe seleccionar una maquinaria");
+					}
 					}
 				});
 				

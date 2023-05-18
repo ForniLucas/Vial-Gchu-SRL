@@ -10,6 +10,7 @@ import java.util.Set;
 import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
@@ -31,6 +32,7 @@ public class HistorialTrabaja extends JDialog {
 	String id = new String();
 	String idTrabaja = new String();
 	ControladorProyecto controladorP = new ControladorProyecto();
+	JOptionPane optionPane = new JOptionPane();
 	//Tabla Principal
 	String ids[] = {"Legajo","DNI","Horas Trabajadas","Fecha de Inicio","Fecha Estimada de Fin","Fecha de Fin"}; 
 	DefaultTableModel mt = new DefaultTableModel();
@@ -118,8 +120,14 @@ public class HistorialTrabaja extends JDialog {
 				btnImprimir.addMouseListener(new MouseAdapter() {
 					@Override
 					public void mouseClicked(MouseEvent e) {
-						Trabajo trabajo = controladorP.buscarTrabajo(Long.parseLong(idTrabaja));
-						controladorP.crearPlantillaDeTrabajo(trabajo);
+						try {
+							Trabajo trabajo = controladorP.buscarTrabajo(Long.parseLong(idTrabaja));
+							controladorP.crearPlantillaDeTrabajo(trabajo);
+						}	
+						catch (Exception ex) {
+							optionPane.showMessageDialog(null, "Debe seleccionar un empleado");
+					}
+						
 					}
 				});
 				buttonPane.add(btnImprimir);
@@ -129,9 +137,13 @@ public class HistorialTrabaja extends JDialog {
 				btnDesasociar.addMouseListener(new MouseAdapter() {
 					@Override
 					public void mouseClicked(MouseEvent e) {
-
-						Trabajo trabajo = controladorP.buscarTrabajo(Long.parseLong(idTrabaja));
-						controladorP.desasociarTrabajo(trabajo);
+						try {
+							Trabajo trabajo = controladorP.buscarTrabajo(Long.parseLong(idTrabaja));
+							controladorP.desasociarTrabajo(trabajo);
+						} catch (Exception ex) {
+							optionPane.showMessageDialog(null, "Debe seleccionar un empleado");
+					}
+						
 					}
 				});
 				buttonPane.add(btnDesasociar);
