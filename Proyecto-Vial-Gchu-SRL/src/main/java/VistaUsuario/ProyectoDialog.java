@@ -248,9 +248,10 @@ public class ProyectoDialog extends JDialog {
 		Iterator<Proyecto> iterador = filasTablaProyecto.iterator();
 		while (iterador.hasNext()) {
 			Proyecto proyecto = (Proyecto) iterador.next();
+			String fechaFinString = proyecto.getFechaFin() != null ? String.valueOf(convertirFecha(proyecto.getFechaFin())) : "";
 			String estado = proyecto.getEstado().toString();
 			String fila[] = {String.valueOf(proyecto.getId()),String.valueOf(proyecto.getNombre()),String.valueOf(convertirFecha(proyecto.getFechaInicio())),
-					String.valueOf(convertirFecha(proyecto.getFechaEstFin())),String.valueOf(estado),String.valueOf(convertirFecha(proyecto.getFechaFin()))};
+					String.valueOf(convertirFecha(proyecto.getFechaEstFin())),String.valueOf(estado),fechaFinString};
 			modeloTablaProyecto.addRow(fila);
 		}
 		
@@ -263,9 +264,10 @@ public class ProyectoDialog extends JDialog {
 		Iterator<Proyecto> iterador = filasTablaProyecto.iterator();
 		while (iterador.hasNext()) {
 			Proyecto proyecto = (Proyecto) iterador.next();
+			String fechaFinString = proyecto.getFechaFin() != null ? String.valueOf(convertirFecha(proyecto.getFechaFin())) : "";
 			String estado = proyecto.getEstado().toString();
 			String fila[] = {String.valueOf(proyecto.getId()),String.valueOf(proyecto.getNombre()),String.valueOf(convertirFecha(proyecto.getFechaInicio())),
-					String.valueOf(convertirFecha(proyecto.getFechaEstFin())),String.valueOf(estado),String.valueOf(convertirFecha(proyecto.getFechaFin()))};
+					String.valueOf(convertirFecha(proyecto.getFechaEstFin())),String.valueOf(estado),fechaFinString};
 			modeloTablaProyecto.addRow(fila);
 		}
 	}
@@ -277,9 +279,10 @@ public class ProyectoDialog extends JDialog {
 		Iterator<Proyecto> iterador = filasTablaProyecto.iterator();
 		while (iterador.hasNext()) {
 			Proyecto proyecto = (Proyecto) iterador.next();
+			String fechaFinString = proyecto.getFechaFin() != null ? String.valueOf(convertirFecha(proyecto.getFechaFin())) : "";
 			String estado = proyecto.getEstado().toString();
 			String fila[] = {String.valueOf(proyecto.getId()),String.valueOf(proyecto.getNombre()),String.valueOf(convertirFecha(proyecto.getFechaInicio())),
-					String.valueOf(convertirFecha(proyecto.getFechaEstFin())),String.valueOf(estado),String.valueOf(convertirFecha(proyecto.getFechaFin()))};
+					String.valueOf(convertirFecha(proyecto.getFechaEstFin())),String.valueOf(estado),fechaFinString};
 			modeloTablaProyecto.addRow(fila);
 		}
 	}
@@ -294,9 +297,10 @@ public class ProyectoDialog extends JDialog {
 		Iterator<Proyecto> iterador = filasTablaProyecto.iterator();
 		while (iterador.hasNext()) {
 			Proyecto proyecto = (Proyecto) iterador.next();
+			String fechaFinString = proyecto.getFechaFin() != null ? String.valueOf(convertirFecha(proyecto.getFechaFin())) : "";
 			String estado = proyecto.getEstado().toString();
 			String fila[] = {String.valueOf(proyecto.getId()),String.valueOf(proyecto.getNombre()),String.valueOf(convertirFecha(proyecto.getFechaInicio())),
-					String.valueOf(convertirFecha(proyecto.getFechaEstFin())),String.valueOf(estado),String.valueOf(convertirFecha(proyecto.getFechaFin()))};
+					String.valueOf(convertirFecha(proyecto.getFechaEstFin())),String.valueOf(estado),fechaFinString};
 			modeloTablaProyecto.addRow(fila);
 		}
 	}

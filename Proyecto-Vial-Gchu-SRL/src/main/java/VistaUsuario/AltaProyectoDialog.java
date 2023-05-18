@@ -194,7 +194,7 @@ public class AltaProyectoDialog extends JDialog {
 						try {
 						    String fechaInicioString = fechaInicioTxt.getText();
 						    String fechaEstimadaFinString = fechaEstimadaFin.getText();
-						    String fechaFinString = fechaEstimadaFinTxt.getText();
+						    String fechaFinString = fechaFinTxt.getText();
 						    String nombre = nombreTxt.getText();
 						    String desc = descripcionTxt.getText();
 						    String actividades = actividadesTxt.getText();
@@ -204,7 +204,7 @@ public class AltaProyectoDialog extends JDialog {
 
 						    if (fechaInicioString.trim().isEmpty() || fechaEstimadaFinString.trim().isEmpty() || nombre.trim().isEmpty() ||
 						            desc.trim().isEmpty() || actividades.trim().isEmpty() || insumos.trim().isEmpty()) {
-						        optionPane.showMessageDialog(null,"Por favor, complete todos los campos.");
+						        optionPane.showMessageDialog(null, "Por favor, complete todos los campos.");
 						        return;
 						    }
 
@@ -215,8 +215,25 @@ public class AltaProyectoDialog extends JDialog {
 						        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
 						        fechaInicio = LocalDate.parse(fechaInicioString, formatter);
 						        fechaEFin = LocalDate.parse(fechaEstimadaFinString, formatter);
-						        fechaEFin = LocalDate.parse(fechaFinString, formatter); //Ta mal no se que va
-						        boolean control = validarDatos(fechaInicioString, fechaEstimadaFinString, nombre, desc, actividades, insumos);
+						        if (!fechaFinString.trim().isEmpty()) {
+						            fechaFin = LocalDate.parse(fechaFinString, formatter);
+						            if (fechaFin.isBefore(fechaInicio)) {
+						                optionPane.showMessageDialog(null, "La fecha de fin no puede ser anterior a la fecha de inicio.");
+						                return;
+						            }
+						        } else {
+						            if (estado.equals(EstadoProyecto.FINALIZADO)) {
+						                optionPane.showMessageDialog(null, "Si el proyecto está finalizado, debe ingresar la fecha en que se finalizó.");
+						                return;
+						            }
+						        }
+						        
+						        if (!fechaFinString.trim().isEmpty() && !estado.equals(EstadoProyecto.FINALIZADO)) {
+						            optionPane.showMessageDialog(null, "Si el proyecto está finalizado, el estado debe ser: Finalizado.");
+						            return;
+						        }
+
+						        boolean control = validarDatos(fechaInicioString, fechaEstimadaFinString, fechaFinString, nombre, desc, actividades, insumos);
 						        if (control) {
 						            TipoProyecto tipoProyecto = new TipoProyecto(tipo, desc, actividades, insumos);
 						            Proyecto proyecto = new Proyecto();
@@ -227,10 +244,10 @@ public class AltaProyectoDialog extends JDialog {
 						            proyecto.setEstado(estado);
 						            proyecto.asignarTipoProyecto(tipoProyecto);
 						            controlador.alta(proyecto);
-						            optionPane.showMessageDialog(null,"Datos guardados con éxito");
+						            optionPane.showMessageDialog(null, "Datos guardados con éxito");
 						            setVisible(false);
-									ProyectoDialog proyectoDialog = new ProyectoDialog();
-									proyectoDialog.setVisible(true);
+						            ProyectoDialog proyectoDialog = new ProyectoDialog();
+						            proyectoDialog.setVisible(true);
 						        }
 						    } catch (DateTimeParseException e1) {
 						        optionPane.showMessageDialog(null, "La fecha debe tener formato dd/MM/yyyy.");
@@ -240,9 +257,10 @@ public class AltaProyectoDialog extends JDialog {
 						        return;
 						    }
 						} catch (Exception e4) {
-						    optionPane.showMessageDialog(null,"Ocurrió un error al procesar los datos: " + e4.getMessage());
+						    optionPane.showMessageDialog(null, "Ocurrió un error al procesar los datos: " + e4.getMessage());
 						    return;
 						}
+
 
 					}
 				});
@@ -265,24 +283,43 @@ public class AltaProyectoDialog extends JDialog {
 		}
 	}
 	
-	public boolean validarDatos(String fechaInicioString, String fechaFinString, String nombre, String desc, String actividades, String insumos) {
+	public boolean validarDatos(String fechaInicioString, String fechaEstFinString, String fechaFinString , String nombre, String desc, String actividades, String insumos) {
 	    boolean resultado = true;
 	    
-	    // Validar fecha de inicio
+	 // Validar fecha de inicio
 	    try {
-	        LocalDate.parse(fechaInicioString, DateTimeFormatter.ofPattern("dd/MM/yyyy"));
+	        LocalDate fechaInicio = LocalDate.parse(fechaInicioString, DateTimeFormatter.ofPattern("dd/MM/yyyy"));
+	        LocalDate fechaEstFin = LocalDate.parse(fechaEstFinString, DateTimeFormatter.ofPattern("dd/MM/yyyy"));
+
+	        if (!fechaFinString.trim().isEmpty()) {
+	            try {
+	            	LocalDate fechaFin = LocalDate.parse(fechaFinString, DateTimeFormatter.ofPattern("dd/MM/yyyy"));
+		            if (fechaFin.isBefore(fechaInicio) || fechaEstFin.isBefore(fechaInicio)) {
+		                JOptionPane.showMessageDialog(null, "Inconsistencia en las fechas");
+		                resultado = false;
+		                return resultado;
+		            }
+	            } catch (DateTimeParseException e) {
+	                JOptionPane.showMessageDialog(null, "Ingrese una fecha de fin válida (formato: dd/MM/yyyy 1).");
+	                resultado = false;
+	                return resultado;
+	            }
+
+	        }
+
+	        // Validar fecha de fin estimada
+	        if (fechaEstFin.isBefore(fechaInicio)) {
+	            JOptionPane.showMessageDialog(null, "La fecha de fin estimada no puede ser anterior a la fecha de inicio.");
+	            resultado = false;
+	            return resultado;
+	        }
 	    } catch (DateTimeParseException e) {
-	        JOptionPane.showMessageDialog(null, "Ingrese una fecha de inicio válida (formato: dd/MM/yyyy).");
-	        resultado = false;
+	            JOptionPane.showMessageDialog(null, e.getMessage());
+	            resultado = false;
+	        return resultado;
 	    }
-	    
-	    // Validar fecha de fin
-	    try {
-	        LocalDate.parse(fechaFinString, DateTimeFormatter.ofPattern("dd/MM/yyyy"));
-	    } catch (DateTimeParseException e) {
-	        JOptionPane.showMessageDialog(null, "Ingrese una fecha de fin válida (formato: dd/MM/yyyy).");
-	        resultado = false;
-	    }
+
+
 	    
 	    // Validar nombre
 	    if (nombre.trim().isEmpty()) {
