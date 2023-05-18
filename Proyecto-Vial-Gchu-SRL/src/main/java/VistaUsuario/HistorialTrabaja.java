@@ -124,6 +124,7 @@ public class HistorialTrabaja extends JDialog {
 						try {
 							Trabajo trabajo = controladorP.buscarTrabajo(Long.parseLong(idTrabaja));
 							controladorP.crearPlantillaDeTrabajo(trabajo);
+							JOptionPane.showMessageDialog(null, "El archivo PDF se a creado correctamente!");
 						}	
 						catch (Exception ex) {
 							optionPane.showMessageDialog(null, "Debe seleccionar un empleado");

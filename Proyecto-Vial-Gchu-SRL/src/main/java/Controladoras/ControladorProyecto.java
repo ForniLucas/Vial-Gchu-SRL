@@ -986,7 +986,6 @@ public LinkedList<Proyecto> buscarNombre (String nombreProyecto) {
             
             
             documento.close();
-            JOptionPane.showMessageDialog(null, "El archivo PDF se a creado correctamente!");
         } catch (FileNotFoundException e) {
             System.err.println(e.getMessage());
         } catch(DocumentException e){
