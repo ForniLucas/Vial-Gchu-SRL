@@ -128,7 +128,7 @@ public class BajaProyectoDialog extends JDialog {
 						try {
 							if (proyecto.getNombre() != null) {
 					           
-					            if ("Cancelado".equals(controladorProyecto.buscarID(Integer.parseInt(legajoTxt.getText())).getEstado())) {
+					            if (!"Cancelado".equals(controladorProyecto.buscarID(Integer.parseInt(legajoTxt.getText())).getEstado())) {
 					            	controladorProyecto.bajaLogica(proyecto);
 					                optionPane.showMessageDialog(null, "Datos dados de baja con éxito");
 					                setVisible(false);
