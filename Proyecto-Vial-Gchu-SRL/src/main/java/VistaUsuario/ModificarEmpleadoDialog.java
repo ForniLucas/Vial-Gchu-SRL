@@ -193,13 +193,19 @@ public class ModificarEmpleadoDialog extends JDialog {
 							String nombre = nombreTxt.getText();
 							String apellido = apellidoTxt.getText();
 							String dniString = dniTxt.getText(); // Get the value of the JTextField as a String
-							int dni = Integer.parseInt(dniString); // Convert the String to an int
 							String telefonoString = telefonoTxt.getText(); 
-							int telefono = Integer.parseInt(telefonoString); 
+							int telefono = 0;
+							
 							String direccion = direccionTxt.getText(); 
 							String fechaDeNacimientoString = fechaDeNacimientoTxt.getText(); // Get the value of the JTextField as a String
 							DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy"); // Specify the input format
 							LocalDate fechaDeNacimiento = LocalDate.parse(fechaDeNacimientoString, formatter);
+							optionPane.showMessageDialog(null, "sigue");
+							int dni = Integer.parseInt(dniString); // Convert the String to an int
+							optionPane.showMessageDialog(null, "telefono");
+							optionPane.showMessageDialog(null, telefonoString);
+							telefono = Integer.parseInt(telefonoString); 
+							optionPane.showMessageDialog(null, "sigue");
 							
 							if (nombre.trim().isEmpty() || apellido.trim().isEmpty() || dniString.trim().isEmpty() ||
 						            telefonoString.trim().isEmpty() || direccion.trim().isEmpty() || fechaDeNacimientoString.trim().isEmpty()) {
@@ -208,26 +214,29 @@ public class ModificarEmpleadoDialog extends JDialog {
 						    }
 							
 							try {
+								optionPane.showMessageDialog(null, "entro");
 								
 								boolean control = validarDatos(nombre, apellido, dniString, telefonoString, direccion, fechaDeNacimiento);
-								
+								optionPane.showMessageDialog(null, "bool");
 								if (control) {
+									optionPane.showMessageDialog(null, "aca");
 									empleado.setNombre(nombre);
 									empleado.setApellido(apellido);
+									optionPane.showMessageDialog(null, "tiene que ir a dni");
 									empleado.setDni(dni);
+									optionPane.showMessageDialog(null, "paso dni");
 									empleado.setTelefono(telefono);
+									optionPane.showMessageDialog(null, "Paso telefono");
 									empleado.setDireccion(direccion);
 									empleado.setFechaNac(fechaDeNacimiento);
+									optionPane.showMessageDialog(null, "Tiene que modificar");
 									controlador.modificar(empleado);
 									optionPane.showMessageDialog(null, "Datos modificados con éxito");
 									setVisible(false);
 									EmpleadoDialog empleados = new EmpleadoDialog();
 									empleados.setVisible(true);
 								}
-								
-							}catch (NumberFormatException e1) {
-						        optionPane.showMessageDialog(null, "El valor del DNI o teléfono debe ser un número entero.");
-						        return;
+							
 						    } catch (DateTimeParseException e2) {
 						        optionPane.showMessageDialog(null, "La fecha de nacimiento debe tener formato dd/MM/yyyy.");
 						        return;
@@ -314,12 +323,13 @@ public boolean validarDatos(String nombre, String apellido, String dniString, St
 		boolean resultado = true;
 		
 		// Validar nombre y apellido
-		if (!nombre.matches("[a-zA-Z]{1,30}")) {
+		if (!nombre.matches("[a-zA-ZáéíóúÁÉÍÓÚüÜñÑ"
+				+ "\\s]{1,30}")) {
 		    // Mensaje de error si el nombre no contiene solo letras o excede los 30 caracteres
 		    JOptionPane.showMessageDialog(null, "Ingrese un nombre válido (solo letras y hasta 30 caracteres).");
 		    resultado = false;
 		}
-		if (!apellido.matches("[a-zA-Z]{1,30}")) {
+		if (!apellido.matches("[a-zA-ZáéíóúÁÉÍÓÚüÜñÑ\\s]{1,30}")) {
 		    // Mensaje de error si el apellido no contiene solo letras o excede los 30 caracteres
 		    JOptionPane.showMessageDialog(null, "Ingrese un apellido válido (solo letras y hasta 30 caracteres).");
 		    resultado = false;
@@ -339,21 +349,21 @@ public boolean validarDatos(String nombre, String apellido, String dniString, St
 		}
 		
 		// Validar la no existencia del usuario
-		int dni = 0;
-		dni = Integer.parseInt(dniString);
-		Empleado empleado = controlador.buscarDNI(dni);
-		if (!(empleado.getNombre() == null)) {
-			JOptionPane.showMessageDialog(null, "Ya existe un empleado con el mismo dni.");
-			resultado = false;
-		}
+		//int dni = 0;
+		//dni = Integer.parseInt(dniString);
+		//Empleado empleado = controlador.buscarDNI(dni);
+		//if (!(empleado.getNombre() == null)) {
+		//	JOptionPane.showMessageDialog(null, "Ya existe un empleado con el mismo dni.");
+		//	resultado = false;
+		//}
 
 
 		// Validar número de teléfono
 		try {
 		    
-		    if (telefonoString.length() >= 10) {
+		    if (telefonoString.length() < 9) {
 		        // Mensaje de error si el número de teléfono no tiene 10 dígitos
-		        JOptionPane.showMessageDialog(null, "Ingrese un número de teléfono válido (Hatsa 10 dígitos).");
+		        JOptionPane.showMessageDialog(null, "Ingrese un número de teléfono válido (Mayor a 10 dígitos).");
 		        resultado = false;
 		    }
 		} catch (NumberFormatException e) {

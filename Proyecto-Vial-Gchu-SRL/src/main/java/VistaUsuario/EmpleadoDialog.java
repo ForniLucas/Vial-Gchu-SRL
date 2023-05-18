@@ -19,6 +19,9 @@ import java.awt.event.ActionEvent;
 import javax.swing.JTable;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 
@@ -250,7 +253,7 @@ public class EmpleadoDialog extends JDialog {
 			String estado = empleado.getEstado()? "Activo" : "Inactivo";
 			String fila[] = {String.valueOf(empleado.getId()),String.valueOf(empleado.getApellido()),String.valueOf(empleado.getNombre()),
 					String.valueOf(empleado.getDni()),String.valueOf(empleado.getTelefono()),String.valueOf(empleado.getDireccion()),
-					String.valueOf(empleado.getFechaNac()),String.valueOf(estado)};
+					String.valueOf(convertirFecha(empleado.getFechaNac())),String.valueOf(estado)};
 			modeloTablaEmpleado.addRow(fila);
 		}
 		
@@ -266,7 +269,7 @@ public class EmpleadoDialog extends JDialog {
 			String estado = empleado.getEstado()? "Activo" : "Inactivo";
 			String fila[] = {String.valueOf(empleado.getId()),String.valueOf(empleado.getApellido()),String.valueOf(empleado.getNombre()),
 					String.valueOf(empleado.getDni()),String.valueOf(empleado.getTelefono()),String.valueOf(empleado.getDireccion()),
-					String.valueOf(empleado.getFechaNac()),String.valueOf(estado)};
+					String.valueOf(convertirFecha(empleado.getFechaNac())),String.valueOf(estado)};
 			modeloTablaEmpleado.addRow(fila);
 		}
 	}
@@ -284,7 +287,7 @@ public class EmpleadoDialog extends JDialog {
 			String estado = empleado.getEstado()? "Activo" : "Inactivo";
 			String fila[] = {String.valueOf(empleado.getId()),String.valueOf(empleado.getApellido()),String.valueOf(empleado.getNombre()),
 					String.valueOf(empleado.getDni()),String.valueOf(empleado.getTelefono()),String.valueOf(empleado.getDireccion()),
-					String.valueOf(empleado.getFechaNac()),String.valueOf(estado)};
+					String.valueOf(convertirFecha(empleado.getFechaNac())),String.valueOf(estado)};
 			modeloTablaEmpleado.addRow(fila);
 			}
 	}
@@ -293,4 +296,16 @@ public class EmpleadoDialog extends JDialog {
 		    modelo.setRowCount(0); // Limpia la tabla
 		    cargarEmpleados();
 	}
+	
+	public String convertirFecha(LocalDate fecha) {
+	    // Crear el formateador para el formato de salida
+	    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+
+	    // Formatear la fecha en el formato deseado "dd/MM/yyyy"
+	    String fechaFormateada = fecha.format(formatter);
+
+	    // Devolver la fecha formateada
+	    return fechaFormateada;
+	}
+	
 }
