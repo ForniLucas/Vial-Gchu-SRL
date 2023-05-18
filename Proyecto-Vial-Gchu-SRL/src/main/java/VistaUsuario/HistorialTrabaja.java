@@ -113,6 +113,7 @@ public class HistorialTrabaja extends JDialog {
 						TrabajaDialog trabaja = new TrabajaDialog(HistorialTrabaja.this, id);
 						setVisible(false);
 						trabaja.setVisible(true);
+						
 					}
 				});
 				
@@ -140,6 +141,8 @@ public class HistorialTrabaja extends JDialog {
 						try {
 							Trabajo trabajo = controladorP.buscarTrabajo(Long.parseLong(idTrabaja));
 							controladorP.desasociarTrabajo(trabajo);
+							optionPane.showMessageDialog(null, "Operación exitosa");
+							cargarTrabajo();
 						} catch (Exception ex) {
 							optionPane.showMessageDialog(null, "Debe seleccionar un empleado");
 					}
@@ -157,6 +160,7 @@ public class HistorialTrabaja extends JDialog {
 	
 	public void cargarTrabajo() {
 		DefaultTableModel modeloTablaTrabaja = (DefaultTableModel) table.getModel();
+		modeloTablaTrabaja.setRowCount(0);
 		Long idP = Long.parseLong(id);
 		Set<Trabajo> filasTrabaja = controladorP.listarTrabaja(idP);
 		Iterator<Trabajo> iterador = filasTrabaja.iterator();

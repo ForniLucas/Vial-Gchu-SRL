@@ -19,6 +19,7 @@ import javax.swing.JTextField;
 import java.awt.event.ActionListener;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
 import java.awt.event.ActionEvent;
 
 public class UtilizaDialog extends JDialog {
@@ -89,7 +90,7 @@ public class UtilizaDialog extends JDialog {
 		contentPanel.add(lblNewLabel);
 		
 		
-		fechaInicioTxt.setText("dd-mm-aaaa");
+		fechaInicioTxt.setText("dd/mm/aaaa");
 		fechaInicioTxt.setBounds(286, 259, 109, 19);
 		fechaInicioTxt.setText("dd/mm/aaaa");
 		fechaInicioTxt.setBounds(286, 259, 109, 19);
@@ -97,7 +98,7 @@ public class UtilizaDialog extends JDialog {
 		fechaInicioTxt.setColumns(10);
 		
 		
-		fechaEstimadaTxt.setText("dd-mm-aaaa");
+		fechaEstimadaTxt.setText("dd/mm/aaaa");
 		fechaEstimadaTxt.setBounds(286, 314, 109, 19);
 		fechaEstimadaTxt.setText("dd/mm/aaaa");
 		fechaEstimadaTxt.setBounds(286, 314, 109, 19);
@@ -113,11 +114,16 @@ public class UtilizaDialog extends JDialog {
 		JButton buscarBtn = new JButton("Buscar");
 		buscarBtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				maquinaria = controladorM.buscar(codigoTxt.getText());
-				descripcion = maquinaria.getDescripcion();
-				fabricante = maquinaria.getFabricante();
-				descripcionLbl.setText("Descripcion: "+ descripcion);
-				fabricanteLbl.setText("Fabricante: "+ fabricante);
+				try {
+					maquinaria = controladorM.buscar(codigoTxt.getText());
+					descripcion = maquinaria.getDescripcion();
+					fabricante = maquinaria.getFabricante();
+					descripcionLbl.setText("Descripcion: "+ descripcion);
+					fabricanteLbl.setText("Fabricante: "+ fabricante);
+				} catch (Exception e1) {
+					optionPane.showMessageDialog(null, "Error al buscar: Valor Ingresado no valido o inexistente");
+				}
+				
 			}
 		});
 		buscarBtn.setBounds(391, 93, 85, 21);
@@ -138,23 +144,33 @@ public class UtilizaDialog extends JDialog {
 				JButton asignarBtn = new JButton("Guardar");
 				asignarBtn.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
-						proyecto = controladorP.buscarID(Integer.parseInt(idproyecto));
-						maquinaria = controladorM.buscar(codigoTxt.getText());
-						String fechaInicioString = fechaInicioTxt.getText(); 
-						DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy"); 
-						LocalDate fechaInicio = LocalDate.parse(fechaInicioString, formatter);
-						String fechaEstimadaString = fechaEstimadaTxt.getText(); 
-						LocalDate fechaEstimada = LocalDate.parse(fechaEstimadaString, formatter);
 						
-						if (maquinaria!=  null)
-						{
-							controladorP.asignarUtiliza(maquinaria, proyecto, fechaInicio, fechaEstimada);
-						
-						//donde se le pasan los datos que cargamos?
-						  optionPane.showMessageDialog(null, "Maquinaria asignada exitosamente.");
-						} else {
-							 optionPane.showMessageDialog(null, "Debe buscar una maquinaria primero.");
+						try {
+								if (maquinaria.getCodigo()!=  null)
+								{
+									proyecto = controladorP.buscarID(Integer.parseInt(idproyecto));
+									maquinaria = controladorM.buscar(codigoTxt.getText());
+									String fechaInicioString = fechaInicioTxt.getText(); 
+									DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy"); 
+									LocalDate fechaInicio = LocalDate.parse(fechaInicioString, formatter);
+									String fechaEstimadaString = fechaEstimadaTxt.getText(); 
+									LocalDate fechaEstimada = LocalDate.parse(fechaEstimadaString, formatter);
+									
+									boolean control = validarDatos(fechaInicioString,fechaEstimadaString);
+									if (control) {
+									controladorP.asignarUtiliza(maquinaria, proyecto, fechaInicio, fechaEstimada);
+									  optionPane.showMessageDialog(null, "Maquinaria asignada exitosamente.");
+									}
+								
+								
+								} else {
+									 optionPane.showMessageDialog(null, "Debe buscar una maquinaria primero.");
+								}
+							} catch (Exception e3) {
+						    optionPane.showMessageDialog(null, "Ocurrió un error al procesar los datos: " + e3.getMessage());
 						}
+						
+						
 					}
 				});
 				asignarBtn.setActionCommand("OK");
@@ -172,5 +188,36 @@ public class UtilizaDialog extends JDialog {
 				buttonPane.add(cancelarBtn);
 			}
 		}
+	}
+	
+	public boolean validarDatos (String fechaInicioString, String fechaEstFinString) {
+		boolean resultado = true;
+		
+		// Validar fecha de inicio
+	    try {
+	        LocalDate fechaInicio = LocalDate.parse(fechaInicioString, DateTimeFormatter.ofPattern("dd/MM/yyyy"));
+	        LocalDate fechaEstFin = LocalDate.parse(fechaEstFinString, DateTimeFormatter.ofPattern("dd/MM/yyyy"));
+
+	        if (!fechaEstFinString.trim().isEmpty()) {
+	            try {
+		            if (fechaEstFin.isBefore(fechaInicio)) {
+		                JOptionPane.showMessageDialog(null, "La fecha de fin estimada no puede ser anterior a la fecha de inicio.");
+		                resultado = false;
+		                return resultado;
+		            }
+	            } catch (DateTimeParseException e) {
+	                JOptionPane.showMessageDialog(null, "Ingrese una fecha de fin válida (formato: dd/MM/yyyy 1).");
+	                resultado = false;
+	                return resultado;
+	            }
+	        }
+	    } catch (DateTimeParseException e) {
+	            JOptionPane.showMessageDialog(null, e.getMessage());
+	            resultado = false;
+	        return resultado;
+	    }
+	    
+	    return resultado;
+		
 	}
 }

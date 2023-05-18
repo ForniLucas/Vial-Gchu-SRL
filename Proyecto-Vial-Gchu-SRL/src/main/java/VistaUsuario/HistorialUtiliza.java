@@ -123,6 +123,8 @@ public class HistorialUtiliza extends JDialog {
 						try {
 						Utiliza utiliza =controladorP.buscarUtiliza(Long.parseLong(idUtiliza));
 						controladorP.desasociarUtiliza(utiliza);
+						optionPane.showMessageDialog(null, "Operación exitosa");
+						cargarUtiliza();
 						}	
 						catch (Exception ex) {
 							optionPane.showMessageDialog(null, "Debe seleccionar una maquinaria");
@@ -141,6 +143,7 @@ public class HistorialUtiliza extends JDialog {
 	
 	public void cargarUtiliza() {
 		DefaultTableModel modeloTablaUtiliza = (DefaultTableModel) table.getModel();
+		modeloTablaUtiliza.setRowCount(0);
 		Long idP = Long.parseLong(id);
 		Set<Utiliza> filasUtiliza = controladorP.listarUtiliza(idP);
 		Iterator<Utiliza> iterador = filasUtiliza.iterator();

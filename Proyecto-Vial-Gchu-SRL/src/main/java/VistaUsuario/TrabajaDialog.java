@@ -6,6 +6,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
 
 import javax.swing.JButton;
 import javax.swing.JDialog;
@@ -113,11 +114,16 @@ public class TrabajaDialog extends JDialog {
 		buscarBtn.setBounds(391, 93, 85, 21);
 		buscarBtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				empleado = controladorE.buscarDNI(Integer.parseInt(dniTxt.getText()));
-				apellido = empleado.getApellido();
-				nombre = empleado.getNombre();
-				apellidoLbl.setText("Apellido: "+ apellido);
-				nombreLbl.setText("Nombre: "+ nombre);
+				try {
+					empleado = controladorE.buscarDNI(Integer.parseInt(dniTxt.getText()));
+					apellido = empleado.getApellido();
+					nombre = empleado.getNombre();
+					apellidoLbl.setText("Apellido: "+ apellido);
+					nombreLbl.setText("Nombre: "+ nombre);
+				} catch (Exception e1) {
+					optionPane.showMessageDialog(null, "Error al buscar: Valor Ingresado no valido o inexistente");
+				}
+				
 			}
 		});
 		contentPanel.add(buscarBtn);
@@ -135,20 +141,31 @@ public class TrabajaDialog extends JDialog {
 				JButton okButton = new JButton("Guardar");
 				okButton.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
-						if (empleado!= null) {
-							proyecto = controladorP.buscarID(Integer.parseInt(idproyecto));
-							String fechaInicioString = fechaInicioTxt.getText(); // Get the value of the JTextField as a String
-							DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy"); // Specify the input format
-							LocalDate fechaInicio = LocalDate.parse(fechaInicioString, formatter); // Convert the String to a LocalDate object using the formatter
-							String fechaEstimadaString = fechaEstimadaTxt.getText();
-							LocalDate fechaEstimadaFin = LocalDate.parse(fechaEstimadaString, formatter);
-							String horasTrabajadasString = horasTrabajadasTxt.getText();
-							int horasTrabajadas = Integer.parseInt(horasTrabajadasString);
-							System.out.println("proyecto "+ proyecto.getId() + proyecto.getNombre()+ " Empleado: "+ empleado.getDni());
-							controladorP.asignarTrabajo(empleado, proyecto,horasTrabajadas,fechaInicio,fechaEstimadaFin); //
-							optionPane.showMessageDialog(null, "Empleado asignado exitosamente.");
+						try {
+							if (empleado.getApellido() != null) {
+								proyecto = controladorP.buscarID(Integer.parseInt(idproyecto));
+								String fechaInicioString = fechaInicioTxt.getText(); // Get the value of the JTextField as a String
+								DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy"); // Specify the input format
+								LocalDate fechaInicio = LocalDate.parse(fechaInicioString, formatter); // Convert the String to a LocalDate object using the formatter
+								String fechaEstimadaString = fechaEstimadaTxt.getText();
+								LocalDate fechaEstimadaFin = LocalDate.parse(fechaEstimadaString, formatter);
+								String horasTrabajadasString = horasTrabajadasTxt.getText();
+								
+								
+								boolean control = validarDatos(fechaInicioString, fechaEstimadaString, horasTrabajadasString);
+								
+								if (control) {
+									int horasTrabajadas = Integer.parseInt(horasTrabajadasString);
+									controladorP.asignarTrabajo(empleado, proyecto,horasTrabajadas,fechaInicio,fechaEstimadaFin); //
+									optionPane.showMessageDialog(null, "Empleado asignado exitosamente.");
+								}
+							}
+							else {optionPane.showMessageDialog(null, "Debe buscar un empleado primero.");}
+							
+						} catch (Exception e3) {
+						    optionPane.showMessageDialog(null, "Ocurrió un error al procesar los datos: " + e3.getMessage());
 						}
-						else {optionPane.showMessageDialog(null, "Debe buscar un empleado primero.");}
+						
 					}
 				});
 				okButton.setActionCommand("OK");
@@ -166,6 +183,50 @@ public class TrabajaDialog extends JDialog {
 				buttonPane.add(cancelButton);
 			}
 		}
+	}
+	public boolean validarDatos (String fechaInicioString, String fechaEstFinString, String horasTrabajadasString) {
+		boolean resultado = true;
+		
+		// Validar fecha de inicio
+	    try {
+	        LocalDate fechaInicio = LocalDate.parse(fechaInicioString, DateTimeFormatter.ofPattern("dd/MM/yyyy"));
+	        LocalDate fechaEstFin = LocalDate.parse(fechaEstFinString, DateTimeFormatter.ofPattern("dd/MM/yyyy"));
+
+	        if (!fechaEstFinString.trim().isEmpty()) {
+	            try {
+		            if (fechaEstFin.isBefore(fechaInicio)) {
+		                JOptionPane.showMessageDialog(null, "La fecha de fin estimada no puede ser anterior a la fecha de inicio.");
+		                resultado = false;
+		                return resultado;
+		            }
+	            } catch (DateTimeParseException e) {
+	                JOptionPane.showMessageDialog(null, "Ingrese una fecha de fin válida (formato: dd/MM/yyyy 1).");
+	                resultado = false;
+	                return resultado;
+	            }
+	        }
+	    } catch (DateTimeParseException e) {
+	            JOptionPane.showMessageDialog(null, e.getMessage());
+	            resultado = false;
+	        return resultado;
+	    }
+	    
+	 // Validar horas trabajadas
+	    try {
+	        int horasTrabajadas = Integer.parseInt(horasTrabajadasString);
+	        if (horasTrabajadas <= 0) {
+	            JOptionPane.showMessageDialog(null, "Ingrese un número válido de horas trabajadas.");
+	            resultado = false;
+	            return resultado;
+	        }
+	    } catch (NumberFormatException e) {
+	        JOptionPane.showMessageDialog(null, "Ingrese un número válido de horas trabajadas.");
+	        resultado = false;
+	        return resultado;
+	    }
+	    
+	    return resultado;
+		
 	}
 
 }

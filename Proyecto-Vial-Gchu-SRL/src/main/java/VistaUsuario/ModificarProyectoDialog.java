@@ -268,9 +268,20 @@ public class ModificarProyectoDialog extends JDialog {
 				JButton gestionMaqBtn = new JButton("Gestionar Maquinaria");
 				gestionMaqBtn.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
-						proyid = legajoTxt.getText();
-						HistorialUtiliza historialUtiliza = new HistorialUtiliza(ModificarProyectoDialog.this, proyid);
-						historialUtiliza.setVisible(true);
+						try {
+							if (proyecto.getNombre() == null) {
+								optionPane.showMessageDialog(null, "Debe buscar un proyecto primero");
+							}
+							else {
+								proyid = legajoTxt.getText();
+								HistorialUtiliza historialUtiliza = new HistorialUtiliza(ModificarProyectoDialog.this, proyid);
+								historialUtiliza.setVisible(true);
+							}
+							
+						} catch (Exception ex) {
+						    optionPane.showMessageDialog(null, "Error:" + ex.getMessage());
+						}
+						
 					}
 				});
 				buttonPane.add(gestionMaqBtn);
@@ -278,9 +289,19 @@ public class ModificarProyectoDialog extends JDialog {
 				JButton gestionEmplBtn = new JButton("Gestionar Empleados");
 				gestionEmplBtn.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
-						proyid = legajoTxt.getText();
-						HistorialTrabaja historialTrabaja = new HistorialTrabaja(ModificarProyectoDialog.this, proyid);
-						historialTrabaja.setVisible(true);
+						try {
+							if (proyecto.getNombre() == null) {
+								optionPane.showMessageDialog(null, "Debe buscar un proyecto primero");
+							}
+							else {
+								proyid = legajoTxt.getText();
+								HistorialTrabaja historialTrabaja = new HistorialTrabaja(ModificarProyectoDialog.this, proyid);
+								historialTrabaja.setVisible(true);
+								}
+					
+						} catch (Exception ex) {
+								optionPane.showMessageDialog(null, "Error:" + ex.getMessage());
+						}
 					}
 				});
 				buttonPane.add(gestionEmplBtn);
