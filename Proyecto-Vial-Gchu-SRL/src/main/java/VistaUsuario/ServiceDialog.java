@@ -120,7 +120,8 @@ public class ServiceDialog extends JDialog {
 				public void actionPerformed(ActionEvent e) {
 					
 					try {
-						String codigo = legajoTxt.getText();
+						String codigo = legajoTxt.getText().toUpperCase();
+						
 						// Verificar si el texto contiene caracteres no válidos
 					    if (!codigo.matches("^[a-zA-Z0-9]*$")) {
 					        optionPane.showMessageDialog(null, "El codigo ingresado contiene caracteres no válidos. Solo se permiten letras y números.");
@@ -128,7 +129,11 @@ public class ServiceDialog extends JDialog {
 					    }
 						
 						if (!codigo.isEmpty()) {
-							cargarService();
+							maquinaria = controladorMaquinaria.buscar(codigo); //Lo utilizo mas adelante
+							cargarService(codigo);
+						} else {
+							 optionPane.showMessageDialog(null, "Debe ingresar un codigo para la busqueda");
+						     return;
 						}
 						
 					} catch (Exception ex) {
@@ -183,26 +188,36 @@ public class ServiceDialog extends JDialog {
 				serviceBtn.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
 						try {
-						    maquinaria = controladorMaquinaria.buscar(codigo); 
-						    String inicio = fechaInicioTxt.getText();
-						    String fin = fechaFinTxt.getText();
-						    String obs = observacionesTxt.getText();    
-						    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-						    LocalDate fechaI;
-						    LocalDate fechaF;    
-						    try {
-						        fechaI = LocalDate.parse(inicio, formatter);
-						        fechaF = LocalDate.parse(fin, formatter);
-						        Service service = new Service(fechaI, fechaF, obs);
-						        service.setMaquinaria(maquinaria);
-						        controladorMaquinaria.asignarService(maquinaria, service);
-							    actualizarTabla();
-							    cargarService();
-							   
-						    } catch (DateTimeParseException e2) {
-						        optionPane.showMessageDialog(null, "La fecha debe tener el formato dd/MM/yyyy.");
-						        return;
-						    }
+							if (maquinaria.getCodigo() == null) {
+								optionPane.showMessageDialog(null, "Debe buscar una Maquinaria primero");
+							} else {
+								//maquinaria = controladorMaquinaria.buscar(codigo); 
+							    String inicio = fechaInicioTxt.getText();
+							    String fin = fechaFinTxt.getText();
+							    String obs = observacionesTxt.getText();    
+							    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+							    
+							    boolean control = validarDatos(inicio,fin);
+							    
+							    if (control) {
+							    	LocalDate fechaI;
+								    LocalDate fechaF;    
+
+								        fechaI = LocalDate.parse(inicio, formatter);
+								        fechaF = LocalDate.parse(fin, formatter);
+								        Service service = new Service(fechaI, fechaF, obs);
+								        service.setMaquinaria(maquinaria);
+								        controladorMaquinaria.asignarService(maquinaria, service);
+									    actualizarTabla();
+									    cargarService(maquinaria.getCodigo());
+									    fechaInicioTxt.setText("");
+									    fechaFinTxt.setText("");
+									    observacionesTxt.setText("");
+									    
+							    }
+							    
+							}
+						    
 						} catch (Exception ex) {
 						    optionPane.showMessageDialog(null, "Ocurrió un error al procesar los datos: " + ex.getMessage());
 						    return;
@@ -216,10 +231,21 @@ public class ServiceDialog extends JDialog {
 				imprimirButton.addMouseListener(new MouseAdapter() {
 					@Override
 					public void mouseClicked(MouseEvent e) {
-						maquinaria = controladorMaquinaria.buscar(codigo);
+						try {
+							if (maquinaria.getCodigo() == null) {
+								optionPane.showMessageDialog(null, "Debe buscar una Maquinaria primero");
+							} else {
+								//maquinaria = controladorMaquinaria.buscar(codigo);
 
-						Service service = controladorMaquinaria.buscarService(Long.parseLong(id));
-						controladorMaquinaria.crearPlantillaDeMantenimiento(maquinaria, service);
+								Service service = controladorMaquinaria.buscarService(Long.parseLong(id));
+								controladorMaquinaria.crearPlantillaDeMantenimiento(maquinaria, service);
+							}
+							
+						} catch (Exception ex) {
+						    optionPane.showMessageDialog(null, "Ocurrió un error al procesar los datos: " + ex.getMessage());
+						    return;
+						}
+						
 					}
 				});
 				buttonPane.add(imprimirButton);
@@ -242,9 +268,9 @@ public class ServiceDialog extends JDialog {
 		}
 	}
 	
-	public void cargarService() {
+	public void cargarService(String codigo) {
 		DefaultTableModel modeloTablaService = (DefaultTableModel) table.getModel();
-		
+		modeloTablaService.setRowCount(0);
 		Set<Service> serviciosSet = controladorMaquinaria.listarServices(codigo);
 		List<Service> filasTablaService = new ArrayList<Service>();
 
@@ -255,15 +281,56 @@ public class ServiceDialog extends JDialog {
 		Iterator <Service>iterador = filasTablaService.iterator();
 			while (iterador.hasNext()) {
 				Service service = (Service) iterador.next();
-				String fila [] = {String.valueOf(service.getId()), String.valueOf(service.getFechaInicio()),String.valueOf(service.getFechaFin()), 
+				String fila [] = {String.valueOf(service.getId()), String.valueOf(convertirFecha(service.getFechaInicio())),String.valueOf(convertirFecha(service.getFechaFin())), 
 						String.valueOf(service.getObservaciones())};
 				modeloTablaService.addRow(fila);
 			}
 	}
 
+	
+	public boolean validarDatos(String fechaInicioString, String fechaFinString ) {
+		boolean resultado = true;
+		// Validar fecha de inicio
+	    try {
+	        LocalDate.parse(fechaInicioString, DateTimeFormatter.ofPattern("dd/MM/yyyy"));
+	    } catch (DateTimeParseException e) {
+	        JOptionPane.showMessageDialog(null, "Ingrese una fecha de inicio válida (formato: dd/MM/yyyy).");
+	        resultado = false;
+	        return resultado;
+	    }
+	    
+	    // Validar fecha de fin
+	    try {
+	    	 LocalDate inicio = LocalDate.parse(fechaInicioString, DateTimeFormatter.ofPattern("dd/MM/yyyy"));
+		        LocalDate fin = LocalDate.parse(fechaFinString, DateTimeFormatter.ofPattern("dd/MM/yyyy"));
+		        if (fin.isBefore(inicio)) {
+		            JOptionPane.showMessageDialog(null, "La fecha de fin no puede ser anterior a la fecha de inicio.");
+		            resultado = false;
+		            return resultado;
+		        }
+	    } catch (DateTimeParseException e) {
+	        JOptionPane.showMessageDialog(null, "Ingrese una fecha de fin válida (formato: dd/MM/yyyy).");
+	        resultado = false;
+	        return resultado;
+	    }
+	    
+	    return resultado;
+	}
+	
 	public void actualizarTabla() {
 		 DefaultTableModel modelo = (DefaultTableModel) table.getModel();
 		    modelo.setRowCount(0); // Limpia la tabla
+	}
+	
+	public String convertirFecha(LocalDate fecha) {
+	    // Crear el formateador para el formato de salida
+	    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+
+	    // Formatear la fecha en el formato deseado "dd/MM/yyyy"
+	    String fechaFormateada = fecha.format(formatter);
+
+	    // Devolver la fecha formateada
+	    return fechaFormateada;
 	}
 }
 
