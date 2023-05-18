@@ -34,7 +34,7 @@ public class HistorialTrabaja extends JDialog {
 	ControladorProyecto controladorP = new ControladorProyecto();
 	JOptionPane optionPane = new JOptionPane();
 	//Tabla Principal
-	String ids[] = {"Legajo","DNI","Horas Trabajadas","Fecha de Inicio","Fecha Estimada de Fin","Fecha de Fin"}; 
+	String ids[] = {"Legajo","DNI","Horas Trabajadas","Fecha de Inicio","Fecha Fin"}; 
 	DefaultTableModel mt = new DefaultTableModel();
 	JTable table = new JTable(mt);
 	JScrollPane scrollPane = new JScrollPane();
@@ -156,7 +156,7 @@ public class HistorialTrabaja extends JDialog {
 			}
 		}
 	}
-	//"DNI","Horas Trabajadas""Fecha de Inicio", "Fecha Estimada de Fin","Fecha de Fin" 
+	//"DNI","Horas Trabajadas""Fecha de Inicio", "Fecha Estimada de Fin"
 	
 	public void cargarTrabajo() {
 		DefaultTableModel modeloTablaTrabaja = (DefaultTableModel) table.getModel();
@@ -167,7 +167,7 @@ public class HistorialTrabaja extends JDialog {
 		while (iterador.hasNext()) {
 			Trabajo trabajo = (Trabajo) iterador.next();
 			String fila[] = {String.valueOf(trabajo.getId()),String.valueOf(trabajo.getEmpleado().getDni()),String.valueOf(trabajo.getHorasDeTrabajo()),String.valueOf(trabajo.getFechaInicio()),
-					String.valueOf(trabajo.getFechaEstFin()),String.valueOf(trabajo.getFechaFin())};
+					String.valueOf(trabajo.getFechaEstFin())};
 			modeloTablaTrabaja.addRow(fila);
 		}
 	}
