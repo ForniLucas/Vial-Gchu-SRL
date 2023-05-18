@@ -29,9 +29,10 @@ public class HistorialTrabaja extends JDialog {
 
 	private final JPanel contentPanel = new JPanel();
 	String id = new String();
+	String idTrabaja = new String();
 	ControladorProyecto controladorP = new ControladorProyecto();
 	//Tabla Principal
-	String ids[] = {"DNI","Horas Trabajadas","Fecha de Inicio","Fecha Estimada de Fin","Fecha de Fin"}; 
+	String ids[] = {"Legajo","DNI","Horas Trabajadas","Fecha de Inicio","Fecha Estimada de Fin","Fecha de Fin"}; 
 	DefaultTableModel mt = new DefaultTableModel();
 	JTable table = new JTable(mt);
 	JScrollPane scrollPane = new JScrollPane();
@@ -76,11 +77,12 @@ public class HistorialTrabaja extends JDialog {
 			public void mouseClicked(MouseEvent e) {
 				int filaSeleccionada = table.getSelectedRow();
 		        DefaultTableModel mt = (DefaultTableModel)table.getModel();
-		        dni = mt.getValueAt(filaSeleccionada, 0).toString();
-		        horasTrabajadas = mt.getValueAt(filaSeleccionada, 1).toString();
-		        fechaInicio = mt.getValueAt(filaSeleccionada, 2).toString();
-		        fechaEstimadaFin = mt.getValueAt(filaSeleccionada, 3).toString();
-		        fechaFin = mt.getValueAt(filaSeleccionada, 4).toString();
+		        idTrabaja = mt.getValueAt(filaSeleccionada, 0).toString();
+		        dni = mt.getValueAt(filaSeleccionada, 1).toString();
+		        horasTrabajadas = mt.getValueAt(filaSeleccionada, 2).toString();
+		        fechaInicio = mt.getValueAt(filaSeleccionada, 3).toString();
+		        fechaEstimadaFin = mt.getValueAt(filaSeleccionada, 4).toString();
+		        fechaFin = mt.getValueAt(filaSeleccionada, 5).toString();
 			}
 		});
 		scrollPane.setBounds(42, 55, 500, 455);
@@ -116,10 +118,7 @@ public class HistorialTrabaja extends JDialog {
 				btnImprimir.addMouseListener(new MouseAdapter() {
 					@Override
 					public void mouseClicked(MouseEvent e) {
-						DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy"); 
-						LocalDate fechaI = LocalDate.parse(fechaInicio, formatter);
-						LocalDate fechaE = LocalDate.parse(fechaEstimadaFin, formatter);
-						Trabajo trabajo = new Trabajo(Integer.parseInt(horasTrabajadas), fechaI, fechaE);
+						Trabajo trabajo = controladorP.buscarTrabajo(Long.parseLong(idTrabaja));
 						controladorP.crearPlantillaDeTrabajo(trabajo);
 					}
 				});
@@ -130,10 +129,8 @@ public class HistorialTrabaja extends JDialog {
 				btnDesasociar.addMouseListener(new MouseAdapter() {
 					@Override
 					public void mouseClicked(MouseEvent e) {
-						DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy"); 
-						LocalDate fechaI = LocalDate.parse(fechaInicio, formatter);
-						LocalDate fechaE = LocalDate.parse(fechaEstimadaFin, formatter);
-						Trabajo trabajo = new Trabajo(Integer.parseInt(horasTrabajadas), fechaI, fechaE);
+
+						Trabajo trabajo = controladorP.buscarTrabajo(Long.parseLong(idTrabaja));
 						controladorP.desasociarTrabajo(trabajo);
 					}
 				});
@@ -153,7 +150,7 @@ public class HistorialTrabaja extends JDialog {
 		Iterator<Trabajo> iterador = filasTrabaja.iterator();
 		while (iterador.hasNext()) {
 			Trabajo trabajo = (Trabajo) iterador.next();
-			String fila[] = {String.valueOf(trabajo.getEmpleado().getDni()),String.valueOf(trabajo.getHorasDeTrabajo()),String.valueOf(trabajo.getFechaInicio()),
+			String fila[] = {String.valueOf(trabajo.getId()),String.valueOf(trabajo.getEmpleado().getDni()),String.valueOf(trabajo.getHorasDeTrabajo()),String.valueOf(trabajo.getFechaInicio()),
 					String.valueOf(trabajo.getFechaEstFin()),String.valueOf(trabajo.getFechaFin())};
 			modeloTablaTrabaja.addRow(fila);
 		}

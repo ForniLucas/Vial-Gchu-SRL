@@ -30,9 +30,10 @@ public class HistorialUtiliza extends JDialog {
 
 	private final JPanel contentPanel = new JPanel();
 	private String id = new String();
+	String idUtiliza = new String();
 	private ControladorProyecto controladorP = new ControladorProyecto();
 	//Tabla Principal
-	private String ids[] = {"Fecha de Inicio", "Fecha Estimada de Fin","Fecha de Fin", "Código"}; 
+	private String ids[] = {"Legajo","Fecha de Inicio", "Fecha Estimada de Fin","Fecha de Fin", "Código"}; 
 	private DefaultTableModel mt = new DefaultTableModel();
 	private JTable table = new JTable(mt);
 	private JScrollPane scrollPane = new JScrollPane();
@@ -79,10 +80,11 @@ public class HistorialUtiliza extends JDialog {
 			public void mouseClicked(MouseEvent e) {
 				int filaSeleccionada = table.getSelectedRow();
 		        DefaultTableModel mt = (DefaultTableModel)table.getModel();
-		        fechaInicio = mt.getValueAt(filaSeleccionada, 0).toString();
-		        fechaEstimada = mt.getValueAt(filaSeleccionada, 1).toString();
-		        fechaFin = mt.getValueAt(filaSeleccionada, 2).toString();
-		        codigo = mt.getValueAt(filaSeleccionada, 3).toString();
+		        idUtiliza = mt.getValueAt(filaSeleccionada, 0).toString();
+		        fechaInicio = mt.getValueAt(filaSeleccionada, 1).toString();
+		        fechaEstimada = mt.getValueAt(filaSeleccionada, 2).toString();
+		        fechaFin = mt.getValueAt(filaSeleccionada, 3).toString();
+		        codigo = mt.getValueAt(filaSeleccionada, 4).toString();
 			}
 		});
 		scrollPane.setBounds(42, 55, 500, 455);
@@ -116,11 +118,8 @@ public class HistorialUtiliza extends JDialog {
 				desasociarBtn.addMouseListener(new MouseAdapter() {
 					@Override
 					public void mouseClicked(MouseEvent e) {
-						DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy"); 
-						LocalDate fechaI = LocalDate.parse(fechaInicio, formatter);
-						LocalDate fechaE = LocalDate.parse(fechaEstimada, formatter);
-						LocalDate fechaF = LocalDate.parse(fechaFin, formatter);
-						Utiliza utiliza = new Utiliza(fechaI, fechaE, fechaF);
+						
+						Utiliza utiliza =controladorP.buscarUtiliza(Long.parseLong(idUtiliza));
 						controladorP.desasociarUtiliza(utiliza);
 					}
 				});
@@ -141,7 +140,7 @@ public class HistorialUtiliza extends JDialog {
 		Iterator<Utiliza> iterador = filasUtiliza.iterator();
 		while (iterador.hasNext()) {
 			Utiliza utiliza = (Utiliza) iterador.next();
-			String fila[] = {String.valueOf(utiliza.getFechaInicio()),String.valueOf(utiliza.getFechaEstFin()),
+			String fila[] = {String.valueOf(utiliza.getId()),String.valueOf(utiliza.getFechaInicio()),String.valueOf(utiliza.getFechaEstFin()),
 					String.valueOf(utiliza.getFechaFin()),String.valueOf(utiliza.getMaquinaria().getCodigo()),String.valueOf(utiliza.getMaquinaria().getDescripcion())};
 			modeloTablaUtiliza.addRow(fila);
 		}

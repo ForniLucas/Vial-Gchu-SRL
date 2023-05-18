@@ -12,6 +12,7 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.table.DefaultTableModel;
 
 import Controladoras.ControladorEmpleado;
+import Domain.ElementoDeSeguridad;
 import Domain.Empleado;
 import Domain.RopaDeTrabajo;
 import Enumeraciones.Elemento;
@@ -114,10 +115,7 @@ public class HistorialRopaDeTrabajoDialog extends JDialog {
 					@Override
 					public void mouseClicked(MouseEvent e) {
 						empleado = controladorEmpleado.buscarDNI(Integer.parseInt(dni));
-						Ropa ropa = Ropa.valueOf(tipo);
-						DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy"); 
-						LocalDate fechaE = LocalDate.parse(fechaEntrega, formatter);
-						RopaDeTrabajo rt = new RopaDeTrabajo(ropa, talle, fechaE);
+						RopaDeTrabajo rt= controladorEmpleado.buscarRopa(Long.parseLong(id));
 						controladorEmpleado.crearPlantillaDeEntregaDeRopaDeTrabajo(empleado, rt);
 					}
 				});
@@ -140,12 +138,8 @@ public class HistorialRopaDeTrabajoDialog extends JDialog {
 				desasociarButton.addMouseListener(new MouseAdapter() {
 					@Override
 					public void mouseClicked(MouseEvent e) {
-						String r = tipo.toUpperCase();
-						String rSinEspacios = r.replaceAll("\\s+", "");
-						Ropa ropa = Ropa.valueOf(rSinEspacios);
-						DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd"); 
-						LocalDate fechaE = LocalDate.parse(fechaEntrega, formatter);
-						RopaDeTrabajo rt = new RopaDeTrabajo(ropa, talle, fechaE);
+						empleado = controladorEmpleado.buscarDNI(Integer.parseInt(dni));
+						RopaDeTrabajo rt= controladorEmpleado.buscarRopa(Long.parseLong(id));
 						controladorEmpleado.desasociarRopaDeTrabajo(rt);
 					}
 				});

@@ -135,7 +135,7 @@ public class TrabajaDialog extends JDialog {
 				JButton okButton = new JButton("Guardar");
 				okButton.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
-						if (empleado.getApellido()!= null) {
+						if (empleado!= null) {
 							proyecto = controladorP.buscarID(Integer.parseInt(idproyecto));
 							String fechaInicioString = fechaInicioTxt.getText(); // Get the value of the JTextField as a String
 							DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy"); // Specify the input format

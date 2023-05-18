@@ -27,17 +27,11 @@ public class Utiliza implements java.io.Serializable{
      private Long id;
 	
 	
-	@ManyToOne(fetch = FetchType.LAZY, cascade = {
-	           CascadeType.PERSIST, 
-	           CascadeType.MERGE
-	       })
+	@ManyToOne(fetch = FetchType.EAGER, cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH, CascadeType.DETACH})
 	@JoinColumn(name="maquinariaid")
 	private Maquinaria Maquinaria;
 	
-	@ManyToOne(fetch = FetchType.LAZY, cascade = {
-	           CascadeType.PERSIST, 
-	           CascadeType.MERGE
-	        })
+	@ManyToOne(fetch = FetchType.EAGER, cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH, CascadeType.DETACH})
 	@JoinColumn(name="proyectoid")
 	private Proyecto Proyecto;
 	
@@ -63,6 +57,10 @@ public class Utiliza implements java.io.Serializable{
     	
     }
     
+    public Long getId() {
+        return id;
+    }
+
 
     public LocalDate getFechaInicio() {
         return fechaInicio;

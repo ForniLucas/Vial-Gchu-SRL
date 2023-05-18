@@ -217,10 +217,8 @@ public class ServiceDialog extends JDialog {
 					@Override
 					public void mouseClicked(MouseEvent e) {
 						maquinaria = controladorMaquinaria.buscar(codigo);
-						DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-						LocalDate fechaI = LocalDate.parse(fechaInicio, formatter);
-						LocalDate fechaF = LocalDate.parse(fechaFin, formatter);
-						Service service = new Service(fechaI, fechaF, observaciones);
+
+						Service service = controladorMaquinaria.buscarService(Long.parseLong(id));
 						controladorMaquinaria.crearPlantillaDeMantenimiento(maquinaria, service);
 					}
 				});

@@ -35,17 +35,11 @@ public class Trabajo implements java.io.Serializable{
 	
 
 	
-	 @ManyToOne(fetch = FetchType.LAZY, cascade = {
-	            CascadeType.PERSIST, 
-	            CascadeType.MERGE
-	        })
+	 @ManyToOne(fetch = FetchType.EAGER, cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH, CascadeType.DETACH})
 	 @JoinColumn(name="empleado_id")
 	 private Empleado Empleado;
 	 
-	 @ManyToOne(fetch = FetchType.LAZY, cascade = {
-	            CascadeType.PERSIST, 
-	            CascadeType.MERGE
-	        })
+	 @ManyToOne(fetch = FetchType.EAGER, cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH, CascadeType.DETACH})
 	 @JoinColumn(name="proyecto_id")
 	 private Proyecto Proyecto;
 	
@@ -70,6 +64,10 @@ public class Trabajo implements java.io.Serializable{
        // this.fechaFin = fechaFin;
     }
 	public Trabajo() {}
+	
+	public Long getId() {
+        return id;
+    }
 	
     public int getHorasDeTrabajo() {
         return horasDeTrabajo;

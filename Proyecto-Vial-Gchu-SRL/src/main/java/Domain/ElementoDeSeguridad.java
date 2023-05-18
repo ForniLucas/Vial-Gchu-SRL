@@ -41,7 +41,7 @@ public class ElementoDeSeguridad implements java.io.Serializable {
     @UpdateTimestamp
     private LocalDate fechaEntrega;
     
-    @ManyToOne(fetch=FetchType.EAGER,cascade = CascadeType.ALL)
+    @ManyToOne(fetch=FetchType.EAGER,cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH, CascadeType.DETACH})
 	@JoinColumn(name="empleado_id", nullable=false)
 	private Empleado Empleado;
     

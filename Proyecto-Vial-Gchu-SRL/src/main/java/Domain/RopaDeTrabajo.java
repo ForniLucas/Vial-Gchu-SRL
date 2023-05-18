@@ -34,7 +34,7 @@ public class RopaDeTrabajo implements java.io.Serializable{
     @GeneratedValue(strategy = GenerationType.IDENTITY)
      private Long id;
 	
-	@ManyToOne(fetch=FetchType.EAGER,cascade = CascadeType.ALL)
+	@ManyToOne(fetch=FetchType.EAGER,cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH, CascadeType.DETACH})
 	@JoinColumn(name="empleado_id", nullable=false)
 	private Empleado Empleado;
     

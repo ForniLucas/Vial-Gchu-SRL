@@ -96,6 +96,9 @@ public class UtilizaDialog extends JDialog {
 		contentPanel.add(fechaInicioTxt);
 		fechaInicioTxt.setColumns(10);
 		
+		
+		fechaEstimadaTxt.setText("dd-mm-aaaa");
+		fechaEstimadaTxt.setBounds(286, 314, 109, 19);
 		fechaEstimadaTxt.setText("dd/mm/aaaa");
 		fechaEstimadaTxt.setBounds(286, 314, 109, 19);
 		contentPanel.add(fechaEstimadaTxt);
@@ -136,15 +139,14 @@ public class UtilizaDialog extends JDialog {
 				asignarBtn.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
 						proyecto = controladorP.buscarID(Integer.parseInt(idproyecto));
-						maquinaria = controladorM.buscar(codigo);
+						maquinaria = controladorM.buscar(codigoTxt.getText());
 						String fechaInicioString = fechaInicioTxt.getText(); 
 						DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy"); 
 						LocalDate fechaInicio = LocalDate.parse(fechaInicioString, formatter);
 						String fechaEstimadaString = fechaEstimadaTxt.getText(); 
 						LocalDate fechaEstimada = LocalDate.parse(fechaEstimadaString, formatter);
-						System.out.println(idproyecto);
-						System.out.println(maquinaria.getId());
-						if (maquinaria.getCodigo() !=  null)
+						
+						if (maquinaria!=  null)
 						{
 							controladorP.asignarUtiliza(maquinaria, proyecto, fechaInicio, fechaEstimada);
 						

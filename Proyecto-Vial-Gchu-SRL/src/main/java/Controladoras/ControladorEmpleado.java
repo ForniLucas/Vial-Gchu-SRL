@@ -157,6 +157,48 @@ public class ControladorEmpleado
 	    }
 	  }
 	
+	
+	public ElementoDeSeguridad buscarElemento(Long pId) {
+	    // Iniciar la sesión de Hibernate
+	    StandardServiceRegistry registry = new StandardServiceRegistryBuilder().configure().build();
+	    SessionFactory factory = null;
+	    Session session = null;
+	    ElementoDeSeguridad resultado = null;
+	    try {
+	      factory = new MetadataSources(registry).buildMetadata().buildSessionFactory();
+	      session = factory.openSession();
+	      
+	      // Crear un objeto CriteriaBuilder para construir la consulta
+	      CriteriaBuilder builder = session.getCriteriaBuilder();
+	      // Crear una consulta para buscar el empleado con el DNI especificado
+	      CriteriaQuery<ElementoDeSeguridad> criteria = builder.createQuery(ElementoDeSeguridad.class);
+	      // Definir la tabla (clase) a partir de la cual se hará la consulta
+	      Root<ElementoDeSeguridad> root = criteria.from(ElementoDeSeguridad.class);
+	      // Seleccionar el empleado con el DNI especificado
+	      criteria.select(root).where(builder.equal(root.get("id"), pId));
+	      // Crear un objeto TypedQuery a partir de la consulta construida
+	      TypedQuery<ElementoDeSeguridad> query = session.createQuery(criteria);
+	      
+	      // Obtener el resultado de la consulta
+	      List<ElementoDeSeguridad> resultados = query.getResultList();
+	      if (!resultados.isEmpty()) {
+	        resultado = resultados.get(0);
+	      }
+	    } catch (Exception ex) {
+	      System.out.println(ex.getMessage());
+	      ex.printStackTrace();
+	    } finally {
+	      if (session != null) {
+	        session.close();
+	      }
+	      if (factory != null) {
+	        factory.close();
+	      }
+	      StandardServiceRegistryBuilder.destroy(registry);
+	    }
+	    return resultado;
+	  }
+	
 	public void asignarRopaDeTrabajo(Empleado unEmpleado,RopaDeTrabajo unaRopa) {
 		// Iniciar sesión de Hibernate
 	    StandardServiceRegistry registry = new StandardServiceRegistryBuilder().configure().build();
@@ -227,7 +269,46 @@ public class ControladorEmpleado
 	      StandardServiceRegistryBuilder.destroy(registry);
 	    }
 	  }
-
+	public RopaDeTrabajo buscarRopa(Long pId) {
+	    // Iniciar la sesión de Hibernate
+	    StandardServiceRegistry registry = new StandardServiceRegistryBuilder().configure().build();
+	    SessionFactory factory = null;
+	    Session session = null;
+	    RopaDeTrabajo resultado = null;
+	    try {
+	      factory = new MetadataSources(registry).buildMetadata().buildSessionFactory();
+	      session = factory.openSession();
+	      
+	      // Crear un objeto CriteriaBuilder para construir la consulta
+	      CriteriaBuilder builder = session.getCriteriaBuilder();
+	      // Crear una consulta para buscar el empleado con el DNI especificado
+	      CriteriaQuery<RopaDeTrabajo> criteria = builder.createQuery(RopaDeTrabajo.class);
+	      // Definir la tabla (clase) a partir de la cual se hará la consulta
+	      Root<RopaDeTrabajo> root = criteria.from(RopaDeTrabajo.class);
+	      // Seleccionar el empleado con el DNI especificado
+	      criteria.select(root).where(builder.equal(root.get("id"), pId));
+	      // Crear un objeto TypedQuery a partir de la consulta construida
+	      TypedQuery<RopaDeTrabajo> query = session.createQuery(criteria);
+	      
+	      // Obtener el resultado de la consulta
+	      List<RopaDeTrabajo> resultados = query.getResultList();
+	      if (!resultados.isEmpty()) {
+	        resultado = resultados.get(0);
+	      }
+	    } catch (Exception ex) {
+	      System.out.println(ex.getMessage());
+	      ex.printStackTrace();
+	    } finally {
+	      if (session != null) {
+	        session.close();
+	      }
+	      if (factory != null) {
+	        factory.close();
+	      }
+	      StandardServiceRegistryBuilder.destroy(registry);
+	    }
+	    return resultado;
+	  }
 	
 
 	public void asignarEspecializacion(Empleado unEmpleado,Especializacion unaEspecializacion) {
@@ -761,6 +842,7 @@ public class ControladorEmpleado
 	            tabla2= new PdfPTable(2);
 	            tabla2.setWidthPercentage(100);
 	            f21 = new PdfPCell(new Phrase("PROFESIÓN",fonTable));
+	            
 	            f22 = new PdfPCell(new Phrase(unEmpleado.buscarEspecializacionActual().getTipo().toString(),fonTable));
 	            
 	            tabla2.addCell(f21);

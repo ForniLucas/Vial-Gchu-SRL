@@ -44,7 +44,7 @@ public class Service implements java.io.Serializable{
     @Column(name = "observaciones", nullable=true)
     private String observaciones;
     
-    @ManyToOne(fetch=FetchType.EAGER,cascade = CascadeType.ALL)
+    @ManyToOne(fetch = FetchType.EAGER, cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH, CascadeType.DETACH})
 	@JoinColumn(name="maquinaria_id", nullable=false)
 	private Maquinaria Maquinaria;
 

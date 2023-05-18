@@ -535,6 +535,47 @@ public LinkedList<Proyecto> buscarNombre (String nombreProyecto) {
 	    }
 	  }
 	
+	public Trabajo buscarTrabajo(Long pId) {
+	    // Iniciar la sesión de Hibernate
+	    StandardServiceRegistry registry = new StandardServiceRegistryBuilder().configure().build();
+	    SessionFactory factory = null;
+	    Session session = null;
+	    Trabajo resultado = null;
+	    try {
+	      factory = new MetadataSources(registry).buildMetadata().buildSessionFactory();
+	      session = factory.openSession();
+	      
+	      // Crear un objeto CriteriaBuilder para construir la consulta
+	      CriteriaBuilder builder = session.getCriteriaBuilder();
+	      // Crear una consulta para buscar el empleado con el DNI especificado
+	      CriteriaQuery<Trabajo> criteria = builder.createQuery(Trabajo.class);
+	      // Definir la tabla (clase) a partir de la cual se hará la consulta
+	      Root<Trabajo> root = criteria.from(Trabajo.class);
+	      // Seleccionar el empleado con el DNI especificado
+	      criteria.select(root).where(builder.equal(root.get("id"), pId));
+	      // Crear un objeto TypedQuery a partir de la consulta construida
+	      TypedQuery<Trabajo> query = session.createQuery(criteria);
+	      
+	      // Obtener el resultado de la consulta
+	      List<Trabajo> resultados = query.getResultList();
+	      if (!resultados.isEmpty()) {
+	        resultado = resultados.get(0);
+	      }
+	    } catch (Exception ex) {
+	      System.out.println(ex.getMessage());
+	      ex.printStackTrace();
+	    } finally {
+	      if (session != null) {
+	        session.close();
+	      }
+	      if (factory != null) {
+	        factory.close();
+	      }
+	      StandardServiceRegistryBuilder.destroy(registry);
+	    }
+	    return resultado;
+	  }
+	
 	public void asignarUtiliza(Maquinaria unaMaquinaria, Proyecto unProyecto, LocalDate fechaInicio, LocalDate fechaEstFin) {
 		// Iniciar sesión de Hibernate
 	    StandardServiceRegistry registry = new StandardServiceRegistryBuilder().configure().build();
@@ -616,6 +657,47 @@ public LinkedList<Proyecto> buscarNombre (String nombreProyecto) {
 	    }
 	  }
 	
+	public Utiliza buscarUtiliza(Long pId) {
+	    // Iniciar la sesión de Hibernate
+	    StandardServiceRegistry registry = new StandardServiceRegistryBuilder().configure().build();
+	    SessionFactory factory = null;
+	    Session session = null;
+	    Utiliza resultado = null;
+	    try {
+	      factory = new MetadataSources(registry).buildMetadata().buildSessionFactory();
+	      session = factory.openSession();
+	      
+	      // Crear un objeto CriteriaBuilder para construir la consulta
+	      CriteriaBuilder builder = session.getCriteriaBuilder();
+	      // Crear una consulta para buscar el empleado con el DNI especificado
+	      CriteriaQuery<Utiliza> criteria = builder.createQuery(Utiliza.class);
+	      // Definir la tabla (clase) a partir de la cual se hará la consulta
+	      Root<Utiliza> root = criteria.from(Utiliza.class);
+	      // Seleccionar el empleado con el DNI especificado
+	      criteria.select(root).where(builder.equal(root.get("id"), pId));
+	      // Crear un objeto TypedQuery a partir de la consulta construida
+	      TypedQuery<Utiliza> query = session.createQuery(criteria);
+	      
+	      // Obtener el resultado de la consulta
+	      List<Utiliza> resultados = query.getResultList();
+	      if (!resultados.isEmpty()) {
+	        resultado = resultados.get(0);
+	      }
+	    } catch (Exception ex) {
+	      System.out.println(ex.getMessage());
+	      ex.printStackTrace();
+	    } finally {
+	      if (session != null) {
+	        session.close();
+	      }
+	      if (factory != null) {
+	        factory.close();
+	      }
+	      StandardServiceRegistryBuilder.destroy(registry);
+	    }
+	    return resultado;
+	  }
+	
 	public Set<Utiliza> listarUtiliza(Long unId) {
 	    // Iniciar la sesión de Hibernate
 		Set<Utiliza> resultados = new HashSet<Utiliza>(0);
@@ -632,7 +714,7 @@ public LinkedList<Proyecto> buscarNombre (String nombreProyecto) {
 	      CriteriaQuery<Proyecto> criteria = builder.createQuery(Proyecto.class);
 	      // Definir la tabla (clase) a partir de la cual se hará la consulta
 	      Root<Proyecto> root = criteria.from(Proyecto.class);
-	      criteria.select(root).where(builder.equal(root.get("proyectoid"), unId));
+	      criteria.select(root).where(builder.equal(root.get("id"), unId));
 	      // Crear un objeto TypedQuery a partir de la consulta construida
 	      TypedQuery<Proyecto> query = session.createQuery(criteria);
 	      
@@ -672,7 +754,7 @@ public LinkedList<Proyecto> buscarNombre (String nombreProyecto) {
 	      CriteriaQuery<Proyecto> criteria = builder.createQuery(Proyecto.class);
 	      // Definir la tabla (clase) a partir de la cual se hará la consulta
 	      Root<Proyecto> root = criteria.from(Proyecto.class);
-	      criteria.select(root).where(builder.equal(root.get("proyectoid"), unId));
+	      criteria.select(root).where(builder.equal(root.get("id"), unId));
 	      // Crear un objeto TypedQuery a partir de la consulta construida
 	      TypedQuery<Proyecto> query = session.createQuery(criteria);
 	      
