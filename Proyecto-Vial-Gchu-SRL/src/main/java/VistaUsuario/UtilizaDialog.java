@@ -143,6 +143,7 @@ public class UtilizaDialog extends JDialog {
 						String fechaEstimadaString = fechaEstimadaTxt.getText(); 
 						LocalDate fechaEstimada = LocalDate.parse(fechaEstimadaString, formatter);
 						System.out.println(idproyecto);
+						System.out.println(maquinaria.getId());
 						if (maquinaria.getCodigo() !=  null)
 						{
 							controladorP.asignarUtiliza(maquinaria, proyecto, fechaInicio, fechaEstimada);
