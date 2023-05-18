@@ -60,7 +60,7 @@ public class RopaDeTrabajoDialog extends JDialog {
 		contentPanel.setLayout(null);
 		{
 			JLabel lblNewLabel = new JLabel("Tipo");
-			lblNewLabel.setBounds(146, 85, 70, 13);
+			lblNewLabel.setBounds(146, 85, 80, 13);
 			contentPanel.add(lblNewLabel);
 		}
 		{

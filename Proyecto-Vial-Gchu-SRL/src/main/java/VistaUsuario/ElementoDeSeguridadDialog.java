@@ -73,7 +73,7 @@ public class ElementoDeSeguridadDialog extends JDialog {
 	
 		}
 		
-		textField = new JTextField();
+		textField = new JTextField("dd/mm/aaaa");
 		textField.setBounds(218, 233, 113, 19);
 		contentPanel.add(textField);
 		textField.setColumns(10);
