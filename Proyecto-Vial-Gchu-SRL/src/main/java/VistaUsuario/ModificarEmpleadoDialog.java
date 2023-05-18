@@ -263,12 +263,22 @@ public class ModificarEmpleadoDialog extends JDialog {
 					JButton gestionarEspBtn = new JButton("Gestionar Especialización");
 					gestionarEspBtn.addActionListener(new ActionListener() {
 						public void actionPerformed(ActionEvent e) {
-							id = dniidTxt.getText();
+							try {
+								if (empleado.getApellido() != null) {
+								id = dniidTxt.getText();
 
-							setVisible(false);
-							HistorialEspecializacionDialog historialEspecializacion = new HistorialEspecializacionDialog(ModificarEmpleadoDialog.this,
-									id);
-							historialEspecializacion.setVisible(true);
+								setVisible(false);
+								HistorialEspecializacionDialog historialEspecializacion = new HistorialEspecializacionDialog(ModificarEmpleadoDialog.this,
+										id);
+								historialEspecializacion.setVisible(true);
+								}
+								else {
+									optionPane.showMessageDialog(null, "Debe buscar un empleado primero.");
+								}
+							} catch (Exception e1) {
+								optionPane.showMessageDialog(null, "Error al modificar el empleado: " + e1.getMessage());
+							}
+							
 						}
 					});
 					buttonPane.add(gestionarEspBtn);
@@ -277,11 +287,22 @@ public class ModificarEmpleadoDialog extends JDialog {
 					JButton gestionarElemBtn = new JButton("Gestionar Elementos de Seguridad");
 					gestionarElemBtn.addActionListener(new ActionListener() {
 						public void actionPerformed(ActionEvent e) {
-							id = dniidTxt.getText();
-							setVisible(false);
-							HistorialElementoDeSeguridadDialog historialElemento = new HistorialElementoDeSeguridadDialog(ModificarEmpleadoDialog.this,
-									id);
-							historialElemento.setVisible(true);
+							try {
+								if (empleado.getApellido() != null) {
+									id = dniidTxt.getText();
+									setVisible(false);
+									HistorialElementoDeSeguridadDialog historialElemento = new HistorialElementoDeSeguridadDialog(ModificarEmpleadoDialog.this,
+											id);
+									historialElemento.setVisible(true);
+									
+							}
+							else {
+								optionPane.showMessageDialog(null, "Debe buscar un empleado primero.");
+							}
+							
+							} catch (Exception e1) {
+								optionPane.showMessageDialog(null, "Error al modificar el empleado: " + e1.getMessage());
+							}
 						}
 					});
 					buttonPane.add(gestionarElemBtn);
@@ -290,11 +311,21 @@ public class ModificarEmpleadoDialog extends JDialog {
 					JButton gestionarRopaBtn = new JButton("Gestionar Ropa");
 					gestionarRopaBtn.addActionListener(new ActionListener() {
 						public void actionPerformed(ActionEvent e) {
-							id = dniidTxt.getText();
-							setVisible(false);
-							HistorialRopaDeTrabajoDialog historialRopa = new HistorialRopaDeTrabajoDialog(ModificarEmpleadoDialog.this,
-									id);
-							historialRopa.setVisible(true);
+							try {
+								if (empleado.getApellido() != null) {
+									id = dniidTxt.getText();
+									setVisible(false);
+									HistorialRopaDeTrabajoDialog historialRopa = new HistorialRopaDeTrabajoDialog(ModificarEmpleadoDialog.this,
+											id);
+									historialRopa.setVisible(true);
+							}
+							else {
+								optionPane.showMessageDialog(null, "Debe buscar un empleado primero.");
+							}
+							
+							} catch (Exception e1) {
+								optionPane.showMessageDialog(null, "Error al modificar el empleado: " + e1.getMessage());
+							}
 						}
 					});
 					buttonPane.add(gestionarRopaBtn);
