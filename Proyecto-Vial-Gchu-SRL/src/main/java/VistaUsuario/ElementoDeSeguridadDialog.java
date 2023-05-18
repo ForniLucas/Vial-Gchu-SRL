@@ -18,6 +18,7 @@ import Domain.ElementoDeSeguridad;
 import Domain.Empleado;
 
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JComboBox;
 import javax.swing.JTextField;
 
@@ -27,6 +28,7 @@ public class ElementoDeSeguridadDialog extends JDialog {
 	private final JPanel contentPanel = new JPanel();
 	private JTextField textField;
 	private String dni = new String();
+	JOptionPane optionPane = new JOptionPane();
 	private ControladorEmpleado controlador = new ControladorEmpleado();
 	private Empleado empleado = new Empleado();
 	private JLabel nombreLabel = new JLabel("");
@@ -86,20 +88,26 @@ public class ElementoDeSeguridadDialog extends JDialog {
 				JButton guardarBtn = new JButton("Guardar");
 				guardarBtn.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
-						empleado = controlador.buscarDNI(Integer.parseInt(dni));
-						String fechaEtnregaString = textField.getText(); 
-						DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy"); 
-						LocalDate fechaEtnrega = LocalDate.parse(fechaEtnregaString, formatter);
+						try {
+							empleado = controlador.buscarDNI(Integer.parseInt(dni));
+							String fechaEtnregaString = textField.getText(); 
+							DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy"); 
+							LocalDate fechaEtnrega = LocalDate.parse(fechaEtnregaString, formatter);
 						
-						Elemento elemento = (Elemento) tipoBox.getSelectedItem();
+							Elemento elemento = (Elemento) tipoBox.getSelectedItem();
 						
-						ElementoDeSeguridad elementoSeguridad = new ElementoDeSeguridad();
+							ElementoDeSeguridad elementoSeguridad = new ElementoDeSeguridad();
 						
-						elementoSeguridad.setEmpleado(empleado);
-						elementoSeguridad.setTipo(elemento);
-						elementoSeguridad.setFechaEntrega(fechaEtnrega);
+							elementoSeguridad.setEmpleado(empleado);
+							elementoSeguridad.setTipo(elemento);
+							elementoSeguridad.setFechaEntrega(fechaEtnrega);
 
-						controlador.asignarElementoDeSeguridad(empleado, elementoSeguridad);
+							controlador.asignarElementoDeSeguridad(empleado, elementoSeguridad);
+							optionPane.showMessageDialog(null,"Operación exitosa");
+						}catch (Exception e4) {
+								optionPane.showMessageDialog(null,"Ocurrió un error al procesar los datos: " + e4.getMessage());
+								return;
+						}
 					}
 				});
 				guardarBtn.setActionCommand("OK");
