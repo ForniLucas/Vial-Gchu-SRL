@@ -108,6 +108,9 @@ public class ElementoDeSeguridadDialog extends JDialog {
 
 								controlador.asignarElementoDeSeguridad(empleado, elementoSeguridad);
 								optionPane.showMessageDialog(null,"Operación exitosa");
+								setVisible(false);
+								EmpleadoDialog empleados = new EmpleadoDialog();
+								empleados.setVisible(true);
 							}
 							
 						}catch (Exception e4) {

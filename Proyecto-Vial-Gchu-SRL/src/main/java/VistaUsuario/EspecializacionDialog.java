@@ -102,7 +102,9 @@ public class EspecializacionDialog extends JDialog {
 					        Especializacion especializacion = new Especializacion(empleado,prof, currentDate, rol);					       
 					        controlador.asignarEspecializacion(empleado, especializacion);
 					        optionPane.showMessageDialog(null,"Operación exitosa");
-					        setVisible(false);
+					        EmpleadoDialog empleados = new EmpleadoDialog();
+							empleados.setVisible(true);
+							setVisible(false);
 						}catch (Exception e4) {
 								optionPane.showMessageDialog(null,"Ocurrió un error al procesar los datos: " + e4.getMessage());
 								return;

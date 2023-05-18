@@ -119,8 +119,11 @@ public class RopaDeTrabajoDialog extends JDialog {
 								ropaTrabajo.setTipo(ropa);
 								ropaTrabajo.setTalle(talle);
 								ropaTrabajo.setFechaEntrega(fechaEtnrega);
-								
 								controlador.asignarRopaDeTrabajo(empleado, ropaTrabajo);
+								optionPane.showMessageDialog(null,"Operación exitosa");
+								setVisible(false);
+								EmpleadoDialog empleados = new EmpleadoDialog();
+								empleados.setVisible(true);
 							}else {
 								optionPane.showMessageDialog(null, "Debe buscar un Empleado primero.");
 							}
