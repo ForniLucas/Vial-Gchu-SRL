@@ -121,11 +121,11 @@ public class UtilizaDialog extends JDialog {
 		contentPanel.add(buscarBtn);
 		
 		
-		descripcionLbl.setBounds(54, 152, 221, 13);
+		descripcionLbl.setBounds(54, 152, 300, 13);
 		contentPanel.add(descripcionLbl);
 		
 		
-		fabricanteLbl.setBounds(54, 207, 139, 13);
+		fabricanteLbl.setBounds(54, 207, 281, 13);
 		contentPanel.add(fabricanteLbl);
 		{
 			JPanel buttonPane = new JPanel();

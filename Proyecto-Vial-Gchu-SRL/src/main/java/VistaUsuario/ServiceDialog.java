@@ -103,7 +103,7 @@ public class ServiceDialog extends JDialog {
 		contentPanel.add(scrollPane);
 		{
 			JLabel lblNewLabel = new JLabel("Ingrese el Código de la Maquinaria");
-			lblNewLabel.setBounds(26, 22, 173, 13);
+			lblNewLabel.setBounds(26, 22, 233, 13);
 			contentPanel.add(lblNewLabel);
 		}
 		{

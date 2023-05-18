@@ -99,10 +99,10 @@ public class EspecializacionDialog extends JDialog {
 							LocalDate currentDate = LocalDate.now();
 					        Profesion prof = (Profesion)espComboBox.getSelectedItem();
 					        RolEmpleado rol =(RolEmpleado)rolComboBox.getSelectedItem();
-					        Especializacion especializacion = new Especializacion(empleado,prof, currentDate, rol);
-					       
+					        Especializacion especializacion = new Especializacion(empleado,prof, currentDate, rol);					       
 					        controlador.asignarEspecializacion(empleado, especializacion);
 					        optionPane.showMessageDialog(null,"Operación exitosa");
+					        setVisible(false);
 						}catch (Exception e4) {
 								optionPane.showMessageDialog(null,"Ocurrió un error al procesar los datos: " + e4.getMessage());
 								return;
@@ -118,6 +118,8 @@ public class EspecializacionDialog extends JDialog {
 				JButton cancelarBtn = new JButton("Cancelar");
 				cancelarBtn.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
+						EmpleadoDialog empleados = new EmpleadoDialog();
+						empleados.setVisible(true);
 						setVisible(false);
 					}
 				});
