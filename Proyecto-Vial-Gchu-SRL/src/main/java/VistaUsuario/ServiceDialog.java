@@ -242,7 +242,7 @@ public class ServiceDialog extends JDialog {
 							}
 							
 						} catch (Exception ex) {
-						    optionPane.showMessageDialog(null, "Ocurrió un error al procesar los datos: " + ex.getMessage());
+						    optionPane.showMessageDialog(null, "Debe seleccionar un servis existente");
 						    return;
 						}
 						
