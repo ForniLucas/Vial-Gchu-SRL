@@ -103,7 +103,9 @@ public class HistorialTrabaja extends JDialog {
 				JButton cancelarBtn = new JButton("Cancelar");
 				cancelarBtn.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
-						setVisible(false);
+						ProyectoDialog proyectoD = new ProyectoDialog();
+						proyectoD.setVisible(true);
+						setVisible(false);	
 					}
 				});
 				

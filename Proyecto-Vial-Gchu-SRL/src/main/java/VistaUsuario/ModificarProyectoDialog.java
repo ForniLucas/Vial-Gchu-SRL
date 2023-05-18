@@ -276,6 +276,7 @@ public class ModificarProyectoDialog extends JDialog {
 								proyid = legajoTxt.getText();
 								HistorialUtiliza historialUtiliza = new HistorialUtiliza(ModificarProyectoDialog.this, proyid);
 								historialUtiliza.setVisible(true);
+								setVisible(false);
 							}
 							
 						} catch (Exception ex) {
@@ -297,6 +298,7 @@ public class ModificarProyectoDialog extends JDialog {
 								proyid = legajoTxt.getText();
 								HistorialTrabaja historialTrabaja = new HistorialTrabaja(ModificarProyectoDialog.this, proyid);
 								historialTrabaja.setVisible(true);
+								setVisible(false);
 								}
 					
 						} catch (Exception ex) {

@@ -160,6 +160,9 @@ public class UtilizaDialog extends JDialog {
 									if (control) {
 									controladorP.asignarUtiliza(maquinaria, proyecto, fechaInicio, fechaEstimada);
 									  optionPane.showMessageDialog(null, "Maquinaria asignada exitosamente.");
+									  ProyectoDialog proyectoD = new ProyectoDialog();
+									  proyectoD.setVisible(true);
+									  setVisible(false);	
 									}
 								
 								
@@ -181,7 +184,9 @@ public class UtilizaDialog extends JDialog {
 				JButton cancelarBtn = new JButton("Cancelar");
 				cancelarBtn.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
-						setVisible(false);
+						ProyectoDialog proyectoD = new ProyectoDialog();
+						proyectoD.setVisible(true);
+						setVisible(false);	
 					}
 				});
 				cancelarBtn.setActionCommand("Cancel");
