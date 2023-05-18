@@ -116,7 +116,7 @@ public class AltaMaquinariaDialog extends JDialog {
 						        JOptionPane.showMessageDialog(null, "Por favor, complete todos los campos.");
 						        return;
 						    }
-						    boolean control = validarDatos( codigo,  desc,  fabr,  ubic);
+						    boolean control = validarDatos( codigo,  desc,  fabr);
 						    if (control) {
 						    	controlador.alta(codigo, desc, fabr, ubic);
 							    JOptionPane.showMessageDialog(null, "Datos almacenados con éxito");
@@ -151,7 +151,7 @@ public class AltaMaquinariaDialog extends JDialog {
 		}
 	}
 	
-public boolean validarDatos(String codigo, String desc, String fabr, String ubic) {
+public boolean validarDatos(String codigo, String desc, String fabr) {
 		
 		boolean resultado = true;
 		
@@ -184,12 +184,6 @@ public boolean validarDatos(String codigo, String desc, String fabr, String ubic
 		    resultado = false;
 		}
 		
-		// Validar ubicación
-		if (!ubic.matches("[a-zA-Z0-9 ]{1,30}")) {
-		    // Mensaje de error si la ubicación contiene caracteres no permitidos o excede los 30 caracteres
-		    JOptionPane.showMessageDialog(null, "Ingrese una ubicación válida (solo letras, números y espacios, hasta 30 caracteres).");
-		    resultado = false;
-		}
 
 		return resultado;
 
