@@ -382,6 +382,7 @@ public class ProyectoDialog extends JDialog {
 		 DefaultTableModel modelo = (DefaultTableModel) table.getModel();
 		    modelo.setRowCount(0); // Limpia la tabla
 		    cargarProyectos(); 
+		    //
 	}
 	
 	public String convertirFecha(LocalDate fecha) {
