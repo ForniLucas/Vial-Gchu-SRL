@@ -158,6 +158,9 @@ public class TrabajaDialog extends JDialog {
 									int horasTrabajadas = Integer.parseInt(horasTrabajadasString);
 									controladorP.asignarTrabajo(empleado, proyecto,horasTrabajadas,fechaInicio,fechaEstimadaFin); //
 									optionPane.showMessageDialog(null, "Empleado asignado exitosamente.");
+									ProyectoDialog proyectoD = new ProyectoDialog();
+									proyectoD.setVisible(true);
+									setVisible(false);	
 								}
 							}
 							else {optionPane.showMessageDialog(null, "Debe buscar un empleado primero.");}

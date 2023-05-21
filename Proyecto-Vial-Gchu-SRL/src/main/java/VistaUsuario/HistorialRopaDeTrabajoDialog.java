@@ -25,6 +25,8 @@ import java.util.List;
 import java.util.Set;
 import java.awt.event.ActionEvent;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.time.LocalDate;
@@ -34,6 +36,7 @@ public class HistorialRopaDeTrabajoDialog extends JDialog {
 
 	private final JPanel contentPanel = new JPanel();
 	ControladorEmpleado controladorEmpleado = new ControladorEmpleado();
+	JOptionPane optionPane = new JOptionPane();
 	String dni = new String();
 	String id = new String();
 	String tipo = new String();
@@ -114,9 +117,16 @@ public class HistorialRopaDeTrabajoDialog extends JDialog {
 				btnImprimir.addMouseListener(new MouseAdapter() {
 					@Override
 					public void mouseClicked(MouseEvent e) {
-						empleado = controladorEmpleado.buscarDNI(Integer.parseInt(dni));
-						RopaDeTrabajo rt= controladorEmpleado.buscarRopa(Long.parseLong(id));
-						controladorEmpleado.crearPlantillaDeEntregaDeRopaDeTrabajo(empleado, rt);
+						try {
+							empleado = controladorEmpleado.buscarDNI(Integer.parseInt(dni));
+							RopaDeTrabajo rt= controladorEmpleado.buscarRopa(Long.parseLong(id));
+							controladorEmpleado.crearPlantillaDeEntregaDeRopaDeTrabajo(empleado, rt);
+							JOptionPane.showMessageDialog(null, "El archivo PDF se a creado correctamente!");
+						} catch (Exception ex) {
+						    optionPane.showMessageDialog(null, "Debe seleccionar un elemento");
+						    return;
+						}
+						
 					}
 				});
 				buttonPane.add(btnImprimir);
@@ -138,9 +148,17 @@ public class HistorialRopaDeTrabajoDialog extends JDialog {
 				desasociarButton.addMouseListener(new MouseAdapter() {
 					@Override
 					public void mouseClicked(MouseEvent e) {
-						empleado = controladorEmpleado.buscarDNI(Integer.parseInt(dni));
-						RopaDeTrabajo rt= controladorEmpleado.buscarRopa(Long.parseLong(id));
-						controladorEmpleado.desasociarRopaDeTrabajo(rt);
+						try {
+							empleado = controladorEmpleado.buscarDNI(Integer.parseInt(dni));
+							RopaDeTrabajo rt= controladorEmpleado.buscarRopa(Long.parseLong(id));
+							controladorEmpleado.desasociarRopaDeTrabajo(rt);
+							optionPane.showMessageDialog(null, "Operación exitosa");
+							cargarRopa();
+						} catch (Exception ex) {
+						    optionPane.showMessageDialog(null, "Debe seleccionar un elemento");
+						    return;
+						}
+						
 					}
 				});
 				buttonPane.add(desasociarButton);
@@ -153,14 +171,26 @@ public class HistorialRopaDeTrabajoDialog extends JDialog {
 	//"Legajo","Tipo", "Talle","Fecha de Entrega"
 	public void cargarRopa() {
 		DefaultTableModel modeloTablaRopa = (DefaultTableModel) table.getModel();
+		modeloTablaRopa.setRowCount(0);
 		int id = Integer.parseInt(dni);
 		Set<RopaDeTrabajo> filasTablaRopa = controladorEmpleado.listarRopaDeTrabajo(id);
 		Iterator<RopaDeTrabajo> iterador = filasTablaRopa.iterator();
 		while (iterador.hasNext()) {
 			RopaDeTrabajo ropa = (RopaDeTrabajo) iterador.next();
 			String fila[] = {String.valueOf(ropa.getId()),String.valueOf(ropa.getTipo()),String.valueOf(ropa.getTalle()),
-					String.valueOf(ropa.getFechaEntrega())};
+					String.valueOf(convertirFecha(ropa.getFechaEntrega()))};
 			modeloTablaRopa.addRow(fila);
 		}
+	}
+	
+	public String convertirFecha(LocalDate fecha) {
+	    // Crear el formateador para el formato de salida
+	    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+
+	    // Formatear la fecha en el formato deseado "dd/MM/yyyy"
+	    String fechaFormateada = fecha.format(formatter);
+
+	    // Devolver la fecha formateada
+	    return fechaFormateada;
 	}
 }

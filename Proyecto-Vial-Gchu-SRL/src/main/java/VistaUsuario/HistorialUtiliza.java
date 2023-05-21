@@ -35,7 +35,7 @@ public class HistorialUtiliza extends JDialog {
 	JOptionPane optionPane = new JOptionPane();
 	private ControladorProyecto controladorP = new ControladorProyecto();
 	//Tabla Principal
-	private String ids[] = {"Legajo","Fecha de Inicio", "Fecha Estimada de Fin","Fecha de Fin", "Código"}; 
+	private String ids[] = {"Legajo","Fecha de Inicio", "Fecha de Fin", "Código"}; 
 	private DefaultTableModel mt = new DefaultTableModel();
 	private JTable table = new JTable(mt);
 	private JScrollPane scrollPane = new JScrollPane();
@@ -105,7 +105,9 @@ public class HistorialUtiliza extends JDialog {
 				JButton cancelarBtn = new JButton("Cancelar");
 				cancelarBtn.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
-						setVisible(false);
+						ProyectoDialog proyectoD = new ProyectoDialog();
+						proyectoD.setVisible(true);
+						setVisible(false);	
 					}
 				});
 				asignarMaquinariaBtn.addActionListener(new ActionListener() {
@@ -150,7 +152,7 @@ public class HistorialUtiliza extends JDialog {
 		while (iterador.hasNext()) {
 			Utiliza utiliza = (Utiliza) iterador.next();
 			String fila[] = {String.valueOf(utiliza.getId()),String.valueOf(utiliza.getFechaInicio()),String.valueOf(utiliza.getFechaEstFin()),
-					String.valueOf(utiliza.getFechaFin()),String.valueOf(utiliza.getMaquinaria().getCodigo()),String.valueOf(utiliza.getMaquinaria().getDescripcion())};
+					String.valueOf(utiliza.getMaquinaria().getCodigo())};
 			modeloTablaUtiliza.addRow(fila);
 		}
 	}

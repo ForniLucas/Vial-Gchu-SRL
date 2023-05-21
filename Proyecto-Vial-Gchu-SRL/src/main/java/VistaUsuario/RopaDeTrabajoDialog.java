@@ -20,6 +20,7 @@ import javax.swing.JComboBox;
 import java.awt.event.ActionListener;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
 import java.awt.event.ActionEvent;
 import javax.swing.JTextField;
 
@@ -107,23 +108,29 @@ public class RopaDeTrabajoDialog extends JDialog {
 						try {
 							if (empleado != null) {
 								String fechaEtnregaString = fechaTxt.getText(); 
-								DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy"); 
-								LocalDate fechaEtnrega = LocalDate.parse(fechaEtnregaString, formatter); 
 								
-								String talle = (String) comboBox.getSelectedItem();
+								boolean control = validarDatos(fechaEtnregaString);
 								
-								Ropa ropa = (Ropa) comboBoxRopa.getSelectedItem();
+								if (control) {
+									DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy"); 
+									LocalDate fechaEtnrega = LocalDate.parse(fechaEtnregaString, formatter); 
+									
+									String talle = (String) comboBox.getSelectedItem();
+									
+									Ropa ropa = (Ropa) comboBoxRopa.getSelectedItem();
+									
+									RopaDeTrabajo ropaTrabajo = new RopaDeTrabajo();
+									ropaTrabajo.setEmpleado(empleado);
+									ropaTrabajo.setTipo(ropa);
+									ropaTrabajo.setTalle(talle);
+									ropaTrabajo.setFechaEntrega(fechaEtnrega);
+									controlador.asignarRopaDeTrabajo(empleado, ropaTrabajo);
+									optionPane.showMessageDialog(null,"Operación exitosa");
+									setVisible(false);
+									EmpleadoDialog empleados = new EmpleadoDialog();
+									empleados.setVisible(true);
+								}
 								
-								RopaDeTrabajo ropaTrabajo = new RopaDeTrabajo();
-								ropaTrabajo.setEmpleado(empleado);
-								ropaTrabajo.setTipo(ropa);
-								ropaTrabajo.setTalle(talle);
-								ropaTrabajo.setFechaEntrega(fechaEtnrega);
-								controlador.asignarRopaDeTrabajo(empleado, ropaTrabajo);
-								optionPane.showMessageDialog(null,"Operación exitosa");
-								setVisible(false);
-								EmpleadoDialog empleados = new EmpleadoDialog();
-								empleados.setVisible(true);
 							}else {
 								optionPane.showMessageDialog(null, "Debe buscar un Empleado primero.");
 							}
@@ -150,5 +157,17 @@ public class RopaDeTrabajoDialog extends JDialog {
 				buttonPane.add(cancelarBtn);
 			}
 		}
+	}
+	
+	public boolean validarDatos(String fechaString) {
+		boolean resultado = true; 
+		try {
+	        LocalDate.parse(fechaString, DateTimeFormatter.ofPattern("dd/MM/yyyy"));
+	    } catch (DateTimeParseException e) {
+	        JOptionPane.showMessageDialog(null, "Ingrese una fecha válida (formato: dd/MM/yyyy).");
+	        resultado = false;
+	    }
+		
+		return resultado;
 	}
 }

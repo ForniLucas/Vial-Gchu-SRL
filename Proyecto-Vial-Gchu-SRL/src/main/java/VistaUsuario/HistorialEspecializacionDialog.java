@@ -5,6 +5,8 @@ import java.awt.BorderLayout;
 import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.Iterator;
 import java.util.Set;
 
@@ -95,14 +97,26 @@ public class HistorialEspecializacionDialog extends JDialog {
 	//"Legajo","Tipo", "Fecha de Actualizacion","Rol", "Fecha de Fin"
 	public void cargarEspecializacion() {
 		DefaultTableModel modeloEspecializacion= (DefaultTableModel) table.getModel();
+		modeloEspecializacion.setRowCount(0);
 		int id = Integer.parseInt(dni);
 		Set<Especializacion> filasTablaRopa = controladorEmpleado.listarEspecializacion(id);
 		Iterator<Especializacion> iterador = filasTablaRopa.iterator();
 		while (iterador.hasNext()) {
 			Especializacion esp = (Especializacion) iterador.next();
-			String fila[] = {String.valueOf(esp.getId()),String.valueOf(esp.getTipo()),String.valueOf(esp.getFechaActualizacion()),
-					String.valueOf(esp.getRol()),String.valueOf(esp.getFechaFin())};
+			String fila[] = {String.valueOf(esp.getId()),String.valueOf(esp.getTipo()),String.valueOf(convertirFecha(esp.getFechaActualizacion())),
+					String.valueOf(esp.getRol()),String.valueOf(convertirFecha(esp.getFechaFin()))};
 			modeloEspecializacion.addRow(fila);
 		}
+	}
+	
+	public String convertirFecha(LocalDate fecha) {
+	    // Crear el formateador para el formato de salida
+	    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+
+	    // Formatear la fecha en el formato deseado "dd/MM/yyyy"
+	    String fechaFormateada = fecha.format(formatter);
+
+	    // Devolver la fecha formateada
+	    return fechaFormateada;
 	}
 }

@@ -239,6 +239,7 @@ public class ServiceDialog extends JDialog {
 
 								Service service = controladorMaquinaria.buscarService(Long.parseLong(id));
 								controladorMaquinaria.crearPlantillaDeMantenimiento(maquinaria, service);
+								JOptionPane.showMessageDialog(null, "El archivo PDF se a creado correctamente!");
 							}
 							
 						} catch (Exception ex) {

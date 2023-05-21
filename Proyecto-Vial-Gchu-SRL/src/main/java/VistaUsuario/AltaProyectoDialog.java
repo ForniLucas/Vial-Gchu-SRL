@@ -327,23 +327,6 @@ public class AltaProyectoDialog extends JDialog {
 	        resultado = false;
 	    }
 	    
-	    // Validar descripción
-	    if (!desc.matches("[a-zA-Z0-9 ]{1,50}")) {
-	        JOptionPane.showMessageDialog(null, "Ingrese una descripción válida (solo letras, números y espacios, hasta 50 caracteres).");
-	        resultado = false;
-	    }
-	    
-	    // Validar actividades
-	    if (!actividades.matches("[a-zA-Z0-9 ]{1,50}")) {
-	        JOptionPane.showMessageDialog(null, "Ingrese actividades válidas (solo letras, números y espacios, hasta 50 caracteres).");
-	        resultado = false;
-	    }
-	    
-	    // Validar insumos
-	    if (!insumos.matches("[a-zA-Z0-9 ]{1,50}")) {
-	        JOptionPane.showMessageDialog(null, "Ingrese insumos válidos (solo letras, números y espacios, hasta 50 caracteres).");
-	        resultado = false;
-	    }
 	    
 	    return resultado;
 	}

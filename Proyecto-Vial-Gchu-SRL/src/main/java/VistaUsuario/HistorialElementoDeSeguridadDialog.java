@@ -11,6 +11,7 @@ import java.util.Set;
 import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
@@ -32,6 +33,7 @@ public class HistorialElementoDeSeguridadDialog extends JDialog {
 
 	private final JPanel contentPanel = new JPanel();
 	ControladorEmpleado controladorEmpleado = new ControladorEmpleado();
+	JOptionPane optionPane = new JOptionPane();
 	Empleado empleado = new Empleado();
 	String id = new String();
 	String nombre = new String();
@@ -111,10 +113,16 @@ public class HistorialElementoDeSeguridadDialog extends JDialog {
 				btnImprimir.addMouseListener(new MouseAdapter() {
 					@Override
 					public void mouseClicked(MouseEvent e) {
+						try {
+							empleado = controladorEmpleado.buscarDNI(Integer.parseInt(dni));
+							ElementoDeSeguridad es= controladorEmpleado.buscarElemento(Long.parseLong(id));
+							controladorEmpleado.crearPlantillaDeEntregaDeElementoDeSeguridad(empleado, es);
+							JOptionPane.showMessageDialog(null, "El archivo PDF se a creado correctamente!");
+						} catch (Exception ex) {
+						    optionPane.showMessageDialog(null, "Debe seleccionar un elemento");
+						    return;
+						}
 						
-						empleado = controladorEmpleado.buscarDNI(Integer.parseInt(dni));
-						ElementoDeSeguridad es= controladorEmpleado.buscarElemento(Long.parseLong(id));
-						controladorEmpleado.crearPlantillaDeEntregaDeElementoDeSeguridad(empleado, es);
 					}
 				});
 				buttonPane.add(btnImprimir);
@@ -136,9 +144,16 @@ public class HistorialElementoDeSeguridadDialog extends JDialog {
 				desasociarButton.addMouseListener(new MouseAdapter() {
 					@Override
 					public void mouseClicked(MouseEvent e) {
-						empleado = controladorEmpleado.buscarDNI(Integer.parseInt(dni));
-						ElementoDeSeguridad es= controladorEmpleado.buscarElemento(Long.parseLong(id));
-						controladorEmpleado.desasociarElementoDeSeguridad(es);
+						try {
+							empleado = controladorEmpleado.buscarDNI(Integer.parseInt(dni));
+							ElementoDeSeguridad es= controladorEmpleado.buscarElemento(Long.parseLong(id));
+							controladorEmpleado.desasociarElementoDeSeguridad(es);
+							cargarElementos();
+						} catch (Exception ex) {
+						    optionPane.showMessageDialog(null, "Debe seleccionar un elemento");
+						    return;
+						}
+						
 					}
 				});
 				buttonPane.add(desasociarButton);
@@ -151,13 +166,25 @@ public class HistorialElementoDeSeguridadDialog extends JDialog {
 	
 	public void cargarElementos() {
 		DefaultTableModel modeloTablaElemento = (DefaultTableModel) table.getModel();
+		modeloTablaElemento.setRowCount(0);
 		int id = Integer.parseInt(dni);
 		Set<ElementoDeSeguridad> filasTablaElemento = controladorEmpleado.listarElementosDeSeguridad(id);
 		Iterator<ElementoDeSeguridad> iterador = filasTablaElemento.iterator();
 		while (iterador.hasNext()) {
 			ElementoDeSeguridad elemento = (ElementoDeSeguridad) iterador.next();
-			String fila[] = {String.valueOf(elemento.getiD()),String.valueOf(elemento.getTipo()),String.valueOf(elemento.getFechaEntrega())};
+			String fila[] = {String.valueOf(elemento.getiD()),String.valueOf(elemento.getTipo()),String.valueOf(convertirFecha(elemento.getFechaEntrega()))};
 			modeloTablaElemento.addRow(fila);
 		}
+	}
+	
+	public String convertirFecha(LocalDate fecha) {
+	    // Crear el formateador para el formato de salida
+	    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+
+	    // Formatear la fecha en el formato deseado "dd/MM/yyyy"
+	    String fechaFormateada = fecha.format(formatter);
+
+	    // Devolver la fecha formateada
+	    return fechaFormateada;
 	}
 }
